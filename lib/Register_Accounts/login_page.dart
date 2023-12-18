@@ -19,14 +19,14 @@ class LoginPage extends StatelessWidget {
           style: TextStyle(
               fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        titleSpacing: 00.0,
         centerTitle: true,
-        toolbarHeight: 60.2,
+        toolbarHeight: 80.2,
         toolbarOpacity: 0.8,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(25),
-              bottomLeft: Radius.circular(25)),
+            bottomRight: Radius.circular(40),
+            bottomLeft: Radius.circular(40),
+          ),
         ),
         elevation: 0.00,
         backgroundColor: Colors.cyan[400],
