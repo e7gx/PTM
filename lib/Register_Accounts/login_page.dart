@@ -17,24 +17,24 @@ class LoginPage extends StatelessWidget {
         title: const Text(
           "تسجيل الدخول",
           style: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+              fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
-        toolbarHeight: 80.2,
-        toolbarOpacity: 0.8,
+        toolbarHeight: 50,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(40),
-            bottomLeft: Radius.circular(40),
+            bottomRight: Radius.circular(80),
+            bottomLeft: Radius.circular(80),
           ),
         ),
-        elevation: 0.00,
-        backgroundColor: Colors.cyan[400],
+        elevation: 2.00,
+        backgroundColor: Colors.cyan,
       ), //AppBar
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Lottie.asset(
@@ -47,9 +47,23 @@ class LoginPage extends StatelessWidget {
                 controller: emailController,
                 decoration: const InputDecoration(
                   labelText: 'البريد الإلكتروني',
-                  prefixIcon: Icon(Icons.email),
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(
+                      color: Colors.cyan), // Cyan color for label text
+                  prefixIcon: Icon(Icons.email_outlined,
+                      color: Colors.cyan), // Cyan color for icon
+
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.cyan), // Consistent border color
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.cyan),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.cyan),
+                  ),
                 ),
+                keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 30.0),
               TextField(
@@ -57,8 +71,20 @@ class LoginPage extends StatelessWidget {
                 obscureText: true,
                 decoration: const InputDecoration(
                   labelText: 'كلمة المرور',
-                  prefixIcon: Icon(Icons.lock),
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(
+                      color: Colors.cyan), // Cyan color for label text
+                  prefixIcon: Icon(Icons.lock_outline,
+                      color: Colors.cyan), // Cyan color for icon
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.cyan), // Consistent border color
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.cyan),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.cyan),
+                  ),
                 ),
               ),
               const SizedBox(height: 40.0),
@@ -75,22 +101,26 @@ class LoginPage extends StatelessWidget {
                           title: const Text(
                             'خطأ في الإدخال',
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.cyan),
+                                color: Colors.black45),
                           ),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Lottie.asset(
-                                  'animation/WOR.json'), // يجب أن تكون الصورة موجودة في مجلد الـ assets
+                              Lottie.asset('animation/WOR.json',
+                                  height:
+                                      200), // يجب أن تكون الصورة موجودة في مجلد الـ assets
                               const SizedBox(
-                                height: 50,
+                                height: 10,
                               ),
-                              const Text(
-                                '       يرجى ملء كل من حقول   \n    البريد الإلكتروني وكلمة المرور   ',
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              const Center(
+                                child: Text(
+                                  'يرجى ملء كل من حقول البريد \n       الإلكتروني وكلمة المرور',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ],
                           ),
@@ -102,7 +132,9 @@ class LoginPage extends StatelessWidget {
                               child: const Text(
                                 'موافق',
                                 style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black45),
                               ),
                             ),
                           ],
@@ -168,7 +200,9 @@ class LoginPage extends StatelessWidget {
                               child: const Text(
                                 'موافق',
                                 style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
                               ),
                             ),
                           ],
@@ -205,7 +239,7 @@ class LoginPage extends StatelessWidget {
                     },
                     child: const Text(
                       'سجل الآن',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 16, color: Colors.cyan),
                     ),
                   ),
                   const Text(

@@ -6,27 +6,9 @@ class PPM extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          color: Colors.cyan,
-        ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Colors.cyan,
-        ),
-        inputDecorationTheme: const InputDecorationTheme(
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.cyan),
-          ),
-        ),
-        textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-            foregroundColor: Colors.cyan,
-          ),
-        ),
-      ),
-      home: const SplashScreen(),
+      home: SplashScreen(),
     );
   }
 }

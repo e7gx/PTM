@@ -4,25 +4,23 @@ import 'package:first_time/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/page/home_page_bars.dart';
 
+
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _SignUpPageState createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   void _registerUser() async {
-    final String username = _usernameController.text.trim();
     final String email = _emailController.text.trim();
     final String password = _passwordController.text.trim();
 
-    if (username.isEmpty || email.isEmpty || password.isEmpty) {
+    if (email.isEmpty || password.isEmpty) {
       _showDialog('              يرجى ملء جميع الحقول', 'animation/WOR.json');
     } else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email)) {
@@ -86,9 +84,24 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('تسجيل حساب جديد'),
+        title: const Text(
+          "تسجيل حساب جديد",
+          style: TextStyle(
+              fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         centerTitle: true,
-      ),
+        toolbarHeight: 80,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(40),
+            bottomLeft: Radius.circular(40),
+          ),
+        ),
+        elevation: 2.00,
+        backgroundColor: Colors.cyan,
+          iconTheme: IconThemeData(color: Colors.white), // Set the icon color to white
+
+      ), //AppBar
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -96,26 +109,32 @@ class _SignUpPageState extends State<SignUpPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Lottie.asset(
-                'animation/ppmana.json', // Make sure this path is correct
+                'animation/reportsman.json', // Make sure this path is correct
                 width: 400.0,
                 height: 250.0,
               ),
               const SizedBox(height: 40.0),
-              TextField(
-                controller: _usernameController,
-                decoration: const InputDecoration(
-                  labelText: 'اسم المستخدم',
-                  prefixIcon: Icon(Icons.person_outline),
-                  border: OutlineInputBorder(),
-                ),
-              ),
               const SizedBox(height: 20.0),
               TextField(
                 controller: _emailController,
                 decoration: const InputDecoration(
                   labelText: 'البريد الإلكتروني',
-                  prefixIcon: Icon(Icons.email_outlined),
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(
+                      color: Colors.cyan), // Cyan color for label text
+                  prefixIcon: Icon(Icons.email_outlined,
+                      color: Colors.cyan), // Cyan color for icon
+                  border: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.cyan), // Cyan color for border
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.cyan), // Cyan color for enabled border
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.cyan), // Cyan color for focused border
+                  ),
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
@@ -125,8 +144,22 @@ class _SignUpPageState extends State<SignUpPage> {
                 obscureText: true,
                 decoration: const InputDecoration(
                   labelText: 'كلمة المرور',
-                  prefixIcon: Icon(Icons.lock_outline),
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(
+                      color: Colors.cyan), // Cyan color for label text
+                  prefixIcon: Icon(Icons.lock_outline,
+                      color: Colors.cyan), // Cyan color for icon
+                  border: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.cyan), // Cyan color for border
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.cyan), // Cyan color for enabled border
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.cyan), // Cyan color for focused border
+                  ),
                 ),
               ),
               const SizedBox(height: 40.0),
@@ -136,9 +169,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   padding: const EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 60.0),
                   backgroundColor: Colors.cyan,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                 ),
                 child: const Text(
-                  'تسجيل',
+                  ' تسجيل جديد ',
                   style: TextStyle(
                     fontSize: 18.0,
                     color: Colors.white,
