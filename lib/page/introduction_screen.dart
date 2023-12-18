@@ -50,7 +50,10 @@ class OnBoardingPageState extends State<OnBoardingPage> {
         height: 60,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.cyan, // Set the background color to orange
+            backgroundColor: Colors.cyan, // Set the background color to cyan
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.zero, // Set border radius to zero
+            ),
           ),
           child: const Text(
             'هيا بنا لتجربة مختلفة',

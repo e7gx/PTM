@@ -28,16 +28,15 @@ class SplashScreen extends StatelessWidget {
           ),
           const Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Center(
-                  child: Text(
-                    'PPM لجعل منشأتك أفضل',
-                    style: TextStyle(
-                      color: Colors.cyan,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                Text(
+                  'PPM لجعل منشأتك أفضل',
+                  textAlign: TextAlign.end,
+                  style: TextStyle(
+                    color: Colors.cyan,
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 SizedBox(height: 40.0),
