@@ -72,7 +72,10 @@ class _SignUpPageState extends State<SignUpPage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('حسنا'),
+              child: const Text('حسنا', style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black45),),
             ),
           ],
         );
@@ -114,7 +117,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 250.0,
               ),
               const SizedBox(height: 40.0),
-              const SizedBox(height: 20.0),
               TextField(
                 controller: _emailController,
                 decoration: const InputDecoration(

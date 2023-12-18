@@ -119,10 +119,22 @@ class OnBoardingPageState extends State<OnBoardingPage> {
       nextFlex: 0,
       showBackButton: false,
       //rtl: true, // Display as right-to-left
-      back: const Icon(Icons.rocket_launch_rounded),
-      skip: const Text('تخطي', style: TextStyle(fontWeight: FontWeight.w600)),
-      next: const Icon(Icons.rocket_launch_rounded),
-      done: const Text('حسنا', style: TextStyle(fontWeight: FontWeight.w600)),
+      back: const Icon(
+        Icons.rocket_launch_rounded,
+        color: Colors.cyan,
+      ),
+      skip: const Text(
+        'تخطي',
+        style: TextStyle(fontWeight: FontWeight.w600, color: Colors.cyan),
+      ),
+      next: const Icon(
+        Icons.rocket_launch_rounded,
+        color: Colors.cyan,
+      ),
+      done: const Text(
+        'حسنا',
+        style: TextStyle(fontWeight: FontWeight.w600, color: Colors.cyan),
+      ),
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: const EdgeInsets.all(16),
       controlsPadding: kIsWeb
@@ -144,7 +156,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
         color: Colors.black87,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
-          side: BorderSide(color: Colors.cyan), //حواف برتقاليه
+          side: BorderSide(color: Colors.cyan), //حواف
         ),
       ),
     );

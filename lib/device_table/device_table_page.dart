@@ -1,5 +1,3 @@
-// ignore: file_names
-// ignore: file_names
 import 'package:flutter/material.dart';
 
 class DeviceInfo {
@@ -33,10 +31,18 @@ class DeviceTablePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          '       معلومات الاجهزة',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0),
+        title: const Center(
+          child: Text(
+            'معلومات الاجهزة',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24.0,
+                color: Colors.white),
+          ),
         ),
+        backgroundColor: Colors.cyan,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Center(
         child: Padding(
@@ -49,10 +55,9 @@ class DeviceTablePage extends StatelessWidget {
 }
 
 class DeviceList extends StatefulWidget {
-  final List<DeviceInfo> devices;
-
   const DeviceList({super.key, required this.devices});
 
+  final List<DeviceInfo> devices;
   @override
   // ignore: library_private_types_in_public_api
   _DeviceListState createState() => _DeviceListState();
@@ -89,7 +94,7 @@ class _DeviceListState extends State<DeviceList> {
                       leading: Image.asset(
                         'images/uqu.png', // Replace with the device image
                         width: 100.0, // Image size
-                        height: 100.0,
+                        height: 125.0,
                       ),
                       title: Text(
                         device.name,
@@ -103,20 +108,18 @@ class _DeviceListState extends State<DeviceList> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('\n' 'Device Type: ${device.type}' '\n'),
-                          Text(
-                              'Ministry Number: ${device.ministryNumber}' '\n'),
-                          Text('Serial Number: ${device.serialNumber}' '\n'),
+                          Text('Device Type: ${device.type}' '\n'),
+                          Text('Ministry Number: ${device.ministryNumber}'),
+                          Text('Serial Number: ${device.serialNumber}'),
                           Text('Specifications: ${device.specifications}'
                               '\n'),
-                          const Text(
-                              'Operating System: Windows 10 64-bit' '\n'),
-                          const Text('Processor: Intel Core i7.' '\n'),
-                          const Text('Brand: lenovo desktop.' '\n'),
-                          const Text('RAM: 8 GB.' '\n'),
+                          const Text('Operating System: Windows 10 64-bit'),
+                          const Text('Processor: Intel Core i7.'),
+                          const Text('Brand: lenovo desktop.'),
+                          const Text('RAM: 8 GB.'),
                           const Text('Hard Drive: SDD.' '\n'),
-                          const Text('Screen Size: 15.6 inches.' '\n'),
-                          const Text('Screen Resolution: 4K.' '\n'),
+                          const Text('Screen Size: 15.6 inches.'),
+                          const Text('Screen Resolution: 4K.'),
                         ],
                       ),
                     ),

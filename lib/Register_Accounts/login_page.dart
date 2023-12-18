@@ -20,19 +20,19 @@ class LoginPage extends StatelessWidget {
               fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
-        toolbarHeight: 50,
+        toolbarHeight: 90,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(80),
-            bottomLeft: Radius.circular(80),
+            bottomRight: Radius.circular(40),
+            bottomLeft: Radius.circular(7000),
           ),
         ),
-        elevation: 2.00,
         backgroundColor: Colors.cyan,
+        automaticallyImplyLeading: false,
       ), //AppBar
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(22.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -40,9 +40,9 @@ class LoginPage extends StatelessWidget {
               Lottie.asset(
                 'animation/ppmana.json', // تأكد من مسار الـ asset الصحيح للتحريك
                 width: 500.0,
-                height: 250.0,
+                height: 230.0,
               ),
-              const SizedBox(height: 50.0),
+              const SizedBox(height: 40.0),
               TextField(
                 controller: emailController,
                 decoration: const InputDecoration(
@@ -65,7 +65,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 30.0),
+              const SizedBox(height: 25.0),
               TextField(
                 controller: passwordController,
                 obscureText: true,

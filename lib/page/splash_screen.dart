@@ -28,8 +28,9 @@ class SplashScreen extends StatelessWidget {
           ),
           const Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(height: 400),
                 Text(
                   'PPM لجعل منشأتك أفضل',
                   textAlign: TextAlign.end,

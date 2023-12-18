@@ -8,6 +8,7 @@ import 'package:first_time/settings/accont_setting.dart';
 import 'package:first_time/settings/it_settings.dart';
 import 'package:first_time/user_info/technical_support_statistics.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:first_time/page/display_slide_homepage.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -26,6 +27,7 @@ class _WelcomePageState extends State<WelcomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
+          textAlign: TextAlign.center,
           '       الصفحة الرئيسية',
           style: TextStyle(
             color: Colors.white,
@@ -33,8 +35,11 @@ class _WelcomePageState extends State<WelcomePage> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        backgroundColor: Colors.cyan,
         automaticallyImplyLeading: false,
         leading: buildPopupMenuButton(),
+        iconTheme: const IconThemeData(color: Colors.white),
+        elevation: 20,
       ),
       body: buildBody(),
       bottomNavigationBar: buildBottomNavigationBar(),
@@ -231,65 +236,4 @@ class _WelcomePageState extends State<WelcomePage> {
         break;
     }
   }
-}
-
-class SlideWidget extends StatelessWidget {
-  final String image;
-  final String title;
-  final String content;
-
-  const SlideWidget({
-    super.key,
-    required this.image,
-    required this.title,
-    required this.content,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(40),
-      elevation: 3,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(25.0), // إضافة BorderRadius هنا
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            image,
-            width: 250,
-            height: 150,
-          ),
-          const SizedBox(height: 30),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            content,
-            style: const TextStyle(
-              fontSize: 16,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class SlideData {
-  final String image;
-  final String title;
-  final String content;
-
-  SlideData({
-    required this.image,
-    required this.title,
-    required this.content,
-  });
 }
