@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:first_time/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/page/home_page_bars.dart';
-
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -72,10 +70,13 @@ class _SignUpPageState extends State<SignUpPage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('حسنا', style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black45),),
+              child: const Text(
+                'حسنا',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black45),
+              ),
             ),
           ],
         );
@@ -93,7 +94,7 @@ class _SignUpPageState extends State<SignUpPage> {
               fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
-        toolbarHeight: 80,
+        toolbarHeight: 100,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(40),
@@ -102,9 +103,10 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         elevation: 2.00,
         backgroundColor: Colors.cyan,
-          iconTheme: IconThemeData(color: Colors.white), // Set the icon color to white
-
-      ), //AppBar
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),

@@ -17,10 +17,13 @@ class LoginPage extends StatelessWidget {
         title: const Text(
           "تسجيل الدخول",
           style: TextStyle(
-              fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
         centerTitle: true,
-        toolbarHeight: 90,
+        toolbarHeight: 50,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(40),

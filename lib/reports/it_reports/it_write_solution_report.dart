@@ -19,6 +19,8 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
         titleTextStyle: const TextStyle(
             color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold),
         automaticallyImplyLeading: true,
+        backgroundColor: Colors.cyan,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       backgroundColor: Colors.white,
       body: Padding(
@@ -57,6 +59,9 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
                 backgroundColor: Colors.cyan, // New color for the button
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
               ),
               child: const Text(
                 'تقديم التقرير',
