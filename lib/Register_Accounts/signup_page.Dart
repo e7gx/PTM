@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/page/home_page_bars.dart';
+import 'package:first_time/controller/home_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -92,13 +92,12 @@ class _SignUpPageState extends State<SignUpPage> {
         title: const Text(
           "تسجيل حساب جديد",
           style: TextStyle(
-              fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        centerTitle: true,
-        toolbarHeight: 100,
+              fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+        ),        centerTitle: true,
+        toolbarHeight: 50,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(40),
+            bottomRight: Radius.circular(500),
             bottomLeft: Radius.circular(40),
           ),
         ),

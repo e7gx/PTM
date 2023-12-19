@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/page/home_page_bars.dart';
+import 'package:first_time/controller/home_page.dart';
 import 'signup_page.dart';
 import 'package:lottie/lottie.dart';
 
@@ -14,12 +14,14 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "تسجيل الدخول",
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+        title: const Center(
+          child: Text(
+            "تسجيل الدخول",
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
         ),
         centerTitle: true,

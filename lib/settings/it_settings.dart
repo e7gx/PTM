@@ -73,8 +73,26 @@ class MyDataPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('          بيانات المستخدم '),
-      ),
+        title: const Text(
+          'بيانات المستخدم',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.cyan,
+        iconTheme: const IconThemeData(color: Colors.white),
+        centerTitle: true,
+        toolbarHeight: 50,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(5000),
+            bottomLeft: Radius.circular(0),
+          ),
+        ),
+        automaticallyImplyLeading: true,
+      ), //AppBar
       body: SingleChildScrollView(
         child: Column(
           children: [
