@@ -12,102 +12,8 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   final TextEditingController locationController = TextEditingController();
-  final TextEditingController reportController = TextEditingController();
-
-  void uploadReport(String location, String report) {
-    var reportData = {
-      'date': Timestamp.now(),
-      'location': location,
-      'report': report
-    };
-
-    FirebaseFirestore.instance
-        .collection('IT_Reports')
-        .add(reportData)
-        .then((documentReference) {
-      // ignore: avoid_print
-      print('Document added with ID: ${documentReference.id}');
-      // Handle successful upload here
-    }).catchError((e) {
-      // ignore: avoid_print
-      print(e);
-    });
-  }
-
-  void _submitReport(BuildContext context) {
-    if (locationController.text.isEmpty || reportController.text.isEmpty) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Lottie.asset(
-              'animation/WOR.json',
-              height: 290,
-            ),
-            content: const Text(
-                '      يرجى تعبئة جميع الحقول\n         لنتمكن من رفع التقرير',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic)),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('حسنا',
-                    style: TextStyle(
-                        color: Colors.cyan,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic)),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    } else {
-      uploadReport(locationController.text, reportController.text);
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-            title: Lottie.asset(
-              'animation/like1.json',
-              height: 300,
-            ),
-            content: const Text(
-              '          ! شكرًا لك على تعاونك\n  ',
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic),
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('حسنا',
-                    style: TextStyle(
-                        color: Colors.cyan, fontStyle: FontStyle.italic)),
-                onPressed: () {
-                  // هنا تم إضافة تعليمات لمسح النص من الـ Controllers
-                  setState(() {
-                    reportController.clear();
-                    locationController.clear();
-                  });
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-      // Show a success dialog
-    }
-  }
+  final TextEditingController itreportController = TextEditingController();
+  final TextEditingController userreportNumController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -144,10 +50,13 @@ class _DetailsPageState extends State<DetailsPage> {
                 children: [
                   const SizedBox(height: 0),
                   _buildTextField(
+                      userreportNumController, 'رقم البلاغ', 'أدخل رقم البلاغ'),
+                  const SizedBox(height: 30),
+                  _buildTextField(
                       locationController, 'موقع الجهاز', 'أدخل اسم المعمل'),
                   const SizedBox(height: 30),
                   _buildTextField(
-                      reportController, 'حل المشكلة', 'أدخل حل المشكلة'),
+                      itreportController, 'حل المشكلة', 'أدخل حل المشكلة'),
                   const SizedBox(height: 30),
                   SizedBox(
                     width: 150,
@@ -180,12 +89,115 @@ class _DetailsPageState extends State<DetailsPage> {
     );
   }
 
+  void uploadReport(String location, String report, String numberReport) {
+    var reportData = {
+      'date': Timestamp.now(),
+      'user_report_num': numberReport,
+      'location': location,
+      'it_report_solution': report
+    };
+
+    FirebaseFirestore.instance
+        .collection('IT_Reports')
+        .add(reportData)
+        .then((documentReference) {
+      // ignore: avoid_print
+      print('Document added with ID: ${documentReference.id}');
+      // Handle successful upload here
+    }).catchError((e) {
+      // ignore: avoid_print
+      print(e);
+    });
+  }
+
+  void _submitReport(BuildContext context) {
+    if (userreportNumController.text.isEmpty ||
+        locationController.text.isEmpty ||
+        itreportController.text.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            title: Lottie.asset(
+              'animation/WOR.json',
+              height: 290,
+            ),
+            content: const Text(
+                '      يرجى تعبئة جميع الحقول\n         لنتمكن من رفع التقرير',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic)),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('حسنا',
+                    style: TextStyle(
+                        color: Colors.cyan,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic)),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      uploadReport(
+        locationController.text,
+        itreportController.text,
+        userreportNumController.text,
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            title: Lottie.asset(
+              'animation/like1.json',
+              height: 300,
+            ),
+            content: const Text(
+              '          ! شكرًا لك على تعاونك\n  ',
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('حسنا',
+                    style: TextStyle(
+                        color: Colors.cyan, fontStyle: FontStyle.italic)),
+                onPressed: () {
+                  // هنا تم إضافة تعليمات لمسح النص من الـ Controllers
+                  setState(() {
+                    userreportNumController.clear();
+                    locationController.clear();
+                    itreportController.clear();
+                  });
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      // Show a success dialog
+    }
+  }
+
   Widget _buildTextField(
       TextEditingController controller, String label, String hint,
-      {int maxLines = 1}) {
+      {int maxLines1 = 1}) {
     return TextField(
       controller: controller,
-      maxLines: maxLines,
+      maxLines: maxLines1,
       decoration: InputDecoration(
         border: InputBorder.none,
         filled: true,

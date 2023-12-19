@@ -3,7 +3,7 @@ import 'package:lottie/lottie.dart';
 import 'package:first_time/reports/it_reports/it_report_solution_details_page.dart';
 
 class ReportSolutionPage extends StatefulWidget {
-  const ReportSolutionPage({Key? key}) : super(key: key);
+  const ReportSolutionPage({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -41,9 +41,9 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
               'يرجى استخدام هذه الخانة لرفع تقرير مفصل عن المشكلة التي تم حلها من ذكر الخطوات التي تم اتباعها وأي معلومات إضافية تعتبرونها مهمة لفهم السياق والحل المقدم',
               textAlign: TextAlign.center, // Center the text horizontally
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.black54,
                 fontSize: 18,
-                fontWeight: FontWeight.w200,
+                fontWeight: FontWeight.w600,
               ),
             ),
             const SizedBox(

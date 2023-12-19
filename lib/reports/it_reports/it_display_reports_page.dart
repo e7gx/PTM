@@ -44,7 +44,6 @@ class ReportsPage extends StatelessWidget {
 
               String formattedDate = DateFormat('dd/MM/yyyy')
                   .format((reportData['date'] as Timestamp).toDate());
-
               return ReportCard(
                 report: Report(
                   title: reportData['title'] ??
@@ -152,7 +151,15 @@ class ReportDetailsITPage extends StatelessWidget {
             return Center(child: Text('Error: ${snapshot.error}'));
           }
           if (!snapshot.hasData || snapshot.data!.data() == null) {
-            return const Center(child: Text('لا يوجد تفاصيل للتقرير'));
+            return const Center(
+                child: Text(
+              'لا يوجد تفاصيل للتقرير',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
+                fontWeight: FontWeight.bold,
+              ),
+            ));
           }
 
           var reportData = snapshot.data!.data() as Map<String, dynamic>;
@@ -169,7 +176,21 @@ class ReportDetailsITPage extends StatelessWidget {
                   height: 300, //  الارتفاع
                   fit: BoxFit.contain,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 0),
+                const Text(
+                  'رقم البلاغ:',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.cyan,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  reportData['user_report_num'] ?? 'لا يوجد وصف متاح.',
+                  style: const TextStyle(fontSize: 16, color: Colors.black87),
+                ),
+                const SizedBox(height: 10),
                 // النصوص والمحتويات الأخرى تأتي هنا
                 const Text(
                   'تاريخ التقرير:',
@@ -185,7 +206,7 @@ class ReportDetailsITPage extends StatelessWidget {
                       .format((reportData['date'] as Timestamp).toDate()),
                   style: const TextStyle(fontSize: 16, color: Colors.black87),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 10),
                 const Text(
                   'الموقع:',
                   style: TextStyle(
@@ -199,7 +220,7 @@ class ReportDetailsITPage extends StatelessWidget {
                   '${reportData['location']}',
                   style: const TextStyle(fontSize: 16, color: Colors.black87),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 const Text(
                   'حل المشكلة:',
                   style: TextStyle(
@@ -210,7 +231,7 @@ class ReportDetailsITPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  reportData['report'] ?? 'لا يوجد وصف متاح.',
+                  reportData['it_report_solution'] ?? 'لا يوجد وصف متاح.',
                   style: const TextStyle(fontSize: 16, color: Colors.black87),
                 ),
               ],

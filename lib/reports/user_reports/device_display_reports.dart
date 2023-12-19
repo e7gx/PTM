@@ -4,17 +4,30 @@ import 'package:intl/intl.dart';
 import 'package:first_time/reports/user_reports/device_details_reports.dart';
 
 class DeviceReports extends StatelessWidget {
-  const DeviceReports({Key? key}) : super(key: key);
+  const DeviceReports({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
-        '        البلاغات المقدمة',
-        style: TextStyle(
-            color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
-      )),
+        title: const Center(
+          child: Text('البلاغات المقدمة'),
+        ),
+        titleTextStyle: const TextStyle(
+            color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold),
+        backgroundColor: Colors.cyan,
+        iconTheme: const IconThemeData(color: Colors.white),
+        centerTitle: true,
+        toolbarHeight: 50,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(0),
+            bottomLeft: Radius.circular(500),
+          ),
+        ),
+        automaticallyImplyLeading: true,
+      ), //AppBar
+
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('User_Reports')
@@ -61,7 +74,7 @@ class DeviceReports extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
-                          reportData['imageUrl'] ?? 'images/user.png',
+                          reportData['imageUrl'] ?? 'images/pc.png',
                           width: double.infinity,
                           height: 400.0,
                           fit: BoxFit.cover,

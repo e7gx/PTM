@@ -33,8 +33,7 @@ class DeviceTablePage extends StatelessWidget {
       appBar: AppBar(
         title: const Center(
           child: Text(
-            'معلومات الاجهزة',
-            textAlign: TextAlign.center,
+            '  معلومات الاجهزة',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24.0,

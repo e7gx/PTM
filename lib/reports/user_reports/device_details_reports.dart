@@ -13,13 +13,26 @@ class ReportDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(
           '   تفاصيل البلاغ رقم $reportNumber',
           style: const TextStyle(
               color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
         ),
-      ),
+        backgroundColor: Colors.cyan,
+        iconTheme: const IconThemeData(color: Colors.white),
+        centerTitle: true,
+        toolbarHeight: 50,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(100000),
+            bottomLeft: Radius.circular(7000),
+          ),
+        ),
+        automaticallyImplyLeading: true,
+      ), //AppBar
+
       body: FutureBuilder<DocumentSnapshot>(
         future: FirebaseFirestore.instance
             .collection('User_Reports')
@@ -39,9 +52,10 @@ class ReportDetailsPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 50),
                 Image.asset(
                   reportData['imageUrl'] ?? 'images/user.png',
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                   height: 350,
                 ),
                 const SizedBox(height: 16),
@@ -50,17 +64,17 @@ class ReportDetailsPage extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 16),
                 Text(
                   'التاريخ: ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
                   style: const TextStyle(fontSize: 18),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 16),
                 Text(
                   'رقم الجهاز: ${reportData['device'] ?? 'No Device Number'}',
                   style: const TextStyle(fontSize: 18),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 16),
                 Text(
                   'الموقع: ${reportData['location'] ?? 'No Location'}',
                   style: const TextStyle(fontSize: 18),
