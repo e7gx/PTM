@@ -21,8 +21,8 @@ class DeviceReports extends StatelessWidget {
         toolbarHeight: 50,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(0),
-            bottomLeft: Radius.circular(500),
+            bottomRight: Radius.circular(5000),
+            bottomLeft: Radius.circular(0),
           ),
         ),
         automaticallyImplyLeading: true,

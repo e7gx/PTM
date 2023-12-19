@@ -39,7 +39,8 @@ class _WelcomePageState extends State<WelcomePage> {
         automaticallyImplyLeading: false,
         leading: buildPopupMenuButton(),
         iconTheme: const IconThemeData(color: Colors.white),
-        elevation: 20,
+        elevation: 4,
+        toolbarHeight: 50,
       ),
       body: buildBody(),
       bottomNavigationBar: buildBottomNavigationBar(),
@@ -78,8 +79,8 @@ class _WelcomePageState extends State<WelcomePage> {
     );
   }
 
-  void handlePopupMenuSelection(String result) {
-    switch (result) {
+  void handlePopupMenuSelection(String menu) {
+    switch (menu) {
       case 'بياناتي':
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => MyDataPage()),

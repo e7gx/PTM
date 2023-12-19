@@ -6,9 +6,15 @@ class PPM extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: OnBoardingPage(),
+      theme: ThemeData(
+          useMaterial3: false,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.white,
+            brightness: Brightness.light,
+          )),
+      home: const OnBoardingPage(),
     );
   }
 }

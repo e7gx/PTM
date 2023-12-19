@@ -31,18 +31,24 @@ class DeviceTablePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            '  معلومات الاجهزة',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24.0,
-                color: Colors.white),
-          ),
+        title: const Text(
+          '  معلومات الاجهزة',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 24.0, color: Colors.white),
+          textAlign: TextAlign.center,
         ),
         backgroundColor: Colors.cyan,
         iconTheme: const IconThemeData(color: Colors.white),
-      ),
+        centerTitle: true,
+        toolbarHeight: 50,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(5000),
+            bottomLeft: Radius.circular(0),
+          ),
+        ),
+        automaticallyImplyLeading: true,
+      ), //AppBar
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(25.0),
@@ -119,6 +125,16 @@ class _DeviceListState extends State<DeviceList> {
                           const Text('Hard Drive: SDD.' '\n'),
                           const Text('Screen Size: 15.6 inches.'),
                           const Text('Screen Resolution: 4K.'),
+                          const SizedBox(
+                            height: 40,
+                          ),
+                          Center(
+                            child: Image.asset(
+                              'images/pc.png', // Replace with the device image
+                              width: 200.0, // Image size
+                              height: 100.0,
+                            ),
+                          ),
                         ],
                       ),
                     ),

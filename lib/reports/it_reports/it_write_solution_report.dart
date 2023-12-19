@@ -15,13 +15,26 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('         تقديم تقرير   '),
+        title: const Center(
+          child: Text('تقديم تقرير       '),
+        ),
         titleTextStyle: const TextStyle(
-            color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold),
-        automaticallyImplyLeading: true,
+          color: Colors.white,
+          fontSize: 26,
+          fontWeight: FontWeight.bold,
+        ),
         backgroundColor: Colors.cyan,
         iconTheme: const IconThemeData(color: Colors.white),
-      ),
+        centerTitle: true,
+        toolbarHeight: 50,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(5000),
+            bottomLeft: Radius.circular(0),
+          ),
+        ),
+        automaticallyImplyLeading: true,
+      ), //AppBar
       backgroundColor: Colors.white,
       body: Padding(
         padding:

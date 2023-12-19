@@ -18,7 +18,19 @@ class ReportsPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-      ),
+        backgroundColor: Colors.cyan,
+        iconTheme: const IconThemeData(color: Colors.white),
+        centerTitle: true,
+        toolbarHeight: 50,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(5000),
+            bottomLeft: Radius.circular(0),
+          ),
+        ),
+        automaticallyImplyLeading: true,
+      ), //AppBar
+
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('IT_Reports')

@@ -19,16 +19,26 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+
       appBar: AppBar(
         backgroundColor: Colors.cyan,
         title: const Text(
           "رفع تقرير",
           style: TextStyle(
               color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
         ),
-        centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
-      ),
+        centerTitle: true,
+        toolbarHeight: 50,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(5000),
+            bottomLeft: Radius.circular(0),
+          ),
+        ),
+        automaticallyImplyLeading: true,
+      ), //AppBar
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -196,6 +206,7 @@ class _DetailsPageState extends State<DetailsPage> {
       TextEditingController controller, String label, String hint,
       {int maxLines1 = 1}) {
     return TextField(
+      cursorColor: Colors.cyan,
       controller: controller,
       maxLines: maxLines1,
       decoration: InputDecoration(
