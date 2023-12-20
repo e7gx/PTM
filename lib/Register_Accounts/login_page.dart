@@ -125,8 +125,10 @@ class LoginPage extends StatelessWidget {
                                 child: Text(
                                   'يرجى ملء كل من حقول البريد \n       الإلكتروني وكلمة المرور',
                                   style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
+                                    color: Colors.black54,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ],
