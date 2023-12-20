@@ -150,6 +150,8 @@ class _DetailsPageState extends State<DetailsPage> {
                         fontStyle: FontStyle.italic)),
                 onPressed: () {
                   Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
                 },
               ),
             ],
