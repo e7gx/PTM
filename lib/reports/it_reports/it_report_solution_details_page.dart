@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:first_time/style/style.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key});
@@ -59,13 +60,13 @@ class _DetailsPageState extends State<DetailsPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const SizedBox(height: 0),
-                  _buildTextField(
+                  buildTextField(
                       userreportNumController, 'رقم البلاغ', 'أدخل رقم البلاغ'),
                   const SizedBox(height: 30),
-                  _buildTextField(
+                  buildTextField(
                       locationController, 'موقع الجهاز', 'أدخل اسم المعمل'),
                   const SizedBox(height: 30),
-                  _buildTextField(
+                  buildTextField(
                       itreportController, 'حل المشكلة', 'أدخل حل المشكلة'),
                   const SizedBox(height: 30),
                   SizedBox(
@@ -150,8 +151,6 @@ class _DetailsPageState extends State<DetailsPage> {
                         fontStyle: FontStyle.italic)),
                 onPressed: () {
                   Navigator.of(context).pop();
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pop();
                 },
               ),
             ],
@@ -164,70 +163,6 @@ class _DetailsPageState extends State<DetailsPage> {
         itreportController.text,
         userreportNumController.text,
       );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-            title: Lottie.asset(
-              'animation/like1.json',
-              height: 300,
-            ),
-            content: const Text(
-              '          ! شكرًا لك على تعاونك\n  ',
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic),
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('حسنا',
-                    style: TextStyle(
-                        color: Colors.cyan, fontStyle: FontStyle.italic)),
-                onPressed: () {
-                  // هنا تم إضافة تعليمات لمسح النص من الـ Controllers
-                  setState(() {
-                    userreportNumController.clear();
-                    locationController.clear();
-                    itreportController.clear();
-                  });
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-      // Show a success dialog
     }
-  }
-
-  Widget _buildTextField(
-      TextEditingController controller, String label, String hint,
-      {int maxLines1 = 1}) {
-    return TextField(
-      cursorColor: Colors.cyan,
-      controller: controller,
-      maxLines: maxLines1,
-      decoration: InputDecoration(
-        border: InputBorder.none,
-        filled: true,
-        fillColor: Colors.grey[200],
-        labelText: label,
-        hintText: hint,
-        labelStyle: TextStyle(color: Colors.cyan[400]),
-        hintStyle: TextStyle(color: Colors.grey[400]),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: Colors.cyan[400]!, width: 3.0),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: Colors.cyan[400]!, width: 2.0),
-        ),
-      ),
-    );
   }
 }
