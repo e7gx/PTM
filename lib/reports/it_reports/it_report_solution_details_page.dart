@@ -57,6 +57,7 @@ class _DetailsPageState extends State<DetailsPage> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const SizedBox(height: 0),
