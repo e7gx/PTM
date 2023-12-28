@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:first_time/style/style.dart';
 
 class RegisterDevice extends StatefulWidget {
-  RegisterDevice({super.key});
+  const RegisterDevice({super.key});
 
   @override
   State<RegisterDevice> createState() => RegisterDeviceState();
