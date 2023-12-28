@@ -86,7 +86,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
                   const SizedBox(height: 10),
                   buildTextFieldNum(serialNumberController, 'الرقم التسلسلي',
                       'أدخل الرقم التسلسلي'),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 30),
                   SizedBox(
                     width: 150,
                     child: ElevatedButton(
@@ -241,6 +241,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
                     ministryNumberController.clear();
                     serialNumberController.clear();
                   });
+                  Navigator.of(context).pop();
                   Navigator.of(context).pop();
                 },
               ),
