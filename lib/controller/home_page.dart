@@ -9,6 +9,7 @@ import 'package:first_time/settings/it_settings.dart';
 import 'package:first_time/user_info/technical_support_statistics.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:first_time/page/display_slide_homepage.dart';
+import 'package:first_time/register_assets/register_assets.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -36,7 +37,7 @@ class _WelcomePageState extends State<WelcomePage> {
           ),
         ),
         backgroundColor: Colors.cyan,
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         leading: buildPopupMenuButton(),
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 4,
@@ -75,6 +76,13 @@ class _WelcomePageState extends State<WelcomePage> {
             title: Text('الإعداد'),
           ),
         ),
+        const PopupMenuItem<String>(
+          value: 'تسجيل جهاز جديد',
+          child: ListTile(
+            leading: Icon(Icons.add_to_queue_rounded),
+            title: Text('اضافة اصول'),
+          ),
+        ),
       ],
     );
   }
@@ -95,6 +103,11 @@ class _WelcomePageState extends State<WelcomePage> {
       case 'الإعداد':
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => const SettingsPage()),
+        );
+        break;
+      case 'تسجيل جهاز جديد':
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const RegisterDevice()),
         );
         break;
     }
