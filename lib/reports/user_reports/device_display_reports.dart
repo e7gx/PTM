@@ -100,12 +100,12 @@ class DeviceReports extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'تاريخ البلاغ:   ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
+                                'Report Date : ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
                                 style: const TextStyle(
                                     fontSize: 16.0, color: Colors.white),
                               ),
                               Text(
-                                'الموقع:   ${reportData['location'] ?? 'No Location'}',
+                                'Report Location:   ${reportData['location'] ?? 'No Location'}',
                                 style: const TextStyle(
                                     fontSize: 16.0, color: Colors.white),
                               ),

@@ -7,7 +7,7 @@ class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
   @override
-    // ignore: library_private_types_in_public_api
+  // ignore: library_private_types_in_public_api
   _SignUpPageState createState() => _SignUpPageState();
 }
 
@@ -20,32 +20,34 @@ class _SignUpPageState extends State<SignUpPage> {
     final String password = _passwordController.text.trim();
 
     if (email.isEmpty || password.isEmpty) {
-      _showDialog('              يرجى ملء جميع الحقول', 'animation/WOR.json');
+      _showDialog('            يرجى ملء جميع الحقول', 'animation/WOR.json');
     } else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email)) {
-      _showDialog('     يرجى إدخال بريد إلكتروني صالح', 'animation/WOR.json');
+      _showDialog('       يرجى إدخال بريد إلكتروني صالح', 'animation/WOR.json');
     } else {
       try {
-        // Attempt to register the user using Firebase
-        // ignore: unused_local_variable
-        UserCredential userCredential =
-            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
-        // If registration is successful, navigate to the welcome page
-        // ignore: use_build_context_synchronously
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const WelcomePage()),
-        );
+
+        if (mounted) {
+          // Check if the widget is still in the tree
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const WelcomePage()),
+          );
+        }
       } on FirebaseAuthException catch (e) {
         String errorMessage = 'حدث خطأ أثناء التسجيل. يرجى المحاولة مرة أخرى';
         if (e.code == 'weak-password') {
-          errorMessage = '     كلمة المرور التي أدخلتها ضعيفة جدًا';
+          errorMessage = '    كلمة المرور التي أدخلتها ضعيفة جدًا';
         } else if (e.code == 'email-already-in-use') {
           errorMessage = '  البريد الإلكتروني الذي أدخلته مستخدم';
         }
-        _showDialog(errorMessage, 'animation/WOR.json');
+        if (mounted) {
+          // Also check here before showing the dialog
+          _showDialog(errorMessage, 'animation/WOR.json');
+        }
       }
     }
   }
@@ -93,7 +95,8 @@ class _SignUpPageState extends State<SignUpPage> {
           "تسجيل حساب جديد",
           style: TextStyle(
               fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
-        ),        centerTitle: true,
+        ),
+        centerTitle: true,
         toolbarHeight: 50,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -120,8 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const SizedBox(height: 40.0),
               TextField(
-                                cursorColor: Colors.cyan,
-
+                cursorColor: Colors.cyan,
                 controller: _emailController,
                 decoration: const InputDecoration(
                   labelText: 'البريد الإلكتروني',
@@ -146,8 +148,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const SizedBox(height: 20.0),
               TextField(
-                                cursorColor: Colors.cyan,
-
+                cursorColor: Colors.cyan,
                 controller: _passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(
