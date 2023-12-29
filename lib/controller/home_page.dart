@@ -56,6 +56,13 @@ class _WelcomePageState extends State<WelcomePage> {
       },
       itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
         const PopupMenuItem<String>(
+          value: 'تسجيل جهاز جديد',
+          child: ListTile(
+            leading: Icon(Icons.add_to_queue_rounded),
+            title: Text('اضافة اصول'),
+          ),
+        ),
+        const PopupMenuItem<String>(
           value: 'بياناتي',
           child: ListTile(
             leading: Icon(Icons.person),
@@ -74,13 +81,6 @@ class _WelcomePageState extends State<WelcomePage> {
           child: ListTile(
             leading: Icon(Icons.settings),
             title: Text('الإعداد'),
-          ),
-        ),
-        const PopupMenuItem<String>(
-          value: 'تسجيل جهاز جديد',
-          child: ListTile(
-            leading: Icon(Icons.add_to_queue_rounded),
-            title: Text('اضافة اصول'),
           ),
         ),
       ],
