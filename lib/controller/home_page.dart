@@ -50,7 +50,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
   PopupMenuButton<String> buildPopupMenuButton() {
     return PopupMenuButton<String>(
-      icon: const Icon(Icons.more_vert),
+      icon: const Icon(Icons.menu),
       onSelected: (String result) {
         handlePopupMenuSelection(result);
       },
