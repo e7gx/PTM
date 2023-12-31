@@ -123,9 +123,12 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 
   void _submitReport(BuildContext context) {
-    if (userreportNumController.text.isEmpty ||
-        locationController.text.isEmpty ||
-        itreportController.text.isEmpty) {
+    // Just use the class-level controller instances you've declared at the top.
+    // There's no need to declare new ones here.
+
+    if (locationController.text.isEmpty ||
+        itreportController.text.isEmpty ||
+        userreportNumController.text.isEmpty) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -159,10 +162,58 @@ class _DetailsPageState extends State<DetailsPage> {
         },
       );
     } else {
+      // Again, use the class-level instances when calling uploadReport
       uploadReport(
         locationController.text,
         itreportController.text,
         userreportNumController.text,
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            title: Lottie.asset(
+              'animation/like1.json',
+              height: 300,
+            ),
+            content: const Row(
+              children: [
+                Text(
+                  '      ! شكرًا لك على تعاونك',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text(
+                  'حسنا',
+                  style: TextStyle(
+                      color: Colors.cyan,
+                      fontStyle: FontStyle.italic,
+                      fontSize: 16),
+                ),
+                onPressed: () {
+                  // هنا تم إضافة تعليمات لمسح النص من الـ Controllers
+                  setState(() {
+                    locationController.clear();
+                    itreportController.clear();
+                    userreportNumController.clear();
+                  });
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
       );
     }
   }

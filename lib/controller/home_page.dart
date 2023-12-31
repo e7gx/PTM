@@ -38,79 +38,86 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
         backgroundColor: Colors.cyan,
         automaticallyImplyLeading: true,
-        leading: buildPopupMenuButton(),
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 4,
         toolbarHeight: 50,
       ),
+      drawer: Drawer(
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.cyan,
+              ),
+              child: Center(
+                child: Text(
+                  'PTM',
+                  style: TextStyle(fontSize: 30, color: Colors.white),
+                ),
+              ),
+            ),
+            ListTile(
+              title: const Text('أضافة أصول تقنية'),
+              selected: _selectedIndex == 0,
+              onTap: () {
+                // Update the state of the app
+
+                // Then close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RegisterDevice()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('بياناتي'),
+              onTap: () {
+                // Update the state of the app
+
+                // Then close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyDataPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('مؤشر الاداء'),
+              selected: _selectedIndex == 2,
+              onTap: () {
+                // Update the state of the app
+
+                // Then close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const TechnicalSupportStatisticsPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('الاعدادات'),
+              selected: _selectedIndex == 3,
+              onTap: () {
+                // Update the state of the app
+
+                // Then close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SettingsPage()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
       body: buildBody(),
       bottomNavigationBar: buildBottomNavigationBar(),
     );
-  }
-
-  PopupMenuButton<String> buildPopupMenuButton() {
-    return PopupMenuButton<String>(
-      icon: const Icon(Icons.menu),
-      onSelected: (String result) {
-        handlePopupMenuSelection(result);
-      },
-      itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-        const PopupMenuItem<String>(
-          value: 'تسجيل جهاز جديد',
-          child: ListTile(
-            leading: Icon(Icons.add_to_queue_rounded),
-            title: Text('اضافة اصول'),
-          ),
-        ),
-        const PopupMenuItem<String>(
-          value: 'بياناتي',
-          child: ListTile(
-            leading: Icon(Icons.person),
-            title: Text('بياناتي'),
-          ),
-        ),
-        const PopupMenuItem<String>(
-          value: 'مؤشر الأداء',
-          child: ListTile(
-            leading: Icon(Icons.bar_chart),
-            title: Text('مؤشر الأداء'),
-          ),
-        ),
-        const PopupMenuItem<String>(
-          value: 'الإعداد',
-          child: ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('الإعداد'),
-          ),
-        ),
-      ],
-    );
-  }
-
-  void handlePopupMenuSelection(String menu) {
-    switch (menu) {
-      case 'بياناتي':
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => MyDataPage()),
-        );
-        break;
-      case 'مؤشر الأداء':
-        Navigator.of(context).push(
-          MaterialPageRoute(
-              builder: (context) => const TechnicalSupportStatisticsPage()),
-        );
-        break;
-      case 'الإعداد':
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const SettingsPage()),
-        );
-        break;
-      case 'تسجيل جهاز جديد':
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const RegisterDevice()),
-        );
-        break;
-    }
   }
 
   SingleChildScrollView buildBody() {
