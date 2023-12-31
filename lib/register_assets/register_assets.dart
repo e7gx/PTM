@@ -4,6 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lottie/lottie.dart';
 import 'package:first_time/style/style.dart';
 
+const List<String> list = <String>[
+  'كلية الحاسب',
+  'كلية ادارة الاعمال',
+  'كلية الشريعة',
+  'كلية التاريخ'
+];
+
 class RegisterDevice extends StatefulWidget {
   const RegisterDevice({super.key});
 
@@ -52,8 +59,8 @@ class RegisterDeviceState extends State<RegisterDevice> {
             const SizedBox(height: 20),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Lottie.asset(
-                'animation/data.json',
+              child: Image.asset(
+                'images/pc.png',
                 fit: BoxFit.contain,
                 height: 300,
                 width: double.infinity,
@@ -66,6 +73,8 @@ class RegisterDeviceState extends State<RegisterDevice> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  const Center(child: DropdownMenuExample()),
+                  const SizedBox(height: 20),
                   buildTextField(deviceBrandController, 'العلامة التجارية',
                       'أدخل العلامة التجارية للجهاز'),
                   const SizedBox(height: 10),
@@ -250,5 +259,32 @@ class RegisterDeviceState extends State<RegisterDevice> {
         },
       );
     }
+  }
+}
+
+class DropdownMenuExample extends StatefulWidget {
+  const DropdownMenuExample({super.key});
+
+  @override
+  State<DropdownMenuExample> createState() => _DropdownMenuExampleState();
+}
+
+class _DropdownMenuExampleState extends State<DropdownMenuExample> {
+  String dropdownValue = list.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownMenu<String>(
+      initialSelection: list.first,
+      onSelected: (String? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      dropdownMenuEntries: list.map<DropdownMenuEntry<String>>((String value) {
+        return DropdownMenuEntry<String>(value: value, label: value);
+      }).toList(),
+    );
   }
 }
