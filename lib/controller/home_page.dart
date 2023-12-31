@@ -36,6 +36,19 @@ class _WelcomePageState extends State<WelcomePage> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 105, 142, 255),
+                  Color(0xFF00CCFF),
+                ],
+                begin: FractionalOffset(0.0, 0.0),
+                end: FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                tileMode: TileMode.clamp),
+          ),
+        ),
         backgroundColor: Colors.cyan,
         automaticallyImplyLeading: true,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -44,22 +57,39 @@ class _WelcomePageState extends State<WelcomePage> {
       ),
       drawer: Drawer(
         child: ListView(
-          // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.cyan,
+                gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 105, 142, 255),
+                    Color(0xFF00CCFF),
+                  ],
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomCenter,
+                ),
               ),
               child: Center(
                 child: Text(
-                  'PTM',
-                  style: TextStyle(fontSize: 30, color: Colors.white),
+                  '              PTM\n For Excelent Assets',
+                  style: TextStyle(
+                      fontSize: 26,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
+            const SizedBox(height: 20),
             ListTile(
-              title: const Text('أضافة أصول تقنية'),
+              title: const Text(
+                'أضافة أصول تقنية',
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               selected: _selectedIndex == 0,
               onTap: () {
                 // Update the state of the app
@@ -72,8 +102,16 @@ class _WelcomePageState extends State<WelcomePage> {
                 );
               },
             ),
+            const SizedBox(height: 20),
             ListTile(
-              title: const Text('بياناتي'),
+              title: const Text(
+                'بياناتي',
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               onTap: () {
                 // Update the state of the app
 
@@ -84,8 +122,16 @@ class _WelcomePageState extends State<WelcomePage> {
                 );
               },
             ),
+            const SizedBox(height: 20),
             ListTile(
-              title: const Text('مؤشر الاداء'),
+              title: const Text(
+                'مؤشر الاداء',
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               selected: _selectedIndex == 2,
               onTap: () {
                 // Update the state of the app
@@ -99,8 +145,16 @@ class _WelcomePageState extends State<WelcomePage> {
                 );
               },
             ),
+            const SizedBox(height: 20),
             ListTile(
-              title: const Text('الاعدادات'),
+              title: const Text(
+                'الاعدادات',
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               selected: _selectedIndex == 3,
               onTap: () {
                 // Update the state of the app
@@ -133,7 +187,6 @@ class _WelcomePageState extends State<WelcomePage> {
                     color: Colors.black54,
                     fontSize: 50,
                     fontWeight: FontWeight.bold)),
-            const SizedBox(height: 0),
             const Text('اليك بلاغات اليوم',
                 style: TextStyle(
                     color: Colors.black54,
