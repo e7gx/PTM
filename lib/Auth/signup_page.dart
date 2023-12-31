@@ -110,87 +110,100 @@ class _SignUpPageState extends State<SignUpPage> {
           color: Colors.white,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Lottie.asset(
-                'animation/reportsman.json', // Make sure this path is correct
-                width: 400.0,
-                height: 250.0,
-              ),
-              const SizedBox(height: 40.0),
-              TextField(
-                cursorColor: Colors.cyan,
-                controller: _emailController,
-                decoration: const InputDecoration(
-                  labelText: 'البريد الإلكتروني',
-                  labelStyle: TextStyle(
-                      color: Colors.cyan), // Cyan color for label text
-                  prefixIcon: Icon(Icons.email_outlined,
-                      color: Colors.cyan), // Cyan color for icon
-                  border: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.cyan), // Cyan color for border
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.cyan), // Cyan color for enabled border
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.cyan), // Cyan color for focused border
-                  ),
-                ),
-                keyboardType: TextInputType.emailAddress,
-              ),
-              const SizedBox(height: 20.0),
-              TextField(
-                cursorColor: Colors.cyan,
-                controller: _passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'كلمة المرور',
-                  labelStyle: TextStyle(
-                      color: Colors.cyan), // Cyan color for label text
-                  prefixIcon: Icon(Icons.lock_outline,
-                      color: Colors.cyan), // Cyan color for icon
-                  border: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.cyan), // Cyan color for border
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.cyan), // Cyan color for enabled border
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.cyan), // Cyan color for focused border
-                  ),
-                ),
-              ),
-              const SizedBox(height: 40.0),
-              ElevatedButton(
-                onPressed: _registerUser,
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 60.0),
-                  backgroundColor: Colors.cyan,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-                child: const Text(
-                  ' تسجيل جديد ',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 244, 254, 255),
+              Color.fromARGB(255, 205, 245, 255),
             ],
+            begin: Alignment.topRight,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Lottie.asset(
+                  'animation/reportsman.json', // Make sure this path is correct
+                  width: 400.0,
+                  height: 250.0,
+                ),
+                const SizedBox(height: 40.0),
+                TextField(
+                  cursorColor: Colors.cyan,
+                  controller: _emailController,
+                  decoration: const InputDecoration(
+                    labelText: 'البريد الإلكتروني',
+                    labelStyle: TextStyle(
+                        color: Colors.cyan), // Cyan color for label text
+                    prefixIcon: Icon(Icons.email_outlined,
+                        color: Colors.cyan), // Cyan color for icon
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors.cyan), // Cyan color for border
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors.cyan), // Cyan color for enabled border
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors.cyan), // Cyan color for focused border
+                    ),
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const SizedBox(height: 20.0),
+                TextField(
+                  cursorColor: Colors.cyan,
+                  controller: _passwordController,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    labelText: 'كلمة المرور',
+                    labelStyle: TextStyle(
+                        color: Colors.cyan), // Cyan color for label text
+                    prefixIcon: Icon(Icons.lock_outline,
+                        color: Colors.cyan), // Cyan color for icon
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors.cyan), // Cyan color for border
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors.cyan), // Cyan color for enabled border
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors.cyan), // Cyan color for focused border
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 40.0),
+                ElevatedButton(
+                  onPressed: _registerUser,
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 60.0),
+                    backgroundColor: Colors.cyan,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                  child: const Text(
+                    ' تسجيل جديد ',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 100.0),
+              ],
+            ),
           ),
         ),
       ),

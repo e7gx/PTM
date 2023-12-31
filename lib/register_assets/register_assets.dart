@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:first_time/style/style.dart';
 
 const List<String> list = <String>[
-  'كلية الحاسب',
+  ' كلية الحاسب الالي ب جامعة ام القرى',
   'كلية ادارة الاعمال',
   'كلية الشريعة',
   'كلية التاريخ'
@@ -274,17 +274,32 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownMenu<String>(
-      initialSelection: list.first,
-      onSelected: (String? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      dropdownMenuEntries: list.map<DropdownMenuEntry<String>>((String value) {
-        return DropdownMenuEntry<String>(value: value, label: value);
-      }).toList(),
+    return Container(
+      width: 350.0,
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color.fromARGB(255, 133, 166, 238),
+            Color.fromARGB(255, 154, 222, 218),
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+      ),
+      child: DropdownMenu<String>(
+        initialSelection: list.first,
+        onSelected: (String? value) {
+          // This is called when the user selects an item.
+          setState(() {
+            dropdownValue = value!;
+          });
+        },
+        dropdownMenuEntries:
+            list.map<DropdownMenuEntry<String>>((String value) {
+          return DropdownMenuEntry<String>(value: value, label: value);
+        }).toList(),
+      ),
     );
   }
 }
