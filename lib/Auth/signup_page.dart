@@ -201,7 +201,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 100.0),
+                const SizedBox(height: 1000.0),
               ],
             ),
           ),
