@@ -56,117 +56,130 @@ class _WelcomePageState extends State<WelcomePage> {
         toolbarHeight: 50,
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(255, 105, 142, 255),
-                    Color(0xFF00CCFF),
-                  ],
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomCenter,
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(117, 255, 255, 255),
+                Color.fromARGB(185, 0, 204, 255),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 105, 142, 255),
+                      Color(0xFF00CCFF),
+                    ],
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    '              PTM\n For Excelent Assets',
+                    style: TextStyle(
+                        fontSize: 29,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
-              child: Center(
-                child: Text(
-                  '              PTM\n For Excelent Assets',
+              const SizedBox(height: 20),
+              ListTile(
+                title: const Text(
+                  'أضافة أصول تقنية',
                   style: TextStyle(
-                      fontSize: 26,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+                    color: Color.fromARGB(195, 37, 37, 37),
+                    fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            ListTile(
-              title: const Text(
-                'أضافة أصول تقنية',
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              selected: _selectedIndex == 0,
-              onTap: () {
-                // Update the state of the app
+                selected: _selectedIndex == 0,
+                onTap: () {
+                  // Update the state of the app
 
-                // Then close the drawer
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const RegisterDevice()),
-                );
-              },
-            ),
-            const SizedBox(height: 20),
-            ListTile(
-              title: const Text(
-                'بياناتي',
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
-                  fontWeight: FontWeight.bold,
-                ),
+                  // Then close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RegisterDevice()),
+                  );
+                },
               ),
-              onTap: () {
-                // Update the state of the app
-
-                // Then close the drawer
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyDataPage()),
-                );
-              },
-            ),
-            const SizedBox(height: 20),
-            ListTile(
-              title: const Text(
-                'مؤشر الاداء',
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
-                  fontWeight: FontWeight.bold,
+              const SizedBox(height: 20),
+              ListTile(
+                title: const Text(
+                  'البيانات الشخصية',
+                  style: TextStyle(
+                    color: Color.fromARGB(195, 37, 37, 37),
+                    fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              selected: _selectedIndex == 2,
-              onTap: () {
-                // Update the state of the app
+                onTap: () {
+                  // Update the state of the app
 
-                // Then close the drawer
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const TechnicalSupportStatisticsPage()),
-                );
-              },
-            ),
-            const SizedBox(height: 20),
-            ListTile(
-              title: const Text(
-                'الاعدادات',
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
-                  fontWeight: FontWeight.bold,
+                  // Then close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyDataPage()),
+                  );
+                },
+              ),
+              const SizedBox(height: 20),
+              ListTile(
+                title: const Text(
+                  ' مؤشر الاداء العام',
+                  style: TextStyle(
+                    color: Color.fromARGB(195, 37, 37, 37),
+                    fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              selected: _selectedIndex == 3,
-              onTap: () {
-                // Update the state of the app
+                selected: _selectedIndex == 2,
+                onTap: () {
+                  // Update the state of the app
 
-                // Then close the drawer
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SettingsPage()),
-                );
-              },
-            ),
-          ],
+                  // Then close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            const TechnicalSupportStatisticsPage()),
+                  );
+                },
+              ),
+              const SizedBox(height: 20),
+              ListTile(
+                title: const Text(
+                  'اعدادات البرنامج',
+                  style: TextStyle(
+                    color: Color.fromARGB(195, 37, 37, 37),
+                    fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                selected: _selectedIndex == 3,
+                onTap: () {
+                  // Update the state of the app
+
+                  // Then close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SettingsPage()),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
       body: buildBody(),

@@ -9,6 +9,10 @@ class PPM extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        drawerTheme: const DrawerThemeData(
+          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        ),
+        canvasColor: Colors.white,
         useMaterial3: false,
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.white,

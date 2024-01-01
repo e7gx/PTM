@@ -33,6 +33,7 @@ class LoginPage extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.cyan,
+        automaticallyImplyLeading: false,
       ), //AppBar
       body: Container(
         decoration: const BoxDecoration(
@@ -199,7 +200,6 @@ class LoginPage extends StatelessWidget {
                                   color: Colors.cyan),
                             ),
                             content: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Lottie.asset(lottieAsset,
