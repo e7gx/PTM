@@ -156,7 +156,7 @@ class ReportDetailsITPage extends StatelessWidget {
                       style:
                           const TextStyle(fontSize: 16, color: Colors.black87),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 80,
                     )
                   ],
