@@ -105,7 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ),
         elevation: 2.00,
-        backgroundColor: Colors.cyan,
+        backgroundColor: const Color.fromARGB(255, 15, 146, 239),
         iconTheme: const IconThemeData(
           color: Colors.white,
         ),
@@ -123,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(0.0),
+            padding: const EdgeInsets.all(12.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -134,25 +134,31 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 40.0),
                 TextField(
-                  cursorColor: Colors.cyan,
+                  cursorColor: const Color.fromARGB(255, 15, 146, 239),
                   controller: _emailController,
                   decoration: const InputDecoration(
                     labelText: 'البريد الإلكتروني',
                     labelStyle: TextStyle(
-                        color: Colors.cyan), // Cyan color for label text
-                    prefixIcon: Icon(Icons.email_outlined,
-                        color: Colors.cyan), // Cyan color for icon
+                      color: Color.fromARGB(255, 15, 146, 239),
+                    ), // Cyan color for label text
+                    prefixIcon: Icon(
+                      Icons.email_outlined,
+                      color: Color.fromARGB(255, 15, 146, 239),
+                    ), // Cyan color for icon
                     border: OutlineInputBorder(
                       borderSide: BorderSide(
-                          color: Colors.cyan), // Cyan color for border
+                        color: Color.fromARGB(255, 15, 146, 239),
+                      ), // Cyan color for border
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                          color: Colors.cyan), // Cyan color for enabled border
+                        color: Color.fromARGB(255, 15, 146, 239),
+                      ), // Cyan color for enabled border
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                          color: Colors.cyan), // Cyan color for focused border
+                        color: Color.fromARGB(255, 15, 146, 239),
+                      ), // Cyan color for focused border
                     ),
                   ),
                   keyboardType: TextInputType.emailAddress,
@@ -165,20 +171,26 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: const InputDecoration(
                     labelText: 'كلمة المرور',
                     labelStyle: TextStyle(
-                        color: Colors.cyan), // Cyan color for label text
-                    prefixIcon: Icon(Icons.lock_outline,
-                        color: Colors.cyan), // Cyan color for icon
+                      color: Color.fromARGB(255, 15, 146, 239),
+                    ), // Cyan color for label text
+                    prefixIcon: Icon(
+                      Icons.lock_outline,
+                      color: Color.fromARGB(255, 15, 146, 239),
+                    ), // Cyan color for icon
                     border: OutlineInputBorder(
                       borderSide: BorderSide(
-                          color: Colors.cyan), // Cyan color for border
+                        color: Color.fromARGB(255, 15, 146, 239),
+                      ), // Cyan color for border
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                          color: Colors.cyan), // Cyan color for enabled border
+                        color: Color.fromARGB(255, 15, 146, 239),
+                      ), // Cyan color for enabled border
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                          color: Colors.cyan), // Cyan color for focused border
+                        color: Color.fromARGB(255, 15, 146, 239),
+                      ), // Cyan color for focused border
                     ),
                   ),
                 ),
@@ -188,7 +200,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                         vertical: 10.0, horizontal: 60.0),
-                    backgroundColor: Colors.cyan,
+                    backgroundColor: const Color.fromARGB(255, 15, 146, 239),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),

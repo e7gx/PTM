@@ -32,7 +32,7 @@ class LoginPage extends StatelessWidget {
             bottomLeft: Radius.circular(7000),
           ),
         ),
-        backgroundColor: Colors.cyan,
+        backgroundColor: const Color.fromARGB(255, 15, 146, 239),
         automaticallyImplyLeading: false,
       ), //AppBar
       body: Container(
@@ -40,7 +40,7 @@ class LoginPage extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 205, 245, 255),
+              Color.fromARGB(255, 169, 223, 255),
             ],
             begin: Alignment.topRight,
             end: Alignment.bottomCenter,
@@ -65,19 +65,23 @@ class LoginPage extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'البريد الإلكتروني',
                     labelStyle: TextStyle(
-                        color: Colors.cyan), // Cyan color for label text
+                        color: Color.fromARGB(
+                            255, 15, 146, 239)), // Cyan color for label text
                     prefixIcon: Icon(Icons.email_outlined,
-                        color: Colors.cyan), // Cyan color for icon
+                        color: Color.fromARGB(
+                            255, 15, 146, 239)), // Cyan color for icon
 
                     border: OutlineInputBorder(
                       borderSide: BorderSide(
                           color: Colors.cyan), // Consistent border color
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.cyan),
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 15, 146, 239)),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.cyan),
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 15, 146, 239)),
                     ),
                   ),
                   keyboardType: TextInputType.emailAddress,
@@ -90,18 +94,23 @@ class LoginPage extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'كلمة المرور',
                     labelStyle: TextStyle(
-                        color: Colors.cyan), // Cyan color for label text
+                        color: Color.fromARGB(
+                            255, 15, 146, 239)), // Cyan color for label text
                     prefixIcon: Icon(Icons.lock_outline,
-                        color: Colors.cyan), // Cyan color for icon
+                        color: Color.fromARGB(
+                            255, 15, 146, 239)), // Cyan color for icon
                     border: OutlineInputBorder(
                       borderSide: BorderSide(
-                          color: Colors.cyan), // Consistent border color
+                          color: Color.fromARGB(
+                              255, 15, 146, 239)), // Consistent border color
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.cyan),
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 15, 146, 239)),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.cyan),
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 15, 146, 239)),
                     ),
                   ),
                 ),
@@ -235,7 +244,7 @@ class LoginPage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                         vertical: 10.0, horizontal: 60.0),
-                    backgroundColor: Colors.cyan,
+                    backgroundColor: const Color.fromARGB(255, 15, 146, 239),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -260,7 +269,9 @@ class LoginPage extends StatelessWidget {
                       },
                       child: const Text(
                         'سجل الآن',
-                        style: TextStyle(fontSize: 16, color: Colors.cyan),
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Color.fromARGB(255, 15, 146, 239)),
                       ),
                     ),
                     const Text(
