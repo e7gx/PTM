@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:first_time/reports/it_reports/it_display_reports_page.dart';
+import 'package:first_time/reports/it_reports/submited_it_reports/it_display_reports_page.dart';
 import 'package:first_time/device_table/device_table_page.dart';
 import 'package:first_time/reports/user_reports/device_display_reports.dart';
-import 'package:first_time/reports/it_reports/it_write_solution_report.dart';
+import 'package:first_time/reports/it_reports/write_it_reports/it_write_solution_report.dart';
 import 'package:lottie/lottie.dart';
 import 'package:first_time/settings/accont_setting.dart';
 import 'package:first_time/settings/it_settings.dart';

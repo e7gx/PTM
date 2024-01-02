@@ -16,21 +16,24 @@ class ReportDetailsPage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(
-          '   تفاصيل البلاغ رقم $reportNumber',
+          '  تفاصيل البلاغ رقم $reportNumber',
+          textAlign: TextAlign.center,
           style: const TextStyle(
               color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.cyan,
-        iconTheme: const IconThemeData(color: Colors.white),
-        centerTitle: true,
-        toolbarHeight: 50,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(100000),
-            bottomLeft: Radius.circular(7000),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 105, 142, 255),
+                  Color(0xFF00CCFF),
+                ],
+                begin: FractionalOffset(0.0, 0.0),
+                end: FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                tileMode: TileMode.clamp),
           ),
         ),
-        automaticallyImplyLeading: true,
       ), //AppBar
 
       body: FutureBuilder<DocumentSnapshot>(
@@ -55,7 +58,7 @@ class ReportDetailsPage extends StatelessWidget {
                 const SizedBox(height: 50),
                 Image.asset(
                   reportData['imageUrl'] ?? 'images/user.png',
-                  fit: BoxFit.fill,
+                  fit: BoxFit.fitHeight,
                   height: 350,
                 ),
                 const SizedBox(height: 16),

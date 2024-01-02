@@ -10,9 +10,9 @@ class PPM extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         drawerTheme: const DrawerThemeData(
-          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          backgroundColor: Color.fromARGB(255, 186, 237, 255),
         ),
-        canvasColor: Colors.white,
+        canvasColor: const Color.fromARGB(255, 246, 252, 255),
         useMaterial3: false,
         primarySwatch: Colors.cyan,
         colorScheme: ColorScheme.fromSeed(

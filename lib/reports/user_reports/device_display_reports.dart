@@ -11,20 +11,30 @@ class DeviceReports extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Center(
-          child: Text('البلاغات المقدمة'),
+          child: Text(
+            'البلاغات المقدمة',
+            textAlign: TextAlign.center,
+          ),
         ),
         titleTextStyle: const TextStyle(
             color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 105, 142, 255),
+                  Color(0xFF00CCFF),
+                ],
+                begin: FractionalOffset(0.0, 0.0),
+                end: FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                tileMode: TileMode.clamp),
+          ),
+        ),
         backgroundColor: Colors.cyan,
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
         toolbarHeight: 50,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(5000),
-            bottomLeft: Radius.circular(0),
-          ),
-        ),
         automaticallyImplyLeading: true,
       ), //AppBar
 
@@ -85,7 +95,7 @@ class DeviceReports extends StatelessWidget {
                         right: 0,
                         left: 0,
                         child: Container(
-                          color: const Color.fromARGB(255, 19, 98, 99)
+                          color: const Color.fromARGB(255, 6, 72, 159)
                               .withOpacity(0.6),
                           padding: const EdgeInsets.all(8.0),
                           child: Column(

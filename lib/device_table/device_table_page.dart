@@ -37,6 +37,19 @@ class DeviceTablePage extends StatelessWidget {
               fontWeight: FontWeight.bold, fontSize: 24.0, color: Colors.white),
           textAlign: TextAlign.center,
         ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 105, 142, 255),
+                  Color(0xFF00CCFF),
+                ],
+                begin: FractionalOffset(0.0, 0.0),
+                end: FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                tileMode: TileMode.clamp),
+          ),
+        ),
         backgroundColor: Colors.cyan,
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
@@ -49,10 +62,22 @@ class DeviceTablePage extends StatelessWidget {
         ),
         automaticallyImplyLeading: true,
       ), //AppBar
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(25.0),
-          child: DeviceList(devices: devices),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 192, 208, 255),
+              Color.fromARGB(255, 111, 199, 250),
+            ],
+            begin: Alignment.topRight,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: DeviceList(devices: devices),
+          ),
         ),
       ),
     );

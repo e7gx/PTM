@@ -66,75 +66,88 @@ class RegisterDeviceState extends State<RegisterDevice> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                'images/pc.png',
-                fit: BoxFit.contain,
-                height: 300,
-                width: double.infinity,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 169, 223, 255),
+            ],
+            begin: Alignment.topRight,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  'images/pc.png',
+                  fit: BoxFit.contain,
+                  height: 300,
+                  width: double.infinity,
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Center(child: DropdownMenuExample()),
-                  const SizedBox(height: 20),
-                  buildTextField(deviceBrandController, 'العلامة التجارية',
-                      'أدخل العلامة التجارية للجهاز'),
-                  const SizedBox(height: 10),
-                  buildTextField(
-                      deviceCpuController, 'المعالج', 'أدخل نوع المعالج'),
-                  const SizedBox(height: 10),
-                  buildTextField(deviceHardDeskController, 'القرص الصلب',
-                      'أدخل نوع القرص الصلب'),
-                  const SizedBox(height: 10),
-                  buildTextField(
-                      deviceLocationController, 'الموقع', 'أدخل موقع الجهاز'),
-                  const SizedBox(height: 10),
-                  buildTextField(
-                      macAddressController, 'عنوان MAC', 'أدخل عنوان MAC'),
-                  const SizedBox(height: 10),
-                  buildTextFieldNum(ministryNumberController, 'رقم الوزارة',
-                      'أدخل رقم الوزارة'),
-                  const SizedBox(height: 10),
-                  buildTextFieldNum(serialNumberController, 'الرقم التسلسلي',
-                      'أدخل الرقم التسلسلي'),
-                  const SizedBox(height: 30),
-                  SizedBox(
-                    width: 150,
-                    child: ElevatedButton(
-                      onPressed: () => _submitReport(context),
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(
-                            const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 40)),
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.cyan[400]),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8))),
-                      ),
-                      child: const Text(
-                        'إرسال',
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const Center(child: DropdownMenuExample()),
+                    const SizedBox(height: 20),
+                    buildTextField(deviceBrandController, 'العلامة التجارية',
+                        'أدخل العلامة التجارية للجهاز'),
+                    const SizedBox(height: 10),
+                    buildTextField(
+                        deviceCpuController, 'المعالج', 'أدخل نوع المعالج'),
+                    const SizedBox(height: 10),
+                    buildTextField(deviceHardDeskController, 'القرص الصلب',
+                        'أدخل نوع القرص الصلب'),
+                    const SizedBox(height: 10),
+                    buildTextField(
+                        deviceLocationController, 'الموقع', 'أدخل موقع الجهاز'),
+                    const SizedBox(height: 10),
+                    buildTextField(
+                        macAddressController, 'عنوان MAC', 'أدخل عنوان MAC'),
+                    const SizedBox(height: 10),
+                    buildTextFieldNum(ministryNumberController, 'رقم الوزارة',
+                        'أدخل رقم الوزارة'),
+                    const SizedBox(height: 10),
+                    buildTextFieldNum(serialNumberController, 'الرقم التسلسلي',
+                        'أدخل الرقم التسلسلي'),
+                    const SizedBox(height: 30),
+                    SizedBox(
+                      width: 150,
+                      child: ElevatedButton(
+                        onPressed: () => _submitReport(context),
+                        style: ButtonStyle(
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 40)),
+                          backgroundColor: MaterialStateProperty.all(
+                              const Color.fromARGB(255, 15, 146, 239)),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
+                        ),
+                        child: const Text(
+                          'إرسال',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -293,11 +306,11 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color.fromARGB(255, 133, 166, 238),
-            Color.fromARGB(255, 154, 222, 218),
+            Color.fromARGB(255, 255, 255, 255),
+            Color.fromARGB(255, 169, 223, 255),
           ],
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
       ),
       child: DropdownMenu<String>(

@@ -22,7 +22,6 @@ class _DetailsPageState extends State<DetailsPage> {
       backgroundColor: Colors.white,
 
       appBar: AppBar(
-        backgroundColor: Colors.cyan,
         title: const Text(
           "رفع تقرير",
           style: TextStyle(
@@ -32,70 +31,91 @@ class _DetailsPageState extends State<DetailsPage> {
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
         toolbarHeight: 50,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(5000),
-            bottomLeft: Radius.circular(0),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 105, 142, 255),
+                  Color(0xFF00CCFF),
+                ],
+                begin: FractionalOffset(0.0, 0.0),
+                end: FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                tileMode: TileMode.clamp),
           ),
         ),
         automaticallyImplyLeading: true,
       ), //AppBar
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Lottie.asset(
-                'animation/signup1.json',
-                fit: BoxFit.contain,
-                height: 300,
-                width: double.infinity,
-              ),
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 255, 255, 255),
+                Color.fromARGB(255, 169, 223, 255),
+              ],
+              begin: Alignment.topRight,
+              end: Alignment.bottomCenter,
             ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const SizedBox(height: 0),
-                  buildTextField(
-                      userreportNumController, 'رقم البلاغ', 'أدخل رقم البلاغ'),
-                  const SizedBox(height: 30),
-                  buildTextField(
-                      locationController, 'موقع الجهاز', 'أدخل اسم المعمل'),
-                  const SizedBox(height: 30),
-                  buildTextField(
-                      itreportController, 'حل المشكلة', 'أدخل حل المشكلة'),
-                  const SizedBox(height: 30),
-                  SizedBox(
-                    width: 150,
-                    child: ElevatedButton(
-                      onPressed: () => _submitReport(context),
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(
-                            const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 40)),
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.cyan[400]),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8))),
-                      ),
-                      child: const Text(
-                        'إرسال',
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+          ),
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Lottie.asset(
+                  'animation/signup1.json',
+                  fit: BoxFit.contain,
+                  height: 300,
+                  width: double.infinity,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(height: 0),
+                    buildTextFieldNum(userreportNumController, 'رقم البلاغ',
+                        'أدخل رقم البلاغ'),
+                    const SizedBox(height: 30),
+                    buildTextField(
+                        locationController, 'موقع الجهاز', 'أدخل اسم المعمل'),
+                    const SizedBox(height: 30),
+                    buildTextField(
+                        itreportController, 'حل المشكلة', 'أدخل حل المشكلة'),
+                    const SizedBox(height: 30),
+                    SizedBox(
+                      width: 150,
+                      child: ElevatedButton(
+                        onPressed: () => _submitReport(context),
+                        style: ButtonStyle(
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 40)),
+                          backgroundColor: MaterialStateProperty.all(
+                            const Color.fromARGB(255, 15, 146, 239),
+                          ),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
+                        ),
+                        child: const Text(
+                          'إرسال',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -149,7 +169,7 @@ class _DetailsPageState extends State<DetailsPage> {
               TextButton(
                 child: const Text('حسنا',
                     style: TextStyle(
-                        color: Colors.cyan,
+                        color: Color.fromARGB(255, 109, 194, 255),
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic)),
@@ -195,7 +215,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 child: const Text(
                   'حسنا',
                   style: TextStyle(
-                      color: Colors.cyan,
+                      color: Color.fromARGB(255, 15, 146, 239),
                       fontStyle: FontStyle.italic,
                       fontSize: 16),
                 ),
