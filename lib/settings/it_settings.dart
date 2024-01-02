@@ -81,6 +81,19 @@ class MyDataPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 105, 142, 255),
+                  Color(0xFF00CCFF),
+                ],
+                begin: FractionalOffset(0.0, 0.0),
+                end: FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                tileMode: TileMode.clamp),
+          ),
+        ),
         backgroundColor: Colors.cyan,
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
@@ -93,35 +106,47 @@ class MyDataPage extends StatelessWidget {
         ),
         automaticallyImplyLeading: true,
       ), //AppBar
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            UserAvatarInfoCard(
-              imageUrl: 'images/emp.jpeg',
-              fullName: userData.fullName,
-              jobTitle: userData.position,
-            ),
-            UserDetailTile(
-              title: 'اسم المستخدم',
-              value: userData.username,
-              icon: Icons.person_2_rounded,
-            ),
-            UserDetailTile(
-              title: 'الرقم الوظيفي',
-              value: userData.jobNumber,
-              icon: Icons.work,
-            ),
-            UserDetailTile(
-              title: 'الموسسة',
-              value: userData.organization,
-              icon: Icons.business,
-            ),
-            UserDetailTile(
-              title: 'البريد الإلكتروني',
-              value: userData.email,
-              icon: Icons.email,
-            ),
-          ],
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 169, 223, 255),
+            ],
+            begin: Alignment.topRight,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              UserAvatarInfoCard(
+                imageUrl: 'images/emp.jpeg',
+                fullName: userData.fullName,
+                jobTitle: userData.position,
+              ),
+              UserDetailTile(
+                title: 'اسم المستخدم',
+                value: userData.username,
+                icon: Icons.person_2_rounded,
+              ),
+              UserDetailTile(
+                title: 'الرقم الوظيفي',
+                value: userData.jobNumber,
+                icon: Icons.work,
+              ),
+              UserDetailTile(
+                title: 'الموسسة',
+                value: userData.organization,
+                icon: Icons.business,
+              ),
+              UserDetailTile(
+                title: 'البريد الإلكتروني',
+                value: userData.email,
+                icon: Icons.email,
+              ),
+            ],
+          ),
         ),
       ),
     );

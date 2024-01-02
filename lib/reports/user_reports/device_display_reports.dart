@@ -38,98 +38,110 @@ class DeviceReports extends StatelessWidget {
         automaticallyImplyLeading: true,
       ), //AppBar
 
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('User_Reports')
-            .orderBy('date', descending: true) // أضف هذا السطر
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(
-                child: Text(
-              'لا توجد بلاغات',
-              style: TextStyle(
-                  color: Colors.black45,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold),
-            ));
-          }
-          return ListView.builder(
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index) {
-              var report = snapshot.data!.docs[index];
-              var reportData = report.data() as Map<String, dynamic>;
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 169, 223, 255),
+            ],
+            begin: Alignment.topRight,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('User_Reports')
+              .orderBy('date', descending: true) // أضف هذا السطر
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+              return const Center(
+                  child: Text(
+                'لا توجد بلاغات',
+                style: TextStyle(
+                    color: Colors.black45,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),
+              ));
+            }
+            return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                var report = snapshot.data!.docs[index];
+                var reportData = report.data() as Map<String, dynamic>;
 
-              return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => ReportDetailsPage(
-                          reportId: report.id, reportNumber: index + 1),
-                    ),
-                  );
-                },
-                child: Card(
-                  elevation: 6.0,
-                  margin: const EdgeInsets.only(
-                      bottom: 16.0, left: 8.0, right: 8.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          reportData['imageUrl'] ?? 'images/pc.png',
-                          width: double.infinity,
-                          height: 400.0,
-                          fit: BoxFit.cover,
-                        ),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => ReportDetailsPage(
+                            reportId: report.id, reportNumber: index + 1),
                       ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        left: 0,
-                        child: Container(
-                          color: const Color.fromARGB(255, 6, 72, 159)
-                              .withOpacity(0.6),
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'بلاغ رقم ${index + 1}',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18.0,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Text(
-                                'Report Date : ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
-                                style: const TextStyle(
-                                    fontSize: 16.0, color: Colors.white),
-                              ),
-                              Text(
-                                'Report Location:   ${reportData['location'] ?? 'No Location'}',
-                                style: const TextStyle(
-                                    fontSize: 16.0, color: Colors.white),
-                              ),
-                            ],
+                    );
+                  },
+                  child: Card(
+                    elevation: 6.0,
+                    margin: const EdgeInsets.only(
+                        bottom: 16.0, left: 8.0, right: 8.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.asset(
+                            reportData['imageUrl'] ?? 'images/pc.png',
+                            width: double.infinity,
+                            height: 400.0,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                      ),
-                    ],
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          left: 0,
+                          child: Container(
+                            color: const Color.fromARGB(255, 6, 72, 159)
+                                .withOpacity(0.6),
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'بلاغ رقم ${index + 1}',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  'Report Date : ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
+                                  style: const TextStyle(
+                                      fontSize: 16.0, color: Colors.white),
+                                ),
+                                Text(
+                                  'Report Location:   ${reportData['location'] ?? 'No Location'}',
+                                  style: const TextStyle(
+                                      fontSize: 16.0, color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
-          );
-        },
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

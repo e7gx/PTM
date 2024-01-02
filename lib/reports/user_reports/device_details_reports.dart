@@ -36,65 +36,78 @@ class ReportDetailsPage extends StatelessWidget {
         ),
       ), //AppBar
 
-      body: FutureBuilder<DocumentSnapshot>(
-        future: FirebaseFirestore.instance
-            .collection('User_Reports')
-            .doc(reportId)
-            .get(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (!snapshot.hasData || snapshot.data!.data() == null) {
-            return const Center(child: Text('لا يوجد تفاصيل للبلاغ'));
-          }
-          var reportData = snapshot.data!.data() as Map<String, dynamic>;
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 169, 223, 255),
+            ],
+            begin: Alignment.topRight,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: FutureBuilder<DocumentSnapshot>(
+          future: FirebaseFirestore.instance
+              .collection('User_Reports')
+              .doc(reportId)
+              .get(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (!snapshot.hasData || snapshot.data!.data() == null) {
+              return const Center(child: Text('لا يوجد تفاصيل للبلاغ'));
+            }
+            var reportData = snapshot.data!.data() as Map<String, dynamic>;
 
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 50),
-                Image.asset(
-                  reportData['imageUrl'] ?? 'images/user.png',
-                  fit: BoxFit.fitHeight,
-                  height: 350,
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  'بلاغ رقم: $reportNumber',
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  'التاريخ: ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
-                  style: const TextStyle(fontSize: 18),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  'رقم الجهاز: ${reportData['device'] ?? 'No Device Number'}',
-                  style: const TextStyle(fontSize: 18),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  'الموقع: ${reportData['location'] ?? 'No Location'}',
-                  style: const TextStyle(fontSize: 18),
-                ),
-                const SizedBox(height: 16),
-                const Text(
-                  'وصف المشكلة:',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  reportData['problem'] ?? 'No Description',
-                  style: const TextStyle(fontSize: 18),
-                ),
-              ],
-            ),
-          );
-        },
+            return SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 50),
+                  Image.asset(
+                    reportData['imageUrl'] ?? 'images/user.png',
+                    fit: BoxFit.fitHeight,
+                    height: 350,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'بلاغ رقم: $reportNumber',
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'التاريخ: ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'رقم الجهاز: ${reportData['device'] ?? 'No Device Number'}',
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'الموقع: ${reportData['location'] ?? 'No Location'}',
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'وصف المشكلة:',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    reportData['problem'] ?? 'No Description',
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                  const SizedBox(height: 67),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

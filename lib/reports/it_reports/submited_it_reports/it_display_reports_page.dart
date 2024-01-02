@@ -37,44 +37,56 @@ class ReportsPage extends StatelessWidget {
         automaticallyImplyLeading: true,
       ), //AppBar
 
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('IT_Reports')
-            .orderBy('date', descending: true)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          }
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text('لا يوجد تقارير'));
-          }
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 169, 223, 255),
+            ],
+            begin: Alignment.topRight,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('IT_Reports')
+              .orderBy('date', descending: true)
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            }
+            if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+              return const Center(child: Text('لا يوجد تقارير'));
+            }
 
-          return ListView.builder(
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index) {
-              var reportData =
-                  snapshot.data!.docs[index].data() as Map<String, dynamic>;
-              var reportId = snapshot.data!.docs[index].id;
+            return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                var reportData =
+                    snapshot.data!.docs[index].data() as Map<String, dynamic>;
+                var reportId = snapshot.data!.docs[index].id;
 
-              String formattedDate = DateFormat('dd/MM/yyyy')
-                  .format((reportData['date'] as Timestamp).toDate());
-              return ReportCard(
-                report: Report(
-                  title: reportData['title'] ??
-                      'تقرير رقم ${index + 1}', // العنوان
-                  date: formattedDate, // التاريخ المنسق
-                  location: reportData['location'] ?? 'غير محدد', // الموقع
-                  image: reportData['imageUrl'] ?? 'images/pc.png', // الصورة
-                ),
-                reportId: reportId,
-              );
-            },
-          );
-        },
+                String formattedDate = DateFormat('dd/MM/yyyy')
+                    .format((reportData['date'] as Timestamp).toDate());
+                return ReportCard(
+                  report: Report(
+                    title: reportData['title'] ??
+                        'تقرير رقم ${index + 1}', // العنوان
+                    date: formattedDate, // التاريخ المنسق
+                    location: reportData['location'] ?? 'غير محدد', // الموقع
+                    image: reportData['imageUrl'] ?? 'images/pc.png', // الصورة
+                  ),
+                  reportId: reportId,
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
