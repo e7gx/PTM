@@ -14,6 +14,7 @@ class PPM extends StatelessWidget {
         ),
         canvasColor: Colors.white,
         useMaterial3: false,
+        primarySwatch: Colors.cyan,
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.white,
           brightness: Brightness.light,

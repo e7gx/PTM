@@ -194,7 +194,7 @@ class _WelcomePageState extends State<WelcomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Lottie.asset('animation/ppmana.json', width: 400, height: 400),
-            const SizedBox(height: 10),
+            // const SizedBox(height: 10),
             const Text('أهلا وسهلا بك',
                 style: TextStyle(
                     color: Colors.black54,

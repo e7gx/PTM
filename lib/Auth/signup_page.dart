@@ -123,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(0.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -201,7 +201,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 1000.0),
+                const SizedBox(height: 140.0),
               ],
             ),
           ),
