@@ -104,7 +104,6 @@ class _SettingsPageState extends State<SettingsPage> {
               leading: const Icon(Icons.logout), // أيقونة تسجيل الخروج
               title: const Text('تسجيل الخروج'),
               onTap: () {
-                // قم بإضافة المنطق الخاص بتسجيل الخروج هنا
                 // يجب توجيه المستخدم إلى صفحة تسجيل الدخول (LoginPage)
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(

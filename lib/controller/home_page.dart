@@ -91,7 +91,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+
               ListTile(
                 title: const Text(
                   'أضافة أصول تقنية',
@@ -113,7 +113,23 @@ class _WelcomePageState extends State<WelcomePage> {
                   );
                 },
               ),
-              const SizedBox(height: 20),
+
+              Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 105, 142, 255),
+                      Color(0xFF00CCFF),
+                    ],
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+                child: const Divider(
+                  height: 2,
+                  // color: Colors.white,
+                ),
+              ), // خط فاصل بين القوائم
               ListTile(
                 title: const Text(
                   'البيانات الشخصية',
@@ -133,7 +149,22 @@ class _WelcomePageState extends State<WelcomePage> {
                   );
                 },
               ),
-              const SizedBox(height: 20),
+              Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 105, 142, 255),
+                      Color(0xFF00CCFF),
+                    ],
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+                child: const Divider(
+                  height: 2,
+                  // color: Colors.white,
+                ),
+              ), // خط فاصل بين القوائ/ خط فاصل بين القوائم
               ListTile(
                 title: const Text(
                   ' مؤشر الاداء العام',
@@ -156,7 +187,23 @@ class _WelcomePageState extends State<WelcomePage> {
                   );
                 },
               ),
-              const SizedBox(height: 20),
+
+              Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 105, 142, 255),
+                      Color(0xFF00CCFF),
+                    ],
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+                child: const Divider(
+                  height: 2,
+                  // color: Colors.white,
+                ),
+              ), // خط فاصل بين القوائ/ خط فاصل بين القوائم
               ListTile(
                 title: const Text(
                   'اعدادات البرنامج',
@@ -178,6 +225,22 @@ class _WelcomePageState extends State<WelcomePage> {
                   );
                 },
               ),
+              Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 105, 142, 255),
+                      Color(0xFF00CCFF),
+                    ],
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+                child: const Divider(
+                  height: 2,
+                  // color: Colors.white,
+                ),
+              ), // خط فاصل بين القوائ
             ],
           ),
         ),
