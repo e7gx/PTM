@@ -99,8 +99,11 @@ class RegisterDeviceState extends State<RegisterDevice> {
                   children: [
                     const Center(child: DropdownMenuExample()),
                     const SizedBox(height: 20),
-                    buildTextField(deviceBrandController, 'العلامة التجارية',
-                        'أدخل العلامة التجارية للجهاز'),
+                    buildTextField(
+                      deviceBrandController,
+                      'العلامة التجارية',
+                      'أدخل العلامة التجارية للجهاز',
+                    ),
                     const SizedBox(height: 10),
                     buildTextField(
                         deviceCpuController, 'المعالج', 'أدخل نوع المعالج'),
@@ -301,7 +304,8 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 350.0,
+      // margin: EdgeInsets.zero,
+      // width: 500,
       alignment: Alignment.center,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -315,6 +319,15 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
       ),
       child: DropdownMenu<String>(
         initialSelection: list.first,
+        leadingIcon: const Icon(Icons.location_on_outlined),
+        trailingIcon: const Wrap(
+          spacing: 12, // space between two icons
+          children: <Widget>[
+            Icon(Icons.keyboard_arrow_down), // icon-2
+          ],
+        ),
+        textStyle: const TextStyle(
+            color: Colors.blue, fontSize: 18, fontWeight: FontWeight.bold),
         onSelected: (String? value) {
           // This is called when the user selects an item.
           setState(() {

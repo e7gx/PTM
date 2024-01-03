@@ -48,29 +48,31 @@ class TechnicalSupportStatisticsPage extends StatelessWidget {
               end: Alignment.bottomCenter,
             ),
           ),
-          child: const Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              SupportStatisticCard(
-                title: 'سرعة الاستجابة للبلاغ',
-                value: '90%',
-                icon: Icons.access_time, // أيقونة سرعة الاستجابة
-                iconColor: Colors.blue, // لون أيقونة سرعة الاستجابة
-              ),
-              SupportStatisticCard(
-                title: 'نسبة حل المشكلة',
-                value: '75%',
-                icon: Icons.check_circle, // أيقونة نسبة حل المشكلة
-                iconColor: Colors.green,
-              ),
-              SupportStatisticCard(
-                title: 'التقييم الشامل',
-                value: '4.5/5',
-                icon: Icons.star, // أيقونة التقييم الشامل
-                iconColor: Colors.orange, // لون أيقونة التقييم الشامل
-              ),
-              // يمكنك إضافة المزيد من الإحصائيات حسب الحاجة
-            ],
+          child: const SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                SupportStatisticCard(
+                  title: 'سرعة الاستجابة للبلاغ',
+                  value: '90%',
+                  icon: Icons.access_time, // أيقونة سرعة الاستجابة
+                  iconColor: Colors.blue, // لون أيقونة سرعة الاستجابة
+                ),
+                SupportStatisticCard(
+                  title: 'نسبة حل المشكلة',
+                  value: '75%',
+                  icon: Icons.check_circle, // أيقونة نسبة حل المشكلة
+                  iconColor: Colors.green,
+                ),
+                SupportStatisticCard(
+                  title: 'التقييم الشامل',
+                  value: '4.5/5',
+                  icon: Icons.star, // أيقونة التقييم الشامل
+                  iconColor: Colors.orange, // لون أيقونة التقييم الشامل
+                ),
+                // يمكنك إضافة المزيد من الإحصائيات حسب الحاجة
+              ],
+            ),
           ),
         ),
       ),

@@ -54,7 +54,7 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: Padding(
+        child: SingleChildScrollView(
           padding:
               const EdgeInsets.all(20.0), // Adjusted padding for better spacing
           child: Column(
@@ -106,6 +106,9 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 80,
+              )
             ],
           ),
         ),
