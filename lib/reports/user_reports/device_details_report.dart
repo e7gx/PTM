@@ -68,7 +68,7 @@ class ReportDetailsPage extends StatelessWidget {
                 children: [
                   const SizedBox(height: 50),
                   Image.asset(
-                    reportData['imageUrl'] ?? 'images/user.png',
+                    reportData['imageUrl'] ?? 'assets/images/user.png',
                     fit: BoxFit.fitHeight,
                     height: 350,
                   ),

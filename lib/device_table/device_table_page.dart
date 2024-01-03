@@ -75,7 +75,7 @@ class DeviceTablePage extends StatelessWidget {
         ),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(0.0),
             child: DeviceList(devices: devices),
           ),
         ),
@@ -122,14 +122,14 @@ class _DeviceListState extends State<DeviceList> {
                   children: [
                     ListTile(
                       leading: Image.asset(
-                        'images/uqu.png', // Replace with the device image
+                        'assets/images/uqu.png', // Replace with the device image
                         width: 100.0, // Image size
                         height: 125.0,
                       ),
                       title: Text(
                         device.name,
                         style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 12.0),
+                            fontWeight: FontWeight.bold, fontSize: 15.0),
                       ),
                       subtitle: Text('Device Location: ${device.location}'),
                     ),
@@ -138,24 +138,69 @@ class _DeviceListState extends State<DeviceList> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Device Type: ${device.type}' '\n'),
-                          Text('Ministry Number: ${device.ministryNumber}'),
-                          Text('Serial Number: ${device.serialNumber}'),
-                          Text('Specifications: ${device.specifications}'
-                              '\n'),
-                          const Text('Operating System: Windows 10 64-bit'),
-                          const Text('Processor: Intel Core i7.'),
-                          const Text('Brand: lenovo desktop.'),
-                          const Text('RAM: 8 GB.'),
-                          const Text('Hard Drive: SDD.' '\n'),
-                          const Text('Screen Size: 15.6 inches.'),
-                          const Text('Screen Resolution: 4K.'),
+                          Text(
+                            'Device Type: ${device.type}' '\n',
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15.0),
+                          ),
+                          Text(
+                            'Ministry Number: ${device.ministryNumber}',
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15.0),
+                          ),
+                          Text(
+                            'Serial Number: ${device.serialNumber}',
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15.0),
+                          ),
+                          Text(
+                            'Specifications: ${device.specifications}'
+                            '\n',
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15.0),
+                          ),
+                          const Text(
+                            'Operating System: Windows 10 64-bit',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15.0),
+                          ),
+                          const Text(
+                            'Processor: Intel Core i7.',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15.0),
+                          ),
+                          const Text(
+                            'Brand: lenovo desktop.',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15.0),
+                          ),
+                          const Text(
+                            'RAM: 8 GB.',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15.0),
+                          ),
+                          const Text(
+                            'Hard Drive: SDD.' '\n',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15.0),
+                          ),
+                          const Text(
+                            'Screen Size: 15.6 inches.',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15.0),
+                          ),
+                          const Text(
+                            'Screen Resolution: 4K.'
+                            '\n',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15.0),
+                          ),
                           const SizedBox(
                             height: 40,
                           ),
                           Center(
                             child: Image.asset(
-                              'images/pc.png', // Replace with the device image
+                              'assets/images/pc.png', // Replace with the device image
                               width: 200.0, // Image size
                               height: 100.0,
                             ),

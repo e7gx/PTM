@@ -54,7 +54,7 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Lottie.asset(
-                  'animation/ppmana.json', // تأكد من مسار الـ asset الصحيح للتحريك
+                  'assets/animation/ppmana.json', // تأكد من مسار الـ asset الصحيح للتحريك
                   width: 500.0,
                   height: 230.0,
                 ),
@@ -135,7 +135,7 @@ class LoginPage extends StatelessWidget {
                             content: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Lottie.asset('animation/WOR.json',
+                                Lottie.asset('assets/animation/WOR.json',
                                     height:
                                         200), // يجب أن تكون الصورة موجودة في مجلد الـ assets
                                 const SizedBox(
@@ -187,7 +187,7 @@ class LoginPage extends StatelessWidget {
                       String message =
                           '       كلمة المرور او البريد الإلكتروني       \n          غير صحيح حاول مرة اخرى ';
                       String lottieAsset =
-                          'animation/WOR.json'; // مسار ملف تحريك Lottie للخطأ
+                          'assets/animation/WOR.json'; // مسار ملف تحريك Lottie للخطأ
 
                       if (e.code == 'user-not-found') {
                         message = 'لم يتم العثور على المستخدم!';

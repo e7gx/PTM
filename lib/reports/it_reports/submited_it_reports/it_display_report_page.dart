@@ -89,7 +89,7 @@ class ReportDetailsITPage extends StatelessWidget {
                   children: [
                     // الصورة في الأعلى
                     Lottie.asset(
-                      'animation/reportsman.json',
+                      'assets/animation/reportsman.json',
                       width: 400,
                       height: 300, //  الارتفاع
                       fit: BoxFit.contain,

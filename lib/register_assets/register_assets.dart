@@ -84,7 +84,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
-                  'images/pc.png',
+                  'assets/images/pc.png',
                   fit: BoxFit.contain,
                   height: 300,
                   width: double.infinity,
@@ -201,7 +201,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             title: Lottie.asset(
-              'animation/WOR.json',
+              'assets/animation/WOR.json',
               height: 290,
             ),
             content: const Text(
@@ -244,7 +244,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             title: Lottie.asset(
-              'animation/like1.json',
+              'assets/animation/like1.json',
               height: 300,
             ),
             content: const Row(

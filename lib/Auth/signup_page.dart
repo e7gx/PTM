@@ -20,10 +20,12 @@ class _SignUpPageState extends State<SignUpPage> {
     final String password = _passwordController.text.trim();
 
     if (email.isEmpty || password.isEmpty) {
-      _showDialog('            يرجى ملء جميع الحقول', 'animation/WOR.json');
+      _showDialog(
+          '            يرجى ملء جميع الحقول', 'assets/animation/WOR.json');
     } else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email)) {
-      _showDialog('       يرجى إدخال بريد إلكتروني صالح', 'animation/WOR.json');
+      _showDialog(
+          '       يرجى إدخال بريد إلكتروني صالح', 'assets/animation/WOR.json');
     } else {
       try {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -46,7 +48,7 @@ class _SignUpPageState extends State<SignUpPage> {
         }
         if (mounted) {
           // Also check here before showing the dialog
-          _showDialog(errorMessage, 'animation/WOR.json');
+          _showDialog(errorMessage, 'assets/animation/WOR.json');
         }
       }
     }
@@ -128,7 +130,7 @@ class _SignUpPageState extends State<SignUpPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Lottie.asset(
-                  'animation/reportsman.json', // Make sure this path is correct
+                  'assets/animation/reportsman.json', // Make sure this path is correct
                   width: 400.0,
                   height: 250.0,
                 ),

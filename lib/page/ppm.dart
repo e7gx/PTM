@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:first_time/page/introduction_screen.dart';
+import 'package:first_time/screen/introduction_screen.dart';
 
 class PPM extends StatelessWidget {
   const PPM({super.key});

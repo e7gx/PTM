@@ -121,7 +121,7 @@ class MyDataPage extends StatelessWidget {
           child: Column(
             children: [
               UserAvatarInfoCard(
-                imageUrl: 'images/emp.jpeg',
+                imageUrl: 'assets/images/emp.jpeg',
                 fullName: userData.fullName,
                 jobTitle: userData.position,
               ),

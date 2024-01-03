@@ -64,7 +64,7 @@ class _DetailsPageState extends State<DetailsPage> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Lottie.asset(
-                  'animation/signup1.json',
+                  'assets/animation/signup1.json',
                   fit: BoxFit.contain,
                   height: 300,
                   width: double.infinity,
@@ -156,7 +156,7 @@ class _DetailsPageState extends State<DetailsPage> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             title: Lottie.asset(
-              'animation/WOR.json',
+              'assets/animation/WOR.json',
               height: 290,
             ),
             content: const Text(
@@ -195,7 +195,7 @@ class _DetailsPageState extends State<DetailsPage> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             title: Lottie.asset(
-              'animation/like1.json',
+              'assets/animation/like1.json',
               height: 300,
             ),
             content: const Row(

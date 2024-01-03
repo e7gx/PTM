@@ -70,7 +70,9 @@ class TechnicalSupportStatisticsPage extends StatelessWidget {
                   icon: Icons.star, // أيقونة التقييم الشامل
                   iconColor: Colors.orange, // لون أيقونة التقييم الشامل
                 ),
-                // يمكنك إضافة المزيد من الإحصائيات حسب الحاجة
+                SizedBox(
+                  height: 30,
+                )
               ],
             ),
           ),

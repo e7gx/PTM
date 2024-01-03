@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
-import 'package:first_time/reports/user_reports/device_details_reports.dart';
+import 'package:first_time/reports/user_reports/device_details_report.dart';
 
 class DeviceReports extends StatelessWidget {
   const DeviceReports({super.key});
@@ -95,7 +95,7 @@ class DeviceReports extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.asset(
-                            reportData['imageUrl'] ?? 'images/pc.png',
+                            reportData['imageUrl'] ?? 'assets/images/pc.png',
                             width: double.infinity,
                             height: 400.0,
                             fit: BoxFit.cover,

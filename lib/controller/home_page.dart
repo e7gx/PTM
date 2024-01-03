@@ -256,7 +256,8 @@ class _WelcomePageState extends State<WelcomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Lottie.asset('animation/ppmana.json', width: 400, height: 400),
+            Lottie.asset('assets/animation/ppmana.json',
+                width: 400, height: 400),
             // const SizedBox(height: 10),
             const Text('أهلا وسهلا بك',
                 style: TextStyle(
@@ -303,7 +304,7 @@ class _WelcomePageState extends State<WelcomePage> {
             final data = doc.data() as Map<String, dynamic>;
             return SlideData(
               image:
-                  'images/uqu.png', // يمكنك تغييرها إلى مسار الصورة الحقيقية إذا وجدت في البيانات
+                  'assets/images/uqu.png', // يمكنك تغييرها إلى مسار الصورة الحقيقية إذا وجدت في البيانات
               title: data['location'] ?? 'جهاز غير معروف',
               content: data['problem'] ?? 'مشكلة غير معروفة',
             );

@@ -79,7 +79,8 @@ class ReportsPage extends StatelessWidget {
                         'تقرير رقم ${index + 1}', // العنوان
                     date: formattedDate, // التاريخ المنسق
                     location: reportData['location'] ?? 'غير محدد', // الموقع
-                    image: reportData['imageUrl'] ?? 'images/pc.png', // الصورة
+                    image: reportData['imageUrl'] ??
+                        'assets/images/pc.png', // الصورة
                   ),
                   reportId: reportId,
                 );
