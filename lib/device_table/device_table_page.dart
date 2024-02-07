@@ -75,7 +75,7 @@ class DeviceTablePage extends StatelessWidget {
         ),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(0.0),
+            padding: const EdgeInsets.all(10.0),
             child: DeviceList(devices: devices),
           ),
         ),
@@ -117,98 +117,92 @@ class _DeviceListState extends State<DeviceList> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0), // Rounded corners
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ListTile(
-                      leading: Image.asset(
-                        'assets/images/uqu.png', // Replace with the device image
-                        width: 100.0, // Image size
-                        height: 125.0,
+                child: SafeArea(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ListTile(
+                        leading: Image.asset(
+                          'assets/images/uqu.png', // Replace with the device image
+                          width: 100.0, // Image size
+                          height: 125.0,
+                        ),
+                        title: Text(
+                          device.name,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        subtitle: Text('Device Location: ${device.location}'),
                       ),
-                      title: Text(
-                        device.name,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15.0),
-                      ),
-                      subtitle: Text('Device Location: ${device.location}'),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Device Type: ${device.type}' '\n',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                          Text(
-                            'Ministry Number: ${device.ministryNumber}',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                          Text(
-                            'Serial Number: ${device.serialNumber}',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                          Text(
-                            'Specifications: ${device.specifications}'
-                            '\n',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                          const Text(
-                            'Operating System: Windows 10 64-bit',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                          const Text(
-                            'Processor: Intel Core i7.',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                          const Text(
-                            'Brand: lenovo desktop.',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                          const Text(
-                            'RAM: 8 GB.',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                          const Text(
-                            'Hard Drive: SDD.' '\n',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                          const Text(
-                            'Screen Size: 15.6 inches.',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                          const Text(
-                            'Screen Resolution: 4K.'
-                            '\n',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          Center(
-                            child: Image.asset(
-                              'assets/images/pc.png', // Replace with the device image
-                              width: 200.0, // Image size
-                              height: 100.0,
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Device Type: ${device.type}' '\n',
+                              style: const TextStyle(fontSize: 15.0),
                             ),
-                          ),
-                        ],
+                            Text(
+                              'Ministry Number: ${device.ministryNumber}',
+                              style: const TextStyle(fontSize: 15.0),
+                            ),
+                            Text(
+                              'Serial Number: ${device.serialNumber}',
+                              style: const TextStyle(fontSize: 15.0),
+                            ),
+                            Text(
+                              'Specifications: ${device.specifications}'
+                              '\n',
+                              style: const TextStyle(fontSize: 15.0),
+                            ),
+                            const Text(
+                              'Operating System: Windows 10 64-bit',
+                              style: TextStyle(fontSize: 15.0),
+                            ),
+                            const Text(
+                              'Processor: Intel Core i7.',
+                              style: TextStyle(fontSize: 15.0),
+                            ),
+                            const Text(
+                              'Brand: lenovo desktop.',
+                              style: TextStyle(fontSize: 15.0),
+                            ),
+                            const Text(
+                              'RAM: 8 GB.',
+                              style: TextStyle(fontSize: 15.0),
+                            ),
+                            const Text(
+                              'Hard Drive: SDD.' '\n',
+                              style: TextStyle(fontSize: 15.0),
+                            ),
+                            const Text(
+                              'Screen Size: 15.6 inches.',
+                              style: TextStyle(fontSize: 15.0),
+                            ),
+                            const Text(
+                              'Screen Resolution: 4K.'
+                              '\n',
+                              style: TextStyle(fontSize: 15.0),
+                            ),
+                            const SizedBox(
+                              height: 40,
+                            ),
+                            Center(
+                              child: Image.asset(
+                                'assets/images/pc.png', // Replace with the device image
+                                width: 200.0, // Image size
+                                height: 100.0,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               );
             },
@@ -218,7 +212,10 @@ class _DeviceListState extends State<DeviceList> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              icon: const Icon(Icons.arrow_back),
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
               onPressed: () {
                 _pageController.previousPage(
                   duration: const Duration(milliseconds: 500),
@@ -231,7 +228,10 @@ class _DeviceListState extends State<DeviceList> {
               style: const TextStyle(fontSize: 18.0),
             ),
             IconButton(
-              icon: const Icon(Icons.arrow_forward),
+              icon: const Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
+              ),
               onPressed: () {
                 _pageController.nextPage(
                   duration: const Duration(milliseconds: 500),

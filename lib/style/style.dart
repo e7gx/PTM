@@ -14,7 +14,10 @@ Widget buildTextField(
       labelText: label,
       hintText: hint,
       labelStyle: const TextStyle(color: Color.fromARGB(255, 15, 146, 239)),
-      hintStyle: TextStyle(color: Colors.grey[400]),
+      hintStyle: TextStyle(
+        color: Colors.grey[400],
+        fontFamily: 'Cario',
+      ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(
@@ -44,7 +47,10 @@ Widget buildTextFieldNum(
       labelText: label,
       hintText: hint,
       labelStyle: const TextStyle(color: Color.fromARGB(255, 15, 146, 239)),
-      hintStyle: TextStyle(color: Colors.grey[400]),
+      hintStyle: TextStyle(
+        color: Colors.grey[400],
+        fontFamily: 'Cario',
+      ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(

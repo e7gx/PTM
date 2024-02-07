@@ -78,6 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: const Text(
                 'حسنا',
                 style: TextStyle(
+                    fontFamily: 'Cario',
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.black45),
@@ -96,7 +97,11 @@ class _SignUpPageState extends State<SignUpPage> {
         title: const Text(
           "تسجيل حساب جديد",
           style: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontFamily: 'Cario',
+          ),
         ),
         centerTitle: true,
         toolbarHeight: 50,
@@ -141,6 +146,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: const InputDecoration(
                     labelText: 'البريد الإلكتروني',
                     labelStyle: TextStyle(
+                      fontFamily: 'Cario',
                       color: Color.fromARGB(255, 15, 146, 239),
                     ), // Cyan color for label text
                     prefixIcon: Icon(
@@ -173,6 +179,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: const InputDecoration(
                     labelText: 'كلمة المرور',
                     labelStyle: TextStyle(
+                      fontFamily: 'Cario',
                       color: Color.fromARGB(255, 15, 146, 239),
                     ), // Cyan color for label text
                     prefixIcon: Icon(
@@ -210,6 +217,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: const Text(
                     ' تسجيل جديد ',
                     style: TextStyle(
+                      fontFamily: 'Cario',
                       fontSize: 18.0,
                       color: Colors.white,
                     ),

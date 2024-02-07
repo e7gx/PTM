@@ -1,3 +1,5 @@
+import 'package:first_time/Auth/login_page.dart';
+import 'package:first_time/Chat/ai_chat_page.dart';
 import 'package:flutter/material.dart';
 import 'package:first_time/reports/it_reports/submited_it_reports/it_display_reports_page.dart';
 import 'package:first_time/device_table/device_table_page.dart';
@@ -31,6 +33,8 @@ class _WelcomePageState extends State<WelcomePage> {
           textAlign: TextAlign.center,
           '       الصفحة الرئيسية',
           style: TextStyle(
+            fontFamily: 'Cario',
+
             color: Colors.white,
             fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
             fontWeight: FontWeight.bold,
@@ -55,13 +59,29 @@ class _WelcomePageState extends State<WelcomePage> {
         elevation: 4,
         toolbarHeight: 50,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const AiChatPage(),
+            ),
+          );
+        },
+        backgroundColor: const Color(0x9D64ACFA),
+        child: Container(
+          child: Lottie.asset('assets/animation/aichat.json',
+              width: 500, height: 500),
+        ),
+      ),
       drawer: Drawer(
         child: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 Color.fromARGB(117, 255, 255, 255),
-                Color.fromARGB(185, 0, 204, 255),
+                Color.fromARGB(248, 255, 255, 255),
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -83,11 +103,12 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
                 child: Center(
                   child: Text(
-                    '              PTM\n For Excelent Assets',
+                    '           PTM\n To Make IT Easy',
                     style: TextStyle(
-                        fontSize: 29,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
+                      fontSize: 34,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -96,10 +117,17 @@ class _WelcomePageState extends State<WelcomePage> {
                 title: const Text(
                   'أضافة أصول تقنية',
                   style: TextStyle(
+                    fontFamily: 'Cario',
+
                     color: Color.fromARGB(195, 37, 37, 37),
                     fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                     fontWeight: FontWeight.bold,
                   ),
+                ),
+                leading: Icon(
+                  Icons.devices_rounded,
+                  size: 30.0,
+                  color: Colors.blue[800],
                 ),
                 selected: _selectedIndex == 0,
                 onTap: () {
@@ -114,30 +142,25 @@ class _WelcomePageState extends State<WelcomePage> {
                 },
               ),
 
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 105, 142, 255),
-                      Color(0xFF00CCFF),
-                    ],
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-                child: const Divider(
-                  height: 2,
-                  // color: Colors.white,
-                ),
-              ), // خط فاصل بين القوائم
+              const Divider(
+                height: 2,
+                thickness: BorderSide.strokeAlignOutside,
+              ),
               ListTile(
                 title: const Text(
                   'البيانات الشخصية',
                   style: TextStyle(
+                    fontFamily: 'Cario',
+
                     color: Color.fromARGB(195, 37, 37, 37),
                     fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                     fontWeight: FontWeight.bold,
                   ),
+                ),
+                leading: Icon(
+                  Icons.supervised_user_circle,
+                  size: 30.0,
+                  color: Colors.blue[800],
                 ),
                 onTap: () {
                   // Update the state of the app
@@ -149,30 +172,24 @@ class _WelcomePageState extends State<WelcomePage> {
                   );
                 },
               ),
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 105, 142, 255),
-                      Color(0xFF00CCFF),
-                    ],
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-                child: const Divider(
-                  height: 2,
-                  // color: Colors.white,
-                ),
-              ), // خط فاصل بين القوائ/ خط فاصل بين القوائم
+              const Divider(
+                height: 2,
+                thickness: BorderSide.strokeAlignOutside,
+              ), // خط فاصل بينقوائم
               ListTile(
                 title: const Text(
                   ' مؤشر الاداء العام',
                   style: TextStyle(
+                    fontFamily: 'Cario',
                     color: Color.fromARGB(195, 37, 37, 37),
                     fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                     fontWeight: FontWeight.bold,
                   ),
+                ),
+                leading: Icon(
+                  Icons.bar_chart_sharp,
+                  size: 30.0,
+                  color: Colors.blue[800],
                 ),
                 selected: _selectedIndex == 2,
                 onTap: () {
@@ -188,30 +205,25 @@ class _WelcomePageState extends State<WelcomePage> {
                 },
               ),
 
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 105, 142, 255),
-                      Color(0xFF00CCFF),
-                    ],
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-                child: const Divider(
-                  height: 2,
-                  // color: Colors.white,
-                ),
-              ), // خط فاصل بين القوائ/ خط فاصل بين القوائم
+              const Divider(
+                height: 2,
+                thickness: BorderSide.strokeAlignOutside,
+              ), // خط فاصل بين
               ListTile(
                 title: const Text(
                   'اعدادات البرنامج',
                   style: TextStyle(
+                    fontFamily: 'Cario',
+
                     color: Color.fromARGB(195, 37, 37, 37),
                     fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                     fontWeight: FontWeight.bold,
                   ),
+                ),
+                leading: Icon(
+                  Icons.settings,
+                  size: 30.0,
+                  color: Colors.blue[800],
                 ),
                 selected: _selectedIndex == 3,
                 onTap: () {
@@ -225,22 +237,36 @@ class _WelcomePageState extends State<WelcomePage> {
                   );
                 },
               ),
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 105, 142, 255),
-                      Color(0xFF00CCFF),
-                    ],
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomCenter,
+              const Divider(
+                height: 2,
+                thickness: BorderSide.strokeAlignOutside,
+              ), // خط فاصل بين
+              ListTile(
+                title: const Text(
+                  'تسجيل خروج',
+                  style: TextStyle(
+                    fontFamily: 'Cario',
+                    color: Color(0xF9257BEC),
+                    fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                child: const Divider(
-                  height: 2,
-                  // color: Colors.white,
+                leading: Icon(
+                  Icons.logout,
+                  size: 30.0,
+                  color: Colors.blue[800],
                 ),
-              ), // خط فاصل بين القوائ
+                selected: _selectedIndex == 2,
+                onTap: () {
+                  // Update the state of the app
+
+                  // Then close the drawer
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -250,6 +276,7 @@ class _WelcomePageState extends State<WelcomePage> {
     );
   }
 
+//! 111111111111111111111111   <HOMEPAGE> 111111111111111111111111111111111111
   SingleChildScrollView buildBody() {
     return SingleChildScrollView(
       child: Center(
@@ -257,18 +284,22 @@ class _WelcomePageState extends State<WelcomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Lottie.asset('assets/animation/ppmana.json',
-                width: 400, height: 400),
+                width: 500, height: 300),
             // const SizedBox(height: 10),
             const Text('أهلا وسهلا بك',
                 style: TextStyle(
+                    fontFamily: 'Cario',
                     color: Colors.black54,
                     fontSize: 50,
                     fontWeight: FontWeight.bold)),
-            const Text('اليك بلاغات اليوم',
-                style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold)),
+            const Text(
+              'اليك بلاغات اليوم',
+              style: TextStyle(
+                  fontFamily: 'Cario',
+                  color: Colors.black54,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
+            ),
             buildSlideView(),
           ],
         ),
@@ -314,10 +345,19 @@ class _WelcomePageState extends State<WelcomePage> {
             controller: _pageController,
             itemCount: slides.length,
             itemBuilder: (context, index) {
-              return SlideWidget(
-                image: slides[index].image,
-                title: slides[index].title,
-                content: slides[index].content,
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DeviceReports()),
+                  );
+                },
+                child: SlideWidget(
+                  image: slides[index].image,
+                  title: slides[index].title,
+                  content: slides[index].content,
+                ),
               );
             },
           );
@@ -326,7 +366,7 @@ class _WelcomePageState extends State<WelcomePage> {
     );
   }
 
-//the bottumbar here<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//! the bottumbar here<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   BottomNavigationBar buildBottomNavigationBar() {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
@@ -342,13 +382,11 @@ class _WelcomePageState extends State<WelcomePage> {
       },
       items: const [
         BottomNavigationBarItem(
-            icon: Icon(Icons.important_devices_rounded), label: 'الأجهزة'),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.paste_outlined),
-          label: 'تقديم تقرير',
-        ),
+            icon: Icon(Icons.paste_outlined), label: 'تقديم تقرير'),
         BottomNavigationBarItem(
             icon: Icon(Icons.local_post_office_outlined), label: 'التقارير'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.important_devices_rounded), label: 'الأجهزة'),
         BottomNavigationBarItem(
             icon: Icon(Icons.manage_accounts_outlined), label: 'جميع البلاغات'),
       ],
@@ -360,21 +398,21 @@ class _WelcomePageState extends State<WelcomePage> {
       case 0:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const DeviceTablePage(),
+            builder: (context) => const ReportSolutionPage(),
           ),
         );
         break;
       case 1:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const ReportSolutionPage(),
+            builder: (context) => const ReportsPage(),
           ),
         );
         break;
       case 2:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const ReportsPage(),
+            builder: (context) => const DeviceTablePage(),
           ),
         );
         break;

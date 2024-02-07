@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:first_time/Auth/login_page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -16,6 +15,8 @@ class _SettingsPageState extends State<SettingsPage> {
         title: const Text(
           'الاعدادات',
           style: TextStyle(
+            fontFamily: 'Cario',
+
             color: Colors.white,
             fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
             fontWeight: FontWeight.bold,
@@ -98,20 +99,6 @@ class _SettingsPageState extends State<SettingsPage> {
               },
             ),
             const Divider(),
-
-            // قائمة تسجيل الخروج
-            ListTile(
-              leading: const Icon(Icons.logout), // أيقونة تسجيل الخروج
-              title: const Text('تسجيل الخروج'),
-              onTap: () {
-                // يجب توجيه المستخدم إلى صفحة تسجيل الدخول (LoginPage)
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => LoginPage(),
-                  ),
-                );
-              },
-            ),
           ],
         ),
       ),

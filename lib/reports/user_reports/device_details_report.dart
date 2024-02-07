@@ -19,7 +19,10 @@ class ReportDetailsPage extends StatelessWidget {
           '  تفاصيل البلاغ رقم $reportNumber',
           textAlign: TextAlign.center,
           style: const TextStyle(
-              color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+              fontFamily: 'Cario',
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
           decoration: const BoxDecoration(

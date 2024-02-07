@@ -25,7 +25,10 @@ class _DetailsPageState extends State<DetailsPage> {
         title: const Text(
           "رفع تقرير",
           style: TextStyle(
-              color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+              fontFamily: 'Cario',
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
         iconTheme: const IconThemeData(color: Colors.white),
@@ -78,8 +81,11 @@ class _DetailsPageState extends State<DetailsPage> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const SizedBox(height: 0),
-                    buildTextFieldNum(userreportNumController, 'رقم البلاغ',
-                        'أدخل رقم البلاغ'),
+                    buildTextFieldNum(
+                      userreportNumController,
+                      'رقم البلاغ',
+                      'أدخل رقم البلاغ',
+                    ),
                     const SizedBox(height: 30),
                     buildTextField(
                         locationController, 'موقع الجهاز', 'أدخل اسم المعمل'),
@@ -105,6 +111,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         child: const Text(
                           'إرسال',
                           style: TextStyle(
+                              fontFamily: 'Cario',
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
@@ -162,17 +169,21 @@ class _DetailsPageState extends State<DetailsPage> {
             content: const Text(
                 '      يرجى تعبئة جميع الحقول\n         لنتمكن من رفع التقرير',
                 style: TextStyle(
+                    fontFamily: 'Cario',
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic)),
             actions: <Widget>[
               TextButton(
-                child: const Text('حسنا',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 109, 194, 255),
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic)),
+                child: const Text(
+                  'حسنا',
+                  style: TextStyle(
+                      fontFamily: 'Cario',
+                      color: Color.fromARGB(255, 109, 194, 255),
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic),
+                ),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },

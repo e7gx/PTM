@@ -17,7 +17,10 @@ class DeviceReports extends StatelessWidget {
           ),
         ),
         titleTextStyle: const TextStyle(
-            color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold),
+            fontFamily: 'Cario',
+            color: Colors.white,
+            fontSize: 26,
+            fontWeight: FontWeight.bold),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(

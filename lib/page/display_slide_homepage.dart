@@ -33,6 +33,7 @@ class SlideWidget extends StatelessWidget {
           Text(
             title,
             style: const TextStyle(
+              fontFamily: 'Cario',
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
@@ -41,6 +42,7 @@ class SlideWidget extends StatelessWidget {
           Text(
             content,
             style: const TextStyle(
+              fontFamily: 'Cario',
               fontSize: 16,
             ),
           ),
