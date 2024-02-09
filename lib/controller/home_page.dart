@@ -34,9 +34,8 @@ class _WelcomePageState extends State<WelcomePage> {
           '       الصفحة الرئيسية',
           style: TextStyle(
             fontFamily: 'Cario',
-
             color: Colors.white,
-            fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
+            fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -61,7 +60,9 @@ class _WelcomePageState extends State<WelcomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -118,9 +119,8 @@ class _WelcomePageState extends State<WelcomePage> {
                   'أضافة أصول تقنية',
                   style: TextStyle(
                     fontFamily: 'Cario',
-
                     color: Color.fromARGB(195, 37, 37, 37),
-                    fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -131,9 +131,6 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
                 selected: _selectedIndex == 0,
                 onTap: () {
-                  // Update the state of the app
-
-                  // Then close the drawer
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -141,6 +138,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   );
                 },
               ),
+              const SizedBox(height: 10),
 
               const Divider(
                 height: 2,
@@ -172,6 +170,8 @@ class _WelcomePageState extends State<WelcomePage> {
                   );
                 },
               ),
+              const SizedBox(height: 10),
+
               const Divider(
                 height: 2,
                 thickness: BorderSide.strokeAlignOutside,
@@ -204,6 +204,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   );
                 },
               ),
+              const SizedBox(height: 10),
 
               const Divider(
                 height: 2,
@@ -227,9 +228,6 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
                 selected: _selectedIndex == 3,
                 onTap: () {
-                  // Update the state of the app
-
-                  // Then close the drawer
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -237,6 +235,13 @@ class _WelcomePageState extends State<WelcomePage> {
                   );
                 },
               ),
+              const SizedBox(height: 10),
+
+              const Divider(
+                height: 2,
+                thickness: BorderSide.strokeAlignOutside,
+              ), // خط فاصل بين
+              const SizedBox(height: 190),
               const Divider(
                 height: 2,
                 thickness: BorderSide.strokeAlignOutside,
@@ -258,9 +263,6 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
                 selected: _selectedIndex == 2,
                 onTap: () {
-                  // Update the state of the app
-
-                  // Then close the drawer
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => LoginPage()),
@@ -334,8 +336,7 @@ class _WelcomePageState extends State<WelcomePage> {
           final slides = snapshot.data!.docs.map((doc) {
             final data = doc.data() as Map<String, dynamic>;
             return SlideData(
-              image:
-                  'assets/images/uqu.png', // يمكنك تغييرها إلى مسار الصورة الحقيقية إذا وجدت في البيانات
+              image: 'assets/images/uqu.png',
               title: data['location'] ?? 'جهاز غير معروف',
               content: data['problem'] ?? 'مشكلة غير معروفة',
             );

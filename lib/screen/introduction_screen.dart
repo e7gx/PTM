@@ -58,6 +58,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           child: const Text(
             'هيا بنا لتجربة مختلفة',
             style: TextStyle(
+                fontFamily: 'Cario',
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.white),
@@ -127,7 +128,10 @@ class OnBoardingPageState extends State<OnBoardingPage> {
       ),
       skip: const Text(
         'تخطي',
-        style: TextStyle(fontWeight: FontWeight.w600, color: Colors.cyan),
+        style: TextStyle(
+            fontFamily: 'Cario',
+            fontWeight: FontWeight.w600,
+            color: Colors.cyan),
       ),
       next: const Icon(
         Icons.rocket_launch_rounded,
@@ -135,7 +139,10 @@ class OnBoardingPageState extends State<OnBoardingPage> {
       ),
       done: const Text(
         'حسنا',
-        style: TextStyle(fontWeight: FontWeight.w600, color: Colors.cyan),
+        style: TextStyle(
+            fontFamily: 'Cario',
+            fontWeight: FontWeight.w600,
+            color: Colors.cyan),
       ),
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: const EdgeInsets.all(16),

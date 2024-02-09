@@ -76,7 +76,7 @@ class MyDataPage extends StatelessWidget {
         title: const Text(
           'بيانات المستخدم',
           style: TextStyle(
-            color: Colors.white,
+            fontFamily: 'Cario', color: Colors.white,
             fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
             fontWeight: FontWeight.bold,
           ),
