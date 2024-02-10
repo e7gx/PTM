@@ -129,6 +129,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ),
         child: SingleChildScrollView(
+          reverse: true,
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(

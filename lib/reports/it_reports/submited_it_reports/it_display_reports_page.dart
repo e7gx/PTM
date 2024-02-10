@@ -13,6 +13,7 @@ class ReportsPage extends StatelessWidget {
         title: const Text(
           '      تقرير حل المشكلة  ',
           style: TextStyle(
+            fontFamily: 'Cario',
             color: Colors.white,
             fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
             fontWeight: FontWeight.bold,
@@ -51,7 +52,7 @@ class ReportsPage extends StatelessWidget {
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('IT_Reports')
-              .orderBy('date', descending: true)
+              .orderBy('date', descending: false) //!الفلتره في  عرض التقارير
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -103,13 +104,13 @@ class ReportCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 3.0,
-      margin: const EdgeInsets.only(bottom: 2.0, top: 15),
+      margin: const EdgeInsets.only(bottom: 10.0, top: 10, left: 4),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: ListTile(
         leading: Image.asset(
-          report.image, // استبدل هذا بصورة التقرير
+          report.image,
           width: 50.0, // حجم الصورة
           height: 50.0,
           errorBuilder: (context, error, stackTrace) {
@@ -117,12 +118,27 @@ class ReportCard extends StatelessWidget {
             return const Icon(Icons.image, size: 100.0);
           },
         ),
-        title: Text(
-          report.title, // عنوان التقرير
-          style: const TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            report.title, // عنوان التقرير
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, fontFamily: 'Cario', fontSize: 15),
+          ),
         ),
-        subtitle: Text(
-          'التاريخ: ${report.date}\nالموقع: ${report.location}', // تاريخ وموقع التقرير
+        subtitle: Center(
+          child: SafeArea(
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(left: 4, right: 4, bottom: 10, top: 4),
+              child: Text(
+                'التاريخ: ${report.date}\nالموقع: ${report.location}',
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Cario',
+                    fontSize: 12),
+              ),
+            ),
+          ),
         ),
         isThreeLine: true,
         trailing: ElevatedButton(
@@ -134,16 +150,21 @@ class ReportCard extends StatelessWidget {
             );
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color.fromARGB(255, 15, 146, 239),
+            backgroundColor: const Color(0xFF0F92EF),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
+              borderRadius: BorderRadius.circular(14.0),
             ),
           ),
           child: const Text(
             'عرض التقرير',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: Colors.white, fontFamily: 'Cario',
+              fontSize: 14, //  تغيير هذه القيمة لتكون الحجم
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
+        hoverColor: Colors.amber,
       ),
     );
   }

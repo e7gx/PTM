@@ -99,149 +99,161 @@ class _DeviceListState extends State<DeviceList> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: PageView.builder(
-            controller: _pageController,
-            itemCount: widget.devices.length,
-            onPageChanged: (int page) {
-              setState(() {
-                _currentPage = page;
-              });
-            },
-            itemBuilder: (context, index) {
-              final device = widget.devices[index];
-              return Card(
-                elevation: 3.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0), // Rounded corners
-                ),
-                child: SafeArea(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ListTile(
-                        leading: Image.asset(
-                          'assets/images/uqu.png', // Replace with the device image
-                          width: 100.0, // Image size
-                          height: 125.0,
-                        ),
-                        title: Text(
-                          device.name,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        subtitle: Text('Device Location: ${device.location}'),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Device Type: ${device.type}' '\n',
-                              style: const TextStyle(fontSize: 15.0),
+    return SafeArea(
+      child: Column(
+        children: [
+          Expanded(
+            child: PageView.builder(
+              controller: _pageController,
+              itemCount: widget.devices.length,
+              onPageChanged: (int page) {
+                setState(() {
+                  _currentPage = page;
+                });
+              },
+              itemBuilder: (context, index) {
+                final device = widget.devices[index];
+                return SafeArea(
+                  child: Card(
+                    elevation: 3.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(15.0), // Rounded corners
+                    ),
+                    child: SafeArea(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ListTile(
+                            leading: Image.asset(
+                              'assets/images/uqu.png', // Replace with the device image
+                              width: 100.0, // Image size
+                              height: 125.0,
                             ),
-                            Text(
-                              'Ministry Number: ${device.ministryNumber}',
-                              style: const TextStyle(fontSize: 15.0),
-                            ),
-                            Text(
-                              'Serial Number: ${device.serialNumber}',
-                              style: const TextStyle(fontSize: 15.0),
-                            ),
-                            Text(
-                              'Specifications: ${device.specifications}'
-                              '\n',
-                              style: const TextStyle(fontSize: 15.0),
-                            ),
-                            const Text(
-                              'Operating System: Windows 10 64-bit',
-                              style: TextStyle(fontSize: 15.0),
-                            ),
-                            const Text(
-                              'Processor: Intel Core i7.',
-                              style: TextStyle(fontSize: 15.0),
-                            ),
-                            const Text(
-                              'Brand: lenovo desktop.',
-                              style: TextStyle(fontSize: 15.0),
-                            ),
-                            const Text(
-                              'RAM: 8 GB.',
-                              style: TextStyle(fontSize: 15.0),
-                            ),
-                            const Text(
-                              'Hard Drive: SDD.' '\n',
-                              style: TextStyle(fontSize: 15.0),
-                            ),
-                            const Text(
-                              'Screen Size: 15.6 inches.',
-                              style: TextStyle(fontSize: 15.0),
-                            ),
-                            const Text(
-                              'Screen Resolution: 4K.'
-                              '\n',
-                              style: TextStyle(fontSize: 15.0),
-                            ),
-                            const SizedBox(
-                              height: 40,
-                            ),
-                            Center(
-                              child: Image.asset(
-                                'assets/images/pc.png', // Replace with the device image
-                                width: 200.0, // Image size
-                                height: 100.0,
+                            title: Text(
+                              device.name,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ],
-                        ),
+                            subtitle:
+                                Text('Device Location: ${device.location}'),
+                          ),
+                          SafeArea(
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Device Type: ${device.type}' '\n',
+                                      style: const TextStyle(fontSize: 15.0),
+                                    ),
+                                    Text(
+                                      'Ministry Number: ${device.ministryNumber}',
+                                      style: const TextStyle(fontSize: 15.0),
+                                    ),
+                                    Text(
+                                      'Serial Number: ${device.serialNumber}',
+                                      style: const TextStyle(fontSize: 15.0),
+                                    ),
+                                    Text(
+                                      'Specifications: ${device.specifications}'
+                                      '\n',
+                                      style: const TextStyle(fontSize: 15.0),
+                                    ),
+                                    const Text(
+                                      'Operating System: Windows 10 64-bit',
+                                      style: TextStyle(fontSize: 15.0),
+                                    ),
+                                    const Text(
+                                      'Processor: Intel Core i7.',
+                                      style: TextStyle(fontSize: 15.0),
+                                    ),
+                                    const Text(
+                                      'Brand: lenovo desktop.',
+                                      style: TextStyle(fontSize: 15.0),
+                                    ),
+                                    const Text(
+                                      'RAM: 8 GB.',
+                                      style: TextStyle(fontSize: 15.0),
+                                    ),
+                                    const Text(
+                                      'Hard Drive: SDD.' '\n',
+                                      style: TextStyle(fontSize: 15.0),
+                                    ),
+                                    const Text(
+                                      'Screen Size: 15.6 inches.',
+                                      style: TextStyle(fontSize: 15.0),
+                                    ),
+                                    const Text(
+                                      'Screen Resolution: 4K.'
+                                      '\n',
+                                      style: TextStyle(fontSize: 15.0),
+                                    ),
+                                    const SizedBox(
+                                      height: 40,
+                                    ),
+                                    SafeArea(
+                                      child: Center(
+                                        child: Image.asset(
+                                          'assets/images/pc.png', // Replace with the device image
+                                          width: 200.0, // Image size
+                                          height: 100.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                icon: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  _pageController.previousPage(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                },
               ),
-              onPressed: () {
-                _pageController.previousPage(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut,
-                );
-              },
-            ),
-            Text(
-              '$_currentPage/${widget.devices.length}',
-              style: const TextStyle(fontSize: 18.0),
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.arrow_forward,
-                color: Colors.white,
+              Text(
+                '$_currentPage/${widget.devices.length}',
+                style: const TextStyle(fontSize: 18.0),
               ),
-              onPressed: () {
-                _pageController.nextPage(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOutBack,
-                );
-              },
-            ),
-          ],
-        ),
-      ],
+              IconButton(
+                icon: const Icon(
+                  Icons.arrow_forward,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  _pageController.nextPage(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOutBack,
+                  );
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 

@@ -215,7 +215,6 @@ class _WelcomePageState extends State<WelcomePage> {
                   'اعدادات البرنامج',
                   style: TextStyle(
                     fontFamily: 'Cario',
-
                     color: Color.fromARGB(195, 37, 37, 37),
                     fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                     fontWeight: FontWeight.bold,

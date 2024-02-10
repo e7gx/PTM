@@ -26,6 +26,7 @@ class ReportDetailsITPage extends StatelessWidget {
           title: const Text(
             '       تفاصيل التقرير',
             style: TextStyle(
+              fontFamily: 'Cario',
               color: Colors.white,
               fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
               fontWeight: FontWeight.bold,
@@ -73,8 +74,9 @@ class ReportDetailsITPage extends StatelessWidget {
                     child: Text(
                   'لا يوجد تفاصيل للتقرير',
                   style: TextStyle(
+                    fontFamily: 'Cario',
                     color: Colors.white,
-                    fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
+                    fontSize: 35, //  تغيير هذه القيمة لتكون الحجم
                     fontWeight: FontWeight.bold,
                   ),
                 ));
@@ -98,6 +100,7 @@ class ReportDetailsITPage extends StatelessWidget {
                     const Text(
                       'رقم البلاغ:',
                       style: TextStyle(
+                        fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 15, 146, 239),
@@ -114,6 +117,7 @@ class ReportDetailsITPage extends StatelessWidget {
                     const Text(
                       'تاريخ التقرير:',
                       style: TextStyle(
+                        fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 15, 146, 239),
@@ -131,6 +135,7 @@ class ReportDetailsITPage extends StatelessWidget {
                       'الموقع:',
                       style: TextStyle(
                         fontSize: 20,
+                        fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 15, 146, 239),
                       ),
@@ -138,13 +143,17 @@ class ReportDetailsITPage extends StatelessWidget {
                     const SizedBox(height: 10),
                     Text(
                       '${reportData['location']}',
-                      style:
-                          const TextStyle(fontSize: 16, color: Colors.black87),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                        fontFamily: 'Cario',
+                      ),
                     ),
                     const SizedBox(height: 10),
                     const Text(
                       'حل المشكلة:',
                       style: TextStyle(
+                        fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 15, 146, 239),
@@ -153,8 +162,11 @@ class ReportDetailsITPage extends StatelessWidget {
                     const SizedBox(height: 10),
                     Text(
                       reportData['it_report_solution'] ?? 'لا يوجد وصف متاح.',
-                      style:
-                          const TextStyle(fontSize: 16, color: Colors.black87),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                        fontFamily: 'Cario',
+                      ),
                     ),
                     const SizedBox(height: 80),
                   ],

@@ -50,6 +50,7 @@ class _DetailsPageState extends State<DetailsPage> {
         automaticallyImplyLeading: true,
       ), //AppBar
       body: SingleChildScrollView(
+        reverse: true,
         child: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -73,24 +74,23 @@ class _DetailsPageState extends State<DetailsPage> {
                   width: double.infinity,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 0),
                     buildTextFieldNum(
                       userreportNumController,
                       'رقم البلاغ',
                       'أدخل رقم البلاغ',
                     ),
-                    const SizedBox(height: 30),
-                    buildTextField(
+                    const SizedBox(height: 10),
+                    buildTextFieldITReportslocation(
                         locationController, 'موقع الجهاز', 'أدخل اسم المعمل'),
                     const SizedBox(height: 30),
-                    buildTextField(
+                    buildTextFieldITReports(
                         itreportController, 'حل المشكلة', 'أدخل حل المشكلة'),
                     const SizedBox(height: 30),
                     SizedBox(

@@ -37,6 +37,7 @@ class LoginPage extends StatelessWidget {
         automaticallyImplyLeading: false,
       ), //AppBar
       body: SingleChildScrollView(
+        reverse: true,
         child: Padding(
           padding: const EdgeInsets.all(22.0),
           child: Column(
@@ -190,8 +191,8 @@ class LoginPage extends StatelessWidget {
                     }
 
                     // عرض رسالة الخطأ مع تحريك Lottie
-                    // ignore: use_build_context_synchronously
                     showDialog(
+                      // ignore: use_build_context_synchronously
                       context: context,
                       builder: (context) {
                         return AlertDialog(
