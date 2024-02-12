@@ -61,6 +61,7 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
           child: Column(
             mainAxisAlignment:
                 MainAxisAlignment.start, // Center content vertically
+
             children: [
               Lottie.asset(
                 'assets/animation/report_solution.json',
@@ -109,9 +110,7 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 80,
-              )
+              const SizedBox(height: 80),
             ],
           ),
         ),

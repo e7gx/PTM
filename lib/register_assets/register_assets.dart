@@ -36,7 +36,10 @@ class RegisterDeviceState extends State<RegisterDevice> {
         title: const Text(
           "تسجيل جهاز جديد",
           style: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+              fontFamily: 'Cario',
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              color: Colors.white),
         ),
         centerTitle: true,
         toolbarHeight: 50,
@@ -213,6 +216,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
               TextButton(
                 child: const Text('حسنا',
                     style: TextStyle(
+                        fontFamily: 'Cario',
                         color: Colors.cyan,
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
@@ -251,6 +255,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
                 Text(
                   '      ! شكرًا لك على تعاونك',
                   style: TextStyle(
+                    fontFamily: 'Cario',
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
@@ -318,7 +323,9 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
       ),
       child: DropdownMenu<String>(
         initialSelection: list.first,
-        leadingIcon: const Icon(Icons.location_on_outlined),
+        leadingIcon: const Icon(
+          Icons.location_on_outlined,
+        ),
         trailingIcon: const Wrap(
           spacing: 12, // space between two icons
           children: <Widget>[
@@ -326,7 +333,10 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
           ],
         ),
         textStyle: const TextStyle(
-            color: Colors.blue, fontSize: 18, fontWeight: FontWeight.bold),
+            color: Colors.blue,
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Cario'),
         onSelected: (String? value) {
           // This is called when the user selects an item.
           setState(() {

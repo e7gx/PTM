@@ -33,7 +33,7 @@ class LoginPage extends StatelessWidget {
             bottomLeft: Radius.circular(7000),
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 15, 146, 239),
+        backgroundColor: const Color(0xFF0F92EF),
         automaticallyImplyLeading: false,
       ), //AppBar
       body: SingleChildScrollView(
@@ -57,23 +57,19 @@ class LoginPage extends StatelessWidget {
                   labelText: 'البريد الإلكتروني',
                   labelStyle: TextStyle(
                       fontFamily: 'Cario',
-                      color: Color.fromARGB(
-                          255, 15, 146, 239)), // Cyan color for label text
+                      color: Color(0xFF0F92EF)), // Cyan color for label text
                   prefixIcon: Icon(Icons.email_outlined,
-                      color: Color.fromARGB(
-                          255, 15, 146, 239)), // Cyan color for icon
+                      color: Color(0xFF0F92EF)), // Cyan color for icon
 
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
                         color: Colors.cyan), // Consistent border color
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 15, 146, 239)),
+                    borderSide: BorderSide(color: Color(0xFF0F92EF)),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 15, 146, 239)),
+                    borderSide: BorderSide(color: Color(0xFF0F92EF)),
                   ),
                 ),
                 keyboardType: TextInputType.emailAddress,
@@ -87,27 +83,37 @@ class LoginPage extends StatelessWidget {
                   labelText: 'كلمة المرور',
                   labelStyle: TextStyle(
                       fontFamily: 'Cario',
-                      color: Color.fromARGB(
-                          255, 15, 146, 239)), // Cyan color for label text
+                      color: Color(0xFF0F92EF)), // Cyan color for label text
                   prefixIcon: Icon(Icons.lock_outline,
-                      color: Color.fromARGB(
-                          255, 15, 146, 239)), // Cyan color for icon
+                      color: Color(0xFF0F92EF)), // Cyan color for icon
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
-                        color: Color.fromARGB(
-                            255, 15, 146, 239)), // Consistent border color
+                        color: Color(0xFF0F92EF)), // Consistent border color
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 15, 146, 239)),
+                    borderSide: BorderSide(color: Color(0xFF0F92EF)),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 15, 146, 239)),
+                    borderSide: BorderSide(color: Color(0xFF0F92EF)),
                   ),
                 ),
               ),
-              const SizedBox(height: 50.0),
+              TextButton(
+                onPressed: () {},
+                style: TextButton.styleFrom(
+                  foregroundColor: const Color(0xFF0F92EF),
+                ),
+                child: const Text(
+                  'نسيت كلمة السر؟',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontFamily: 'Cario',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30.0),
               ElevatedButton(
                 onPressed: () async {
                   final String email = emailController.text.trim();
@@ -240,7 +246,7 @@ class LoginPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 60.0),
-                  backgroundColor: const Color.fromARGB(255, 15, 146, 239),
+                  backgroundColor: const Color(0xFF0F92EF),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
@@ -272,7 +278,7 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 16,
-                          color: Color.fromARGB(255, 15, 146, 239)),
+                          color: Color(0xFF0F92EF)),
                     ),
                   ),
                   const Text(

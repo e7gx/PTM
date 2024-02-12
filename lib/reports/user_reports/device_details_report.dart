@@ -16,7 +16,7 @@ class ReportDetailsPage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(
-          '  تفاصيل البلاغ رقم $reportNumber',
+          '  تفاصيل بلاغ رقم $reportNumber',
           textAlign: TextAlign.center,
           style: const TextStyle(
               fontFamily: 'Cario',
@@ -27,14 +27,15 @@ class ReportDetailsPage extends StatelessWidget {
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-                colors: [
-                  Color.fromARGB(255, 105, 142, 255),
-                  Color(0xFF00CCFF),
-                ],
-                begin: FractionalOffset(0.0, 0.0),
-                end: FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp),
+              colors: [
+                Color.fromARGB(255, 105, 142, 255),
+                Color(0xFF00CCFF),
+              ],
+              begin: FractionalOffset(0.0, 0.0),
+              end: FractionalOffset(1.0, 0.0),
+              stops: [0.0, 1.0],
+              tileMode: TileMode.clamp,
+            ),
           ),
         ),
       ), //AppBar
@@ -43,8 +44,8 @@ class ReportDetailsPage extends StatelessWidget {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 169, 223, 255),
+              Color(0xFFFFFFFF),
+              Color(0xFFD8F3FD),
             ],
             begin: Alignment.topRight,
             end: Alignment.bottomCenter,
@@ -65,48 +66,95 @@ class ReportDetailsPage extends StatelessWidget {
             var reportData = snapshot.data!.data() as Map<String, dynamic>;
 
             return SingleChildScrollView(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 50),
-                  Image.asset(
-                    reportData['imageUrl'] ?? 'assets/images/user.png',
-                    fit: BoxFit.fitHeight,
-                    height: 350,
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'بلاغ رقم: $reportNumber',
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'التاريخ: ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'رقم الجهاز: ${reportData['device'] ?? 'No Device Number'}',
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'الموقع: ${reportData['location'] ?? 'No Location'}',
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'وصف المشكلة:',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    reportData['problem'] ?? 'No Description',
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                  const SizedBox(height: 67),
-                ],
+              padding: const EdgeInsets.all(15.0),
+              child: SafeArea(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(height: 50),
+                    Image.asset(
+                      reportData['imageUrl'] ?? 'assets/images/pc.png',
+                      fit: BoxFit.fill,
+                      height: 300,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'بلاغ رقم: $reportNumber',
+                      style: const TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 20,
+                          color: Colors.cyan,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 20),
+                    const Text(
+                      'التاريخ:',
+                      style: TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.cyan),
+                    ),
+                    Text(
+                      ' ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Cario',
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'رقم الجهاز:',
+                      style: TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.cyan),
+                    ),
+                    Text(
+                      ' ${reportData['device'] ?? 'No Device Number'}',
+                      style: const TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 18,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'الموقع:',
+                      style: TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.cyan),
+                    ),
+                    Text(
+                      ' ${reportData['location'] ?? 'No Location'}',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Cario',
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    const SafeArea(
+                      child: Text(
+                        'وصف المشكلة:',
+                        style: TextStyle(
+                            fontFamily: 'Cario',
+                            fontSize: 20,
+                            color: Colors.cyan,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Text(
+                      reportData['problem'] ?? 'No Description',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Cario',
+                      ),
+                    ),
+                    const SizedBox(height: 67),
+                  ],
+                ),
               ),
             );
           },

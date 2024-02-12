@@ -121,7 +121,7 @@ class MyDataPage extends StatelessWidget {
           child: Column(
             children: [
               UserAvatarInfoCard(
-                imageUrl: 'assets/images/emp.jpeg',
+                imageUrl: 'assets/images/chat.png',
                 fullName: userData.fullName,
                 jobTitle: userData.position,
               ),
@@ -183,8 +183,8 @@ class UserAvatarInfoCard extends StatelessWidget {
             child: Image.asset(
               imageUrl,
               width: double.infinity,
-              height: 400,
-              fit: BoxFit.cover,
+              height: 350,
+              fit: BoxFit.fill,
             ),
           ),
           ListTile(
