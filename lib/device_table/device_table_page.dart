@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DeviceInfo {
   final String name;
@@ -141,72 +142,98 @@ class _DeviceListState extends State<DeviceList> {
                             subtitle:
                                 Text('Device Location: ${device.location}'),
                           ),
-                          SafeArea(
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Device Type: ${device.type}' '\n',
-                                      style: const TextStyle(fontSize: 15.0),
-                                    ),
-                                    Text(
-                                      'Ministry Number: ${device.ministryNumber}',
-                                      style: const TextStyle(fontSize: 15.0),
-                                    ),
-                                    Text(
-                                      'Serial Number: ${device.serialNumber}',
-                                      style: const TextStyle(fontSize: 15.0),
-                                    ),
-                                    Text(
-                                      'Specifications: ${device.specifications}'
-                                      '\n',
-                                      style: const TextStyle(fontSize: 15.0),
-                                    ),
-                                    const Text(
-                                      'Operating System: Windows 10 64-bit',
-                                      style: TextStyle(fontSize: 15.0),
-                                    ),
-                                    const Text(
-                                      'Processor: Intel Core i7.',
-                                      style: TextStyle(fontSize: 15.0),
-                                    ),
-                                    const Text(
-                                      'Brand: lenovo desktop.',
-                                      style: TextStyle(fontSize: 15.0),
-                                    ),
-                                    const Text(
-                                      'RAM: 8 GB.',
-                                      style: TextStyle(fontSize: 15.0),
-                                    ),
-                                    const Text(
-                                      'Hard Drive: SDD.' '\n',
-                                      style: TextStyle(fontSize: 15.0),
-                                    ),
-                                    const Text(
-                                      'Screen Size: 15.6 inches.',
-                                      style: TextStyle(fontSize: 15.0),
-                                    ),
-                                    const Text(
-                                      'Screen Resolution: 4K.'
-                                      '\n',
-                                      style: TextStyle(fontSize: 15.0),
-                                    ),
-                                    const SizedBox(
-                                      height: 40,
-                                    ),
-                                    SafeArea(
-                                      child: Center(
-                                        child: Image.asset(
-                                          'assets/images/pc.png', // Replace with the device image
-                                          width: 200.0, // Image size
-                                          height: 100.0,
+                          Expanded(
+                            child: SafeArea(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Device Type: ${device.type}' '\n',
+                                        style: const TextStyle(fontSize: 15.0),
+                                      ),
+                                      Text(
+                                        'Ministry Number: ${device.ministryNumber}',
+                                        style: const TextStyle(fontSize: 15.0),
+                                      ),
+                                      Text(
+                                        'Serial Number: ${device.serialNumber}',
+                                        style: const TextStyle(fontSize: 15.0),
+                                      ),
+                                      Text(
+                                        'Specifications: ${device.specifications}'
+                                        '\n',
+                                        style: const TextStyle(fontSize: 15.0),
+                                      ),
+                                      const Text(
+                                        'Operating System: Windows 10 64-bit',
+                                        style: TextStyle(fontSize: 15.0),
+                                      ),
+                                      const Text(
+                                        'Processor: Intel Core i7.',
+                                        style: TextStyle(fontSize: 15.0),
+                                      ),
+                                      const Text(
+                                        'Brand: lenovo desktop.',
+                                        style: TextStyle(fontSize: 15.0),
+                                      ),
+                                      const Text(
+                                        'RAM: 8 GB.',
+                                        style: TextStyle(fontSize: 15.0),
+                                      ),
+                                      const Text(
+                                        'Hard Drive: SDD.' '\n',
+                                        style: TextStyle(fontSize: 15.0),
+                                      ),
+                                      const Text(
+                                        'Screen Size: 15.6 inches.',
+                                        style: TextStyle(fontSize: 15.0),
+                                      ),
+                                      const Text(
+                                        'Screen Resolution: 4K.'
+                                        '\n',
+                                        style: TextStyle(fontSize: 15.0),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      SafeArea(
+                                        child: Center(
+                                          child: Image.asset(
+                                            'assets/images/pc.png', // Replace with the device image
+                                            width: 200.0, // Image size
+                                            height: 100.0,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      ElevatedButton(
+                                        onPressed: () async {
+                                          await launchUrl(Uri.parse(
+                                              'https://maps.app.goo.gl/M9JJGtxZQsoQXAhs5'));
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              const Color(0xFF0F92EF),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(4.0),
+                                          ),
+                                        ),
+                                        child: const Center(
+                                          child: Text(
+                                            'لاستعراض كامل بيانات الاصول اضغط هنا',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: 'Cario',
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

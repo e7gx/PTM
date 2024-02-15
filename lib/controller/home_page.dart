@@ -29,9 +29,10 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
+          'الصفحة الرئيسية',
           textAlign: TextAlign.center,
-          '       الصفحة الرئيسية',
           style: TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
@@ -161,9 +162,6 @@ class _WelcomePageState extends State<WelcomePage> {
                   color: Colors.blue[800],
                 ),
                 onTap: () {
-                  // Update the state of the app
-
-                  // Then close the drawer
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => MyDataPage()),
@@ -280,37 +278,120 @@ class _WelcomePageState extends State<WelcomePage> {
 //! 111111111111111111111111   <HOMEPAGE> 111111111111111111111111111111111111
   SingleChildScrollView buildBody() {
     return SingleChildScrollView(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Lottie.asset('assets/animation/ppmana.json',
-                width: 500, height: 300),
-            // const SizedBox(height: 10),
-            const Text('أهلا وسهلا بك',
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        // crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          //!1111111111111111111111111  Card Number One   1111111111111111111111111111111111111111111111111111
+          Lottie.asset('assets/animation/ppmana.json', width: 500),
+
+          const Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              // Lottie.asset('assets/animation/aichat.json', width: 100),
+              Text(
+                '\t👋\tأهلا وسهلا بك ',
                 style: TextStyle(
                     fontFamily: 'Cario',
-                    color: Colors.black54,
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold)),
-            const Text(
-              'اليك بلاغات اليوم',
-              style: TextStyle(
-                  fontFamily: 'Cario',
-                  color: Colors.black54,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold),
-            ),
-            buildSlideView(),
-          ],
-        ),
+                    color: Color(0xFF0099FF),
+                    fontSize: 29,
+                    fontWeight: FontWeight.bold),
+              ), //! debugPrint(عدلها عبدالله اذا شفتها !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!);
+            ],
+          ),
+
+          // const Row(
+          //   mainAxisAlignment: MainAxisAlignment.end,
+          //   children: [
+          //     // Icon(
+          //     //   Icons.manage_history_rounded,
+          //     //   size: 38,
+          //     //   color: Color(0xFF008DD4),
+          //     // ),
+          //     Text(
+          //       '\t👋\tأهلا وسهلا بك ',
+          //       style: TextStyle(
+          //           fontFamily: 'Cario',
+          //           color: Color(0xFF0099FF),
+          //           fontSize: 29,
+          //           fontWeight: FontWeight.bold),
+          //     ),
+          //   ],
+          // ),
+          //!222222222222222222222222   Card Number Two   2222222222222222222222222222222222222222222222222222
+
+          buildSlideView(),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.arrow_back,
+                size: 30,
+              ),
+              SizedBox(
+                height: 30,
+                width: 30,
+              ),
+              Text(
+                '1/3        ',
+                style: TextStyle(
+                    color: Colors.cyan, fontFamily: 'Cario', fontSize: 20),
+              ),
+              Icon(
+                Icons.arrow_forward_rounded,
+                size: 30,
+              ),
+            ],
+          ),
+          const Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                '\t⚡🔧\tاليك بلاغات اليوم ',
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                    fontFamily: 'Cario',
+                    color: Color(0xFF0099FF),
+                    fontSize: 23,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          buildSlideViewTwo(),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.arrow_back,
+                size: 30,
+              ),
+              SizedBox(
+                height: 50,
+                width: 30,
+              ),
+              Text(
+                '1/3        ',
+                style: TextStyle(
+                    color: Colors.cyan, fontFamily: 'Cario', fontSize: 20),
+              ),
+              Icon(
+                Icons.arrow_forward_rounded,
+                size: 30,
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
 
-  SizedBox buildSlideView() {
+  SizedBox buildSlideViewTwo() {
     return SizedBox(
-      height: 400,
+      height: 200,
       child: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('User_Reports')
@@ -357,6 +438,64 @@ class _WelcomePageState extends State<WelcomePage> {
                   image: slides[index].image,
                   title: slides[index].title,
                   content: slides[index].content,
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+
+  SizedBox buildSlideView() {
+    return SizedBox(
+      height: 200,
+      child: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('User_Reports')
+            .orderBy('date',
+                descending: true) // فرز البيانات بالترتيب العكسي للتاريخ
+            .limit(3) // الحصول على آخر ثلاثة بلاغات فقط
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (snapshot.hasError) {
+            return Center(child: Text('حدث خطأ: ${snapshot.error}'));
+          }
+
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const Center(child: Text('لا توجد بلاغات'));
+          }
+
+          // تحويل البيانات إلى قائمة من SlideData
+          final slides = snapshot.data!.docs.map((doc) {
+            final data = doc.data() as Map<String, dynamic>;
+            return SlideDatas(
+              image: 'assets/images/uqu.png',
+              title: data['location'] ?? 'جهاز غير معروف',
+              // content: data['problem'] ?? 'مشكلة غير معروفة',
+            );
+          }).toList();
+
+          return PageView.builder(
+            controller: _pageController,
+            itemCount: slides.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DeviceReports()),
+                  );
+                },
+                child: SlideWidgetTwo(
+                  image: slides[index].image,
+                  title: slides[index].title,
+                  // content: slides[index].content,
                 ),
               );
             },

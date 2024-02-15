@@ -55,7 +55,7 @@ class DeviceReports extends StatelessWidget {
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('User_Reports')
-              .orderBy('date', descending: true) // أضف هذا السطر
+              .orderBy('date', descending: false) // أضف هذا السطر
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {

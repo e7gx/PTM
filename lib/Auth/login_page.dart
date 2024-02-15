@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/controller/home_page.dart';
 import 'signup_page.dart';
 import 'package:lottie/lottie.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -127,9 +128,10 @@ class LoginPage extends StatelessWidget {
                           title: const Text(
                             'خطأ في الإدخال',
                             style: TextStyle(
+                                fontFamily: 'Cario',
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black45),
+                                color: Colors.blue),
                           ),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -144,7 +146,7 @@ class LoginPage extends StatelessWidget {
                                 child: Text(
                                   'يرجى ملء كل من حقول البريد \n       الإلكتروني وكلمة المرور',
                                   style: TextStyle(
-                                    color: Colors.black54,
+                                    color: Colors.black,
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Cario',
@@ -164,7 +166,7 @@ class LoginPage extends StatelessWidget {
                                     fontFamily: 'Cario',
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.black45),
+                                    color: Colors.blue),
                               ),
                             ),
                           ],
@@ -196,7 +198,6 @@ class LoginPage extends StatelessWidget {
                       message = 'كلمة المرور غير صحيحة!';
                     }
 
-                    // عرض رسالة الخطأ مع تحريك Lottie
                     showDialog(
                       // ignore: use_build_context_synchronously
                       context: context,
@@ -208,24 +209,37 @@ class LoginPage extends StatelessWidget {
                                 fontFamily: 'Cario',
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.cyan),
+                                color: Colors.blue),
                           ),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Lottie.asset(lottieAsset,
-                                  width: 150, height: 150), // تحريك Lottie
+                                  width: 150, height: 200), // تحريك Lottie
                               const SizedBox(height: 10),
                               Text(
                                 message,
                                 style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                  fontFamily: 'Cario',
+                                ),
                               ),
                             ],
                           ),
                           actions: [
                             TextButton(
                               onPressed: () {
+                                Fluttertoast.showToast(
+                                  msg: "تاكد من البيانات وحاول مرة اخرى",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  timeInSecForIosWeb: 1,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0,
+                                );
+
                                 Navigator.of(context).pop();
                               },
                               child: const Text(
@@ -234,7 +248,7 @@ class LoginPage extends StatelessWidget {
                                     fontFamily: 'Cario',
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.black54),
+                                    color: Colors.blue),
                               ),
                             ),
                           ],

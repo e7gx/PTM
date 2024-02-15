@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -60,8 +61,9 @@ class _SettingsPageState extends State<SettingsPage> {
               title: const Text('الإشعارات'),
               trailing: const Icon(Icons
                   .arrow_forward_ios), // أيقونة الانتقال للصفحة الخاصة بالإشعارات إذا كان هناك
-              onTap: () {
-                // قم بإضافة المنطق الخاص بصفحة الإشعارات هنا
+              onTap: () async {
+                await launchUrl(Uri.parse(
+                    'https://youtu.be/o0RI8frF524?si=djz8hWeK_ldljTlN'));
               },
             ),
             const Divider(), // خط فاصل بين القوائم
@@ -72,8 +74,9 @@ class _SettingsPageState extends State<SettingsPage> {
               title: const Text('تعديل كلمة المرور'),
               trailing: const Icon(Icons
                   .arrow_forward_ios), // أيقونة الانتقال لصفحة تعديل كلمة المرور إذا كان هناك
-              onTap: () {
-                // قم بإضافة المنطق الخاص بصفحة تعديل كلمة المرور هنا
+              onTap: () async {
+                await launchUrl(Uri.parse(
+                    'https://youtu.be/o0RI8frF524?si=djz8hWeK_ldljTlN'));
               },
             ),
             const Divider(),
@@ -83,8 +86,9 @@ class _SettingsPageState extends State<SettingsPage> {
               leading: const Icon(Icons.language), // أيقونة اللغة
               title: const Text('اللغة'),
               trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                // قم بإضافة المنطق الخاص بصفحة تغيير اللغة هنا
+              onTap: () async {
+                await launchUrl(Uri.parse(
+                    'https://youtu.be/o0RI8frF524?si=djz8hWeK_ldljTlN'));
               },
             ),
             const Divider(),
@@ -94,8 +98,9 @@ class _SettingsPageState extends State<SettingsPage> {
               leading: const Icon(Icons.rate_review), // أيقونة التقييم
               title: const Text('التقييم وتعديل الصور'),
               trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                // قم بإضافة المنطق الخاص بصفحة التقييم وتعديل الصور هنا
+              onTap: () async {
+                await launchUrl(Uri.parse(
+                    'https://youtu.be/o0RI8frF524?si=djz8hWeK_ldljTlN'));
               },
             ),
             const Divider(),

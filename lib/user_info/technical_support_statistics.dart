@@ -24,9 +24,9 @@ class BarData {
   void initalizeBarData() {
     barData = [
       IndividualBar(x: 0, y: sumGood.toDouble()),
-      IndividualBar(x: 1, y: sumProblem.toDouble()),
-      IndividualBar(x: 2, y: sumSloution.toDouble()),
-      IndividualBar(x: 3, y: sumReports.toDouble()),
+      IndividualBar(x: 10, y: sumProblem.toDouble()),
+      IndividualBar(x: 20, y: sumSloution.toDouble()),
+      IndividualBar(x: 30, y: sumReports.toDouble()),
     ];
   }
 }
@@ -45,7 +45,7 @@ class _TechnicalSupportStatisticsPageState
     1,
     4,
     5,
-    1,
+    5,
     2,
     4,
     5,
@@ -54,10 +54,10 @@ class _TechnicalSupportStatisticsPageState
   @override
   Widget build(BuildContext context) {
     BarData myBarData = BarData(
-      sumGood: dashboard[0],
+      sumGood: dashboard[4],
       sumProblem: dashboard[1],
-      sumSloution: dashboard[2],
-      sumReports: dashboard[3],
+      sumSloution: dashboard[6],
+      sumReports: dashboard[5],
     );
     myBarData.initalizeBarData();
 
@@ -91,74 +91,170 @@ class _TechnicalSupportStatisticsPageState
         ),
         automaticallyImplyLeading: true,
       ), //AppBar
-      body: Card(
-        shadowColor: Colors.black,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(15, 15, 15, 40),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 50,
-              ),
-              SizedBox(
-                height: 200,
-                child: BarChart(
-                  BarChartData(
-                    backgroundColor: const Color(0xFF797373),
-                    maxY: 10, // Change this value according to your data
-                    minY: 0,
-                    gridData: const FlGridData(
-                      show: false,
-                    ),
-                    titlesData: const FlTitlesData(
-                      show: true,
-                      topTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: false),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SafeArea(
+              child: Card(
+                shadowColor: Colors.cyan,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(25.0),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 15, 15, 40),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 50,
                       ),
-                      leftTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: false),
-                      ),
-                      rightTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: false),
-                      ),
-                    ),
-                    borderData: FlBorderData(show: false),
-                    barGroups: myBarData.barData
-                        .map(
-                          (data) => BarChartGroupData(
-                            x: data.x,
-                            barRods: [
-                              BarChartRodData(
-                                toY: data.y,
-                                color: const Color(0xFF36A8F4),
-                                width: 25,
-                                borderRadius: BorderRadius.circular(2),
-                                backDrawRodData: BackgroundBarChartRodData(
-                                  show: true,
-                                  toY: 10,
-                                  color:
-                                      const Color.fromARGB(255, 229, 241, 241),
-                                ),
+                      SizedBox(
+                        height: 200,
+                        child: BarChart(
+                          BarChartData(
+                            backgroundColor: const Color(0xFF797373),
+                            maxY:
+                                10, // Change this value according to your data
+                            minY: 0,
+                            gridData: const FlGridData(
+                              show: false,
+                            ),
+                            titlesData: const FlTitlesData(
+                              show: true,
+                              topTitles: AxisTitles(
+                                sideTitles: SideTitles(showTitles: false),
                               ),
-                            ],
+                              leftTitles: AxisTitles(
+                                sideTitles: SideTitles(showTitles: false),
+                              ),
+                              rightTitles: AxisTitles(
+                                sideTitles: SideTitles(showTitles: false),
+                              ),
+                            ),
+                            borderData: FlBorderData(show: false),
+                            barGroups: myBarData.barData
+                                .map(
+                                  (data) => BarChartGroupData(
+                                    x: data.x,
+                                    barRods: [
+                                      BarChartRodData(
+                                        toY: data.y,
+                                        color: const Color(0xFF36A8F4),
+                                        width: 25,
+                                        borderRadius: BorderRadius.circular(2),
+                                        backDrawRodData:
+                                            BackgroundBarChartRodData(
+                                          show: true,
+                                          toY: 10,
+                                          color: const Color.fromARGB(
+                                              255, 229, 241, 241),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                                .toList(),
                           ),
-                        )
-                        .toList(),
+                        ),
+                      ),
+                      const Text(
+                        'Dashboard',
+                        style: TextStyle(
+                          fontFamily: 'Cario',
+
+                          color: Colors.black,
+                          fontSize: 40, //  تغيير هذه القيمة لتكون الحجم
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              const Text(
-                'Dashboard',
-                style: TextStyle(
-                  fontFamily: 'Cario',
+            ),
+            const SizedBox(height: 80),
+            SafeArea(
+              child: Card(
+                shadowColor: Colors.cyan,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(25.0),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 15, 15, 40),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      SizedBox(
+                        height: 200,
+                        child: BarChart(
+                          BarChartData(
+                            backgroundColor: const Color(0xFF797373),
+                            maxY:
+                                10, // Change this value according to your data
+                            minY: 0,
+                            gridData: const FlGridData(
+                              show: false,
+                            ),
+                            titlesData: const FlTitlesData(
+                              show: true,
+                              topTitles: AxisTitles(
+                                sideTitles: SideTitles(showTitles: false),
+                              ),
+                              leftTitles: AxisTitles(
+                                sideTitles: SideTitles(showTitles: false),
+                              ),
+                              rightTitles: AxisTitles(
+                                sideTitles: SideTitles(showTitles: false),
+                              ),
+                            ),
+                            borderData: FlBorderData(show: false),
+                            barGroups: myBarData.barData
+                                .map(
+                                  (data) => BarChartGroupData(
+                                    x: data.x,
+                                    barRods: [
+                                      BarChartRodData(
+                                        toY: data.y,
+                                        color: const Color(0xFF36A8F4),
+                                        width: 25,
+                                        borderRadius: BorderRadius.circular(2),
+                                        backDrawRodData:
+                                            BackgroundBarChartRodData(
+                                          show: true,
+                                          toY: 10,
+                                          color: const Color.fromARGB(
+                                              255, 229, 241, 241),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                        ),
+                      ),
+                      const Text(
+                        'Reports',
+                        style: TextStyle(
+                          fontFamily: 'Cario',
 
-                  color: Colors.black,
-                  fontSize: 40, //  تغيير هذه القيمة لتكون الحجم
-                  fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 40, //  تغيير هذه القيمة لتكون الحجم
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 80),
+          ],
         ),
       ),
     );

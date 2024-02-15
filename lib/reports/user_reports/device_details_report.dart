@@ -79,7 +79,7 @@ class ReportDetailsPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'بلاغ رقم: $reportNumber',
+                      'بلاغ رقم:\n $reportNumber',
                       style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,

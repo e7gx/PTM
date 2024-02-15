@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:first_time/style/style.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key});
@@ -226,11 +227,20 @@ class _DetailsPageState extends State<DetailsPage> {
                 child: const Text(
                   'حسنا',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 15, 146, 239),
-                      fontStyle: FontStyle.italic,
-                      fontSize: 16),
+                      fontFamily: 'Cario',
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue),
                 ),
                 onPressed: () {
+                  Fluttertoast.showToast(
+                    msg: "تم ارسال التقرير👍",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    textColor: Colors.white,
+                    fontSize: 16.0,
+                  );
                   // هنا تم إضافة تعليمات لمسح النص من الـ Controllers
                   setState(() {
                     locationController.clear();
