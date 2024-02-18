@@ -39,8 +39,7 @@ class DeviceReports extends StatelessWidget {
         centerTitle: true,
         toolbarHeight: 50,
         automaticallyImplyLeading: true,
-      ), //AppBar
-
+      ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(

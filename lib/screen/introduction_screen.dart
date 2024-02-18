@@ -28,8 +28,8 @@ class OnBoardingPageState extends State<OnBoardingPage> {
       titleTextStyle: TextStyle(fontSize: 36.0, fontWeight: FontWeight.w900),
       bodyTextStyle: bodyStyle,
       bodyPadding: EdgeInsets.only(left: 16.0, right: 16.0, top: 0),
-      pageColor:
-          Colors.white, /////////////////// PAGE COLOR HERE !!!!!!!!!!!!!!
+      // pageColor:
+      //     Colors.white, /////////////////// PAGE COLOR HERE !!!!!!!!!!!!!!
       imagePadding: EdgeInsets.all(1.0),
     );
 

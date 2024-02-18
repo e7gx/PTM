@@ -96,6 +96,7 @@ class _TechnicalSupportStatisticsPageState
           children: [
             SafeArea(
               child: Card(
+                elevation: 10,
                 shadowColor: Colors.cyan,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(
@@ -176,6 +177,7 @@ class _TechnicalSupportStatisticsPageState
             const SizedBox(height: 80),
             SafeArea(
               child: Card(
+                elevation: 10,
                 shadowColor: Colors.cyan,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(

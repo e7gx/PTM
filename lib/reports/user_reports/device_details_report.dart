@@ -1,3 +1,4 @@
+import 'package:first_time/reports/it_tasks/it_reports_received.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -149,10 +150,37 @@ class ReportDetailsPage extends StatelessWidget {
                       reportData['problem'] ?? 'No Description',
                       style: const TextStyle(
                         fontSize: 18,
+                        // color: Colors.black,
                         fontFamily: 'Cario',
                       ),
                     ),
-                    const SizedBox(height: 67),
+                    const SizedBox(height: 25),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ReportsReceived(),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            const Color(0xFF0F92EF), // New color for the button
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 50, vertical: 8),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                      child: const Text(
+                        'أستلام الطلب',
+                        style: TextStyle(
+                            fontFamily: 'Cario',
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )
                   ],
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:first_time/Auth/login_page.dart';
 import 'package:first_time/Chat/ai_chat_page.dart';
+import 'package:first_time/reports/it_tasks/it_reports_received.dart';
 import 'package:flutter/material.dart';
 import 'package:first_time/reports/it_reports/submited_it_reports/it_display_reports_page.dart';
 import 'package:first_time/device_table/device_table_page.dart';
@@ -147,6 +148,36 @@ class _WelcomePageState extends State<WelcomePage> {
               ),
               ListTile(
                 title: const Text(
+                  'التقارير',
+                  style: TextStyle(
+                    fontFamily: 'Cario',
+                    color: Color.fromARGB(195, 37, 37, 37),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                leading: Icon(
+                  Icons.gpp_good_outlined,
+                  size: 30.0,
+                  color: Colors.blue[800],
+                ),
+                selected: _selectedIndex == 0,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ReportsPage()),
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+
+              const Divider(
+                height: 2,
+                thickness: BorderSide.strokeAlignOutside,
+              ),
+              ListTile(
+                title: const Text(
                   'البيانات الشخصية',
                   style: TextStyle(
                     fontFamily: 'Cario',
@@ -283,7 +314,8 @@ class _WelcomePageState extends State<WelcomePage> {
         // crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           //!1111111111111111111111111  Card Number One   1111111111111111111111111111111111111111111111111111
-          Lottie.asset('assets/animation/ppmana.json', width: 500),
+          Lottie.asset('assets/animation/ppmana.json',
+              width: 500, fit: BoxFit.cover),
 
           const Row(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -509,7 +541,6 @@ class _WelcomePageState extends State<WelcomePage> {
   BottomNavigationBar buildBottomNavigationBar() {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.white,
       selectedItemColor: Colors.cyan,
       unselectedItemColor: Colors.grey[750],
       currentIndex: _selectedIndex,
@@ -523,9 +554,9 @@ class _WelcomePageState extends State<WelcomePage> {
         BottomNavigationBarItem(
             icon: Icon(Icons.paste_outlined), label: 'تقديم تقرير'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.local_post_office_outlined), label: 'التقارير'),
-        BottomNavigationBarItem(
             icon: Icon(Icons.important_devices_rounded), label: 'الأجهزة'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.miscellaneous_services_outlined), label: 'صيانتي'),
         BottomNavigationBarItem(
             icon: Icon(Icons.manage_accounts_outlined), label: 'جميع البلاغات'),
       ],
@@ -540,18 +571,19 @@ class _WelcomePageState extends State<WelcomePage> {
             builder: (context) => const ReportSolutionPage(),
           ),
         );
+
         break;
       case 1:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const ReportsPage(),
+            builder: (context) => const DeviceTablePage(),
           ),
         );
         break;
       case 2:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const DeviceTablePage(),
+            builder: (context) => const ReportsReceived(),
           ),
         );
         break;

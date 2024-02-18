@@ -19,7 +19,8 @@ class SlideWidget extends StatelessWidget {
         padding: const EdgeInsets.all(6.0),
         child: Card(
           color: Colors.white,
-          elevation: 4,
+          elevation: 10,
+          shadowColor: Colors.cyan,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25.0), // إضافة BorderRadius هنا
           ),
@@ -105,7 +106,8 @@ class SlideWidgetTwo extends StatelessWidget {
         padding: const EdgeInsets.all(6.0),
         child: Card(
           color: Colors.white,
-          elevation: 4,
+          elevation: 8,
+          shadowColor: Colors.cyan,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25.0), // إضافة BorderRadius هنا
           ),
