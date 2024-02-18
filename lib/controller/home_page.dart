@@ -330,8 +330,10 @@ class _WelcomePageState extends State<WelcomePage> {
                     fontSize: 29,
                     fontWeight: FontWeight.bold),
               ), //! debugPrint(عدلها عبدالله اذا شفتها !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!);
+              SizedBox(height: 50)
             ],
           ),
+          const SizedBox(height: 20),
 
           // const Row(
           //   mainAxisAlignment: MainAxisAlignment.end,
@@ -354,29 +356,7 @@ class _WelcomePageState extends State<WelcomePage> {
           //!222222222222222222222222   Card Number Two   2222222222222222222222222222222222222222222222222222
 
           buildSlideView(),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.arrow_back,
-                size: 30,
-              ),
-              SizedBox(
-                height: 30,
-                width: 30,
-              ),
-              Text(
-                '1/3        ',
-                style: TextStyle(
-                    color: Colors.cyan, fontFamily: 'Cario', fontSize: 20),
-              ),
-              Icon(
-                Icons.arrow_forward_rounded,
-                size: 30,
-              ),
-            ],
-          ),
+
           const Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -390,32 +370,12 @@ class _WelcomePageState extends State<WelcomePage> {
                     fontSize: 23,
                     fontWeight: FontWeight.bold),
               ),
+              SizedBox(height: 50),
             ],
           ),
+          const SizedBox(height: 10),
+
           buildSlideViewTwo(),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.arrow_back,
-                size: 30,
-              ),
-              SizedBox(
-                height: 50,
-                width: 30,
-              ),
-              Text(
-                '1/3        ',
-                style: TextStyle(
-                    color: Colors.cyan, fontFamily: 'Cario', fontSize: 20),
-              ),
-              Icon(
-                Icons.arrow_forward_rounded,
-                size: 30,
-              ),
-            ],
-          ),
         ],
       ),
     );
