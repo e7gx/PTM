@@ -21,7 +21,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.5
+  http: ^1.2.0
   introduction_screen: ^3.1.9
   convex_bottom_bar: ^3.2.0
   dots_indicator: ^2.1.2
@@ -39,6 +39,10 @@ dependencies:
   firebase_messaging: ^14.7.15
   fluttertoast: ^8.2.4
   url_launcher: ^6.2.4
+  flutter_native_splash: ^2.3.10
+  firebase_database: ^10.4.6
+  syncfusion_flutter_charts: ^24.2.7
+
 
   
 
@@ -48,7 +52,12 @@ dev_dependencies:
     sdk: flutter
   flutter_launcher_icons: "^0.13.1"
  
-
+flutter_native_splash:
+  image: assets/images/user.png
+  color: "#f9f9f9"
+  image_dark: assets/images/PTM_IT.png
+  color_dark: "#000000"
+  
 flutter_launcher_icons:
   android: true
   ios: true
@@ -72,5 +81,7 @@ flutter:
     - family: Cario
       fonts:
         - asset: assets/font/Cairo-Regular.ttf
+        - asset: assets/font/Cairo-ExtraBold.ttf
+       
 
      

@@ -121,10 +121,11 @@ class _MainPageState extends State<AiChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
+        title: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30),
           child: Text(
             'مساعدي الذكي',
-            textAlign: TextAlign.left,
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
@@ -192,14 +193,18 @@ class _MainPageState extends State<AiChatPage> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
-                      cursorColor: const Color.fromARGB(255, 15, 146, 239),
+                      cursorColor: const Color(0xFF0F92EF),
                       controller: _textEditingController,
                       decoration: const InputDecoration(
                         contentPadding: EdgeInsets.all(10.0),
                         hintText: '..... مرحبا',
+                        hintStyle: TextStyle(color: Colors.blueGrey),
                         border: InputBorder.none,
                       ),
-                      style: const TextStyle(fontFamily: 'Cario', fontSize: 16),
+                      style: const TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 16,
+                          color: Colors.black),
                     ),
                   ),
                   IconButton(

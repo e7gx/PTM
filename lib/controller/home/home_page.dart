@@ -9,7 +9,7 @@ import 'package:first_time/reports/it_reports/write_it_reports/it_write_solution
 import 'package:lottie/lottie.dart';
 import 'package:first_time/settings/accont_setting.dart';
 import 'package:first_time/settings/it_settings.dart';
-import 'package:first_time/user_info/technical_support_statistics.dart';
+import 'package:first_time/controller/model/dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:first_time/page/display_slide_homepage.dart';
 import 'package:first_time/register_assets/register_assets.dart';
@@ -29,6 +29,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
@@ -79,12 +80,15 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
       ),
       drawer: Drawer(
+        backgroundColor: Theme.of(context).colorScheme.background,
         child: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(117, 255, 255, 255),
-                Color.fromARGB(248, 255, 255, 255),
+                Colors.black, // Red
+                Colors.black, // Green
+                Colors.black, // Orange
+                Color.fromARGB(255, 33, 36, 56),
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -97,8 +101,10 @@ class _WelcomePageState extends State<WelcomePage> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Color.fromARGB(255, 105, 142, 255),
                       Color(0xFF00CCFF),
+                      Color(0xFF698EFF),
+                      Color(0xFF00CCFF),
+                      Color(0xFF698EFF),
                     ],
                     begin: Alignment.topRight,
                     end: Alignment.bottomCenter,
@@ -121,9 +127,9 @@ class _WelcomePageState extends State<WelcomePage> {
                   'أضافة أصول تقنية',
                   style: TextStyle(
                     fontFamily: 'Cario',
-                    color: Color.fromARGB(195, 37, 37, 37),
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
+                    color: Color(0xF9257BEC),
                   ),
                 ),
                 leading: Icon(
@@ -146,43 +152,14 @@ class _WelcomePageState extends State<WelcomePage> {
                 height: 2,
                 thickness: BorderSide.strokeAlignOutside,
               ),
-              ListTile(
-                title: const Text(
-                  'التقارير',
-                  style: TextStyle(
-                    fontFamily: 'Cario',
-                    color: Color.fromARGB(195, 37, 37, 37),
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                leading: Icon(
-                  Icons.gpp_good_outlined,
-                  size: 30.0,
-                  color: Colors.blue[800],
-                ),
-                selected: _selectedIndex == 0,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ReportsPage()),
-                  );
-                },
-              ),
-              const SizedBox(height: 10),
 
-              const Divider(
-                height: 2,
-                thickness: BorderSide.strokeAlignOutside,
-              ),
               ListTile(
                 title: const Text(
                   'البيانات الشخصية',
                   style: TextStyle(
                     fontFamily: 'Cario',
+                    color: Color(0xF9257BEC),
 
-                    color: Color.fromARGB(195, 37, 37, 37),
                     fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                     fontWeight: FontWeight.bold,
                   ),
@@ -210,9 +187,8 @@ class _WelcomePageState extends State<WelcomePage> {
                   ' مؤشر الاداء العام',
                   style: TextStyle(
                     fontFamily: 'Cario',
-                    color: Color.fromARGB(195, 37, 37, 37),
                     fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.bold, color: Color(0xF9257BEC),
                   ),
                 ),
                 leading: Icon(
@@ -244,8 +220,8 @@ class _WelcomePageState extends State<WelcomePage> {
                   'اعدادات البرنامج',
                   style: TextStyle(
                     fontFamily: 'Cario',
-                    color: Color.fromARGB(195, 37, 37, 37),
-                    fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
+                    fontSize: 20,
+                    color: Color(0xF9257BEC),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -269,7 +245,37 @@ class _WelcomePageState extends State<WelcomePage> {
                 height: 2,
                 thickness: BorderSide.strokeAlignOutside,
               ), // خط فاصل بين
-              const SizedBox(height: 190),
+              ListTile(
+                title: const Text(
+                  'التقارير',
+                  style: TextStyle(
+                    fontFamily: 'Cario',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xF9257BEC),
+                  ),
+                ),
+                leading: Icon(
+                  Icons.gpp_good_outlined,
+                  size: 30.0,
+                  color: Colors.blue[800],
+                ),
+                selected: _selectedIndex == 0,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ReportsPage()),
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+
+              const Divider(
+                height: 2,
+                thickness: BorderSide.strokeAlignOutside,
+              ),
+              const SizedBox(height: 120),
               const Divider(
                 height: 2,
                 thickness: BorderSide.strokeAlignOutside,
@@ -314,7 +320,7 @@ class _WelcomePageState extends State<WelcomePage> {
         // crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           //!1111111111111111111111111  Card Number One   1111111111111111111111111111111111111111111111111111
-          Lottie.asset('assets/animation/ppmana.json',
+          Lottie.asset('assets/animation/p2p.json',
               width: 500, fit: BoxFit.cover),
 
           const Row(
@@ -335,24 +341,6 @@ class _WelcomePageState extends State<WelcomePage> {
           ),
           const SizedBox(height: 20),
 
-          // const Row(
-          //   mainAxisAlignment: MainAxisAlignment.end,
-          //   children: [
-          //     // Icon(
-          //     //   Icons.manage_history_rounded,
-          //     //   size: 38,
-          //     //   color: Color(0xFF008DD4),
-          //     // ),
-          //     Text(
-          //       '\t👋\tأهلا وسهلا بك ',
-          //       style: TextStyle(
-          //           fontFamily: 'Cario',
-          //           color: Color(0xFF0099FF),
-          //           fontSize: 29,
-          //           fontWeight: FontWeight.bold),
-          //     ),
-          //   ],
-          // ),
           //!222222222222222222222222   Card Number Two   2222222222222222222222222222222222222222222222222222
 
           buildSlideView(),
@@ -376,6 +364,7 @@ class _WelcomePageState extends State<WelcomePage> {
           const SizedBox(height: 10),
 
           buildSlideViewTwo(),
+          const SizedBox(height: 30),
         ],
       ),
     );
@@ -516,9 +505,15 @@ class _WelcomePageState extends State<WelcomePage> {
         BottomNavigationBarItem(
             icon: Icon(Icons.important_devices_rounded), label: 'الأجهزة'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.miscellaneous_services_outlined), label: 'صيانتي'),
+          icon: Icon(Icons.settings_suggest_sharp),
+          label: 'الصيانة',
+        ),
         BottomNavigationBarItem(
-            icon: Icon(Icons.manage_accounts_outlined), label: 'جميع البلاغات'),
+          icon: Icon(
+            Icons.manage_accounts_outlined,
+          ),
+          label: 'جميع البلاغات',
+        ),
       ],
     );
   }

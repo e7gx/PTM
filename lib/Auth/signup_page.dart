@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/controller/home_page.dart';
+import 'package:first_time/controller/home/home_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -14,24 +15,42 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmedpasswordController =
+      TextEditingController();
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmedpasswordController.dispose();
+    super.dispose();
+  }
 
   void _registerUser() async {
     final String email = _emailController.text.trim();
     final String password = _passwordController.text.trim();
+    final String confirmedPassword = _confirmedpasswordController.text.trim();
 
-    if (email.isEmpty || password.isEmpty) {
-      _showDialog(
-          '            يرجى ملء جميع الحقول', 'assets/animation/WOR.json');
+    if (email.isEmpty || password.isEmpty || confirmedPassword.isEmpty) {
+      _showDialog('يرجى ملء جميع الحقول', 'assets/animation/WOR.json');
     } else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email)) {
-      _showDialog(
-          '       يرجى إدخال بريد إلكتروني صالح', 'assets/animation/WOR.json');
+      _showDialog('يرجى إدخال بريد إلكتروني صالح', 'assets/animation/WOR.json');
+    } else if (password != confirmedPassword) {
+      _showDialog('يجب أن تتطابق كلمة المرور المؤكدة مع كلمة المرور',
+          'assets/animation/WOR.json');
     } else {
       try {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
+        await addUserDetails(_nameController.text.trim(),
+            _lastNameController.text.trim(), _emailController.text.trim());
 
         if (mounted) {
           // Check if the widget is still in the tree
@@ -41,10 +60,21 @@ class _SignUpPageState extends State<SignUpPage> {
         }
       } on FirebaseAuthException catch (e) {
         String errorMessage = 'حدث خطأ أثناء التسجيل. يرجى المحاولة مرة أخرى';
+        Center(
+          child: Text(
+            errorMessage,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Cario',
+            ),
+          ),
+        );
         if (e.code == 'weak-password') {
-          errorMessage = '    كلمة المرور التي أدخلتها ضعيفة جدًا';
+          errorMessage = 'كلمة المرور التي أدخلتها ضعيفة جدًا';
         } else if (e.code == 'email-already-in-use') {
-          errorMessage = '  البريد الإلكتروني الذي أدخلته مستخدم';
+          errorMessage = 'البريد الإلكتروني الذي أدخلته مستخدم';
         }
         if (mounted) {
           // Also check here before showing the dialog
@@ -54,12 +84,33 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
 
+  Future<void> addUserDetails(
+      String firstName, String lastName, String email) async {
+    await FirebaseFirestore.instance.collection('Users_IT').add({
+      'first name': firstName,
+      'last name': lastName,
+      'email': email,
+    });
+  }
+
   void _showDialog(String message, String lottieAsset) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('خطأ'),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(32.0),
+            ),
+          ),
+          title: const Text(
+            'خطأ',
+            style: TextStyle(
+                fontFamily: 'Cario',
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue),
+          ),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -68,7 +119,18 @@ class _SignUpPageState extends State<SignUpPage> {
                   width: 180.0, // Lottie image width
                   height: 180.0, // Lottie image height
                 ),
-                Text(message),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                    child: Text(message,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Cario',
+                        )),
+                  ),
+                ),
               ],
             ),
           ),
@@ -81,7 +143,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     fontFamily: 'Cario',
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black45),
+                    color: Colors.blue),
               ),
             ),
           ],
@@ -97,7 +159,7 @@ class _SignUpPageState extends State<SignUpPage> {
         title: const Text(
           "تسجيل حساب جديد",
           style: TextStyle(
-            fontSize: 25,
+            fontSize: 21,
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontFamily: 'Cario',
@@ -129,7 +191,70 @@ class _SignUpPageState extends State<SignUpPage> {
                 width: 400.0,
                 height: 250.0,
               ),
-              const SizedBox(height: 40.0),
+              TextField(
+                cursorColor: Colors.cyan,
+                controller: _nameController,
+                decoration: const InputDecoration(
+                  labelText: 'الاسم الاول',
+                  labelStyle: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Cario',
+                    color: Color.fromARGB(255, 15, 146, 239),
+                  ), // Cyan color for label text
+                  prefixIcon: Icon(
+                    Icons.person_add_alt,
+                    color: Color.fromARGB(255, 15, 146, 239),
+                  ), // Cyan color for icon
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 15, 146, 239),
+                    ), // Cyan color for border
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 15, 146, 239),
+                    ), // Cyan color for enabled border
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 15, 146, 239),
+                    ), // Cyan color for focused border
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              TextField(
+                cursorColor: Colors.cyan,
+                controller: _lastNameController,
+                decoration: const InputDecoration(
+                  labelText: 'الاسم الاخير',
+                  labelStyle: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Cario',
+                    color: Color.fromARGB(255, 15, 146, 239),
+                  ), // Cyan color for label text
+                  prefixIcon: Icon(
+                    Icons.person_add_alt,
+                    color: Color.fromARGB(255, 15, 146, 239),
+                  ), // Cyan color for icon
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 15, 146, 239),
+                    ), // Cyan color for border
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 15, 146, 239),
+                    ), // Cyan color for enabled border
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 15, 146, 239),
+                    ), // Cyan color for focused border
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20.0),
               TextField(
                 cursorColor: const Color.fromARGB(255, 15, 146, 239),
                 controller: _emailController,
@@ -137,6 +262,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   labelText: 'البريد الإلكتروني',
                   labelStyle: TextStyle(
                     fontFamily: 'Cario',
+                    fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 15, 146, 239),
                   ), // Cyan color for label text
                   prefixIcon: Icon(
@@ -169,6 +295,40 @@ class _SignUpPageState extends State<SignUpPage> {
                 decoration: const InputDecoration(
                   labelText: 'كلمة المرور',
                   labelStyle: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Cario',
+                    color: Color.fromARGB(255, 15, 146, 239),
+                  ), // Cyan color for label text
+                  prefixIcon: Icon(
+                    Icons.lock_outline,
+                    color: Color.fromARGB(255, 15, 146, 239),
+                  ), // Cyan color for icon
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 15, 146, 239),
+                    ), // Cyan color for border
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 15, 146, 239),
+                    ), // Cyan color for enabled border
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 15, 146, 239),
+                    ), // Cyan color for focused border
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              TextField(
+                cursorColor: Colors.cyan,
+                controller: _confirmedpasswordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: 'تاكيد كلمة المرور',
+                  labelStyle: TextStyle(
+                    fontWeight: FontWeight.bold,
                     fontFamily: 'Cario',
                     color: Color.fromARGB(255, 15, 146, 239),
                   ), // Cyan color for label text
@@ -208,12 +368,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   ' تسجيل جديد ',
                   style: TextStyle(
                     fontFamily: 'Cario',
-                    fontSize: 18.0,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
               ),
-              const SizedBox(height: 140.0),
             ],
           ),
         ),

@@ -181,7 +181,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
     }).catchError((e) {
       // Handle any errors here, for example:
       // ignore: avoid_print
-      print('خطاء في قاعدة بيانات تسجيل الاجهزة ');
+      // print('خطاء في قاعدة بيانات تسجيل الاجهزة ');
     });
   }
 
@@ -201,10 +201,10 @@ class RegisterDeviceState extends State<RegisterDevice> {
         builder: (BuildContext context) {
           return AlertDialog(
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
             title: Lottie.asset(
               'assets/animation/WOR.json',
-              height: 290,
+              height: 250,
             ),
             content: const Text(
                 '      يرجى تعبئة جميع الحقول\n         لنتمكن من رفع التقرير',
@@ -321,32 +321,39 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
           end: Alignment.bottomCenter,
         ),
       ),
-      child: DropdownMenu<String>(
-        initialSelection: list.first,
-        leadingIcon: const Icon(
-          Icons.location_on_outlined,
-        ),
-        trailingIcon: const Wrap(
-          spacing: 12, // space between two icons
-          children: <Widget>[
-            Icon(Icons.keyboard_arrow_down), // icon-2
-          ],
-        ),
-        textStyle: const TextStyle(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: DropdownMenu<String>(
+          initialSelection: list.first,
+          leadingIcon: const Icon(
+            Icons.location_on_outlined,
             color: Colors.blue,
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Cario'),
-        onSelected: (String? value) {
-          // This is called when the user selects an item.
-          setState(() {
-            dropdownValue = value!;
-          });
-        },
-        dropdownMenuEntries:
-            list.map<DropdownMenuEntry<String>>((String value) {
-          return DropdownMenuEntry<String>(value: value, label: value);
-        }).toList(),
+          ),
+          trailingIcon: const Wrap(
+            spacing: 12, // space between two icons
+            children: <Widget>[
+              Icon(
+                Icons.keyboard_arrow_down,
+                color: Colors.blue,
+              ), // icon-2
+            ],
+          ),
+          textStyle: const TextStyle(
+              color: Colors.blue,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Cario'),
+          onSelected: (String? value) {
+            // This is called when the user selects an item.
+            setState(() {
+              dropdownValue = value!;
+            });
+          },
+          dropdownMenuEntries:
+              list.map<DropdownMenuEntry<String>>((String value) {
+            return DropdownMenuEntry<String>(value: value, label: value);
+          }).toList(),
+        ),
       ),
     );
   }

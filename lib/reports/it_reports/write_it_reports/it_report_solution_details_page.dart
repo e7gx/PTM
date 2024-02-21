@@ -162,18 +162,15 @@ class _DetailsPageState extends State<DetailsPage> {
         builder: (BuildContext context) {
           return AlertDialog(
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Lottie.asset(
-              'assets/animation/WOR.json',
-              height: 290,
-            ),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+            title: Lottie.asset('assets/animation/WOR.json', width: 200),
             content: const Text(
                 '      يرجى تعبئة جميع الحقول\n         لنتمكن من رفع التقرير',
                 style: TextStyle(
-                    fontFamily: 'Cario',
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic)),
+                  fontFamily: 'Cario',
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                )),
             actions: <Widget>[
               TextButton(
                 child: const Text(

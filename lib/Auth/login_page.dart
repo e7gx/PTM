@@ -1,6 +1,7 @@
+import 'package:first_time/Auth/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/controller/home_page.dart';
+import 'package:first_time/controller/home/home_page.dart';
 import 'signup_page.dart';
 import 'package:lottie/lottie.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -36,7 +37,7 @@ class LoginPage extends StatelessWidget {
         ),
         backgroundColor: const Color(0xFF0F92EF),
         automaticallyImplyLeading: false,
-      ), //AppBar
+      ),
       body: SingleChildScrollView(
         reverse: true,
         child: Padding(
@@ -58,6 +59,7 @@ class LoginPage extends StatelessWidget {
                   labelText: 'البريد الإلكتروني',
                   labelStyle: TextStyle(
                       fontFamily: 'Cario',
+                      fontWeight: FontWeight.bold,
                       color: Color(0xFF0F92EF)), // Cyan color for label text
                   prefixIcon: Icon(Icons.email_outlined,
                       color: Color(0xFF0F92EF)), // Cyan color for icon
@@ -83,6 +85,7 @@ class LoginPage extends StatelessWidget {
                 decoration: const InputDecoration(
                   labelText: 'كلمة المرور',
                   labelStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
                       fontFamily: 'Cario',
                       color: Color(0xFF0F92EF)), // Cyan color for label text
                   prefixIcon: Icon(Icons.lock_outline,
@@ -99,22 +102,34 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  foregroundColor: const Color(0xFF0F92EF),
-                ),
-                child: const Text(
-                  'نسيت كلمة السر؟',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontFamily: 'Cario',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ForgetPasswordPage(),
+                        ),
+                      );
+                    },
+                    style: TextButton.styleFrom(
+                      foregroundColor: const Color(0xFF0F92EF),
+                    ),
+                    child: const Text(
+                      'نسيت كلمة السر؟',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-              const SizedBox(height: 30.0),
+              const SizedBox(height: 10.0),
               ElevatedButton(
                 onPressed: () async {
                   final String email = emailController.text.trim();
@@ -125,6 +140,11 @@ class LoginPage extends StatelessWidget {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(32.0),
+                            ),
+                          ),
                           title: const Text(
                             'خطأ في الإدخال',
                             style: TextStyle(
@@ -146,8 +166,7 @@ class LoginPage extends StatelessWidget {
                                 child: Text(
                                   'يرجى ملء كل من حقول البريد \n       الإلكتروني وكلمة المرور',
                                   style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Cario',
                                   ),
@@ -203,11 +222,16 @@ class LoginPage extends StatelessWidget {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(32.0),
+                            ),
+                          ),
                           title: const Text(
                             'خطأ',
                             style: TextStyle(
                                 fontFamily: 'Cario',
-                                fontSize: 20,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.blue),
                           ),
@@ -259,7 +283,7 @@ class LoginPage extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 60.0),
+                      vertical: 10.0, horizontal: 65.0),
                   backgroundColor: const Color(0xFF0F92EF),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
@@ -268,10 +292,10 @@ class LoginPage extends StatelessWidget {
                 child: const Text(
                   'تسجيل الدخول',
                   style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.white,
-                    fontFamily: 'Cario',
-                  ),
+                      fontSize: 18.0,
+                      color: Colors.white,
+                      fontFamily: 'Cario',
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(height: 20.0),
@@ -290,6 +314,7 @@ class LoginPage extends StatelessWidget {
                     child: const Text(
                       'سجل الآن',
                       style: TextStyle(
+                          fontWeight: FontWeight.bold,
                           fontFamily: 'Cario',
                           fontSize: 16,
                           color: Color(0xFF0F92EF)),

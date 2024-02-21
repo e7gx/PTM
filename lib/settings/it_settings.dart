@@ -39,6 +39,7 @@ class SupportStatisticCard extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                    color: Colors.blue,
                   ),
                 ),
               ],
@@ -47,6 +48,7 @@ class SupportStatisticCard extends StatelessWidget {
             Text(
               value,
               style: const TextStyle(
+                color: Colors.blue,
                 fontSize: 16,
               ),
             ),
@@ -94,7 +96,6 @@ class MyDataPage extends StatelessWidget {
                 tileMode: TileMode.clamp),
           ),
         ),
-        backgroundColor: Colors.cyan,
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
         toolbarHeight: 50,
@@ -106,47 +107,35 @@ class MyDataPage extends StatelessWidget {
         ),
         automaticallyImplyLeading: true,
       ), //AppBar
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 169, 223, 255),
-            ],
-            begin: Alignment.topRight,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              UserAvatarInfoCard(
-                imageUrl: 'assets/images/chat.png',
-                fullName: userData.fullName,
-                jobTitle: userData.position,
-              ),
-              UserDetailTile(
-                title: 'اسم المستخدم',
-                value: userData.username,
-                icon: Icons.person_2_rounded,
-              ),
-              UserDetailTile(
-                title: 'الرقم الوظيفي',
-                value: userData.jobNumber,
-                icon: Icons.work,
-              ),
-              UserDetailTile(
-                title: 'الموسسة',
-                value: userData.organization,
-                icon: Icons.business,
-              ),
-              UserDetailTile(
-                title: 'البريد الإلكتروني',
-                value: userData.email,
-                icon: Icons.email,
-              ),
-            ],
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            UserAvatarInfoCard(
+              imageUrl: 'assets/images/chat.png',
+              fullName: userData.fullName,
+              jobTitle: userData.position,
+            ),
+            UserDetailTile(
+              title: 'اسم المستخدم',
+              value: userData.username,
+              icon: Icons.person_2_rounded,
+            ),
+            UserDetailTile(
+              title: 'الرقم الوظيفي',
+              value: userData.jobNumber,
+              icon: Icons.work,
+            ),
+            UserDetailTile(
+              title: 'الموسسة',
+              value: userData.organization,
+              icon: Icons.business,
+            ),
+            UserDetailTile(
+              title: 'البريد الإلكتروني',
+              value: userData.email,
+              icon: Icons.email,
+            ),
+          ],
         ),
       ),
     );

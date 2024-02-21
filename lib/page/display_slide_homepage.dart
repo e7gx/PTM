@@ -19,7 +19,7 @@ class SlideWidget extends StatelessWidget {
         padding: const EdgeInsets.all(6.0),
         child: Card(
           color: Colors.white,
-          elevation: 10,
+          elevation: 6,
           shadowColor: Colors.cyan,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25.0), // إضافة BorderRadius هنا
@@ -106,7 +106,7 @@ class SlideWidgetTwo extends StatelessWidget {
         padding: const EdgeInsets.all(6.0),
         child: Card(
           color: Colors.white,
-          elevation: 8,
+          elevation: 6,
           shadowColor: Colors.cyan,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25.0), // إضافة BorderRadius هنا
@@ -120,7 +120,8 @@ class SlideWidgetTwo extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 10, top: 10),
                     child: Image.asset(
                       image,
-                      height: 50,
+                      height: 90,
+                      width: 75,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -134,7 +135,7 @@ class SlideWidgetTwo extends StatelessWidget {
                     title,
                     style: const TextStyle(
                       fontFamily: 'Cario',
-                      fontSize: 33,
+                      fontSize: 30,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),

@@ -103,7 +103,8 @@ class ReportCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 3.0,
+      elevation: 10.0,
+      shadowColor: Colors.cyan,
       margin: const EdgeInsets.only(bottom: 10.0, top: 10, left: 4),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
@@ -122,7 +123,10 @@ class ReportCard extends StatelessWidget {
           child: Text(
             report.title, // عنوان التقرير
             style: const TextStyle(
-                fontWeight: FontWeight.bold, fontFamily: 'Cario', fontSize: 15),
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Cario',
+                fontSize: 16,
+                color: Color.fromARGB(255, 0, 0, 0)),
           ),
         ),
         subtitle: Center(
@@ -135,7 +139,8 @@ class ReportCard extends StatelessWidget {
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Cario',
-                    fontSize: 12),
+                    fontSize: 12,
+                    color: Colors.black54),
               ),
             ),
           ),
@@ -164,7 +169,7 @@ class ReportCard extends StatelessWidget {
             ),
           ),
         ),
-        hoverColor: Colors.amber,
+        hoverColor: Colors.cyan,
       ),
     );
   }

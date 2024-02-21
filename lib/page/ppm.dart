@@ -1,3 +1,4 @@
+import 'package:first_time/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:first_time/screen/introduction_screen.dart';
 
@@ -8,17 +9,8 @@ class PPM extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        drawerTheme: const DrawerThemeData(
-          backgroundColor: Color.fromARGB(255, 186, 237, 255),
-        ),
-        useMaterial3: false,
-        primarySwatch: Colors.cyan,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.white,
-          brightness: Brightness.light,
-        ),
-      ),
+      theme: lightMode,
+      darkTheme: darkMode,
       home: const OnBoardingPage(),
     );
   }

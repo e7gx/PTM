@@ -84,7 +84,7 @@ class ReportDetailsPage extends StatelessWidget {
                       style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
-                          color: Colors.cyan,
+                          color: Colors.blue,
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 20),
@@ -94,14 +94,14 @@ class ReportDetailsPage extends StatelessWidget {
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.cyan),
+                          color: Colors.blue),
                     ),
                     Text(
                       ' ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
                       style: const TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'Cario',
-                      ),
+                          fontSize: 18,
+                          fontFamily: 'Cario',
+                          color: Colors.black),
                     ),
                     const SizedBox(height: 16),
                     const Text(
@@ -110,14 +110,14 @@ class ReportDetailsPage extends StatelessWidget {
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.cyan),
+                          color: Colors.blue),
                     ),
                     Text(
                       ' ${reportData['device'] ?? 'No Device Number'}',
                       style: const TextStyle(
-                        fontFamily: 'Cario',
-                        fontSize: 18,
-                      ),
+                          fontFamily: 'Cario',
+                          fontSize: 18,
+                          color: Colors.black),
                     ),
                     const SizedBox(height: 16),
                     const Text(
@@ -126,14 +126,14 @@ class ReportDetailsPage extends StatelessWidget {
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.cyan),
+                          color: Colors.blue),
                     ),
                     Text(
                       ' ${reportData['location'] ?? 'No Location'}',
                       style: const TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'Cario',
-                      ),
+                          fontSize: 18,
+                          fontFamily: 'Cario',
+                          color: Colors.black),
                     ),
                     const SizedBox(height: 16),
                     const SafeArea(
@@ -142,7 +142,7 @@ class ReportDetailsPage extends StatelessWidget {
                         style: TextStyle(
                             fontFamily: 'Cario',
                             fontSize: 20,
-                            color: Colors.cyan,
+                            color: Colors.blue,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -150,7 +150,7 @@ class ReportDetailsPage extends StatelessWidget {
                       reportData['problem'] ?? 'No Description',
                       style: const TextStyle(
                         fontSize: 18,
-                        // color: Colors.black,
+                        color: Colors.black,
                         fontFamily: 'Cario',
                       ),
                     ),
@@ -178,6 +178,7 @@ class ReportDetailsPage extends StatelessWidget {
                         style: TextStyle(
                             fontFamily: 'Cario',
                             fontSize: 18,
+                            color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
                     )

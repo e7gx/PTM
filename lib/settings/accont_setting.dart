@@ -42,70 +42,108 @@ class _SettingsPageState extends State<SettingsPage> {
         toolbarHeight: 50,
         automaticallyImplyLeading: true,
       ), //AppBar
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 169, 223, 255),
-            ],
-            begin: Alignment.topRight,
-            end: Alignment.bottomCenter,
+      body: ListView(
+        children: [
+          // قائمة الإشعارات
+          ListTile(
+            leading: const Icon(
+              Icons.notifications,
+              color: Colors.blue,
+            ), // أيقونة الإشعارات
+            title: const Text(
+              'الإشعارات',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Cario',
+              ),
+            ),
+            trailing: const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.blue,
+            ), // أيقونة الانتقال للصفحة الخاصة بالإشعارات إذا كان هناك
+            onTap: () async {
+              await launchUrl(Uri.parse('https://github.com/e7gx'));
+            },
           ),
-        ),
-        child: ListView(
-          children: [
-            // قائمة الإشعارات
-            ListTile(
-              leading: const Icon(Icons.notifications), // أيقونة الإشعارات
-              title: const Text('الإشعارات'),
-              trailing: const Icon(Icons
-                  .arrow_forward_ios), // أيقونة الانتقال للصفحة الخاصة بالإشعارات إذا كان هناك
-              onTap: () async {
-                await launchUrl(Uri.parse(
-                    'https://youtu.be/o0RI8frF524?si=djz8hWeK_ldljTlN'));
-              },
-            ),
-            const Divider(), // خط فاصل بين القوائم
+          const Divider(), // خط فاصل بين القوائم
 
-            // قائمة تعديل كلمة المرور
-            ListTile(
-              leading: const Icon(Icons.lock), // أيقونة تعديل كلمة المرور
-              title: const Text('تعديل كلمة المرور'),
-              trailing: const Icon(Icons
-                  .arrow_forward_ios), // أيقونة الانتقال لصفحة تعديل كلمة المرور إذا كان هناك
-              onTap: () async {
-                await launchUrl(Uri.parse(
-                    'https://youtu.be/o0RI8frF524?si=djz8hWeK_ldljTlN'));
-              },
+          // قائمة تعديل كلمة المرور
+          ListTile(
+            leading: const Icon(
+              Icons.lock,
+              color: Colors.blue,
+            ), // أيقونة تعديل كلمة المرور
+            title: const Text(
+              'تعديل كلمة المرور',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Cario',
+              ),
             ),
-            const Divider(),
+            trailing: const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.blue,
+            ), // أيقونة الانتقال لصفحة تعديل كلمة المرور إذا كان هناك
+            onTap: () async {
+              await launchUrl(Uri.parse('https://github.com/e7gx'));
+            },
+          ),
+          const Divider(),
 
-            // قائمة اللغة
-            ListTile(
-              leading: const Icon(Icons.language), // أيقونة اللغة
-              title: const Text('اللغة'),
-              trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () async {
-                await launchUrl(Uri.parse(
-                    'https://youtu.be/o0RI8frF524?si=djz8hWeK_ldljTlN'));
-              },
+          // قائمة اللغة
+          ListTile(
+            leading: const Icon(
+              Icons.language,
+              color: Colors.blue,
+            ), // أيقونة اللغة
+            title: const Text(
+              'اللغة',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Cario',
+              ),
             ),
-            const Divider(),
+            trailing: const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.blue,
+            ),
+            onTap: () async {
+              await launchUrl(Uri.parse('https://github.com/e7gx'));
+            },
+          ),
+          const Divider(),
 
-            // قائمة التقييم وتعديل الصور
-            ListTile(
-              leading: const Icon(Icons.rate_review), // أيقونة التقييم
-              title: const Text('التقييم وتعديل الصور'),
-              trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () async {
-                await launchUrl(Uri.parse(
-                    'https://youtu.be/o0RI8frF524?si=djz8hWeK_ldljTlN'));
-              },
+          // قائمة التقييم وتعديل الصور
+          ListTile(
+            leading: const Icon(
+              Icons.rate_review,
+              color: Colors.blue,
+            ), // أيقونة التقييم
+            title: const Text(
+              'التقييم وتعديل الصور',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Cario',
+              ),
             ),
-            const Divider(),
-          ],
-        ),
+            trailing: const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.blue,
+            ),
+            onTap: () async {
+              await launchUrl(Uri.parse('https://github.com/e7gx'));
+            },
+          ),
+          const Divider(),
+        ],
       ),
     );
   }

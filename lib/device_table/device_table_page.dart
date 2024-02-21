@@ -35,7 +35,10 @@ class DeviceTablePage extends StatelessWidget {
         title: const Text(
           '  معلومات الاجهزة',
           style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 24.0, color: Colors.white),
+              fontFamily: 'Cario',
+              fontWeight: FontWeight.bold,
+              fontSize: 24.0,
+              color: Colors.white),
           textAlign: TextAlign.center,
         ),
         flexibleSpace: Container(
@@ -153,49 +156,71 @@ class _DeviceListState extends State<DeviceList> {
                                     children: [
                                       Text(
                                         'Device Type: ${device.type}' '\n',
-                                        style: const TextStyle(fontSize: 15.0),
+                                        style: const TextStyle(
+                                            fontSize: 15.0,
+                                            color: Colors.black87),
                                       ),
                                       Text(
                                         'Ministry Number: ${device.ministryNumber}',
-                                        style: const TextStyle(fontSize: 15.0),
+                                        style: const TextStyle(
+                                            fontSize: 15.0,
+                                            color: Colors.black87),
                                       ),
                                       Text(
                                         'Serial Number: ${device.serialNumber}',
-                                        style: const TextStyle(fontSize: 15.0),
+                                        style: const TextStyle(
+                                            fontSize: 15.0,
+                                            color: Colors.black87),
                                       ),
                                       Text(
                                         'Specifications: ${device.specifications}'
                                         '\n',
-                                        style: const TextStyle(fontSize: 15.0),
+                                        style: const TextStyle(
+                                            fontSize: 15.0,
+                                            color: Colors.black87),
                                       ),
                                       const Text(
                                         'Operating System: Windows 10 64-bit',
-                                        style: TextStyle(fontSize: 15.0),
+                                        style: TextStyle(
+                                            fontSize: 15.0,
+                                            color: Colors.black87),
                                       ),
                                       const Text(
                                         'Processor: Intel Core i7.',
-                                        style: TextStyle(fontSize: 15.0),
+                                        style: TextStyle(
+                                            fontSize: 15.0,
+                                            color: Colors.black87),
                                       ),
                                       const Text(
                                         'Brand: lenovo desktop.',
-                                        style: TextStyle(fontSize: 15.0),
+                                        style: TextStyle(
+                                            fontSize: 15.0,
+                                            color: Colors.black87),
                                       ),
                                       const Text(
                                         'RAM: 8 GB.',
-                                        style: TextStyle(fontSize: 15.0),
+                                        style: TextStyle(
+                                            fontSize: 15.0,
+                                            color: Colors.black87),
                                       ),
                                       const Text(
                                         'Hard Drive: SDD.' '\n',
-                                        style: TextStyle(fontSize: 15.0),
+                                        style: TextStyle(
+                                            fontSize: 15.0,
+                                            color: Colors.black87),
                                       ),
                                       const Text(
                                         'Screen Size: 15.6 inches.',
-                                        style: TextStyle(fontSize: 15.0),
+                                        style: TextStyle(
+                                            fontSize: 15.0,
+                                            color: Colors.black87),
                                       ),
                                       const Text(
                                         'Screen Resolution: 4K.'
                                         '\n',
-                                        style: TextStyle(fontSize: 15.0),
+                                        style: TextStyle(
+                                            fontSize: 15.0,
+                                            color: Colors.black87),
                                       ),
                                       const SizedBox(
                                         height: 5,
