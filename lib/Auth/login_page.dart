@@ -53,6 +53,7 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 40.0),
               TextField(
+                style: const TextStyle(color: Colors.blue),
                 controller: emailController,
                 cursorColor: Colors.cyan,
                 decoration: const InputDecoration(
@@ -79,6 +80,7 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 25.0),
               TextField(
+                style: const TextStyle(color: Colors.blue),
                 controller: passwordController,
                 obscureText: true,
                 cursorColor: Colors.cyan,

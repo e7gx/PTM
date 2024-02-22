@@ -7,6 +7,7 @@ Widget buildTextField(
     cursorColor: const Color(0xFF0F92EF),
     controller: controller,
     maxLines: maxLines1,
+    style: const TextStyle(color: Colors.blue),
     decoration: InputDecoration(
       border: InputBorder.none,
       filled: true,
@@ -37,6 +38,7 @@ Widget buildTextFieldNum(
     TextEditingController controller, String label, String hint,
     {int maxLines = 1}) {
   return TextField(
+    style: const TextStyle(color: Colors.blue),
     controller: controller,
     maxLines: maxLines,
     maxLength: 10,
@@ -71,6 +73,7 @@ Widget buildTextFieldITReports(
     TextEditingController controller, String label, String hint,
     {int maxLines1 = 5}) {
   return TextField(
+    style: const TextStyle(color: Colors.blue),
     cursorColor: const Color(0xFF0F92EF),
     controller: controller,
     maxLines: maxLines1,
@@ -106,6 +109,7 @@ Widget buildTextFieldITReportslocation(
     TextEditingController controller, String label, String hint,
     {int maxLines1 = 1}) {
   return TextField(
+    style: const TextStyle(color: Colors.blue),
     cursorColor: const Color(0xFF0F92EF),
     controller: controller,
     maxLines: maxLines1,

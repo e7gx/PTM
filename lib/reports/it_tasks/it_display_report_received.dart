@@ -1,25 +1,25 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:first_time/reports/it_tasks/it_reports_received.dart';
+import 'package:first_time/reports/it_reports/write_it_reports/it_write_solution_report.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class ReportDetailsPage extends StatefulWidget {
+class DetailsOfTheReceivedReport extends StatefulWidget {
   final String reportId;
   final int reportNumber;
-
-  const ReportDetailsPage(
-      {Key? key, required this.reportId, this.reportNumber = 1})
-      : super(key: key);
+  const DetailsOfTheReceivedReport(
+      {required this.reportId, this.reportNumber = 1, super.key});
 
   @override
-  State<ReportDetailsPage> createState() => _ReportDetailsPageState();
+  State<DetailsOfTheReceivedReport> createState() =>
+      _DetailsOfTheReceivedReportState();
 }
 
-class _ReportDetailsPageState extends State<ReportDetailsPage> {
+class _DetailsOfTheReceivedReportState
+    extends State<DetailsOfTheReceivedReport> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +63,7 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
         ),
         child: FutureBuilder<DocumentSnapshot>(
           future: FirebaseFirestore.instance
-              .collection('User_Reports')
+              .collection('IT_Reports_Received')
               .doc(widget.reportId)
               .get(),
           builder: (context, snapshot) {
@@ -176,18 +176,6 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                     // حدث عند الضغط على زر "نقل البلاغ إلى قسم تقنية المعلومات"
                     ElevatedButton(
                       onPressed: () async {
-                        await FirebaseFirestore.instance
-                            .collection('User_Reports')
-                            .doc(widget.reportId)
-                            .delete();
-
-                        //! إضافة البلاغ إلى قسم تقنية المعلومات باستخدام بيانات البلاغ المسترجعة من Firestore
-                        await FirebaseFirestore.instance
-                            .collection('IT_Reports_Received')
-                            .doc(widget.reportId)
-                            .set(snapshot.data!.data() as Map<String, dynamic>);
-
-                        //! تحديث واجهة المستخدم أو قم بتوجيه المستخدم إلى الصفحة الرئيسية لقسم تقنية المعلومات
                         showDialog(
                           context: context,
                           builder: (context) {
@@ -208,7 +196,8 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                                   ),
                                   const Center(
                                     child: Text(
-                                      ' شكرا لك على تعاونك\n 🪛 تم استلام البلاغ',
+                                      '🪛  شكرا لك على تعاونك\n نامل كتابة التقرير الخاص بالبلاغ',
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
@@ -224,11 +213,11 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            const ReportsReceived(),
+                                            const ReportSolutionPage(),
                                       ),
                                     );
                                     Fluttertoast.showToast(
-                                      msg: "👍 تمت عملية استلام الطلب ",
+                                      msg: "❤️ شكرا لك",
                                       toastLength: Toast.LENGTH_SHORT,
                                       gravity: ToastGravity.CENTER,
                                       timeInSecForIosWeb: 1,
@@ -249,6 +238,12 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                             );
                           },
                         );
+
+                        // حذف البلاغ من قسم الدعم الفني
+                        await FirebaseFirestore.instance
+                            .collection('IT_Reports_Received')
+                            .doc(widget.reportId)
+                            .delete();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
@@ -260,7 +255,7 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                         ),
                       ),
                       child: const Text(
-                        'أستلام الطلب',
+                        'أنهاء الطلب',
                         style: TextStyle(
                             fontFamily: 'Cario',
                             fontSize: 18,

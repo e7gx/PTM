@@ -132,7 +132,7 @@ class _DeviceListState extends State<DeviceList> {
                             leading: Image.asset(
                               'assets/images/uqu.png', // Replace with the device image
                               width: 100.0, // Image size
-                              height: 125.0,
+                              height: 100.0,
                             ),
                             title: Text(
                               device.name,
@@ -142,8 +142,11 @@ class _DeviceListState extends State<DeviceList> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            subtitle:
-                                Text('Device Location: ${device.location}'),
+                            subtitle: Text(
+                              'Device Location: ${device.location}',
+                              style: const TextStyle(
+                                  fontSize: 15.0, color: Colors.black87),
+                            ),
                           ),
                           Expanded(
                             child: SafeArea(
@@ -157,6 +160,7 @@ class _DeviceListState extends State<DeviceList> {
                                       Text(
                                         'Device Type: ${device.type}' '\n',
                                         style: const TextStyle(
+                                            fontFamily: 'Cario',
                                             fontSize: 15.0,
                                             color: Colors.black87),
                                       ),

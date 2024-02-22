@@ -11,7 +11,7 @@ import 'package:first_time/settings/accont_setting.dart';
 import 'package:first_time/settings/it_settings.dart';
 import 'package:first_time/controller/model/dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:first_time/page/display_slide_homepage.dart';
+import 'package:first_time/controller/home/display_slide_homepage.dart';
 import 'package:first_time/register_assets/register_assets.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -433,7 +433,7 @@ class _WelcomePageState extends State<WelcomePage> {
       height: 200,
       child: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
-            .collection('User_Reports')
+            .collection('IT_Reports_Received')
             .orderBy('date',
                 descending: true) // فرز البيانات بالترتيب العكسي للتاريخ
             .limit(3) // الحصول على آخر ثلاثة بلاغات فقط
@@ -470,7 +470,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const DeviceReports()),
+                        builder: (context) => const ReportsReceived()),
                   );
                 },
                 child: SlideWidgetTwo(

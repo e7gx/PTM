@@ -86,7 +86,7 @@ class SlideData {
   });
 }
 
-//!/22222222222222222222222222222222222222222222222222222222222222222222222222222222
+//!/HOME PAGE CARD NUMBER TWO IN THE SCREEN 22222222222222222222222222222222222222222222222222222222222222222222222222222222
 class SlideWidgetTwo extends StatelessWidget {
   final String image;
   final String title;
@@ -121,32 +121,34 @@ class SlideWidgetTwo extends StatelessWidget {
                     child: Image.asset(
                       image,
                       height: 90,
-                      width: 75,
+                      width: 90,
                     ),
                   ),
                   const SizedBox(height: 10),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(50.0),
-                child: Center(
-                  child: Text(
-                    textAlign: TextAlign.right,
-                    title,
-                    style: const TextStyle(
-                      fontFamily: 'Cario',
-                      fontSize: 30,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(0.0),
+                  child: Center(
+                    child: Text(
+                      textAlign: TextAlign.right,
+                      title,
+                      style: const TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 28,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+                    // Text(
+                    //   // content,
+                    //   style: const TextStyle(
+                    //     fontFamily: 'Cario',
+                    //     fontSize: 15,
+                    //   ),
+                    // ),
                   ),
-                  // Text(
-                  //   // content,
-                  //   style: const TextStyle(
-                  //     fontFamily: 'Cario',
-                  //     fontSize: 15,
-                  //   ),
-                  // ),
                 ),
               ),
             ],

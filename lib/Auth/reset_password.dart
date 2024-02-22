@@ -33,14 +33,6 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                 Radius.circular(32.0),
               ),
             ),
-            title: const Text(
-              'خطأ في الإدخال',
-              style: TextStyle(
-                  fontFamily: 'Cario',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue),
-            ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -202,6 +194,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: TextField(
+                style: const TextStyle(color: Colors.blue),
                 controller: _emailControllerResat,
                 cursorColor: Colors.cyan,
                 decoration: const InputDecoration(

@@ -192,6 +192,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 250.0,
               ),
               TextField(
+                style: const TextStyle(color: Colors.blue),
                 cursorColor: Colors.cyan,
                 controller: _nameController,
                 decoration: const InputDecoration(
@@ -224,6 +225,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const SizedBox(height: 20.0),
               TextField(
+                style: const TextStyle(color: Colors.blue),
                 cursorColor: Colors.cyan,
                 controller: _lastNameController,
                 decoration: const InputDecoration(
@@ -256,6 +258,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const SizedBox(height: 20.0),
               TextField(
+                style: const TextStyle(color: Colors.blue),
                 cursorColor: const Color.fromARGB(255, 15, 146, 239),
                 controller: _emailController,
                 decoration: const InputDecoration(
@@ -289,6 +292,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const SizedBox(height: 20.0),
               TextField(
+                style: const TextStyle(color: Colors.blue),
                 cursorColor: Colors.cyan,
                 controller: _passwordController,
                 obscureText: true,
@@ -322,6 +326,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const SizedBox(height: 20.0),
               TextField(
+                style: const TextStyle(color: Colors.blue),
                 cursorColor: Colors.cyan,
                 controller: _confirmedpasswordController,
                 obscureText: true,

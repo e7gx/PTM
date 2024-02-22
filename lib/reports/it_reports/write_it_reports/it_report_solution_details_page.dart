@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:first_time/controller/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:first_time/style/style.dart';
@@ -151,9 +152,6 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 
   void _submitReport(BuildContext context) {
-    // Just use the class-level controller instances you've declared at the top.
-    // There's no need to declare new ones here.
-
     if (locationController.text.isEmpty ||
         itreportController.text.isEmpty ||
         userreportNumController.text.isEmpty) {
@@ -202,10 +200,10 @@ class _DetailsPageState extends State<DetailsPage> {
         builder: (BuildContext context) {
           return AlertDialog(
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
             title: Lottie.asset(
               'assets/animation/like1.json',
-              height: 300,
+              height: 200,
             ),
             content: const Row(
               children: [
@@ -239,14 +237,11 @@ class _DetailsPageState extends State<DetailsPage> {
                     fontSize: 16.0,
                   );
                   // هنا تم إضافة تعليمات لمسح النص من الـ Controllers
-                  setState(() {
-                    locationController.clear();
-                    itreportController.clear();
-                    userreportNumController.clear();
-                  });
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => const WelcomePage(),
+                    ),
+                  );
                 },
               ),
             ],
