@@ -198,6 +198,8 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                 controller: _emailControllerResat,
                 cursorColor: Colors.cyan,
                 decoration: const InputDecoration(
+                  filled: true,
+
                   labelText: 'البريد الإلكتروني',
                   labelStyle: TextStyle(
                       fontFamily: 'Cario',

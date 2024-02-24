@@ -1,3 +1,4 @@
+import 'package:first_time/controller/connection/dependency_injection.dart';
 import 'package:first_time/notification/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -5,7 +6,7 @@ import 'firebase/firebase_options.dart';
 import 'package:first_time/page/ppm.dart';
 import 'package:flutter/services.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseApi().initNotifications();
@@ -13,7 +14,7 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  runApp(
-    const PPM(),
-  );
+
+  runApp(const PPM());
+  DependencyInjection.init();
 }

@@ -46,7 +46,7 @@ class _WelcomePageState extends State<WelcomePage> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  Color.fromARGB(255, 105, 142, 255),
+                  Color(0xFF698EFF),
                   Color(0xFF00CCFF),
                 ],
                 begin: FractionalOffset(0.0, 0.0),

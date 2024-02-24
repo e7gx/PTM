@@ -57,6 +57,8 @@ class LoginPage extends StatelessWidget {
                 controller: emailController,
                 cursorColor: Colors.cyan,
                 decoration: const InputDecoration(
+                  filled: true,
+                  // fillColor: Color.fromARGB(255, 248, 248, 248),
                   labelText: 'البريد الإلكتروني',
                   labelStyle: TextStyle(
                       fontFamily: 'Cario',
@@ -85,6 +87,8 @@ class LoginPage extends StatelessWidget {
                 obscureText: true,
                 cursorColor: Colors.cyan,
                 decoration: const InputDecoration(
+                  filled: true,
+
                   labelText: 'كلمة المرور',
                   labelStyle: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -197,6 +201,40 @@ class LoginPage extends StatelessWidget {
                     return; // لإيقاف تنفيذ الكود في حال كان أحد الحقول فارغ
                   }
                   try {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(32.0),
+                            ),
+                          ),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Lottie.asset(
+                                  'assets/animation/p2p.json', //! importint Change The Animaiton pls
+                                  height:
+                                      200), // يجب أن تكون الصورة موجودة في مجلد الـ assets
+                              const SizedBox(height: 10),
+
+                              const Center(
+                                child: Text(
+                                  '.... يرجى الانتظار قليلا',
+                                  style: TextStyle(
+                                      fontFamily: 'Cario',
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.blue),
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                            ],
+                          ),
+                        );
+                      },
+                    );
                     await FirebaseAuth.instance.signInWithEmailAndPassword(
                       email: email,
                       password: password,
@@ -265,6 +303,7 @@ class LoginPage extends StatelessWidget {
                                   textColor: Colors.white,
                                   fontSize: 16.0,
                                 );
+                                Navigator.of(context).pop();
 
                                 Navigator.of(context).pop();
                               },

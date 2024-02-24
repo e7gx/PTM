@@ -45,6 +45,40 @@ class _SignUpPageState extends State<SignUpPage> {
           'assets/animation/WOR.json');
     } else {
       try {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(32.0),
+                ),
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Lottie.asset(
+                      'assets/animation/p2p.json', //! importint Change The Animaiton pls
+                      height:
+                          200), // يجب أن تكون الصورة موجودة في مجلد الـ assets
+                  const SizedBox(height: 10),
+
+                  const Center(
+                    child: Text(
+                      '.... يرجى الانتظار قليلا',
+                      style: TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
+            );
+          },
+        );
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: email,
           password: password,
@@ -136,7 +170,10 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+              },
               child: const Text(
                 'حسنا',
                 style: TextStyle(
@@ -196,6 +233,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 cursorColor: Colors.cyan,
                 controller: _nameController,
                 decoration: const InputDecoration(
+                  filled: true,
+
                   labelText: 'الاسم الاول',
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -229,6 +268,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 cursorColor: Colors.cyan,
                 controller: _lastNameController,
                 decoration: const InputDecoration(
+                  filled: true,
+
                   labelText: 'الاسم الاخير',
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -262,6 +303,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 cursorColor: const Color.fromARGB(255, 15, 146, 239),
                 controller: _emailController,
                 decoration: const InputDecoration(
+                  filled: true,
+
                   labelText: 'البريد الإلكتروني',
                   labelStyle: TextStyle(
                     fontFamily: 'Cario',
@@ -297,6 +340,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 controller: _passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(
+                  filled: true,
+
                   labelText: 'كلمة المرور',
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -331,6 +376,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 controller: _confirmedpasswordController,
                 obscureText: true,
                 decoration: const InputDecoration(
+                  filled: true,
+
                   labelText: 'تاكيد كلمة المرور',
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -363,7 +410,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 onPressed: _registerUser,
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 60.0),
+                      vertical: 10.0, horizontal: 90.0),
                   backgroundColor: const Color.fromARGB(255, 15, 146, 239),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
