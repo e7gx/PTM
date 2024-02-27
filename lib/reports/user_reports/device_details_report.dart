@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:first_time/reports/it_tasks/it_reports_received.dart';
+import 'package:first_time/controller/routes/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -186,8 +186,6 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                             .collection('IT_Reports_Received')
                             .doc(widget.reportId)
                             .set(snapshot.data!.data() as Map<String, dynamic>);
-
-                        //! تحديث واجهة المستخدم أو قم بتوجيه المستخدم إلى الصفحة الرئيسية لقسم تقنية المعلومات
                         showDialog(
                           context: context,
                           builder: (context) {
@@ -221,10 +219,10 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                               actions: [
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.of(context).pushReplacement(
+                                    Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            const ReportsReceived(),
+                                            const WelcomePage(),
                                       ),
                                     );
                                     Fluttertoast.showToast(

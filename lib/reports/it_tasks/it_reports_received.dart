@@ -2,6 +2,7 @@ import 'package:first_time/reports/it_tasks/it_display_report_received.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 
 class ReportsReceived extends StatelessWidget {
   const ReportsReceived({super.key});
@@ -9,42 +10,6 @@ class ReportsReceived extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "صيانتي",
-          style: TextStyle(
-              fontFamily: 'Cario',
-              fontSize: 21,
-              fontWeight: FontWeight.bold,
-              color: Colors.white),
-        ),
-        centerTitle: true,
-        toolbarHeight: 50,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(500),
-            bottomLeft: Radius.circular(40),
-          ),
-        ),
-        elevation: 2.00,
-        backgroundColor: Colors.cyan,
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [
-                  Color(0xFF698EFF),
-                  Color.fromRGBO(0, 47, 255, 1),
-                ],
-                begin: FractionalOffset(0.0, 0.0),
-                end: FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp),
-          ),
-        ),
-      ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -67,15 +32,22 @@ class ReportsReceived extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
             if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-              return const Center(
-                  child: Text(
-                'لا توجد بلاغات',
-                style: TextStyle(
-                  fontFamily: 'Cario',
-                  fontSize: 30,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
+              return Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Lottie.asset('assets/animation/like1.json',
+                      fit: BoxFit.contain, width: 100, height: 100),
+                  const Text(
+                    'لا يوجد بلاغات',
+                    style: TextStyle(
+                        fontFamily: 'Cario',
+                        color: Colors.black54,
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
               ));
             }
             return ListView.builder(

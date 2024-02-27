@@ -1,7 +1,7 @@
 import 'package:first_time/Auth/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/controller/home/home_page.dart';
+import 'package:first_time/controller/routes/home_page.dart';
 import 'signup_page.dart';
 import 'package:lottie/lottie.dart';
 import 'package:fluttertoast/fluttertoast.dart';

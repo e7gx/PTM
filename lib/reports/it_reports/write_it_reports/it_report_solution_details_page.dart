@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:first_time/controller/home/home_page.dart';
+import 'package:first_time/controller/routes/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:first_time/style/style.dart';
@@ -206,11 +206,14 @@ class _DetailsPageState extends State<DetailsPage> {
               height: 200,
             ),
             content: const Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '      ! شكرًا لك على تعاونك',
+                  '! شكرًا لك على تعاونك',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontFamily: 'Cario',
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
                   ),

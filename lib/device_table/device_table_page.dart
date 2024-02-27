@@ -22,50 +22,15 @@ class DeviceTablePage extends StatelessWidget {
     final List<DeviceInfo> devices = List.generate(
       20,
       (index) => DeviceInfo(
-          '\n\n' 'Computer Number$index',
+          'Computer Number$index',
           'UQULAB $index',
-          'device Specifications ',
-          '\n\n\tLenovo Desktop ThinkCentre M920',
+          'device Specifications',
+          'Lenovo ThinkCentre M920',
           '441003562$index',
           '249765402843$index'),
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          '  معلومات الاجهزة',
-          style: TextStyle(
-              fontFamily: 'Cario',
-              fontWeight: FontWeight.bold,
-              fontSize: 24.0,
-              color: Colors.white),
-          textAlign: TextAlign.center,
-        ),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [
-                  Color.fromARGB(255, 105, 142, 255),
-                  Color(0xFF00CCFF),
-                ],
-                begin: FractionalOffset(0.0, 0.0),
-                end: FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp),
-          ),
-        ),
-        backgroundColor: Colors.cyan,
-        iconTheme: const IconThemeData(color: Colors.white),
-        centerTitle: true,
-        toolbarHeight: 50,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(5000),
-            bottomLeft: Radius.circular(0),
-          ),
-        ),
-        automaticallyImplyLeading: true,
-      ), //AppBar
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -109,14 +74,14 @@ class _DeviceListState extends State<DeviceList> {
           Expanded(
             child: PageView.builder(
               controller: _pageController,
-              itemCount: widget.devices.length,
+              itemCount: widget.devices.length + 1,
               onPageChanged: (int page) {
                 setState(() {
-                  _currentPage = page;
+                  _currentPage = page + 1;
                 });
               },
               itemBuilder: (context, index) {
-                final device = widget.devices[index];
+                final device = widget.devices[index + 1];
                 return SafeArea(
                   child: Card(
                     elevation: 3.0,
@@ -131,8 +96,8 @@ class _DeviceListState extends State<DeviceList> {
                           ListTile(
                             leading: Image.asset(
                               'assets/images/uqu.png', // Replace with the device image
-                              width: 100.0, // Image size
-                              height: 100.0,
+                              width: 75.0, // Image size
+                              height: 75.0,
                             ),
                             title: Text(
                               device.name,
@@ -145,121 +110,138 @@ class _DeviceListState extends State<DeviceList> {
                             subtitle: Text(
                               'Device Location: ${device.location}',
                               style: const TextStyle(
-                                  fontSize: 15.0, color: Colors.black87),
+                                  fontSize: 14.0, color: Colors.black87),
                             ),
                           ),
                           Expanded(
                             child: SafeArea(
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding: const EdgeInsets.only(
+                                    left: 8.0, right: 8.0, bottom: 10),
                                 child: SingleChildScrollView(
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
+                                      const Divider(height: 4),
                                       Text(
-                                        'Device Type: ${device.type}' '\n',
+                                        'Device Type: ${device.type}',
                                         style: const TextStyle(
                                             fontFamily: 'Cario',
-                                            fontSize: 15.0,
+                                            fontSize: 14.0,
                                             color: Colors.black87),
                                       ),
+                                      const Divider(height: 4),
                                       Text(
                                         'Ministry Number: ${device.ministryNumber}',
                                         style: const TextStyle(
-                                            fontSize: 15.0,
+                                            fontSize: 14.0,
                                             color: Colors.black87),
                                       ),
+                                      const Divider(height: 4),
                                       Text(
                                         'Serial Number: ${device.serialNumber}',
                                         style: const TextStyle(
-                                            fontSize: 15.0,
+                                            fontSize: 14.0,
                                             color: Colors.black87),
                                       ),
+                                      const Divider(height: 4),
                                       Text(
-                                        'Specifications: ${device.specifications}'
-                                        '\n',
+                                        'Specifications: ${device.specifications}',
                                         style: const TextStyle(
-                                            fontSize: 15.0,
+                                            fontSize: 14.0,
                                             color: Colors.black87),
                                       ),
+                                      const Divider(height: 4),
                                       const Text(
                                         'Operating System: Windows 10 64-bit',
                                         style: TextStyle(
-                                            fontSize: 15.0,
+                                            fontSize: 14.0,
                                             color: Colors.black87),
                                       ),
+                                      const Divider(height: 4),
                                       const Text(
                                         'Processor: Intel Core i7.',
                                         style: TextStyle(
-                                            fontSize: 15.0,
+                                            fontSize: 14.0,
                                             color: Colors.black87),
                                       ),
+                                      const Divider(height: 4),
                                       const Text(
                                         'Brand: lenovo desktop.',
                                         style: TextStyle(
-                                            fontSize: 15.0,
+                                            fontSize: 14.0,
                                             color: Colors.black87),
                                       ),
+                                      const Divider(height: 4),
                                       const Text(
                                         'RAM: 8 GB.',
                                         style: TextStyle(
-                                            fontSize: 15.0,
+                                            fontSize: 14.0,
                                             color: Colors.black87),
                                       ),
+                                      const Divider(height: 4),
                                       const Text(
-                                        'Hard Drive: SDD.' '\n',
+                                        'Hard Drive: SDD.',
                                         style: TextStyle(
-                                            fontSize: 15.0,
+                                            fontSize: 14.0,
                                             color: Colors.black87),
                                       ),
+                                      const Divider(height: 4),
                                       const Text(
                                         'Screen Size: 15.6 inches.',
                                         style: TextStyle(
-                                            fontSize: 15.0,
+                                            fontSize: 14.0,
                                             color: Colors.black87),
                                       ),
+                                      const Divider(height: 4),
                                       const Text(
                                         'Screen Resolution: 4K.'
                                         '\n',
                                         style: TextStyle(
-                                            fontSize: 15.0,
+                                            fontSize: 14.0,
                                             color: Colors.black87),
                                       ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      SafeArea(
-                                        child: Center(
-                                          child: Image.asset(
-                                            'assets/images/pc.png', // Replace with the device image
-                                            width: 200.0, // Image size
-                                            height: 100.0,
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          ElevatedButton(
+                                            onPressed: () async {
+                                              await launchUrl(Uri.parse(
+                                                  'https://maps.app.goo.gl/M9JJGtxZQsoQXAhs5'));
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  const Color(0xFF0F92EF),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(4.0),
+                                              ),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 50),
+                                            ),
+                                            child: const Text(
+                                              'عرض الموقع',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: 'Cario',
+                                                  fontWeight: FontWeight.bold),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      ElevatedButton(
-                                        onPressed: () async {
-                                          await launchUrl(Uri.parse(
-                                              'https://maps.app.goo.gl/M9JJGtxZQsoQXAhs5'));
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor:
-                                              const Color(0xFF0F92EF),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
-                                          ),
-                                        ),
-                                        child: const Center(
-                                          child: Text(
-                                            'لاستعراض كامل بيانات الاصول اضغط هنا',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontFamily: 'Cario',
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
+                                          // SafeArea(
+                                          //   child: Center(
+                                          //     child: Image.asset(
+                                          //       'assets/images/uqu.png', // Replace with the device image
+                                          //       width: 85.0, // Image size
+                                          //       height: 60.0,
+                                          //     ),
+                                          //   ),
+                                          // ),
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -292,7 +274,7 @@ class _DeviceListState extends State<DeviceList> {
               ),
               Text(
                 '$_currentPage/${widget.devices.length}',
-                style: const TextStyle(fontSize: 18.0),
+                style: const TextStyle(fontSize: 16.0),
               ),
               IconButton(
                 icon: const Icon(

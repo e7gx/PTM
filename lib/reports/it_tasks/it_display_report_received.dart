@@ -1,6 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
-
-import 'package:first_time/reports/it_reports/write_it_reports/it_write_solution_report.dart';
+import 'package:first_time/controller/routes/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -11,7 +9,8 @@ class DetailsOfTheReceivedReport extends StatefulWidget {
   final String reportId;
   final int reportNumber;
   const DetailsOfTheReceivedReport(
-      {required this.reportId, this.reportNumber = 1, super.key});
+      {required this.reportId, this.reportNumber = 1, Key? key})
+      : super(key: key);
 
   @override
   State<DetailsOfTheReceivedReport> createState() =>
@@ -20,6 +19,18 @@ class DetailsOfTheReceivedReport extends StatefulWidget {
 
 class _DetailsOfTheReceivedReportState
     extends State<DetailsOfTheReceivedReport> {
+  late Stream<DocumentSnapshot> _reportStream;
+
+  @override
+  void initState() {
+    super.initState();
+    // استعلام للحصول على التقرير بناءً على معرف البلاغ و UID المستخدم الحالي
+    _reportStream = FirebaseFirestore.instance
+        .collection('IT_Reports_Received')
+        .doc(widget.reportId)
+        .snapshots();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,11 +72,8 @@ class _DetailsOfTheReceivedReportState
             end: Alignment.bottomCenter,
           ),
         ),
-        child: FutureBuilder<DocumentSnapshot>(
-          future: FirebaseFirestore.instance
-              .collection('IT_Reports_Received')
-              .doc(widget.reportId)
-              .get(),
+        child: StreamBuilder<DocumentSnapshot>(
+          stream: _reportStream,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
@@ -213,7 +221,7 @@ class _DetailsOfTheReceivedReportState
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            const ReportSolutionPage(),
+                                            const WelcomePage(),
                                       ),
                                     );
                                     Fluttertoast.showToast(

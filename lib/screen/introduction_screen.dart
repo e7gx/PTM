@@ -22,26 +22,25 @@ class OnBoardingPageState extends State<OnBoardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    const bodyStyle = TextStyle(fontSize: 19.0);
+    const bodyStyle = TextStyle(fontSize: 20.0);
 
     const pageDecoration = PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 36.0, fontWeight: FontWeight.w900),
+      titleTextStyle: TextStyle(fontSize: 35.0, fontWeight: FontWeight.bold),
       bodyTextStyle: bodyStyle,
-      bodyPadding: EdgeInsets.only(left: 16.0, right: 16.0, top: 0),
-      // pageColor:
-      //     Colors.white, /////////////////// PAGE COLOR HERE !!!!!!!!!!!!!!
-      imagePadding: EdgeInsets.all(1.0),
+      titlePadding: EdgeInsets.only(top: 50),
+      bodyPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
+      imagePadding: EdgeInsets.only(top: 20),
     );
 
     return IntroductionScreen(
       allowImplicitScrolling: true,
       autoScrollDuration: 6500,
-      infiniteAutoScroll: true,
+      infiniteAutoScroll: false,
       globalHeader: const Align(
-        alignment: Alignment.topRight,
+        alignment: Alignment.center,
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.only(top: 16, right: 16),
+            padding: EdgeInsets.only(top: 0, right: 0),
           ),
         ),
       ),
@@ -69,49 +68,62 @@ class OnBoardingPageState extends State<OnBoardingPage> {
 
       pages: [
         PageViewModel(
-          title: "\n من نحن؟",
+          title: " من نحن؟",
           body: "نحن طلاب من جامعة ام القرى و نهدف لمساعدة المنشات عبر تطبيقنا",
-          image: Lottie.asset('assets/animation/ppmana.json'),
+          image: Lottie.asset(
+            'assets/animation/ppmana.json',
+            fit: BoxFit.cover,
+          ),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "\n ماذا سنضيف؟ ",
+          title: " ماذا سنضيف؟ ",
           body:
-              "تطبيقنا يبسط إدارة مؤسستك ويزيد من كفائتها مع واجهة سهلة وأدوات متطورة لتحسين الأداء وتوفير الكثير من الوقت",
-          image: Lottie.asset('assets/animation/reports.json',
-              height: 280, width: 500),
+              " يبسط إدارة مؤسستك ويزيد من كفائتها مع واجهة سهلة وأدوات متطورة لتحسين الأداء وتوفير الكثير من الوقت",
+          image: Lottie.asset(
+            'assets/animation/aichat.json',
+            fit: BoxFit.cover,
+          ),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "\nكيف سيؤثر؟",
+          title: "كيف سيؤثر؟",
           body:
-              " تطبيقنا يعزز التواصل والتعاون،وايضا يساعد في اتخاذ قرارات أفضل، ويزيد من الكفاءة في إدارة مؤسستك بشكل افضل",
-          image: Lottie.asset('assets/animation/data.json',
-              height: 280, width: 500),
+              "  يعزز التواصل والتعاون،وايضا يساعد في اتخاذ قرارات أفضل، ويزيد من الكفاءة في إدارة مؤسستك بشكل افضل",
+          image: Lottie.asset(
+            'assets/animation/data.json',
+            fit: BoxFit.fitWidth,
+          ),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "جرد الاجهزة في المنشاة؟",
+          title: "جرد أجهزة المنشاة؟",
           body:
-              "جرد الأجهزة يسهل توثيق وتتبع أجهزة مؤسستك لتحقيق إدارة فعّالة وصيانة سهلة",
-          image: Lottie.asset('assets/animation/p2p.json',
-              height: 280, width: 500),
+              "  جرد الأجهزة يسهل توثيق وتتبع أجهزة مؤسستك لتحقيق إدارة فعّالة و خدمة افضل للعميل وصيانة سهلة",
+          image: Lottie.asset(
+            'assets/animation/p2p.json',
+            fit: BoxFit.fitWidth,
+          ),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "\n!تواصل افضل ",
+          title: "!تواصل افضل ",
           body:
-              "  تواصل يجمع بين مزايا التواصل الفعّال وسهولة الاستخدام لتحسين التفاهم وتنسيق الجهود لزيادة الانتاجية في مؤسستك",
-          image: Lottie.asset('assets/animation/reportsman.json',
-              height: 280, width: 500),
+              "تواصل يجمع بين مزايا التواصل الفعّال وسهولة الاستخدام لتحسين التفاهم وتنسيق الجهود لزيادة الانتاجية  ",
+          image: Lottie.asset(
+            'assets/animation/reportsman.json',
+            fit: BoxFit.fitWidth,
+          ),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "\n تسجيل الدخول  ",
+          title: "تسجيل الدخول  ",
           body:
-              " سجّل دخولك إلى التطبيق \n PPM للاستفادة من التواصل الجيد ومزايا إدارة الممتلكات التقنية",
-          image: Lottie.asset('assets/animation/signup1.json',
-              height: 280, width: 500),
+              "سجّل دخولك إلى التطبيق  للاستفادة من التواصل الجيد ومزايا إدارة الممتلكات التقنية",
+          image: Lottie.asset(
+            'assets/animation/signup1.json',
+            fit: BoxFit.contain,
+          ),
           decoration: pageDecoration,
         ),
       ],

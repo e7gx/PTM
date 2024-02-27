@@ -14,35 +14,35 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text('تقديم تقرير       '),
-        ),
-        titleTextStyle: const TextStyle(
-          color: Colors.white,
-          fontFamily: 'Cario',
-          fontSize: 26,
-          fontWeight: FontWeight.bold,
-        ),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [
-                  Color.fromARGB(255, 105, 142, 255),
-                  Color(0xFF00CCFF),
-                ],
-                begin: FractionalOffset(0.0, 0.0),
-                end: FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp),
-          ),
-        ),
-        backgroundColor: Colors.cyan,
-        iconTheme: const IconThemeData(color: Colors.white),
-        centerTitle: true,
-        toolbarHeight: 50,
-        automaticallyImplyLeading: true,
-      ), //AppBar
+      // appBar: AppBar(
+      //   title: const Center(
+      //     child: Text('تقديم تقرير       '),
+      //   ),
+      //   titleTextStyle: const TextStyle(
+      //     color: Colors.white,
+      //     fontFamily: 'Cario',
+      //     fontSize: 26,
+      //     fontWeight: FontWeight.bold,
+      //   ),
+      //   flexibleSpace: Container(
+      //     decoration: const BoxDecoration(
+      //       gradient: LinearGradient(
+      //           colors: [
+      //             Color.fromARGB(255, 105, 142, 255),
+      //             Color(0xFF00CCFF),
+      //           ],
+      //           begin: FractionalOffset(0.0, 0.0),
+      //           end: FractionalOffset(1.0, 0.0),
+      //           stops: [0.0, 1.0],
+      //           tileMode: TileMode.clamp),
+      //     ),
+      //   ),
+      //   backgroundColor: Colors.cyan,
+      //   iconTheme: const IconThemeData(color: Colors.white),
+      //   centerTitle: true,
+      //   toolbarHeight: 50,
+      //   automaticallyImplyLeading: true,
+      // ),
       backgroundColor: Colors.white,
       body: Container(
         decoration: const BoxDecoration(
@@ -56,8 +56,7 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
           ),
         ),
         child: SingleChildScrollView(
-          padding:
-              const EdgeInsets.all(20.0), // Adjusted padding for better spacing
+          padding: const EdgeInsets.only(top: 8, bottom: 8, left: 6, right: 6),
           child: Column(
             mainAxisAlignment:
                 MainAxisAlignment.start, // Center content vertically
@@ -70,14 +69,17 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
               ),
               const SizedBox(
                   height: 30), // Adjusted for spacing after the animation
-              const Text(
-                'يرجى استخدام هذه الخانة لرفع تقرير مفصل عن المشكلة التي تم حلها من ذكر الخطوات التي تم اتباعها وأي معلومات إضافية تعتبرونها مهمة لفهم السياق والحل المقدم',
-                textAlign: TextAlign.center, // Center the text horizontally
-                style: TextStyle(
-                  fontFamily: 'Cario',
-                  color: Colors.black54,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(
+                  'يرجى استخدام هذه الخانة لرفع تقرير مفصل عن المشكلة التي تم حلها من ذكر الخطوات التي تم اتباعها وأي معلومات إضافية تعتبرونها مهمة لفهم السياق والحل المقدم',
+                  textAlign: TextAlign.center, // Center the text horizontally
+                  style: TextStyle(
+                    fontFamily: 'Cario',
+                    color: Colors.black54,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               const SizedBox(
