@@ -1,20 +1,19 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/Auth/login_page.dart';
-import 'package:first_time/Chat/ai_chat_page.dart';
-import 'package:first_time/controller/home/home.dart';
-import 'package:first_time/reports/it_tasks/it_reports_received.dart';
+import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
-import 'package:first_time/reports/it_reports/submited_it_reports/it_display_reports_page.dart';
+import 'package:first_time/Auth/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/Chat/ai_chat_page.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:first_time/controller/home/home.dart';
+import 'package:first_time/settings/it_settings.dart';
+import 'package:first_time/settings/accont_setting.dart';
+import 'package:first_time/controller/model/dashboard.dart';
 import 'package:first_time/device_table/device_table_page.dart';
+import 'package:first_time/register_assets/register_assets.dart';
+import 'package:first_time/reports/it_tasks/it_reports_received.dart';
 import 'package:first_time/reports/user_reports/device_display_reports.dart';
 import 'package:first_time/reports/it_reports/write_it_reports/it_write_solution_report.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:lottie/lottie.dart';
-import 'package:first_time/settings/accont_setting.dart';
-import 'package:first_time/settings/it_settings.dart';
-import 'package:first_time/controller/model/dashboard.dart';
-
-import 'package:first_time/register_assets/register_assets.dart';
+import 'package:first_time/reports/it_reports/submited_it_reports/it_display_reports_page.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -40,16 +39,20 @@ class _WelcomePageState extends State<WelcomePage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          'الصفحة الرئيسية',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: 'Cario',
-            color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
+        title: const Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              ' الصفحة الرئيسية',
+              style: TextStyle(
+                fontFamily: 'Cario',
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
@@ -88,6 +91,7 @@ class _WelcomePageState extends State<WelcomePage> {
               width: 500, height: 500),
         ),
       ),
+
       drawer: Drawer(
         backgroundColor: Theme.of(context).colorScheme.background,
         child: Container(

@@ -62,15 +62,10 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
                 MainAxisAlignment.start, // Center content vertically
 
             children: [
-              Lottie.asset(
-                'assets/animation/report_solution.json',
-                height: 300,
-                width: 400,
-              ),
-              const SizedBox(
-                  height: 30), // Adjusted for spacing after the animation
+              Lottie.asset('assets/animation/report_solution.json',
+                  height: 300, fit: BoxFit.fitWidth),
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: Text(
                   'يرجى استخدام هذه الخانة لرفع تقرير مفصل عن المشكلة التي تم حلها من ذكر الخطوات التي تم اتباعها وأي معلومات إضافية تعتبرونها مهمة لفهم السياق والحل المقدم',
                   textAlign: TextAlign.center, // Center the text horizontally

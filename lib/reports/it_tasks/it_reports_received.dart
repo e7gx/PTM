@@ -1,12 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/reports/it_tasks/it_display_report_received.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
-class ReportsReceived extends StatelessWidget {
-  const ReportsReceived({super.key});
+class ReportsReceived extends StatefulWidget {
+  const ReportsReceived({Key? key}) : super(key: key);
 
+  @override
+  State<ReportsReceived> createState() => _ReportsReceivedState();
+}
+
+class _ReportsReceivedState extends State<ReportsReceived> {
+  User? userId = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,30 +32,38 @@ class ReportsReceived extends StatelessWidget {
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('IT_Reports_Received')
-              .orderBy('date', descending: false) // أضف هذا السطر
+              .where('receiver_uid', isEqualTo: userId?.uid)
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             }
             if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
               return Center(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Lottie.asset('assets/animation/like1.json',
-                      fit: BoxFit.contain, width: 100, height: 100),
-                  const Text(
-                    'لا يوجد بلاغات',
-                    style: TextStyle(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Lottie.asset(
+                      'assets/animation/like1.json',
+                      fit: BoxFit.contain,
+                      width: 100,
+                      height: 100,
+                    ),
+                    const Text(
+                      'لا يوجد بلاغات',
+                      style: TextStyle(
                         fontFamily: 'Cario',
                         color: Colors.black54,
                         fontSize: 23,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ));
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              );
             }
             return ListView.builder(
               itemCount: snapshot.data!.docs.length,
@@ -61,14 +76,19 @@ class ReportsReceived extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => DetailsOfTheReceivedReport(
-                            reportId: report.id, reportNumber: index + 1),
+                          reportId: report.id,
+                          reportNumber: index + 1,
+                        ),
                       ),
                     );
                   },
                   child: Card(
                     elevation: 6.0,
                     margin: const EdgeInsets.only(
-                        bottom: 16.0, left: 8.0, right: 8.0),
+                      bottom: 16.0,
+                      left: 8.0,
+                      right: 8.0,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -104,12 +124,16 @@ class ReportsReceived extends StatelessWidget {
                                 Text(
                                   'Report Date : ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
                                   style: const TextStyle(
-                                      fontSize: 16.0, color: Colors.white),
+                                    fontSize: 16.0,
+                                    color: Colors.white,
+                                  ),
                                 ),
                                 Text(
                                   'Report Location:   ${reportData['location'] ?? 'No Location'}',
                                   style: const TextStyle(
-                                      fontSize: 16.0, color: Colors.white),
+                                    fontSize: 16.0,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ],
                             ),

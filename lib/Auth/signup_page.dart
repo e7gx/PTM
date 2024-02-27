@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/controller/routes/home_page.dart';
+import 'package:first_time/controller/home/home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -121,6 +121,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Future<void> addUserDetails(
       String firstName, String lastName, String email) async {
     await FirebaseFirestore.instance.collection('Users_IT').add({
+      //! impotint to change UID MUST BE THESAMEIN THE TABLE AND AUTH ~!!!!
       'first name': firstName,
       'last name': lastName,
       'email': email,

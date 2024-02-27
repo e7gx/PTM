@@ -33,37 +33,37 @@ class _HomeState extends State<Home> {
           // Lottie.asset('assets/animation/p2p.json',
           //     width: 500, fit: BoxFit.cover),
 
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 35),
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFEAFBFF),
-                    Color(0xFF69D0FF),
-                  ],
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                  stops: [0.0, 1.0],
-                  tileMode: TileMode.clamp),
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Lottie.asset('assets/animation/aichat.json', width: 100),
-                const Text(
-                  '\t👋\tأهلا وسهلا بك ',
-                  style: TextStyle(
-                      fontFamily: 'Cario',
-                      color: Colors.white,
-                      fontSize: 29,
-                      fontWeight: FontWeight.bold),
-                ), //! debugPrint(عدلها عبدالله اذا شفتها !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!);
+          // Container(
+          //   padding: const EdgeInsets.symmetric(vertical: 35),
+          //   decoration: const BoxDecoration(
+          //     gradient: LinearGradient(
+          //         colors: [
+          //           Color(0xFFEAFBFF),
+          //           Color(0xFF69D0FF),
+          //         ],
+          //         begin: Alignment.bottomCenter,
+          //         end: Alignment.topCenter,
+          //         stops: [0.0, 1.0],
+          //         tileMode: TileMode.clamp),
+          //   ),
+          //   child: Row(
+          //     crossAxisAlignment: CrossAxisAlignment.center,
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       Lottie.asset('assets/animation/aichat.json', width: 100),
+          //       const Text(
+          //         '\t👋\tأهلا وسهلا بك ',
+          //         style: TextStyle(
+          //             fontFamily: 'Cario',
+          //             color: Colors.white,
+          //             fontSize: 29,
+          //             fontWeight: FontWeight.bold),
+          //       ), //! debugPrint(عدلها عبدالله اذا شفتها !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!);
 
-                const SizedBox(height: 50)
-              ],
-            ),
-          ),
+          //       const SizedBox(height: 50)
+          //     ],
+          //   ),
+          // ),
           const SizedBox(height: 20),
           const Row(
             mainAxisAlignment: MainAxisAlignment.end,

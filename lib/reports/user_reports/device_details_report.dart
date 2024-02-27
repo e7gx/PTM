@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:first_time/controller/routes/home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/controller/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -182,10 +183,18 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                             .delete();
 
                         //! إضافة البلاغ إلى قسم تقنية المعلومات باستخدام بيانات البلاغ المسترجعة من Firestore
+                        Map<String, dynamic> reportData =
+                            snapshot.data!.data() as Map<String, dynamic>;
+
+                        // قم بإضافة معرف المستخدم (UID) للمستلم الجديد إلى بيانات البلاغ
+                        reportData['receiver_uid'] =
+                            FirebaseAuth.instance.currentUser!.uid;
+
                         await FirebaseFirestore.instance
                             .collection('IT_Reports_Received')
                             .doc(widget.reportId)
-                            .set(snapshot.data!.data() as Map<String, dynamic>);
+                            .set(reportData);
+
                         showDialog(
                           context: context,
                           builder: (context) {
