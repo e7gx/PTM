@@ -1,5 +1,42 @@
 import 'package:flutter/material.dart';
 
+Widget buildTextFieldRegisterAssets(
+    TextEditingController controller, String label, String hint,
+    {int maxLines1 = 1}) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 100.0),
+    child: TextField(
+      cursorColor: const Color(0xFF0F92EF),
+      controller: controller,
+      maxLines: maxLines1,
+      style: const TextStyle(color: Colors.blue),
+      decoration: InputDecoration(
+        border: InputBorder.none,
+        filled: true,
+        fillColor: Colors.grey[200],
+        labelText: label,
+        hintText: hint,
+        labelStyle: const TextStyle(color: Color(0xFF0F92EF)),
+        hintStyle: TextStyle(
+          color: Colors.grey[400],
+          fontFamily: 'Cario',
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(9),
+          borderSide: const BorderSide(
+            color: Color(0xFF0F92EF),
+            width: 4.0,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Color(0xFF0F92EF), width: 2.0),
+        ),
+      ),
+    ),
+  );
+}
+
 Widget buildTextField(
     TextEditingController controller, String label, String hint,
     {int maxLines1 = 1}) {

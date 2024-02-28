@@ -11,7 +11,8 @@ ThemeData lightMode = ThemeData(
   primaryColor: Colors.white,
   secondaryHeaderColor: Colors.cyan,
   splashColor: Colors.cyan,
-  colorScheme: const ColorScheme.light(background: Color(0xFFEDFAFF)),
+  colorScheme: const ColorScheme.light(
+      background: Color(0xFFEDFAFF), primary: Colors.blue),
   textTheme: const TextTheme(
     bodyLarge: TextStyle(
       color: Colors.black,
@@ -54,5 +55,6 @@ ThemeData darkMode = ThemeData(
       fontWeight: FontWeight.normal,
     ),
   ),
-  colorScheme: const ColorScheme.dark(background: Color(0xFF272727)),
+  colorScheme: const ColorScheme.dark(
+      background: Color(0xFF272727), primary: Colors.blue),
 );

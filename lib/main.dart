@@ -1,9 +1,9 @@
 import 'package:first_time/controller/connection/dependency_injection.dart';
 import 'package:first_time/notification/notification.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase/firebase_options.dart';
 import 'package:first_time/page/ppm.dart';
+import 'firebase/firebase_options.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 Future<void> main() async {

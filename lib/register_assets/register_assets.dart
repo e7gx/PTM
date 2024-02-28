@@ -18,6 +18,7 @@ class RegisterDevice extends StatefulWidget {
 }
 
 class RegisterDeviceState extends State<RegisterDevice> {
+  String dropdownValue = list.first;
   final TextEditingController deviceBrandController = TextEditingController();
   final TextEditingController deviceCpuController = TextEditingController();
   final TextEditingController deviceHardDeskController =
@@ -36,10 +37,11 @@ class RegisterDeviceState extends State<RegisterDevice> {
         title: const Text(
           "تسجيل جهاز جديد",
           style: TextStyle(
-              fontFamily: 'Cario',
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-              color: Colors.white),
+            fontFamily: 'Cario',
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
         centerTitle: true,
         toolbarHeight: 50,
@@ -57,14 +59,15 @@ class RegisterDeviceState extends State<RegisterDevice> {
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-                colors: [
-                  Color.fromARGB(255, 105, 142, 255),
-                  Color(0xFF00CCFF),
-                ],
-                begin: FractionalOffset(0.0, 0.0),
-                end: FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp),
+              colors: [
+                Color.fromARGB(255, 105, 142, 255),
+                Color(0xFF00CCFF),
+              ],
+              begin: FractionalOffset(0.0, 0.0),
+              end: FractionalOffset(1.0, 0.0),
+              stops: [0.0, 1.0],
+              tileMode: TileMode.clamp,
+            ),
           ),
         ),
       ),
@@ -86,9 +89,9 @@ class RegisterDeviceState extends State<RegisterDevice> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
-                  'assets/images/pc.png',
+                  'assets/images/uqu.png',
                   fit: BoxFit.contain,
-                  height: 300,
+                  height: 250,
                   width: double.infinity,
                 ),
               ),
@@ -99,7 +102,18 @@ class RegisterDeviceState extends State<RegisterDevice> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Center(child: DropdownMenuExample()),
+                    DropdownMenuExample(
+                      onChanged: (value) {
+                        setState(() {
+                          dropdownValue = value;
+                        });
+                      },
+                      onSelected: (String value) {
+                        setState(() {
+                          dropdownValue = value;
+                        });
+                      },
+                    ),
                     const SizedBox(height: 20),
                     buildTextField(
                       deviceBrandController,
@@ -108,22 +122,40 @@ class RegisterDeviceState extends State<RegisterDevice> {
                     ),
                     const SizedBox(height: 10),
                     buildTextField(
-                        deviceCpuController, 'المعالج', 'أدخل نوع المعالج'),
-                    const SizedBox(height: 10),
-                    buildTextField(deviceHardDeskController, 'القرص الصلب',
-                        'أدخل نوع القرص الصلب'),
-                    const SizedBox(height: 10),
-                    buildTextField(
-                        deviceLocationController, 'الموقع', 'أدخل موقع الجهاز'),
+                      deviceCpuController,
+                      'المعالج',
+                      'أدخل نوع المعالج',
+                    ),
                     const SizedBox(height: 10),
                     buildTextField(
-                        macAddressController, 'عنوان MAC', 'أدخل عنوان MAC'),
+                      deviceHardDeskController,
+                      'القرص الصلب',
+                      'أدخل نوع القرص الصلب',
+                    ),
                     const SizedBox(height: 10),
-                    buildTextFieldNum(ministryNumberController, 'رقم الوزارة',
-                        'أدخل رقم الوزارة'),
+                    buildTextField(
+                      deviceLocationController,
+                      'الموقع',
+                      'أدخل موقع الجهاز',
+                    ),
                     const SizedBox(height: 10),
-                    buildTextFieldNum(serialNumberController, 'الرقم التسلسلي',
-                        'أدخل الرقم التسلسلي'),
+                    buildTextField(
+                      macAddressController,
+                      'عنوان MAC',
+                      'أدخل عنوان MAC',
+                    ),
+                    const SizedBox(height: 10),
+                    buildTextFieldNum(
+                      ministryNumberController,
+                      'رقم الوزارة',
+                      'أدخل رقم الوزارة',
+                    ),
+                    const SizedBox(height: 10),
+                    buildTextFieldNum(
+                      serialNumberController,
+                      'الرقم التسلسلي',
+                      'أدخل الرقم التسلسلي',
+                    ),
                     const SizedBox(height: 30),
                     SizedBox(
                       width: 150,
@@ -131,20 +163,27 @@ class RegisterDeviceState extends State<RegisterDevice> {
                         onPressed: () => _submitReport(context),
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all(
-                              const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 40)),
+                            const EdgeInsets.symmetric(
+                              vertical: 10,
+                              horizontal: 40,
+                            ),
+                          ),
                           backgroundColor: MaterialStateProperty.all(
-                              const Color.fromARGB(255, 15, 146, 239)),
+                            const Color.fromARGB(255, 15, 146, 239),
+                          ),
                           shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8))),
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
                         ),
                         child: const Text(
                           'إرسال',
                           style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -168,7 +207,8 @@ class RegisterDeviceState extends State<RegisterDevice> {
       'device_location': location,
       'mac_address': macAddress,
       'ministry_number': ministryNumber,
-      'serial_number': serialNumber
+      'serial_number': serialNumber,
+      'selected_option': dropdownValue,
     };
 
     FirebaseFirestore.instance
@@ -176,19 +216,14 @@ class RegisterDeviceState extends State<RegisterDevice> {
         .add(reportData)
         .then((documentReference) {
       // Handle successful upload here, for example:
-      // ignore: avoid_print
       print('Document added with ID: ${documentReference.id}');
     }).catchError((e) {
       // Handle any errors here, for example:
-      // ignore: avoid_print
-      // print('خطاء في قاعدة بيانات تسجيل الاجهزة ');
+      print('Error uploading data to Firestore: $e');
     });
   }
 
   void _submitReport(BuildContext context) {
-    // Just use the class-level controller instances you've declared at the top.
-    // There's no need to declare new ones here.
-
     if (deviceBrandController.text.isEmpty ||
         deviceCpuController.text.isEmpty ||
         deviceHardDeskController.text.isEmpty ||
@@ -200,27 +235,33 @@ class RegisterDeviceState extends State<RegisterDevice> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(35),
+            ),
             title: Lottie.asset(
               'assets/animation/WOR.json',
               height: 250,
             ),
             content: const Text(
-                '      يرجى تعبئة جميع الحقول\n         لنتمكن من رفع التقرير',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic)),
+              'يُرجى تعبئة جميع الحقول\nلنتمكن من رفع التقرير',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
             actions: <Widget>[
               TextButton(
-                child: const Text('حسنا',
-                    style: TextStyle(
-                        fontFamily: 'Cario',
-                        color: Colors.cyan,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic)),
+                child: const Text(
+                  'حسنًا',
+                  style: TextStyle(
+                    fontFamily: 'Cario',
+                    color: Colors.cyan,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -230,7 +271,6 @@ class RegisterDeviceState extends State<RegisterDevice> {
         },
       );
     } else {
-      // Again, use the class-level instances when calling uploadReport
       uploadReport(
         deviceBrandController.text,
         deviceCpuController.text,
@@ -244,8 +284,9 @@ class RegisterDeviceState extends State<RegisterDevice> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
             title: Lottie.asset(
               'assets/animation/like1.json',
               height: 300,
@@ -253,7 +294,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
             content: const Row(
               children: [
                 Text(
-                  '      ! شكرًا لك على تعاونك',
+                  '! شكرًا لك على تعاونك',
                   style: TextStyle(
                     fontFamily: 'Cario',
                     fontSize: 20,
@@ -266,14 +307,14 @@ class RegisterDeviceState extends State<RegisterDevice> {
             actions: <Widget>[
               TextButton(
                 child: const Text(
-                  'حسنا',
+                  'حسنًا',
                   style: TextStyle(
-                      color: Colors.cyan,
-                      fontStyle: FontStyle.italic,
-                      fontSize: 16),
+                    color: Colors.cyan,
+                    fontStyle: FontStyle.italic,
+                    fontSize: 16,
+                  ),
                 ),
                 onPressed: () {
-                  // هنا تم إضافة تعليمات لمسح النص من الـ Controllers
                   setState(() {
                     deviceBrandController.clear();
                     deviceCpuController.clear();
@@ -296,7 +337,13 @@ class RegisterDeviceState extends State<RegisterDevice> {
 }
 
 class DropdownMenuExample extends StatefulWidget {
-  const DropdownMenuExample({super.key});
+  final ValueChanged<String> onSelected;
+
+  const DropdownMenuExample(
+      {Key? key,
+      required this.onSelected,
+      required Null Function(dynamic value) onChanged})
+      : super(key: key);
 
   @override
   State<DropdownMenuExample> createState() => _DropdownMenuExampleState();
@@ -308,8 +355,6 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // margin: EdgeInsets.zero,
-      // width: 500,
       alignment: Alignment.center,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -323,35 +368,27 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: DropdownMenu<String>(
-          initialSelection: list.first,
-          leadingIcon: const Icon(
-            Icons.location_on_outlined,
+        child: DropdownButton<String>(
+          value: dropdownValue,
+          icon: const Icon(Icons.keyboard_arrow_down),
+          iconSize: 24,
+          elevation: 16,
+          style: const TextStyle(color: Colors.blue),
+          underline: Container(
+            height: 2,
             color: Colors.blue,
           ),
-          trailingIcon: const Wrap(
-            spacing: 12, // space between two icons
-            children: <Widget>[
-              Icon(
-                Icons.keyboard_arrow_down,
-                color: Colors.blue,
-              ), // icon-2
-            ],
-          ),
-          textStyle: const TextStyle(
-              color: Colors.blue,
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Cario'),
-          onSelected: (String? value) {
-            // This is called when the user selects an item.
+          onChanged: (String? newValue) {
             setState(() {
-              dropdownValue = value!;
+              dropdownValue = newValue!;
+              widget.onSelected(newValue); // Notify the parent widget
             });
           },
-          dropdownMenuEntries:
-              list.map<DropdownMenuEntry<String>>((String value) {
-            return DropdownMenuEntry<String>(value: value, label: value);
+          items: list.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
           }).toList(),
         ),
       ),
