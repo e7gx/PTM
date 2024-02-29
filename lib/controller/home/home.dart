@@ -1,10 +1,11 @@
-import 'package:first_time/reports/it_tasks/it_reports_received.dart';
-import 'package:flutter/material.dart';
-import 'package:first_time/reports/user_reports/device_display_reports.dart';
 import 'package:lottie/lottie.dart';
-
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:first_time/reports/it_tasks/it_reports_received.dart';
 import 'package:first_time/controller/home/display_slide_homepage.dart';
+import 'package:first_time/reports/user_reports/device_display_reports.dart';
+import 'package:first_time/reports/it_reports/submited_it_reports/it_display_reports_page.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -101,6 +102,23 @@ class _HomeState extends State<Home> {
           const SizedBox(height: 10),
 
           buildSlideViewTwo(),
+          const Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                '\t📑📝 التقارير ',
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                    fontFamily: 'Cario',
+                    color: Color(0xFF0099FF),
+                    fontSize: 23,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 30),
+            ],
+          ),
+          buildSlideViewThree(),
           const SizedBox(height: 30),
         ],
       ),
@@ -182,13 +200,14 @@ class _HomeState extends State<Home> {
   }
 
   SizedBox buildSlideView() {
+    User? userId = FirebaseAuth.instance.currentUser;
+
     return SizedBox(
       height: 200,
       child: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('IT_Reports_Received')
-            .orderBy('date',
-                descending: true) // فرز البيانات بالترتيب العكسي للتاريخ
+            .where('receiver_uid', isEqualTo: userId?.uid)
             .limit(3) // الحصول على آخر ثلاثة بلاغات فقط
             .snapshots(),
         builder: (context, snapshot) {
@@ -246,6 +265,80 @@ class _HomeState extends State<Home> {
                   image: slides[index].image,
                   title: slides[index].title,
                   // content: slides[index].content,
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+
+  SizedBox buildSlideViewThree() {
+    return SizedBox(
+      height: 200,
+      child: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('IT_Reports')
+            .orderBy('date',
+                descending: true) // فرز البيانات بالترتيب العكسي للتاريخ
+            .limit(3) // الحصول على آخر ثلاثة بلاغات فقط
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (snapshot.hasError) {
+            return Center(child: Text('حدث خطأ: ${snapshot.error}'));
+          }
+
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Lottie.asset('assets/animation/like1.json',
+                    fit: BoxFit.contain, width: 100, height: 100),
+                const Text(
+                  'لا يوجد بلاغات',
+                  style: TextStyle(
+                      fontFamily: 'Cario',
+                      color: Color(0xFF0099FF),
+                      fontSize: 23,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ));
+          }
+
+          // تحويل البيانات إلى قائمة من SlideData
+          final slides = snapshot.data!.docs.map((doc) {
+            final data = doc.data() as Map<String, dynamic>;
+            return SlideData(
+              image: 'assets/images/uqu.png',
+              title: data['location'] ?? 'جهاز غير معروف',
+              content: data['it_report_solution'] ?? 'مشكلة غير معروفة',
+            );
+          }).toList();
+
+          return PageView.builder(
+            controller: _pageController,
+            itemCount: slides.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ReportsPage()),
+                  );
+                },
+                child: SlideWidget(
+                  image: slides[index].image,
+                  title: slides[index].title,
+                  content: slides[index].content,
                 ),
               );
             },

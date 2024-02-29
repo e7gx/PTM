@@ -4,11 +4,11 @@ import 'package:first_time/Auth/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/Chat/ai_chat_page.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:first_time/controller/home/home.dart';
 import 'package:first_time/settings/it_settings.dart';
+import 'package:first_time/controller/home/home.dart';
 import 'package:first_time/settings/accont_setting.dart';
 import 'package:first_time/controller/model/dashboard.dart';
-import 'package:first_time/device_table/device_table_page.dart';
+import 'package:first_time/device_table/device_location.dart';
 import 'package:first_time/register_assets/register_assets.dart';
 import 'package:first_time/reports/it_tasks/it_reports_received.dart';
 import 'package:first_time/reports/user_reports/device_display_reports.dart';
@@ -30,7 +30,7 @@ class _WelcomePageState extends State<WelcomePage> {
   final List _pages = [
     const Home(),
     const ReportSolutionPage(),
-    const DeviceTablePage(),
+    const DisplayLocationsNavBar(),
     const ReportsReceived(),
     const DeviceReports(),
   ];
@@ -40,15 +40,16 @@ class _WelcomePageState extends State<WelcomePage> {
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: const Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              ' الصفحة الرئيسية',
+              'الصفحة الرئيسية',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Cario',
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -98,10 +99,9 @@ class _WelcomePageState extends State<WelcomePage> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Colors.black, // Red
-                Colors.black, // Green
-                Colors.black, // Orange
-                Color.fromARGB(255, 33, 36, 56),
+                Colors.white, // Red
+                Color(0xFFD6F7F7), // Green
+                Colors.white, // Orange
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -154,7 +154,8 @@ class _WelcomePageState extends State<WelcomePage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => RegisterDevice()),
+                    MaterialPageRoute(
+                        builder: (context) => const RegisterDevice()),
                   );
                 },
               ),

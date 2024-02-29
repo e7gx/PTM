@@ -216,10 +216,10 @@ class RegisterDeviceState extends State<RegisterDevice> {
         .add(reportData)
         .then((documentReference) {
       // Handle successful upload here, for example:
-      print('Document added with ID: ${documentReference.id}');
+      // print('Document added with ID: ${documentReference.id}');
     }).catchError((e) {
       // Handle any errors here, for example:
-      print('Error uploading data to Firestore: $e');
+      // print('Error uploading data to Firestore: $e');
     });
   }
 

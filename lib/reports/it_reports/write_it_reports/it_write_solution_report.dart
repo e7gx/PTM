@@ -43,73 +43,53 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
       //   toolbarHeight: 50,
       //   automaticallyImplyLeading: true,
       // ),
-      backgroundColor: Colors.white,
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 169, 223, 255),
-            ],
-            begin: Alignment.topRight,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.only(top: 8, bottom: 8, left: 6, right: 6),
-          child: Column(
-            mainAxisAlignment:
-                MainAxisAlignment.start, // Center content vertically
-
-            children: [
-              Lottie.asset('assets/animation/report_solution.json',
-                  height: 300, fit: BoxFit.fitWidth),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: Text(
-                  'يرجى استخدام هذه الخانة لرفع تقرير مفصل عن المشكلة التي تم حلها من ذكر الخطوات التي تم اتباعها وأي معلومات إضافية تعتبرونها مهمة لفهم السياق والحل المقدم',
-                  textAlign: TextAlign.center, // Center the text horizontally
-                  style: TextStyle(
-                    fontFamily: 'Cario',
-                    color: Colors.black54,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(top: 25, bottom: 0, left: 6, right: 6),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Lottie.asset('assets/animation/reportsman.json',
+                height: 300, fit: BoxFit.fitWidth),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 18.0),
+              child: Text(
+                'يرجى استخدام هذه الخانة لرفع تقرير  عن المشكلة التي تم حلها من ذكر الخطوات التي تم اتباعها وأي معلومات إضافية تعتبر مهمة لفهم السياق والحل المقدم',
+                textAlign: TextAlign.center, // Center the text horizontally
+                style: TextStyle(
+                  fontFamily: 'Cario',
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(
-                  height: 30), // Adjusted for spacing before the button
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const DetailsPage()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(
-                      255, 15, 146, 239), // New color for the button
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 50, vertical: 8),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-                child: const Text(
-                  'تقديم التقرير',
-                  style: TextStyle(
-                    fontSize: 16, fontFamily: 'Cario',
-
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white, // Adjust the text color if needed
-                    fontStyle: FontStyle.italic,
-                  ),
+            ),
+            const SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const DetailsPage()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(
+                    255, 15, 146, 239), // New color for the button
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 8),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-              const SizedBox(height: 80),
-            ],
-          ),
+              child: const Text(
+                'تقديم التقرير',
+                style: TextStyle(
+                  fontSize: 16, fontFamily: 'Cario',
+
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white, // Adjust the text color if needed
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
