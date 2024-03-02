@@ -1,14 +1,13 @@
 import 'package:first_time/Auth/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/controller/routes/navbar_drawer.dart';
+import '../controller/home_page_and_bar.dart';
 import 'signup_page.dart';
 import 'package:lottie/lottie.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
-
+class LoginPageUser extends StatelessWidget {
+  LoginPageUser({super.key});
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -37,7 +36,7 @@ class LoginPage extends StatelessWidget {
             bottomLeft: Radius.circular(7000),
           ),
         ),
-        backgroundColor: const Color(0xFF0F92EF),
+        backgroundColor: Colors.teal,
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
@@ -55,7 +54,7 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 40.0),
               TextField(
-                style: const TextStyle(color: Colors.blue),
+                style: const TextStyle(color: Colors.tealAccent),
                 controller: emailController,
                 cursorColor: Colors.cyan,
                 decoration: const InputDecoration(
@@ -65,29 +64,29 @@ class LoginPage extends StatelessWidget {
                   labelStyle: TextStyle(
                       fontFamily: 'Cario',
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF0F92EF)), // Cyan color for label text
+                      color: Colors.teal), // Cyan color for label text
                   prefixIcon: Icon(Icons.email_outlined,
-                      color: Color(0xFF0F92EF)), // Cyan color for icon
+                      color: Colors.teal), // Cyan color for icon
 
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
-                        color: Colors.cyan), // Consistent border color
+                        color: Colors.teal), // Consistent border color
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF0F92EF)),
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF0F92EF)),
+                    borderSide: BorderSide(color: Colors.tealAccent),
                   ),
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 25.0),
               TextField(
-                style: const TextStyle(color: Colors.blue),
+                style: const TextStyle(color: Colors.tealAccent),
                 controller: passwordController,
                 obscureText: true,
-                cursorColor: Colors.cyan,
+                cursorColor: Colors.tealAccent,
                 decoration: const InputDecoration(
                   filled: true,
 
@@ -95,18 +94,18 @@ class LoginPage extends StatelessWidget {
                   labelStyle: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Cario',
-                      color: Color(0xFF0F92EF)), // Cyan color for label text
+                      color: Colors.teal), // Cyan color for label text
                   prefixIcon: Icon(Icons.lock_outline,
-                      color: Color(0xFF0F92EF)), // Cyan color for icon
+                      color: Colors.teal), // Cyan color for icon
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
-                        color: Color(0xFF0F92EF)), // Consistent border color
+                        color: Colors.teal), // Consistent border color
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF0F92EF)),
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF0F92EF)),
+                    borderSide: BorderSide(color: Colors.tealAccent),
                   ),
                 ),
               ),
@@ -123,14 +122,14 @@ class LoginPage extends StatelessWidget {
                       );
                     },
                     style: TextButton.styleFrom(
-                      foregroundColor: const Color(0xFF0F92EF),
+                      foregroundColor: Colors.tealAccent,
                     ),
                     child: const Text(
                       'نسيت كلمة السر؟',
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontFamily: 'Cario',
-                        fontSize: 15,
+                        fontSize: 12,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -159,7 +158,7 @@ class LoginPage extends StatelessWidget {
                                 fontFamily: 'Cario',
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue),
+                                color: Colors.teal),
                           ),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -193,7 +192,7 @@ class LoginPage extends StatelessWidget {
                                     fontFamily: 'Cario',
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
+                                    color: Colors.teal),
                               ),
                             ),
                           ],
@@ -228,7 +227,7 @@ class LoginPage extends StatelessWidget {
                                       fontFamily: 'Cario',
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.blue),
+                                      color: Colors.teal),
                                 ),
                               ),
                               const SizedBox(height: 20),
@@ -244,7 +243,7 @@ class LoginPage extends StatelessWidget {
                     // ignore: use_build_context_synchronously
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (context) => const WelcomePage(),
+                        builder: (context) => const HomePage(),
                       ),
                     );
                   } on FirebaseAuthException catch (e) {
@@ -275,7 +274,7 @@ class LoginPage extends StatelessWidget {
                                 fontFamily: 'Cario',
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue),
+                                color: Colors.teal),
                           ),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -315,7 +314,7 @@ class LoginPage extends StatelessWidget {
                                     fontFamily: 'Cario',
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
+                                    color: Colors.teal),
                               ),
                             ),
                           ],
@@ -327,7 +326,7 @@ class LoginPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 65.0),
-                  backgroundColor: const Color(0xFF0F92EF),
+                  backgroundColor: Colors.teal,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
@@ -350,7 +349,7 @@ class LoginPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const SignUpPage(),
+                          builder: (context) => const SignUpPageUser(),
                         ),
                       );
                     },
@@ -359,8 +358,8 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Cario',
-                          fontSize: 16,
-                          color: Color(0xFF0F92EF)),
+                          fontSize: 14,
+                          color: Colors.tealAccent),
                     ),
                   ),
                   const Text(

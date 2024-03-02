@@ -43,6 +43,9 @@ dependencies:
   flutter_native_splash: ^2.3.10
   firebase_database: ^10.4.6
   google_nav_bar: ^5.0.6
+  qr_code_scanner: ^1.0.1
+  typewritertext: ^3.0.2
+
 
 
   

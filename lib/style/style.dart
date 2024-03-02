@@ -146,7 +146,7 @@ Widget buildTextFieldITReportslocation(
     TextEditingController controller, String label, String hint,
     {int maxLines1 = 1}) {
   return TextField(
-    style: const TextStyle(color: Colors.blue),
+    style: const TextStyle(color: Colors.blue, fontFamily: 'Cario'),
     cursorColor: const Color(0xFF0F92EF),
     controller: controller,
     maxLines: maxLines1,

@@ -185,7 +185,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MyDataPage()),
+                    MaterialPageRoute(builder: (context) => const MyDataPage()),
                   );
                 },
               ),

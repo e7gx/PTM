@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:first_time/controller/routes/home_page.dart';
+import 'package:first_time/controller/routes/navbar_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:first_time/style/style.dart';

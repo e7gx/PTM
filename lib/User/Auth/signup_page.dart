@@ -1,18 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:first_time/User/Auth/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/controller/routes/navbar_drawer.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import '../Controller/home_page_and_bar.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class SignUpPageUser extends StatefulWidget {
+  const SignUpPageUser({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
   _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignUpPageState extends State<SignUpPageUser> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmedpasswordController =
@@ -89,7 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
         if (mounted) {
           // Check if the widget is still in the tree
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const WelcomePage()),
+            MaterialPageRoute(builder: (context) => LoginPageUser()),
           );
         }
       } on FirebaseAuthException catch (e) {
@@ -120,7 +121,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Future<void> addUserDetails(
       String firstName, String lastName, String email) async {
-    await FirebaseFirestore.instance.collection('Users_IT').add({
+    await FirebaseFirestore.instance.collection('Users_Normal').add({
       //! impotint to change UID MUST BE THESAMEIN THE TABLE AND AUTH ~!!!!
       'first name': firstName,
       'last name': lastName,

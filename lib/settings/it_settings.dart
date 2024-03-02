@@ -59,7 +59,14 @@ class SupportStatisticCard extends StatelessWidget {
   }
 }
 
-class MyDataPage extends StatelessWidget {
+class MyDataPage extends StatefulWidget {
+  const MyDataPage({super.key});
+
+  @override
+  State<MyDataPage> createState() => _MyDataPageState();
+}
+
+class _MyDataPageState extends State<MyDataPage> {
   final UserData userData = UserData(
     jobNumber: '441003568',
     fullName: 'Abdullah Al-Ghamdi',
@@ -68,8 +75,6 @@ class MyDataPage extends StatelessWidget {
     email: 's441003562@st.uqu.edu.sa',
     username: 'abdulla2001',
   );
-
-  MyDataPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -163,6 +168,8 @@ class UserAvatarInfoCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ClipRRect(
             borderRadius: const BorderRadius.only(
@@ -177,14 +184,28 @@ class UserAvatarInfoCard extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Text(
-              fullName,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            title: Center(
+              child: Text(
+                fullName,
+                style: const TextStyle(
+                  fontFamily: 'Cario',
+                  color: Colors.blue,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-            subtitle: Text(jobTitle),
+            subtitle: Center(
+              child: Text(
+                jobTitle,
+                style: const TextStyle(
+                  fontFamily: 'Cario',
+                  color: Colors.blue,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ),
         ],
       ),
@@ -208,7 +229,15 @@ class UserDetailTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: icon != null ? Icon(icon) : null,
-      title: Text(title),
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontFamily: 'Cario',
+          color: Colors.grey,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
       subtitle: Text(value),
     );
   }
