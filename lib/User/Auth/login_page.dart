@@ -215,7 +215,7 @@ class LoginPageUser extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Lottie.asset(
-                                  'assets/animation/p2p.json', //! importint Change The Animaiton pls
+                                  'assets/animation/reportGreen.json', //! importint Change The Animaiton pls
                                   height:
                                       200), // يجب أن تكون الصورة موجودة في مجلد الـ assets
                               const SizedBox(height: 10),

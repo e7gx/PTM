@@ -127,7 +127,7 @@ class _MainPageState extends State<MainPage> {
               ),
               padding: const EdgeInsets.all(15),
               child: message.isMe
-                  ? Text(
+                  ? SelectableText(
                       message.text,
                       style: const TextStyle(
                         color: Colors.black,

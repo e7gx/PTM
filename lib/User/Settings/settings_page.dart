@@ -1,3 +1,4 @@
+import 'package:first_time/Auth/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -9,6 +10,8 @@ class SettingsPageUser extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPageUser> {
+  bool abdullahSwitch = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,13 +67,14 @@ class _SettingsPageState extends State<SettingsPageUser> {
                 fontFamily: 'Cario',
               ),
             ),
-            trailing: const Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.tealAccent,
-            ), // أيقونة الانتقال للصفحة الخاصة بالإشعارات إذا كان هناك
-            onTap: () async {
-              await launchUrl(Uri.parse('https://github.com/e7gx'));
-            },
+            trailing: Switch(
+              value: abdullahSwitch,
+              onChanged: (value) {
+                setState(() {
+                  abdullahSwitch = value;
+                });
+              },
+            ),
           ),
           const Divider(), // خط فاصل بين القوائم
 
@@ -93,8 +97,14 @@ class _SettingsPageState extends State<SettingsPageUser> {
               Icons.arrow_forward_ios,
               color: Colors.tealAccent,
             ), // أيقونة الانتقال لصفحة تعديل كلمة المرور إذا كان هناك
-            onTap: () async {
-              await launchUrl(Uri.parse('https://github.com/e7gx'));
+            onTap: () {
+              Navigator.push(
+                context,
+                // ignore: prefer_const_constructors
+                MaterialPageRoute(
+                  builder: (context) => const ForgetPasswordPage(),
+                ),
+              );
             },
           ),
           const Divider(),

@@ -23,7 +23,7 @@ class _ItOrUserState extends State<ItOrUser> {
               color: Colors.white,
               fontFamily: 'Cario',
               fontWeight: FontWeight.bold,
-              fontSize: 33),
+              fontSize: 23),
         ),
         backgroundColor: Colors.transparent,
         centerTitle: true,

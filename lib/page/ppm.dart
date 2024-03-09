@@ -12,6 +12,7 @@ class PPM extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightMode,
       darkTheme: darkMode,
+      // locale: Get.deviceLocale,
       home: const OnBoardingPage(),
     );
   }

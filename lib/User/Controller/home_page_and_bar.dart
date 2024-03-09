@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Auth/login_page.dart';
 import '../code/qr_scannerpage.dart';
-import '../Page/chat_main_page.dart';
+import '../Chat/chat_main_page.dart';
 import '../reports/user_report_first_page.dart';
 import '../data/user_data.dart';
 import '../Settings/settings_page.dart';

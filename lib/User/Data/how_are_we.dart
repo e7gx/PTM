@@ -93,7 +93,7 @@ class HowAreWe extends StatelessWidget {
                 color: Colors.tealAccent,
               ),
               title: const Text(
-                'أتصال',
+                'أتصل بنا',
                 style: TextStyle(
                     fontFamily: 'Cario',
                     color: Colors.white,

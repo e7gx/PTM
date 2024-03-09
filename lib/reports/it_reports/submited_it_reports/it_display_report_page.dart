@@ -24,7 +24,7 @@ class ReportDetailsITPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            '       تفاصيل التقرير',
+            'تفاصيل التقرير',
             style: TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
@@ -45,6 +45,7 @@ class ReportDetailsITPage extends StatelessWidget {
                   tileMode: TileMode.clamp),
             ),
           ),
+          centerTitle: true,
         ),
         body: Container(
           decoration: const BoxDecoration(

@@ -84,6 +84,7 @@ class _ReportsReceivedState extends State<ReportsReceived> {
                   },
                   child: Card(
                     elevation: 6.0,
+                    shadowColor: Colors.cyan,
                     margin: const EdgeInsets.only(
                       bottom: 16.0,
                       left: 8.0,
@@ -99,8 +100,8 @@ class _ReportsReceivedState extends State<ReportsReceived> {
                           child: Image.asset(
                             reportData['imageUrl'] ?? 'assets/images/uqu.png',
                             width: double.infinity,
-                            height: 350.0,
-                            fit: BoxFit.fitWidth,
+                            height: 200.0,
+                            fit: BoxFit.contain,
                           ),
                         ),
                         Positioned(
@@ -117,21 +118,21 @@ class _ReportsReceivedState extends State<ReportsReceived> {
                                   'بلاغ رقم ${index + 1}',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18.0,
+                                    fontSize: 14.0,
                                     color: Colors.white,
                                   ),
                                 ),
                                 Text(
                                   'Report Date : ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
                                   style: const TextStyle(
-                                    fontSize: 16.0,
+                                    fontSize: 12.0,
                                     color: Colors.white,
                                   ),
                                 ),
                                 Text(
                                   'Report Location:   ${reportData['location'] ?? 'No Location'}',
                                   style: const TextStyle(
-                                    fontSize: 16.0,
+                                    fontSize: 12.0,
                                     color: Colors.white,
                                   ),
                                 ),

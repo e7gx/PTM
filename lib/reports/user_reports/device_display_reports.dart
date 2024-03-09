@@ -66,6 +66,7 @@ class DeviceReports extends StatelessWidget {
                   },
                   child: Card(
                     elevation: 6.0,
+                    shadowColor: Colors.cyan,
                     margin: const EdgeInsets.only(
                         bottom: 16.0, left: 8.0, right: 8.0),
                     shape: RoundedRectangleBorder(
@@ -78,8 +79,8 @@ class DeviceReports extends StatelessWidget {
                           child: Image.asset(
                             reportData['imageUrl'] ?? 'assets/images/pc.png',
                             width: double.infinity,
-                            height: 400.0,
-                            fit: BoxFit.cover,
+                            height: 200.0,
+                            fit: BoxFit.contain,
                           ),
                         ),
                         Positioned(
@@ -87,8 +88,7 @@ class DeviceReports extends StatelessWidget {
                           right: 0,
                           left: 0,
                           child: Container(
-                            color: const Color.fromARGB(255, 6, 72, 159)
-                                .withOpacity(0.6),
+                            color: const Color(0xFF06489F).withOpacity(0.6),
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,19 +97,19 @@ class DeviceReports extends StatelessWidget {
                                   'بلاغ رقم ${index + 1}',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18.0,
+                                    fontSize: 14.0,
                                     color: Colors.white,
                                   ),
                                 ),
                                 Text(
                                   'Report Date : ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
                                   style: const TextStyle(
-                                      fontSize: 16.0, color: Colors.white),
+                                      fontSize: 12.0, color: Colors.white),
                                 ),
                                 Text(
                                   'Report Location:   ${reportData['location'] ?? 'No Location'}',
                                   style: const TextStyle(
-                                      fontSize: 16.0, color: Colors.white),
+                                      fontSize: 12.0, color: Colors.white),
                                 ),
                               ],
                             ),

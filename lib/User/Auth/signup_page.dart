@@ -59,7 +59,7 @@ class _SignUpPageState extends State<SignUpPageUser> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Lottie.asset(
-                      'assets/animation/p2p.json', //! importint Change The Animaiton pls
+                      'assets/animation/userLog2.json', //! importint Change The Animaiton pls
                       height:
                           200), // يجب أن تكون الصورة موجودة في مجلد الـ assets
                   const SizedBox(height: 10),
@@ -71,7 +71,7 @@ class _SignUpPageState extends State<SignUpPageUser> {
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue),
+                          color: Colors.teal),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -145,7 +145,7 @@ class _SignUpPageState extends State<SignUpPageUser> {
                 fontFamily: 'Cario',
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: Colors.blue),
+                color: Colors.teal),
           ),
           content: SingleChildScrollView(
             child: ListBody(
@@ -174,6 +174,7 @@ class _SignUpPageState extends State<SignUpPageUser> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
               child: const Text(
                 'حسنا',
@@ -181,7 +182,7 @@ class _SignUpPageState extends State<SignUpPageUser> {
                     fontFamily: 'Cario',
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blue),
+                    color: Colors.teal),
               ),
             ),
           ],
@@ -194,6 +195,11 @@ class _SignUpPageState extends State<SignUpPageUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios_new_rounded)),
         title: const Text(
           "تسجيل حساب جديد",
           style: TextStyle(
@@ -212,7 +218,7 @@ class _SignUpPageState extends State<SignUpPageUser> {
           ),
         ),
         elevation: 2.00,
-        backgroundColor: const Color.fromARGB(255, 15, 146, 239),
+        backgroundColor: Colors.teal,
         iconTheme: const IconThemeData(
           color: Colors.white,
         ),
@@ -222,15 +228,16 @@ class _SignUpPageState extends State<SignUpPageUser> {
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Lottie.asset(
-                'assets/animation/reportsman.json', // Make sure this path is correct
+                'assets/animation/userLog.json', // Make sure this path is correct
                 width: 400.0,
-                height: 250.0,
+                height: 300.0,
               ),
               TextField(
-                style: const TextStyle(color: Colors.blue),
+                style: const TextStyle(color: Colors.teal),
                 cursorColor: Colors.cyan,
                 controller: _nameController,
                 decoration: const InputDecoration(
@@ -240,32 +247,32 @@ class _SignUpPageState extends State<SignUpPageUser> {
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Cario',
-                    color: Color.fromARGB(255, 15, 146, 239),
+                    color: Colors.teal,
                   ), // Cyan color for label text
                   prefixIcon: Icon(
                     Icons.person_add_alt,
-                    color: Color.fromARGB(255, 15, 146, 239),
+                    color: Colors.tealAccent,
                   ), // Cyan color for icon
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 15, 146, 239),
+                      color: Colors.tealAccent,
                     ), // Cyan color for border
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 15, 146, 239),
+                      color: Colors.teal,
                     ), // Cyan color for enabled border
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 15, 146, 239),
+                      color: Colors.tealAccent,
                     ), // Cyan color for focused border
                   ),
                 ),
               ),
               const SizedBox(height: 20.0),
               TextField(
-                style: const TextStyle(color: Colors.blue),
+                style: const TextStyle(color: Colors.teal),
                 cursorColor: Colors.cyan,
                 controller: _lastNameController,
                 decoration: const InputDecoration(
@@ -275,11 +282,11 @@ class _SignUpPageState extends State<SignUpPageUser> {
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Cario',
-                    color: Color.fromARGB(255, 15, 146, 239),
+                    color: Colors.teal,
                   ), // Cyan color for label text
                   prefixIcon: Icon(
                     Icons.person_add_alt,
-                    color: Color.fromARGB(255, 15, 146, 239),
+                    color: Colors.tealAccent,
                   ), // Cyan color for icon
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -288,19 +295,19 @@ class _SignUpPageState extends State<SignUpPageUser> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 15, 146, 239),
+                      color: Colors.teal,
                     ), // Cyan color for enabled border
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 15, 146, 239),
+                      color: Colors.tealAccent,
                     ), // Cyan color for focused border
                   ),
                 ),
               ),
               const SizedBox(height: 20.0),
               TextField(
-                style: const TextStyle(color: Colors.blue),
+                style: const TextStyle(color: Colors.teal),
                 cursorColor: const Color.fromARGB(255, 15, 146, 239),
                 controller: _emailController,
                 decoration: const InputDecoration(
@@ -310,25 +317,25 @@ class _SignUpPageState extends State<SignUpPageUser> {
                   labelStyle: TextStyle(
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 15, 146, 239),
+                    color: Colors.teal,
                   ), // Cyan color for label text
                   prefixIcon: Icon(
                     Icons.email_outlined,
-                    color: Color.fromARGB(255, 15, 146, 239),
+                    color: Colors.tealAccent,
                   ), // Cyan color for icon
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 15, 146, 239),
+                      color: Colors.teal,
                     ), // Cyan color for border
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 15, 146, 239),
+                      color: Colors.teal,
                     ), // Cyan color for enabled border
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 15, 146, 239),
+                      color: Colors.tealAccent,
                     ), // Cyan color for focused border
                   ),
                 ),
@@ -336,7 +343,7 @@ class _SignUpPageState extends State<SignUpPageUser> {
               ),
               const SizedBox(height: 20.0),
               TextField(
-                style: const TextStyle(color: Colors.blue),
+                style: const TextStyle(color: Colors.teal),
                 cursorColor: Colors.cyan,
                 controller: _passwordController,
                 obscureText: true,
@@ -347,11 +354,11 @@ class _SignUpPageState extends State<SignUpPageUser> {
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Cario',
-                    color: Color.fromARGB(255, 15, 146, 239),
+                    color: Colors.teal,
                   ), // Cyan color for label text
                   prefixIcon: Icon(
                     Icons.lock_outline,
-                    color: Color.fromARGB(255, 15, 146, 239),
+                    color: Colors.tealAccent,
                   ), // Cyan color for icon
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -360,20 +367,20 @@ class _SignUpPageState extends State<SignUpPageUser> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 15, 146, 239),
+                      color: Colors.teal,
                     ), // Cyan color for enabled border
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 15, 146, 239),
+                      color: Colors.tealAccent,
                     ), // Cyan color for focused border
                   ),
                 ),
               ),
               const SizedBox(height: 20.0),
               TextField(
-                style: const TextStyle(color: Colors.blue),
-                cursorColor: Colors.cyan,
+                style: const TextStyle(color: Colors.teal),
+                cursorColor: Colors.teal,
                 controller: _confirmedpasswordController,
                 obscureText: true,
                 decoration: const InputDecoration(
@@ -383,11 +390,11 @@ class _SignUpPageState extends State<SignUpPageUser> {
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Cario',
-                    color: Color.fromARGB(255, 15, 146, 239),
+                    color: Colors.teal,
                   ), // Cyan color for label text
                   prefixIcon: Icon(
                     Icons.lock_outline,
-                    color: Color.fromARGB(255, 15, 146, 239),
+                    color: Colors.tealAccent,
                   ), // Cyan color for icon
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -396,12 +403,12 @@ class _SignUpPageState extends State<SignUpPageUser> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 15, 146, 239),
+                      color: Colors.teal,
                     ), // Cyan color for enabled border
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 15, 146, 239),
+                      color: Colors.tealAccent,
                     ), // Cyan color for focused border
                   ),
                 ),
@@ -412,7 +419,7 @@ class _SignUpPageState extends State<SignUpPageUser> {
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 90.0),
-                  backgroundColor: const Color.fromARGB(255, 15, 146, 239),
+                  backgroundColor: Colors.teal,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),

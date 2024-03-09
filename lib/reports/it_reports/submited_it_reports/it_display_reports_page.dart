@@ -11,11 +11,11 @@ class ReportsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          '      تقرير حل المشكلة  ',
+          'تقرير حل المشكلة',
           style: TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
-            fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
+            fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
             fontWeight: FontWeight.bold,
           ),
         ),
