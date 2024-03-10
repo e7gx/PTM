@@ -27,44 +27,34 @@ class _HomeState extends State<Home> {
   SingleChildScrollView buildBody() {
     return SingleChildScrollView(
       child: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        // crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2),
+            child: TextField(
+              cursorColor: Colors.cyan,
+              textAlign: TextAlign.end,
+              decoration: InputDecoration(
+                fillColor: Colors.white,
+                hintText: 'البحث عن صفحة',
+                hintStyle: const TextStyle(
+                    fontFamily: 'Cario',
+                    color: Color(0xFF0099FF),
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold),
+                prefixIcon: const Icon(Icons.search_rounded),
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.teal, width: 2),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ),
+          ),
+
           //!1111111111111111111111111  Card Number One   1111111111111111111111111111111111111111111111111111
-          // Lottie.asset('assets/animation/p2p.json',
-          //     width: 500, fit: BoxFit.cover),
 
-          // Container(
-          //   padding: const EdgeInsets.symmetric(vertical: 35),
-          //   decoration: const BoxDecoration(
-          //     gradient: LinearGradient(
-          //         colors: [
-          //           Color(0xFFEAFBFF),
-          //           Color(0xFF69D0FF),
-          //         ],
-          //         begin: Alignment.bottomCenter,
-          //         end: Alignment.topCenter,
-          //         stops: [0.0, 1.0],
-          //         tileMode: TileMode.clamp),
-          //   ),
-          //   child: Row(
-          //     crossAxisAlignment: CrossAxisAlignment.center,
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: [
-          //       Lottie.asset('assets/animation/aichat.json', width: 100),
-          //       const Text(
-          //         '\t👋\tأهلا وسهلا بك ',
-          //         style: TextStyle(
-          //             fontFamily: 'Cario',
-          //             color: Colors.white,
-          //             fontSize: 29,
-          //             fontWeight: FontWeight.bold),
-          //       ), //! debugPrint(عدلها عبدالله اذا شفتها !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!);
-
-          //       const SizedBox(height: 50)
-          //     ],
-          //   ),
-          // ),
           const SizedBox(height: 20),
           const Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -221,22 +211,23 @@ class _HomeState extends State<Home> {
 
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Lottie.asset('assets/animation/like1.json',
-                    fit: BoxFit.contain, width: 100, height: 100),
-                const Text(
-                  'لا يوجد بلاغات',
-                  style: TextStyle(
-                      fontFamily: 'Cario',
-                      color: Color(0xFF0099FF),
-                      fontSize: 23,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ));
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Lottie.asset('assets/animation/like1.json',
+                      fit: BoxFit.contain, width: 100, height: 100),
+                  const Text(
+                    'لا يوجد بلاغات',
+                    style: TextStyle(
+                        fontFamily: 'Cario',
+                        color: Color(0xFF0099FF),
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            );
           }
 
           // تحويل البيانات إلى قائمة من SlideData
@@ -275,13 +266,14 @@ class _HomeState extends State<Home> {
   }
 
   SizedBox buildSlideViewThree() {
+    User? userId = FirebaseAuth.instance.currentUser;
+
     return SizedBox(
       height: 200,
       child: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('IT_Reports')
-            .orderBy('date',
-                descending: true) // فرز البيانات بالترتيب العكسي للتاريخ
+            .where('IT_receiver_uid', isEqualTo: userId?.uid)
             .limit(3) // الحصول على آخر ثلاثة بلاغات فقط
             .snapshots(),
         builder: (context, snapshot) {

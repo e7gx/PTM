@@ -64,13 +64,19 @@ class _TechnicalSupportStatisticsPageState
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: const Text(
           'مؤشر الدعم الفني',
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Colors.white,
-            fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
+            fontSize: 20,
             fontWeight: FontWeight.bold,
+            fontFamily: 'Cario',
           ),
         ),
         backgroundColor: Colors.cyan,

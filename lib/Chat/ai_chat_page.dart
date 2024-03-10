@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:first_time/Chat/chatgpt_api.dart';
 import 'package:http/http.dart' as http;
+import 'package:typewritertext/typewritertext.dart';
 
 class AiChatPage extends StatefulWidget {
   const AiChatPage({super.key});
@@ -12,11 +13,11 @@ class AiChatPage extends StatefulWidget {
 
 class _MainPageState extends State<AiChatPage> {
   final List<Message> _messages = [];
-
   final TextEditingController _textEditingController = TextEditingController();
 
   void onSendMessage() async {
-    Message message = Message(text: _textEditingController.text, isMe: true);
+    String userMessage = _textEditingController.text;
+    Message message = Message(text: userMessage, isMe: true);
 
     _textEditingController.clear();
 
@@ -24,12 +25,42 @@ class _MainPageState extends State<AiChatPage> {
       _messages.insert(0, message);
     });
 
-    String response = await sendMessageToChatGpt(message.text);
+    if (userMessage.startsWith("PTM")) {
+      // تحديد مجال PTM
+      String response = await getResponseInPTMDomain(userMessage);
+      Message chatGpt = Message(text: response, isMe: false);
+      setState(() {
+        _messages.insert(0, chatGpt);
+      });
+    } else {
+      String response = await sendMessageToChatGpt(userMessage);
+      Message chatGpt = Message(text: response, isMe: false);
+      setState(() {
+        _messages.insert(0, chatGpt);
+      });
+    }
+  }
 
-    Message chatGpt = Message(text: response, isMe: false);
-    setState(() {
-      _messages.insert(0, chatGpt);
-    });
+  Future<String> getResponseInPTMDomain(String message) async {
+    // تحديد الردود المحددة في مجال PTM
+    Map<String, String> domainQuestions = {
+      "What does PTM stand for?":
+          "PTM stands for \"Technology Management Project.\"",
+      "What is the aim of PTM?":
+          "PTM is aimed at revolutionizing the management of technological assets within companies and organizations.",
+      "What aspects does PTM encompass?":
+          "PTM encompasses various aspects, including asset tracking, inventory management, technical support provision, and employee performance evaluation.",
+      "What is the goal of PTM?":
+          "The goal of PTM is to enhance efficiency, streamline operations, and improve overall productivity in managing technological resources.",
+    };
+
+    // إرسال السؤال إلى ChatGPT
+    if (domainQuestions.containsKey(message)) {
+      return domainQuestions[message]!;
+    } else {
+      String response = await sendMessageToChatGpt(message);
+      return response;
+    }
   }
 
   Future<String> sendMessageToChatGpt(String message) async {
@@ -95,14 +126,29 @@ class _MainPageState extends State<AiChatPage> {
                 borderRadius: BorderRadius.circular(10),
               ),
               padding: const EdgeInsets.all(15),
-              child: Text(
-                message.text,
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 17,
-                    fontFamily: 'Cario',
-                    fontWeight: FontWeight.bold),
-              ),
+              child: message.isMe
+                  ? SelectableText(
+                      message.text,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                        fontFamily: 'Cario', // استخدام الخط Cario هنا
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  : TypeWriterText(
+                      text: Text(
+                        message.text,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 17,
+                          fontFamily: 'Cario', // استخدام الخط Cario هنا
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      duration: const Duration(
+                          milliseconds: 5), // تحديد سرعة الكتابة هنا
+                    ),
             ),
           ),
           if (message.isMe) // لعرض صورة المستخدم بعد الرسالة
@@ -121,6 +167,12 @@ class _MainPageState extends State<AiChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 30),
           child: Text(
@@ -138,7 +190,7 @@ class _MainPageState extends State<AiChatPage> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  Color.fromARGB(255, 105, 142, 255),
+                  Color(0xFF698EFF),
                   Color(0xFF00CCFF),
                 ],
                 begin: FractionalOffset(0.0, 0.0),
@@ -147,21 +199,17 @@ class _MainPageState extends State<AiChatPage> {
                 tileMode: TileMode.clamp),
           ),
         ),
-        backgroundColor: Colors.cyan,
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 4,
         toolbarHeight: 50,
       ),
       body: Container(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 169, 223, 255),
-            ],
-            begin: Alignment.topRight,
-            end: Alignment.bottomCenter,
-          ),
+          gradient: LinearGradient(colors: [
+            Color(0xFFFFFFFF),
+            Color(0xFF698EFF),
+            Color(0xFF00CCFF),
+          ], begin: Alignment.topLeft, end: Alignment.bottomRight),
         ),
         child: Column(
           children: <Widget>[
@@ -178,8 +226,8 @@ class _MainPageState extends State<AiChatPage> {
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color.fromARGB(255, 11, 64, 238),
-                    Color.fromARGB(255, 169, 223, 255),
+                    Color(0xFF698EFF),
+                    Color(0xFF00CCFF),
                   ],
                   begin: Alignment.topRight,
                   end: Alignment.bottomCenter,
@@ -193,25 +241,23 @@ class _MainPageState extends State<AiChatPage> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
-                      cursorColor: const Color(0xFF0F92EF),
+                      style: const TextStyle(color: Colors.indigo),
                       controller: _textEditingController,
                       decoration: const InputDecoration(
                         contentPadding: EdgeInsets.all(10.0),
-                        hintText: '..... مرحبا',
-                        hintStyle: TextStyle(color: Colors.blueGrey),
+                        hintText: 'مرحبا.....',
+                        hintTextDirection: TextDirection.rtl,
                         border: InputBorder.none,
                       ),
-                      style: const TextStyle(
-                          fontFamily: 'Cario',
-                          fontSize: 16,
-                          color: Colors.black),
+                      textDirection:
+                          TextDirection.rtl, // تحديد اتجاه النص للغة عربية
                     ),
                   ),
                   IconButton(
                     onPressed: onSendMessage,
                     icon: const Icon(
                       Icons.rocket_launch,
-                      color: Colors.blueAccent,
+                      color: Colors.indigo,
                     ),
                   ),
                 ],

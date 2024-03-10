@@ -114,10 +114,9 @@ class _WelcomePageState extends State<WelcomePage> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
+                      Color(0xFFFFFFFF),
                       Color(0xFF00CCFF),
-                      Color(0xFF698EFF),
                       Color(0xFF00CCFF),
-                      Color(0xFF698EFF),
                     ],
                     begin: Alignment.topRight,
                     end: Alignment.bottomCenter,
@@ -125,7 +124,8 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
                 child: Center(
                   child: Text(
-                    '           PTM\n To Make IT Easy',
+                    'PTM \n To Make IT Easy',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 34,
                       color: Colors.white,

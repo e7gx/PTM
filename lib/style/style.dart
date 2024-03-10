@@ -75,7 +75,7 @@ Widget buildTextFieldNum(
     TextEditingController controller, String label, String hint,
     {int maxLines = 1}) {
   return TextField(
-    style: const TextStyle(color: Colors.blue),
+    style: const TextStyle(color: Colors.blue, fontFamily: 'Cario'),
     controller: controller,
     maxLines: maxLines,
     maxLength: 10,
@@ -110,7 +110,7 @@ Widget buildTextFieldITReports(
     TextEditingController controller, String label, String hint,
     {int maxLines1 = 5}) {
   return TextField(
-    style: const TextStyle(color: Colors.blue),
+    style: const TextStyle(color: Colors.blue, fontFamily: 'Cario'),
     cursorColor: const Color(0xFF0F92EF),
     controller: controller,
     maxLines: maxLines1,

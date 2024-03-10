@@ -1,15 +1,25 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:first_time/reports/it_reports/submited_it_reports/it_display_report_page.dart';
+import 'package:lottie/lottie.dart';
 
 class ReportsPage extends StatelessWidget {
-  const ReportsPage({Key? key}) : super(key: key);
+  const ReportsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    User? userId = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: const Text(
           'تقرير حل المشكلة',
           style: TextStyle(
@@ -52,7 +62,7 @@ class ReportsPage extends StatelessWidget {
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('IT_Reports')
-              .orderBy('date', descending: false) //!الفلتره في  عرض التقارير
+              .where('IT_receiver_uid', isEqualTo: userId?.uid)
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -62,7 +72,24 @@ class ReportsPage extends StatelessWidget {
               return Center(child: Text('Error: ${snapshot.error}'));
             }
             if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-              return const Center(child: Text('لا يوجد تقارير'));
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Lottie.asset('assets/animation/like1.json',
+                        fit: BoxFit.contain, width: 200, height: 200),
+                    const Text(
+                      'لا يوجد تقارير',
+                      style: TextStyle(
+                          fontFamily: 'Cario',
+                          color: Color(0xFF0099FF),
+                          fontSize: 23,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              );
             }
 
             return ListView.builder(

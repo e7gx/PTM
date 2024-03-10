@@ -14,46 +14,17 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Center(
-      //     child: Text('تقديم تقرير       '),
-      //   ),
-      //   titleTextStyle: const TextStyle(
-      //     color: Colors.white,
-      //     fontFamily: 'Cario',
-      //     fontSize: 26,
-      //     fontWeight: FontWeight.bold,
-      //   ),
-      //   flexibleSpace: Container(
-      //     decoration: const BoxDecoration(
-      //       gradient: LinearGradient(
-      //           colors: [
-      //             Color.fromARGB(255, 105, 142, 255),
-      //             Color(0xFF00CCFF),
-      //           ],
-      //           begin: FractionalOffset(0.0, 0.0),
-      //           end: FractionalOffset(1.0, 0.0),
-      //           stops: [0.0, 1.0],
-      //           tileMode: TileMode.clamp),
-      //     ),
-      //   ),
-      //   backgroundColor: Colors.cyan,
-      //   iconTheme: const IconThemeData(color: Colors.white),
-      //   centerTitle: true,
-      //   toolbarHeight: 50,
-      //   automaticallyImplyLeading: true,
-      // ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 25, bottom: 0, left: 6, right: 6),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Lottie.asset('assets/animation/reportsman.json',
+            Lottie.asset('assets/animation/p2p.json',
                 height: 300, fit: BoxFit.fitWidth),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 18.0),
               child: Text(
-                'يرجى استخدام هذه الخانة لرفع تقرير  عن المشكلة التي تم حلها من ذكر الخطوات التي تم اتباعها وأي معلومات إضافية تعتبر مهمة لفهم السياق والحل المقدم',
+                "استخدم هذه الخانة لتقديم تقرير موجز عن المشكلة التي تم حلها مع وصف الخطوات المتبعة ,وايضا المعلومات الاضافية المهمة",
                 textAlign: TextAlign.center, // Center the text horizontally
                 style: TextStyle(
                   fontFamily: 'Cario',
@@ -74,7 +45,7 @@ class _ReportSolutionPageState extends State<ReportSolutionPage> {
                 backgroundColor: const Color.fromARGB(
                     255, 15, 146, 239), // New color for the button
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 50, vertical: 8),
+                    const EdgeInsets.symmetric(horizontal: 45, vertical: 8),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),

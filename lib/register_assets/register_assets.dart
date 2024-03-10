@@ -4,10 +4,10 @@ import 'package:lottie/lottie.dart';
 import 'package:first_time/style/style.dart';
 
 const List<String> list = <String>[
-  ' كلية الحاسب الالي ب جامعة ام القرى',
-  'كلية ادارة الاعمال',
-  'كلية الشريعة',
-  'كلية التاريخ'
+  ' كلية الحاسب الالي  جامعة ام القرى',
+  ' كلية ادارة الاعمال جامعة ام القرى',
+  'كلية الشريعة جامعة ام القرى',
+  'كلية التاريخ جامعة ام القرى'
 ];
 
 class RegisterDevice extends StatefulWidget {
@@ -34,6 +34,12 @@ class RegisterDeviceState extends State<RegisterDevice> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: const Text(
           "تسجيل جهاز جديد",
           style: TextStyle(
@@ -60,7 +66,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 105, 142, 255),
+                Color(0xFF698EFF),
                 Color(0xFF00CCFF),
               ],
               begin: FractionalOffset(0.0, 0.0),
@@ -75,10 +81,11 @@ class RegisterDeviceState extends State<RegisterDevice> {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 169, 223, 255),
+              Color(0xFFFFFFFF),
+              Colors.lightBlue,
+              Color(0xFFFFFFFF),
             ],
-            begin: Alignment.topRight,
+            begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
@@ -240,12 +247,14 @@ class RegisterDeviceState extends State<RegisterDevice> {
             ),
             title: Lottie.asset(
               'assets/animation/WOR.json',
-              height: 250,
+              height: 190,
             ),
             content: const Text(
               'يُرجى تعبئة جميع الحقول\nلنتمكن من رفع التقرير',
+              textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 18,
+                fontFamily: 'Cario',
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
               ),
@@ -356,27 +365,40 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15.0),
+        border: Border.all(
+          color: Colors.blue,
+          style: BorderStyle.solid,
+        ),
+        gradient: const LinearGradient(
           colors: [
-            Color.fromARGB(255, 255, 255, 255),
-            Color.fromARGB(255, 169, 223, 255),
+            Color(0xFFFFFFFF),
+            Color(0xFFA9DFFF),
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
         child: DropdownButton<String>(
           value: dropdownValue,
-          icon: const Icon(Icons.keyboard_arrow_down),
+          icon: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.location_city,
+              size: 30,
+              color: Colors.blue,
+            ),
+          ),
+          // dropdownColor: Colors.grey,
+          borderRadius: BorderRadius.circular(20),
           iconSize: 24,
           elevation: 16,
           style: const TextStyle(color: Colors.blue),
           underline: Container(
-            height: 2,
-            color: Colors.blue,
+            color: Colors.transparent,
           ),
           onChanged: (String? newValue) {
             setState(() {
@@ -387,7 +409,16 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
           items: list.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
-              child: Text(value),
+              child: Center(
+                child: Text(
+                  value,
+                  style: const TextStyle(
+                    fontFamily: 'Cario',
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             );
           }).toList(),
         ),

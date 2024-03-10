@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/controller/routes/navbar_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -17,13 +18,20 @@ class _DetailsPageState extends State<DetailsPage> {
   final TextEditingController locationController = TextEditingController();
   final TextEditingController itreportController = TextEditingController();
   final TextEditingController userreportNumController = TextEditingController();
+  final TextEditingController currentUserID = TextEditingController();
+
+  User? userId = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: const Text(
           "رفع تقرير",
           style: TextStyle(
@@ -57,8 +65,8 @@ class _DetailsPageState extends State<DetailsPage> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 255, 255, 255),
-                Color.fromARGB(255, 169, 223, 255),
+                Color(0xFFFFFFFF),
+                Color(0xFFA9DFFF),
               ],
               begin: Alignment.topRight,
               end: Alignment.bottomCenter,
@@ -104,7 +112,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 40)),
                           backgroundColor: MaterialStateProperty.all(
-                            const Color.fromARGB(255, 15, 146, 239),
+                            const Color(0xFF0F92EF),
                           ),
                           shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
@@ -130,25 +138,24 @@ class _DetailsPageState extends State<DetailsPage> {
     );
   }
 
-  void uploadReport(String location, String report, String numberReport) {
+  void uploadReport(
+      String location, String report, String numberReport, String reportUser) {
     var reportData = {
       'date': Timestamp.now(),
       'user_report_num': numberReport,
       'location': location,
-      'it_report_solution': report
+      'it_report_solution': report,
+      'IT_receiver_uid': FirebaseAuth.instance.currentUser!.uid,
     };
 
     FirebaseFirestore.instance
         .collection('IT_Reports')
         .add(reportData)
         .then((documentReference) {
-      // ignore: avoid_print
-      print('Document added with ID: ${documentReference.id}');
+      //! إضافة البلاغ إلى قسم تقنية المعلومات باستخدام بيانات البلاغ المسترجعة من Firestore
+
       // Handle successful upload here
-    }).catchError((e) {
-      // ignore: avoid_print
-      print(e);
-    });
+    }).catchError((e) {});
   }
 
   void _submitReport(BuildContext context) {
@@ -160,15 +167,17 @@ class _DetailsPageState extends State<DetailsPage> {
         builder: (BuildContext context) {
           return AlertDialog(
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-            title: Lottie.asset('assets/animation/WOR.json', width: 200),
-            content: const Text(
-                '      يرجى تعبئة جميع الحقول\n         لنتمكن من رفع التقرير',
-                style: TextStyle(
-                  fontFamily: 'Cario',
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                )),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(36)),
+            title: Lottie.asset('assets/animation/WOR.json',
+                width: 200, height: 180),
+            content:
+                const Text('يرجى تعبئة جميع الحقول\n لنتمكن من رفع التقرير',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'Cario',
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    )),
             actions: <Widget>[
               TextButton(
                 child: const Text(
@@ -190,11 +199,8 @@ class _DetailsPageState extends State<DetailsPage> {
       );
     } else {
       // Again, use the class-level instances when calling uploadReport
-      uploadReport(
-        locationController.text,
-        itreportController.text,
-        userreportNumController.text,
-      );
+      uploadReport(locationController.text, itreportController.text,
+          userreportNumController.text, currentUserID.text);
       showDialog(
         context: context,
         builder: (BuildContext context) {

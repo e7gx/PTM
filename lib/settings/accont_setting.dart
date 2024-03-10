@@ -1,3 +1,4 @@
+import 'package:first_time/Auth/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -9,17 +10,25 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  bool abdullahSwitch = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: const Text(
           'الاعدادات',
           style: TextStyle(
             fontFamily: 'Cario',
 
             color: Colors.white,
-            fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
+            fontSize: 22, //  تغيير هذه القيمة لتكون الحجم
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -59,10 +68,15 @@ class _SettingsPageState extends State<SettingsPage> {
                 fontFamily: 'Cario',
               ),
             ),
-            trailing: const Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.blue,
-            ), // أيقونة الانتقال للصفحة الخاصة بالإشعارات إذا كان هناك
+            trailing: Switch(
+              value: abdullahSwitch,
+              onChanged: (value) {
+                setState(() {
+                  abdullahSwitch = value;
+                });
+              },
+            ),
+
             onTap: () async {
               await launchUrl(Uri.parse('https://github.com/e7gx'));
             },
@@ -88,8 +102,14 @@ class _SettingsPageState extends State<SettingsPage> {
               Icons.arrow_forward_ios,
               color: Colors.blue,
             ), // أيقونة الانتقال لصفحة تعديل كلمة المرور إذا كان هناك
-            onTap: () async {
-              await launchUrl(Uri.parse('https://github.com/e7gx'));
+            onTap: () {
+              Navigator.push(
+                context,
+                // ignore: prefer_const_constructors
+                MaterialPageRoute(
+                  builder: (context) => const ForgetPasswordPage(),
+                ),
+              );
             },
           ),
           const Divider(),

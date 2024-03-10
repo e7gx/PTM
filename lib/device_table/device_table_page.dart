@@ -31,15 +31,49 @@ class DeviceTablePage extends StatelessWidget {
     );
 
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: const Text(
+          'بيانات الاجهزة',
+          style: TextStyle(
+            fontFamily: 'Cario',
+            color: Colors.white,
+            fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color(0xFF698EFF),
+                  Color(0xFF00CCFF),
+                ],
+                begin: FractionalOffset(0.0, 0.0),
+                end: FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                tileMode: TileMode.clamp),
+          ),
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
+        centerTitle: true,
+        toolbarHeight: 50,
+        automaticallyImplyLeading: true,
+      ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 192, 208, 255),
-              Color.fromARGB(255, 111, 199, 250),
+              Color(0xFFC0D0FF),
+              Colors.lightBlue,
             ],
-            begin: Alignment.topRight,
-            end: Alignment.bottomCenter,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
         ),
         child: Center(

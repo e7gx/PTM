@@ -25,14 +25,22 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        centerTitle: true,
         title: Text(
-          '  تفاصيل بلاغ رقم ${widget.reportNumber}',
+          'تفاصيل بلاغ رقم ${widget.reportNumber}',
           textAlign: TextAlign.center,
           style: const TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
-              fontSize: 24,
+              fontSize: 20,
               fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(

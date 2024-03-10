@@ -13,7 +13,7 @@ class ReportDetailsITPage extends StatelessWidget {
       decoration: const BoxDecoration(
         gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 105, 142, 255),
+              Color(0xFF698EFF),
               Color(0xFF00CCFF),
             ],
             begin: FractionalOffset(0.0, 0.0),
@@ -23,6 +23,12 @@ class ReportDetailsITPage extends StatelessWidget {
       ),
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new_rounded),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
           title: const Text(
             'تفاصيل التقرير',
             style: TextStyle(

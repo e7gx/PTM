@@ -50,7 +50,7 @@ class _ItOrUserState extends State<ItOrUser> {
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Colors.indigo,
+                  Colors.blue,
                   Colors.transparent,
                   Colors.teal,
                 ],

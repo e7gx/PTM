@@ -55,12 +55,12 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 40.0),
               TextField(
-                style: const TextStyle(color: Colors.blue),
+                style: const TextStyle(
+                    color: Colors.lightBlueAccent, fontFamily: 'Cario'),
                 controller: emailController,
                 cursorColor: Colors.cyan,
                 decoration: const InputDecoration(
                   filled: true,
-                  // fillColor: Color.fromARGB(255, 248, 248, 248),
                   labelText: 'البريد الإلكتروني',
                   labelStyle: TextStyle(
                       fontFamily: 'Cario',
@@ -74,17 +74,18 @@ class LoginPage extends StatelessWidget {
                         color: Colors.cyan), // Consistent border color
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF0F92EF)),
+                    borderSide: BorderSide(color: Colors.lightBlueAccent),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF0F92EF)),
+                    borderSide: BorderSide(color: Colors.blueAccent),
                   ),
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 25.0),
               TextField(
-                style: const TextStyle(color: Colors.blue),
+                style: const TextStyle(
+                    color: Colors.lightBlueAccent, fontFamily: 'Cario'),
                 controller: passwordController,
                 obscureText: true,
                 cursorColor: Colors.cyan,
@@ -103,7 +104,7 @@ class LoginPage extends StatelessWidget {
                         color: Color(0xFF0F92EF)), // Consistent border color
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF0F92EF)),
+                    borderSide: BorderSide(color: Colors.lightBlueAccent),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xFF0F92EF)),
@@ -153,14 +154,6 @@ class LoginPage extends StatelessWidget {
                               Radius.circular(32.0),
                             ),
                           ),
-                          title: const Text(
-                            'خطأ في الإدخال',
-                            style: TextStyle(
-                                fontFamily: 'Cario',
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue),
-                          ),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -172,7 +165,8 @@ class LoginPage extends StatelessWidget {
                               ),
                               const Center(
                                 child: Text(
-                                  'يرجى ملء كل من حقول البريد \n       الإلكتروني وكلمة المرور',
+                                  'يرجى ملء كل من حقول البريد \nالإلكتروني وكلمة المرور',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
@@ -249,7 +243,7 @@ class LoginPage extends StatelessWidget {
                     );
                   } on FirebaseAuthException catch (e) {
                     String message =
-                        '       كلمة المرور او البريد الإلكتروني       \n          غير صحيح حاول مرة اخرى ';
+                        'كلمة المرور او البريد الإلكتروني\nغير صحيح حاول مرة اخرى ';
                     String lottieAsset =
                         'assets/animation/WOR.json'; // مسار ملف تحريك Lottie للخطأ
 
@@ -269,26 +263,18 @@ class LoginPage extends StatelessWidget {
                               Radius.circular(32.0),
                             ),
                           ),
-                          title: const Text(
-                            'خطأ',
-                            style: TextStyle(
-                                fontFamily: 'Cario',
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue),
-                          ),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Lottie.asset(lottieAsset,
-                                  width: 150, height: 200), // تحريك Lottie
+                                  width: 150, height: 180), // تحريك Lottie
                               const SizedBox(height: 10),
                               Text(
                                 message,
+                                textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
                                   fontFamily: 'Cario',
                                 ),
                               ),
@@ -306,14 +292,13 @@ class LoginPage extends StatelessWidget {
                                   fontSize: 16.0,
                                 );
                                 Navigator.of(context).pop();
-
                                 Navigator.of(context).pop();
                               },
                               child: const Text(
                                 'موافق',
                                 style: TextStyle(
                                     fontFamily: 'Cario',
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.blue),
                               ),
