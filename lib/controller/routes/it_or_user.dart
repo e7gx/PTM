@@ -41,7 +41,9 @@ class _ItOrUserState extends State<ItOrUser> {
           shadowColor: Colors.cyan,
           elevation: 8,
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16.0)),
+            borderRadius: BorderRadius.all(
+              Radius.circular(16.0),
+            ),
           ),
           color: Colors.transparent,
           margin:

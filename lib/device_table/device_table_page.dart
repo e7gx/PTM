@@ -1,16 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DeviceInfo {
-  final String name;
-  final String location;
-  final String specifications;
-  final String type;
+  final String brandOfDevice;
+  final String deviceLocation;
+  final String deviceHarddisk;
+  final String deviceCpu;
   final String ministryNumber;
   final String serialNumber;
+  final String collageName;
+  final String date;
 
-  DeviceInfo(this.name, this.location, this.specifications, this.type,
-      this.ministryNumber, this.serialNumber);
+  final String macAddress;
+
+  DeviceInfo(
+    this.brandOfDevice,
+    this.deviceLocation,
+    this.deviceHarddisk,
+    this.deviceCpu,
+    this.ministryNumber,
+    this.serialNumber,
+    this.collageName,
+    this.date,
+    this.macAddress,
+  );
 }
 
 class DeviceTablePage extends StatelessWidget {
@@ -18,18 +32,6 @@ class DeviceTablePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // List of devices
-    final List<DeviceInfo> devices = List.generate(
-      20,
-      (index) => DeviceInfo(
-          'Computer Number$index',
-          'UQULAB $index',
-          'device Specifications',
-          'Lenovo ThinkCentre M920',
-          '441003562$index',
-          '249765402843$index'),
-    );
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -76,11 +78,36 @@ class DeviceTablePage extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: DeviceList(devices: devices),
-          ),
+        child: StreamBuilder(
+          stream: FirebaseFirestore.instance
+              .collection('devices_assets')
+              .snapshots(),
+          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            }
+            if (snapshot.hasData) {
+              final devices = snapshot.data!.docs.map((doc) {
+                final data = doc.data() as Map<String, dynamic>;
+                return DeviceInfo(
+                  data['device_brand'] ?? '',
+                  data['device_location'] ?? '',
+                  data['device_hard_disk'] ?? '',
+                  data['device_cpu'] ?? '',
+                  data['ministry_number'] ?? '',
+                  data['serial_number'] ?? '',
+                  data['selected_option'] ?? '',
+                  data['mac_address'] ?? '',
+                  data['mac_address'] ?? '',
+                );
+              }).toList();
+              return DeviceList(devices: devices);
+            }
+            return const Center(child: Text('No data available'));
+          },
         ),
       ),
     );
@@ -103,228 +130,354 @@ class _DeviceListState extends State<DeviceList> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        children: [
-          Expanded(
-            child: PageView.builder(
-              controller: _pageController,
-              itemCount: widget.devices.length + 1,
-              onPageChanged: (int page) {
-                setState(() {
-                  _currentPage = page + 1;
-                });
-              },
-              itemBuilder: (context, index) {
-                final device = widget.devices[index + 1];
-                return SafeArea(
-                  child: Card(
-                    elevation: 3.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(15.0), // Rounded corners
-                    ),
-                    child: SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: widget.devices.length,
+                onPageChanged: (int page) {
+                  setState(() {
+                    _currentPage = page + 1;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  final device = widget.devices[index];
+                  return SafeArea(
+                    child: Card(
+                      elevation: 3.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(15.0), // Rounded corners
+                      ),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           ListTile(
                             leading: Image.asset(
                               'assets/images/uqu.png', // Replace with the device image
-                              width: 75.0, // Image size
-                              height: 75.0,
+                              width: 80.0, // Image size
+                              height: 80.0,
                             ),
-                            title: Text(
-                              device.name,
-                              style: const TextStyle(
+                            selected: true,
+                            trailing: const Icon(
+                              Icons.location_city_sharp,
+                              color: Colors.blue,
+                              size: 30,
+                            ),
+                            title: const Text(
+                              'الموقع الرئيسي',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Cario',
                                 color: Colors.black,
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            subtitle: Text(
-                              'Device Location: ${device.location}',
+                            subtitle: SelectableText(
+                              device.collageName,
+                              textAlign: TextAlign.center,
                               style: const TextStyle(
-                                  fontSize: 14.0, color: Colors.black87),
+                                  fontSize: 12.0,
+                                  color: Colors.black87,
+                                  fontFamily: 'Cario',
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
-                          Expanded(
-                            child: SafeArea(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 8.0, right: 8.0, bottom: 10),
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const Divider(height: 4),
-                                      Text(
-                                        'Device Type: ${device.type}',
-                                        style: const TextStyle(
-                                            fontFamily: 'Cario',
-                                            fontSize: 14.0,
-                                            color: Colors.black87),
-                                      ),
-                                      const Divider(height: 4),
-                                      Text(
-                                        'Ministry Number: ${device.ministryNumber}',
-                                        style: const TextStyle(
-                                            fontSize: 14.0,
-                                            color: Colors.black87),
-                                      ),
-                                      const Divider(height: 4),
-                                      Text(
-                                        'Serial Number: ${device.serialNumber}',
-                                        style: const TextStyle(
-                                            fontSize: 14.0,
-                                            color: Colors.black87),
-                                      ),
-                                      const Divider(height: 4),
-                                      Text(
-                                        'Specifications: ${device.specifications}',
-                                        style: const TextStyle(
-                                            fontSize: 14.0,
-                                            color: Colors.black87),
-                                      ),
-                                      const Divider(height: 4),
-                                      const Text(
-                                        'Operating System: Windows 10 64-bit',
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            color: Colors.black87),
-                                      ),
-                                      const Divider(height: 4),
-                                      const Text(
-                                        'Processor: Intel Core i7.',
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            color: Colors.black87),
-                                      ),
-                                      const Divider(height: 4),
-                                      const Text(
-                                        'Brand: lenovo desktop.',
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            color: Colors.black87),
-                                      ),
-                                      const Divider(height: 4),
-                                      const Text(
-                                        'RAM: 8 GB.',
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            color: Colors.black87),
-                                      ),
-                                      const Divider(height: 4),
-                                      const Text(
-                                        'Hard Drive: SDD.',
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            color: Colors.black87),
-                                      ),
-                                      const Divider(height: 4),
-                                      const Text(
-                                        'Screen Size: 15.6 inches.',
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            color: Colors.black87),
-                                      ),
-                                      const Divider(height: 4),
-                                      const Text(
-                                        'Screen Resolution: 4K.'
-                                        '\n',
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            color: Colors.black87),
-                                      ),
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          ElevatedButton(
-                                            onPressed: () async {
-                                              await launchUrl(Uri.parse(
-                                                  'https://maps.app.goo.gl/M9JJGtxZQsoQXAhs5'));
-                                            },
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                                  const Color(0xFF0F92EF),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(4.0),
-                                              ),
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 50),
-                                            ),
-                                            child: const Text(
-                                              'عرض الموقع',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: 'Cario',
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          // SafeArea(
-                                          //   child: Center(
-                                          //     child: Image.asset(
-                                          //       'assets/images/uqu.png', // Replace with the device image
-                                          //       width: 85.0, // Image size
-                                          //       height: 60.0,
-                                          //     ),
-                                          //   ),
-                                          // ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                          ListTile(
+                            leading: Image.asset(
+                              'assets/images/uqu.png', // Replace with the device image
+                              width: 80.0, // Image size
+                              height: 80.0,
+                            ),
+                            selected: true,
+                            trailing: const Icon(
+                              Icons.home_work_sharp,
+                              color: Colors.blue,
+                              size: 30,
+                            ),
+                            title: const Text(
+                              'الموقع الفرعي',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Cario',
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
                               ),
+                            ),
+                            subtitle: SelectableText(
+                              ' ${device.deviceLocation}', //! Location
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 15.0,
+                                  color: Colors.black87,
+                                  fontFamily: 'Cario',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          //!.....................................
+
+                          ListTile(
+                            leading: Image.asset(
+                              'assets/images/uqu.png', // Replace with the device image
+                              width: 80.0, // Image size
+                              height: 80.0,
+                            ),
+                            selected: true,
+                            trailing: const Icon(
+                              Icons.important_devices_rounded,
+                              color: Colors.blue,
+                              size: 30,
+                            ),
+                            title: const Text(
+                              'موديل الجهاز',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Cario',
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: SelectableText(
+                              device.brandOfDevice,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.black87,
+                                  fontFamily: 'Cario',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          ListTile(
+                            leading: Image.asset(
+                              'assets/images/uqu.png', // Replace with the device image
+                              width: 80.0, // Image size
+                              height: 80.0,
+                            ),
+                            selected: true,
+                            trailing: const Icon(
+                              Icons.sd_storage_outlined,
+                              color: Colors.blue,
+                              size: 30,
+                            ),
+                            title: const Text(
+                              'نوع المعالج',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Cario',
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: SelectableText(
+                              device.deviceCpu,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.black87,
+                                  fontFamily: 'Cario',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          ListTile(
+                            leading: Image.asset(
+                              'assets/images/uqu.png', // Replace with the device image
+                              width: 80.0, // Image size
+                              height: 80.0,
+                            ),
+                            selected: true,
+                            trailing: const Icon(
+                              Icons.storage_rounded,
+                              color: Colors.blue,
+                              size: 30,
+                            ),
+                            title: const Text(
+                              'القرص الصلب ',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Cario',
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: SelectableText(
+                              device.deviceHarddisk,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.black87,
+                                  fontFamily: 'Cario',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          ListTile(
+                            leading: Image.asset(
+                              'assets/images/uqu.png', // Replace with the device image
+                              width: 80.0, // Image size
+                              height: 80.0,
+                            ),
+                            selected: true,
+                            trailing: const Icon(
+                              Icons.handyman_rounded,
+                              color: Colors.blue,
+                              size: 30,
+                            ),
+                            title: const Text(
+                              'عنوان ماك',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Cario',
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: SelectableText(
+                              device.macAddress,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.black87,
+                                  fontFamily: 'Cario',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          ListTile(
+                            leading: Image.asset(
+                              'assets/images/uqu.png', // Replace with the device image
+                              width: 80.0, // Image size
+                              height: 80.0,
+                            ),
+                            selected: true,
+                            trailing: const Icon(
+                              Icons.format_list_numbered_rtl,
+                              color: Colors.blue,
+                              size: 30,
+                            ),
+                            title: const Text(
+                              'الرقم التسلسلي',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Cario',
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: SelectableText(
+                              device.serialNumber,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.black87,
+                                  fontFamily: 'Cario',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          ListTile(
+                            leading: Image.asset(
+                              'assets/images/uqu.png', // Replace with the device image
+                              width: 80.0, // Image size
+                              height: 80.0,
+                            ),
+                            selected: true,
+                            trailing: const Icon(
+                              Icons.format_list_numbered_rtl,
+                              color: Colors.blue,
+                              size: 30,
+                            ),
+                            title: const Text(
+                              'الرقم الوزاري',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Cario',
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: SelectableText(
+                              device.ministryNumber,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.black87,
+                                  fontFamily: 'Cario',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          ElevatedButton(
+                            onPressed: () async {
+                              await launchUrl(Uri.parse(
+                                  'https://maps.app.goo.gl/M9JJGtxZQsoQXAhs5'));
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF0F92EF),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(36.0),
+                              ),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 50),
+                            ),
+                            child: const Text(
+                              'عرض الموقع',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Cario',
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    _pageController.previousPage(
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeInOut,
+                    );
+                  },
                 ),
-                onPressed: () {
-                  _pageController.previousPage(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  );
-                },
-              ),
-              Text(
-                '$_currentPage/${widget.devices.length}',
-                style: const TextStyle(fontSize: 16.0),
-              ),
-              IconButton(
-                icon: const Icon(
-                  Icons.arrow_forward,
-                  color: Colors.white,
+                Text(
+                  '$_currentPage/${widget.devices.length}',
+                  style: const TextStyle(fontSize: 16.0),
                 ),
-                onPressed: () {
-                  _pageController.nextPage(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOutBack,
-                  );
-                },
-              ),
-            ],
-          ),
-        ],
+                IconButton(
+                  icon: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    _pageController.nextPage(
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeInOutBack,
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

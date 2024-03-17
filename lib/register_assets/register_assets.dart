@@ -29,6 +29,8 @@ class RegisterDeviceState extends State<RegisterDevice> {
   final TextEditingController ministryNumberController =
       TextEditingController();
   final TextEditingController serialNumberController = TextEditingController();
+  final TextEditingController operatingSystemController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -129,6 +131,12 @@ class RegisterDeviceState extends State<RegisterDevice> {
                     ),
                     const SizedBox(height: 10),
                     buildTextField(
+                      operatingSystemController,
+                      'نظام التشغيل',
+                      'أدخل نوع نظام التشغيل',
+                    ),
+                    const SizedBox(height: 10),
+                    buildTextField(
                       deviceCpuController,
                       'المعالج',
                       'أدخل نوع المعالج',
@@ -204,8 +212,15 @@ class RegisterDeviceState extends State<RegisterDevice> {
     );
   }
 
-  void uploadReport(String brand, String cpu, String hardDisk, String location,
-      String macAddress, String ministryNumber, String serialNumber) {
+  void uploadReport(
+      String brand,
+      String cpu,
+      String hardDisk,
+      String location,
+      String macAddress,
+      String ministryNumber,
+      String serialNumber,
+      String operatingSystem) {
     var reportData = {
       'date': Timestamp.now(),
       'device_brand': brand,
@@ -215,6 +230,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
       'mac_address': macAddress,
       'ministry_number': ministryNumber,
       'serial_number': serialNumber,
+      'operating _system': operatingSystem,
       'selected_option': dropdownValue,
     };
 
@@ -288,30 +304,28 @@ class RegisterDeviceState extends State<RegisterDevice> {
         macAddressController.text,
         ministryNumberController.text,
         serialNumberController.text,
+        operatingSystemController.text,
       );
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(36),
             ),
             title: Lottie.asset(
               'assets/animation/like1.json',
-              height: 300,
+              height: 200,
             ),
-            content: const Row(
-              children: [
-                Text(
-                  '! شكرًا لك على تعاونك',
-                  style: TextStyle(
-                    fontFamily: 'Cario',
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ],
+            content: const Text(
+              '! شكرًا لك على تعاونك',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'Cario',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+              ),
             ),
             actions: <Widget>[
               TextButton(
@@ -332,6 +346,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
                     macAddressController.clear();
                     ministryNumberController.clear();
                     serialNumberController.clear();
+                    operatingSystemController.clear();
                   });
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();

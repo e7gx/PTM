@@ -368,7 +368,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     color: Colors.white),
               ),
               GButton(
-                icon: Icons.settings_suggest_sharp,
+                icon: Icons.construction_sharp,
                 text: 'الصيانة',
                 iconColor: Colors.white,
                 iconActiveColor: Colors.cyan,

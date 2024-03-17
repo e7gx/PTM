@@ -1,4 +1,4 @@
-import 'package:first_time/controller/it_or_user.dart';
+import 'package:first_time/controller/routes/it_or_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:introduction_screen/introduction_screen.dart';

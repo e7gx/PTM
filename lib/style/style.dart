@@ -44,7 +44,10 @@ Widget buildTextField(
     cursorColor: const Color(0xFF0F92EF),
     controller: controller,
     maxLines: maxLines1,
-    style: const TextStyle(color: Colors.blue),
+    style: const TextStyle(
+      color: Colors.blue,
+      fontFamily: 'Cario',
+    ),
     decoration: InputDecoration(
       border: InputBorder.none,
       filled: true,
@@ -85,7 +88,10 @@ Widget buildTextFieldNum(
       fillColor: Colors.grey[200],
       labelText: label,
       hintText: hint,
-      labelStyle: const TextStyle(color: Color.fromARGB(255, 15, 146, 239)),
+      labelStyle: const TextStyle(
+        color: Color(0xFF0F92EF),
+        fontFamily: 'Cario',
+      ),
       hintStyle: TextStyle(
         color: Colors.grey[400],
         fontFamily: 'Cario',

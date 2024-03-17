@@ -46,6 +46,9 @@ dependencies:
   qr_code_scanner: ^1.0.1
   typewritertext: ^3.0.2
   flutter_charts: ^0.5.2
+  open_file: ^3.3.2
+  pdf: ^3.10.8
+  path_provider: ^2.1.2
 
 
 

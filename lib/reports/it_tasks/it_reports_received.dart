@@ -21,12 +21,11 @@ class _ReportsReceivedState extends State<ReportsReceived> {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Colors.white,
               Colors.blue,
               Colors.white,
             ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
         ),
         child: StreamBuilder<QuerySnapshot>(

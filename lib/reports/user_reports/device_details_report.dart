@@ -80,15 +80,22 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
               return const Center(child: CircularProgressIndicator());
             }
             if (!snapshot.hasData || snapshot.data!.data() == null) {
-              return const Center(
-                  child: Text(
-                'لا يوجد تفاصيل للبلاغ',
-                style: TextStyle(
-                  fontFamily: 'Cario',
-                  fontSize: 30,
-                  color: Colors.lightBlue,
-                  fontWeight: FontWeight.bold,
-                ),
+              return Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Lottie.asset('assets/animation/like1.json',
+                      fit: BoxFit.contain, width: 100, height: 100),
+                  const Text(
+                    'لا يوجد بلاغات',
+                    style: TextStyle(
+                        fontFamily: 'Cario',
+                        color: Colors.black54,
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
               ));
             }
             var reportData = snapshot.data!.data() as Map<String, dynamic>;

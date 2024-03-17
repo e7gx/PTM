@@ -18,9 +18,7 @@ class _MainPageState extends State<AiChatPage> {
   void onSendMessage() async {
     String userMessage = _textEditingController.text;
     Message message = Message(text: userMessage, isMe: true);
-
     _textEditingController.clear();
-
     setState(() {
       _messages.insert(0, message);
     });

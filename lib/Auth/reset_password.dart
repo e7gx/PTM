@@ -83,14 +83,6 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                 Radius.circular(32.0),
               ),
             ),
-            title: const Text(
-              'خطأ في الإدخال',
-              style: TextStyle(
-                  fontFamily: 'Cario',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue),
-            ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

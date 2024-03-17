@@ -211,10 +211,8 @@ class LoginPage extends StatelessWidget {
                             children: [
                               Lottie.asset(
                                   'assets/animation/p2p.json', //! importint Change The Animaiton pls
-                                  height:
-                                      200), // يجب أن تكون الصورة موجودة في مجلد الـ assets
+                                  height: 200),
                               const SizedBox(height: 10),
-
                               const Center(
                                 child: Text(
                                   '.... يرجى الانتظار قليلا',
