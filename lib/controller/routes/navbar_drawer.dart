@@ -1,3 +1,4 @@
+import 'package:first_time/device_table/device_location.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:first_time/Auth/login_page.dart';
@@ -8,7 +9,6 @@ import 'package:first_time/settings/it_settings.dart';
 import 'package:first_time/controller/home/home.dart';
 import 'package:first_time/settings/accont_setting.dart';
 import 'package:first_time/controller/model/dashboard.dart';
-import 'package:first_time/device_table/device_location.dart';
 import 'package:first_time/register_assets/register_assets.dart';
 import 'package:first_time/reports/it_tasks/it_reports_received.dart';
 import 'package:first_time/reports/user_reports/device_display_reports.dart';

@@ -4,10 +4,10 @@ import 'package:lottie/lottie.dart';
 import 'package:first_time/style/style.dart';
 
 const List<String> list = <String>[
-  ' كلية الحاسب الالي  جامعة ام القرى',
-  ' كلية ادارة الاعمال جامعة ام القرى',
-  'كلية الشريعة جامعة ام القرى',
-  'كلية التاريخ جامعة ام القرى'
+  'كلية الحاسب الالي  جامعة ام القرى',
+  'كلية ادارة الاعمال جامعة ام القرى',
+  'كلية الشريعة الإسلامية جامعة ام القرى',
+  'كلية العلوم التطبيقية جامعة ام القرى'
 ];
 
 class RegisterDevice extends StatefulWidget {
@@ -195,6 +195,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
                         child: const Text(
                           'إرسال',
                           style: TextStyle(
+                            fontFamily: 'Cario',
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,

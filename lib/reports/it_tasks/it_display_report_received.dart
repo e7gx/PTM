@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/controller/routes/navbar_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -49,7 +50,7 @@ class _DetailsOfTheReceivedReportState
           style: const TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
@@ -60,7 +61,7 @@ class _DetailsOfTheReceivedReportState
                 Color(0xFF00CCFF),
               ],
               begin: FractionalOffset(0.0, 0.0),
-              end: FractionalOffset(1.0, 0.0),
+              end: FractionalOffset(3.0, 0.0),
               stops: [0.0, 1.0],
               tileMode: TileMode.clamp,
             ),
@@ -191,7 +192,26 @@ class _DetailsOfTheReceivedReportState
                     // حدث عند الضغط على زر "نقل البلاغ إلى قسم تقنية المعلومات"
                     ElevatedButton(
                       onPressed: () async {
+                        await FirebaseFirestore.instance
+                            .collection('IT_Reports_Received')
+                            .doc(widget.reportId)
+                            .delete();
+
+                        //! إضافة البلاغ إلى قسم تقنية المعلومات باستخدام بيانات البلاغ المسترجعة من Firestore
+                        Map<String, dynamic> reportData =
+                            snapshot.data!.data() as Map<String, dynamic>;
+
+                        // قم بإضافة معرف المستخدم (UID) للمستلم الجديد إلى بيانات البلاغ
+                        reportData['receiver_uid'] =
+                            FirebaseAuth.instance.currentUser!.uid;
+
+                        await FirebaseFirestore.instance
+                            .collection('User_Maintenance_Message')
+                            .doc(widget.reportId)
+                            .set(reportData);
+
                         showDialog(
+                          // ignore: use_build_context_synchronously
                           context: context,
                           builder: (context) {
                             return AlertDialog(

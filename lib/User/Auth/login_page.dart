@@ -152,14 +152,6 @@ class LoginPageUser extends StatelessWidget {
                               Radius.circular(32.0),
                             ),
                           ),
-                          title: const Text(
-                            'خطأ في الإدخال',
-                            style: TextStyle(
-                                fontFamily: 'Cario',
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.teal),
-                          ),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -171,7 +163,8 @@ class LoginPageUser extends StatelessWidget {
                               ),
                               const Center(
                                 child: Text(
-                                  'يرجى ملء كل من حقول البريد \n       الإلكتروني وكلمة المرور',
+                                  'يرجى ملء كل من حقول البريد \nالإلكتروني وكلمة المرور',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
@@ -268,26 +261,19 @@ class LoginPageUser extends StatelessWidget {
                               Radius.circular(32.0),
                             ),
                           ),
-                          title: const Text(
-                            'خطأ',
-                            style: TextStyle(
-                                fontFamily: 'Cario',
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.teal),
-                          ),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Lottie.asset(lottieAsset,
                                   width: 150, height: 200), // تحريك Lottie
                               const SizedBox(height: 10),
+
                               Text(
                                 message,
+                                textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
                                   fontFamily: 'Cario',
                                 ),
                               ),

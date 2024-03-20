@@ -39,16 +39,15 @@ class SlideWidget extends StatelessWidget {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsets.only(left: 50.0, right: 50, top: 50),
-                      child: Center(
-                        child: Text(
-                          title,
-                          style: const TextStyle(
-                            fontFamily: 'Cario',
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          const EdgeInsets.only(left: 50.0, right: 0, top: 50),
+                      child: Text(
+                        title,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontFamily: 'Cario',
+                          color: Colors.black,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),

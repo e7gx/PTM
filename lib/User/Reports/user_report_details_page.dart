@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/User/controller/home_page_and_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -14,9 +15,12 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  User? userId = FirebaseAuth.instance.currentUser;
+
   final TextEditingController locationController = TextEditingController();
   final TextEditingController deviceController = TextEditingController();
   final TextEditingController problemController = TextEditingController();
+  final TextEditingController currentUserController = TextEditingController();
 
   void uploadReport(String location, String device, String problem) {
     var reportData = {
@@ -25,17 +29,17 @@ class _DetailsPageState extends State<DetailsPage> {
       'location': location,
       'device': device,
       'problem': problem,
+      'User_uid': FirebaseAuth.instance.currentUser!
+          .uid, //!UID FOR THE CURRENT USER TO KNOW HOW SEND THE REPORT
     };
 
     FirebaseFirestore.instance
         .collection('User_Reports')
         .add(reportData)
         .then((documentReference) {
-      // ignore: avoid_print
-      print('Document added with ID: ${documentReference.id}');
+      // print('Document added with ID: ${documentReference.id}');
     }).catchError((e) {
-      // ignore: avoid_print
-      print(e);
+      // print(e);
     });
   }
 
@@ -99,7 +103,7 @@ class _DetailsPageState extends State<DetailsPage> {
               height: 180,
             ),
             content: const Text(
-              '! شكرًا لك على تعاونك\n  سيتم تقديم الحل في أقرب وقت  ',
+              '! شكرًا لك على تعاونك\n  سيتم تقديم الحل في أقرب وقت',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 15,

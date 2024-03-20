@@ -100,7 +100,7 @@ class _MainPageState extends State<MainPage> {
       }
     } catch (e) {
       // print("Error sending message to ChatGPT: $e");
-      return "Error: Exception during API call.";
+      return "حصل خطاء ما الخدمة غير متوفره حاليا";
     }
   }
 
@@ -156,6 +156,7 @@ class _MainPageState extends State<MainPage> {
             const SizedBox(width: 6),
           if (message.isMe)
             CircleAvatar(
+              backgroundColor: Colors.teal,
               backgroundImage: AssetImage(imagePath),
             ),
         ],

@@ -1,4 +1,7 @@
-import 'package:first_time/device_table/device_table_page.dart';
+import 'package:first_time/device_table/collage_name/computer_collage.dart';
+import 'package:first_time/device_table/collage_name/islamic_collage.dart';
+import 'package:first_time/device_table/collage_name/business_collage.dart';
+import 'package:first_time/device_table/collage_name/sciences_collage.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -80,7 +83,7 @@ class DisplayLocationsNavBar extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const DeviceTablePage()));
+                                        const ComputerCollage()));
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
@@ -139,7 +142,7 @@ class DisplayLocationsNavBar extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const DeviceTablePage()));
+                                        const BusinessCollage()));
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
@@ -190,7 +193,7 @@ class DisplayLocationsNavBar extends StatelessWidget {
                           width: 90,
                         ),
                         const Text(
-                          'كلية التاريخ',
+                          'كلية الشريعة الإسلامية',
                           style: TextStyle(
                             fontFamily: 'Cario',
                             color: Colors.black,
@@ -204,7 +207,7 @@ class DisplayLocationsNavBar extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const DeviceTablePage()));
+                                        const HistoryCollage()));
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
@@ -263,7 +266,7 @@ class DisplayLocationsNavBar extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const DeviceTablePage()));
+                                        const SciencesCollage()));
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,

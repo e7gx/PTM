@@ -1,17 +1,22 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/User/View/ditels_user_minitines.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:first_time/reports/it_reports/submited_it_reports/it_display_report_page.dart';
 import 'package:lottie/lottie.dart';
 
-class ReportsPage extends StatelessWidget {
-  const ReportsPage({super.key});
+class UserMintines extends StatefulWidget {
+  const UserMintines({super.key});
+
+  @override
+  State<UserMintines> createState() => _UserMintinesState();
+}
+
+class _UserMintinesState extends State<UserMintines> {
+  User? userId = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
-    User? userId = FirebaseAuth.instance.currentUser;
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -21,11 +26,11 @@ class ReportsPage extends StatelessWidget {
           },
         ),
         title: const Text(
-          'تقرير حل المشكلة',
+          'الصيانة',
           style: TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
-            fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
+            fontSize: 22, //  تغيير هذه القيمة لتكون الحجم
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -33,8 +38,8 @@ class ReportsPage extends StatelessWidget {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  Color.fromARGB(255, 105, 142, 255),
-                  Color(0xFF00CCFF),
+                  Colors.teal,
+                  Colors.tealAccent,
                 ],
                 begin: FractionalOffset(0.0, 0.0),
                 end: FractionalOffset(1.0, 0.0),
@@ -52,17 +57,17 @@ class ReportsPage extends StatelessWidget {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 169, 223, 255),
+              Colors.black,
+              Colors.tealAccent,
             ],
             begin: Alignment.topRight,
-            end: Alignment.bottomCenter,
+            end: Alignment.bottomLeft,
           ),
         ),
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
-              .collection('IT_Reports')
-              .where('IT_receiver_uid', isEqualTo: userId?.uid)
+              .collection('User_Maintenance_Message')
+              .where('User_uid', isEqualTo: userId?.uid)
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -83,7 +88,7 @@ class ReportsPage extends StatelessWidget {
                       'لا يوجد تقارير',
                       style: TextStyle(
                           fontFamily: 'Cario',
-                          color: Color(0xFF0099FF),
+                          color: Colors.white,
                           fontSize: 23,
                           fontWeight: FontWeight.bold),
                     ),
@@ -108,9 +113,9 @@ class ReportsPage extends StatelessWidget {
                     date: formattedDate, // التاريخ المنسق
                     location: reportData['location'] ?? 'غير محدد', // الموقع
                     image: reportData['imageUrl'] ??
-                        'assets/images/pc.png', // الصورة
+                        'assets/images/uqu.png', // الصورة
                   ),
-                  reportId: reportId,
+                  userReportId: reportId,
                 );
               },
             );
@@ -123,15 +128,16 @@ class ReportsPage extends StatelessWidget {
 
 class ReportCard extends StatelessWidget {
   final Report report;
-  final String reportId;
+  final String userReportId;
 
-  const ReportCard({super.key, required this.report, required this.reportId});
+  const ReportCard(
+      {super.key, required this.report, required this.userReportId});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 10.0,
-      shadowColor: Colors.cyan,
+      shadowColor: Colors.tealAccent,
       margin: const EdgeInsets.only(bottom: 10.0, top: 10, left: 4),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
@@ -139,8 +145,8 @@ class ReportCard extends StatelessWidget {
       child: ListTile(
         leading: Image.asset(
           report.image,
-          width: 50.0, // حجم الصورة
-          height: 50.0,
+          width: 90.0, // حجم الصورة
+          height: 90.0,
           errorBuilder: (context, error, stackTrace) {
             // في حالة وجود خطأ في تحميل الصورة يظهر placeholder
             return const Icon(Icons.image, size: 100.0);
@@ -148,12 +154,14 @@ class ReportCard extends StatelessWidget {
         ),
         title: Center(
           child: Text(
-            report.title, // عنوان التقرير
+            report.title, textAlign: TextAlign.center,
+// عنوان التقرير
             style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Cario',
-                fontSize: 16,
-                color: Color.fromARGB(255, 0, 0, 0)),
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Cario',
+              fontSize: 16,
+              color: Colors.black,
+            ),
           ),
         ),
         subtitle: Center(
@@ -178,12 +186,13 @@ class ReportCard extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => ReportDetailsITPage(reportId: reportId),
+                builder: (context) =>
+                    DitelsUserMintines(userReportId: userReportId),
               ),
             );
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF0F92EF),
+            backgroundColor: Colors.teal,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(14.0),
             ),
@@ -197,7 +206,7 @@ class ReportCard extends StatelessWidget {
             ),
           ),
         ),
-        hoverColor: Colors.cyan,
+        hoverColor: Colors.tealAccent,
       ),
     );
   }

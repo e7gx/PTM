@@ -161,7 +161,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
             gradient: LinearGradient(
                 colors: [
                   Color(0xFF698EFF),
-                  Color.fromRGBO(0, 47, 255, 1),
+                  Color(0xFF002FFF),
                 ],
                 begin: FractionalOffset(0.0, 0.0),
                 end: FractionalOffset(1.0, 0.0),
@@ -194,7 +194,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               child: TextField(
                 style: const TextStyle(color: Colors.blue),
                 controller: _emailControllerResat,
-                cursorColor: Colors.cyan,
+                cursorColor: Colors.blue,
                 decoration: const InputDecoration(
                   filled: true,
 
@@ -208,7 +208,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
 
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
-                        color: Colors.cyan), // Consistent border color
+                        color: Colors.blue), // Consistent border color
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xFF0F92EF)),
@@ -229,7 +229,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 65.0),
-                backgroundColor: const Color(0xFF0F92EF),
+                backgroundColor: const Color(0xFF153CEA),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),

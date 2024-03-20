@@ -22,7 +22,7 @@ class PdfGenerator {
     return Page(
         pageFormat: PdfPageFormat.a4,
         build: (context) {
-          return Center(child: Container(child: Text('hassan maajeeni')));
+          return Center(child: Container(child: Text('abdullah')));
         });
   }
 }

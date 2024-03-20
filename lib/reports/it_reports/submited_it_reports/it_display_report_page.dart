@@ -88,9 +88,7 @@ class ReportDetailsITPage extends StatelessWidget {
                   ),
                 ));
               }
-
               var reportData = snapshot.data!.data() as Map<String, dynamic>;
-
               return SingleChildScrollView(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(

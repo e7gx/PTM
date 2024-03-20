@@ -1,3 +1,4 @@
+import 'package:first_time/User/View/user_mintines.dart';
 import 'package:flutter/material.dart';
 import '../Auth/login_page.dart';
 import '../code/qr_scannerpage.dart';
@@ -125,6 +126,36 @@ class _HomePageState extends State<HomePage> {
               ),
               ListTile(
                 title: const Text(
+                  '🚀 الصيانة',
+                  style: TextStyle(
+                      color: Color(0xC3252525),
+                      fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Cario'),
+                ),
+                leading: const Icon(
+                  Icons.help_outline,
+                  size: 30.0,
+                  color: Colors.teal,
+                ),
+                onTap: () {
+                  // Update the state of the app
+
+                  // Then close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const UserMintines()),
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+              const Divider(
+                height: 2,
+                thickness: BorderSide.strokeAlignOutside,
+              ),
+              ListTile(
+                title: const Text(
                   'طرق التواصل',
                   style: TextStyle(
                       color: Color(0xC3252525),
@@ -183,7 +214,7 @@ class _HomePageState extends State<HomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ),
               const SizedBox(
-                height: 250,
+                height: 175,
               ),
               const Divider(
                 endIndent: BorderSide.strokeAlignCenter,
@@ -226,19 +257,35 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat_outlined),
+            icon: Icon(
+              Icons.chat_outlined,
+            ),
             label: 'المحادثة',
-            activeIcon: Icon(Icons.auto_fix_high_outlined),
+            activeIcon: Icon(
+              Icons.auto_fix_high_outlined,
+              color: Colors.teal,
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.report),
+            icon: Icon(
+              Icons.report,
+            ),
             label: 'البلاغات',
-            activeIcon: Icon(Icons.report_gmailerrorred),
+            activeIcon: Icon(
+              Icons.report_gmailerrorred,
+              color: Colors.teal,
+            ),
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.qr_code),
-              label: 'QR Scanner',
-              activeIcon: Icon(Icons.video_call)),
+            icon: Icon(
+              Icons.qr_code,
+            ),
+            label: 'QR Scanner',
+            activeIcon: Icon(
+              Icons.video_call,
+              color: Colors.teal,
+            ),
+          ),
         ],
         currentIndex: _currentIndex,
         onTap: (index) {

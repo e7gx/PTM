@@ -1,4 +1,5 @@
 import 'package:first_time/Auth/reset_password.dart';
+import 'package:first_time/admin/adminLogin.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/controller/routes/navbar_drawer.dart';
@@ -333,7 +334,7 @@ class LoginPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const SignUpPage(),
+                          builder: (context) => const AdminLoginPage(),
                         ),
                       );
                     },
