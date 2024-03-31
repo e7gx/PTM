@@ -55,24 +55,6 @@ class _HomeState extends State<Home> {
 
           //!1111111111111111111111111  Card Number One   1111111111111111111111111111111111111111111111111111
 
-          const SizedBox(height: 20),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                '🚀 صيانتي اليوم',
-                style: TextStyle(
-                    fontFamily: 'Cario',
-                    color: Color(0xFF0099FF),
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
-          ), //! debugPrint(عد
-          //!222222222222222222222222   Card Number Two   2222222222222222222222222222222222222222222222222222
-
-          buildSlideView(),
-
           const Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -92,6 +74,25 @@ class _HomeState extends State<Home> {
           const SizedBox(height: 10),
 
           buildSlideViewTwo(),
+
+          const SizedBox(height: 20),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                '🚀 صيانتي اليوم',
+                style: TextStyle(
+                    fontFamily: 'Cario',
+                    color: Color(0xFF0099FF),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ), //! debugPrint(عد
+          //!222222222222222222222222   Card Number Two   2222222222222222222222222222222222222222222222222222
+
+          buildSlideView(),
+
           const Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,

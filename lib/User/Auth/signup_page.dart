@@ -3,7 +3,6 @@ import 'package:first_time/User/Auth/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import '../Controller/home_page_and_bar.dart';
 
 class SignUpPageUser extends StatefulWidget {
   const SignUpPageUser({super.key});
@@ -14,6 +13,8 @@ class SignUpPageUser extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPageUser> {
+  final User? userId = FirebaseAuth.instance.currentUser;
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmedpasswordController =
@@ -21,6 +22,7 @@ class _SignUpPageState extends State<SignUpPageUser> {
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
+
   @override
   void dispose() {
     _nameController.dispose();
@@ -84,9 +86,12 @@ class _SignUpPageState extends State<SignUpPageUser> {
           email: email,
           password: password,
         );
-        await addUserDetails(_nameController.text.trim(),
-            _lastNameController.text.trim(), _emailController.text.trim());
-
+        await addUserDetails(
+          _nameController.text.trim(),
+          _lastNameController.text.trim(),
+          _emailController.text.trim(),
+          FirebaseAuth.instance.currentUser!.uid,
+        );
         if (mounted) {
           // Check if the widget is still in the tree
           Navigator.of(context).pushReplacement(
@@ -120,12 +125,14 @@ class _SignUpPageState extends State<SignUpPageUser> {
   }
 
   Future<void> addUserDetails(
-      String firstName, String lastName, String email) async {
+      String firstName, String lastName, String email, String userId) async {
     await FirebaseFirestore.instance.collection('Users_Normal').add({
       //! impotint to change UID MUST BE THESAMEIN THE TABLE AND AUTH ~!!!!
+
       'first name': firstName,
       'last name': lastName,
       'email': email,
+      'uid': userId,
     });
   }
 
@@ -308,7 +315,7 @@ class _SignUpPageState extends State<SignUpPageUser> {
               const SizedBox(height: 20.0),
               TextField(
                 style: const TextStyle(color: Colors.teal),
-                cursorColor: const Color.fromARGB(255, 15, 146, 239),
+                cursorColor: const Color(0xFF0F92EF),
                 controller: _emailController,
                 decoration: const InputDecoration(
                   filled: true,
@@ -398,7 +405,7 @@ class _SignUpPageState extends State<SignUpPageUser> {
                   ), // Cyan color for icon
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 15, 146, 239),
+                      color: Color(0xFF0F92EF),
                     ), // Cyan color for border
                   ),
                   enabledBorder: OutlineInputBorder(

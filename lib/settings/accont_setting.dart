@@ -83,7 +83,6 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           const Divider(), // خط فاصل بين القوائم
 
-          // قائمة تعديل كلمة المرور
           ListTile(
             leading: const Icon(
               Icons.lock,

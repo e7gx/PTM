@@ -1,7 +1,7 @@
 import 'package:first_time/Auth/reset_password.dart';
+import 'package:first_time/User/controller/home_page_and_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../controller/home_page_and_bar.dart';
 import 'signup_page.dart';
 import 'package:lottie/lottie.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -240,16 +240,9 @@ class LoginPageUser extends StatelessWidget {
                       ),
                     );
                   } on FirebaseAuthException catch (e) {
-                    String message =
-                        '       كلمة المرور او البريد الإلكتروني       \n          غير صحيح حاول مرة اخرى ';
+                    String message = '${e.code} \n يرجى التحقق من البيانات';
                     String lottieAsset =
                         'assets/animation/WOR.json'; // مسار ملف تحريك Lottie للخطأ
-
-                    if (e.code == 'user-not-found') {
-                      message = 'لم يتم العثور على المستخدم!';
-                    } else if (e.code == 'wrong-password') {
-                      message = 'كلمة المرور غير صحيحة!';
-                    }
 
                     showDialog(
                       // ignore: use_build_context_synchronously

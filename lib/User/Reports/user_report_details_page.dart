@@ -232,7 +232,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     buildTextFieldNum(
                         deviceController, 'رقم الجهاز', 'أدخل رقم الجهاز'),
                     const SizedBox(height: 10),
-                    buildTextFieldText(
+                    buildTextFieldTextUserProblem(
                         problemController, 'وصف المشكلة', 'أدخل وصف المشكلة'),
                     const SizedBox(height: 30),
                     SizedBox(

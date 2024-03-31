@@ -1,32 +1,33 @@
-import 'package:first_time/User/View/user_mintines.dart';
+import 'package:first_time/admin/Auth/admin_login.dart';
+import 'package:first_time/admin/Users/IT/it_users.dart';
+import 'package:first_time/admin/Users/Regular%20user/users_normal.dart';
+import 'package:first_time/admin/home/home_admin.dart';
+import 'package:first_time/admin/reports/it_report/it_all_reports.dart';
+import 'package:first_time/admin/reports/user_report/user_reports.dart';
 import 'package:flutter/material.dart';
-import 'package:first_time/User/Auth/login_page.dart';
-import 'package:first_time/User/code/qr_scannerpage.dart';
-import 'package:first_time/User/Chat/chat_main_page.dart';
-import 'package:first_time/User/reports/user_report_first_page.dart';
-import 'package:first_time/User/data/user_data.dart';
-import 'package:first_time/User/settings/settings_page.dart';
-import 'package:first_time/User/data/how_are_we.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class AdminHomePage extends StatefulWidget {
+  const AdminHomePage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _HomePageState createState() => _HomePageState();
+  State<AdminHomePage> createState() => _AdminHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
-  final _pages = [
-    const MainPage(),
-    const ReportProblemPage(),
-    const QRScannerPage()
+class _AdminHomePageState extends State<AdminHomePage> {
+  int currentIndex = 0; //! ButtomNavBar Index
+  // final int _selectedIndex = 0; //! DrawerIndex
+
+  final List _pages = [
+    const AdminDashboard(),
+    const AllUsersPage(),
+    const AllITUsersPage(),
+    const ITReportsPage(),
+    const UserReportsPage(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: false,
       appBar: AppBar(
         title: const Text(
           textAlign: TextAlign.center,
@@ -108,10 +109,10 @@ class _HomePageState extends State<HomePage> {
                   // Update the state of the app
 
                   // Then close the drawer
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyDataPage()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => MyDataPage()),
+                  // );
                 },
                 leading: const Icon(
                   Icons.supervised_user_circle,
@@ -141,12 +142,12 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {
                   // Update the state of the app
 
-                  // Then close the drawer
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const UserMintines()),
-                  );
+                  // // Then close the drawer
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) => const UserMintines()),
+                  // );
                 },
               ),
               const SizedBox(height: 10),
@@ -171,11 +172,11 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {
                   // Update the state of the app
 
-                  // Then close the drawer
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HowAreWe()),
-                  );
+                  // // Then close the drawer
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const HowAreWe()),
+                  // );
                 },
               ),
               const SizedBox(height: 10),
@@ -201,11 +202,11 @@ class _HomePageState extends State<HomePage> {
                   // Update the state of the app
 
                   // Then close the drawer
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SettingsPageUser()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) => const SettingsPageUser()),
+                  // );
                 },
               ),
               const SizedBox(height: 10),
@@ -238,10 +239,10 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {
                   // Update the state of the app
 
-                  // Then close the drawer
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginPageUser()),
+                    MaterialPageRoute(
+                        builder: (context) => const AdminLoginPage()),
                   );
                 },
               ),
@@ -253,47 +254,79 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: _pages[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.chat_outlined,
-            ),
-            label: 'المحادثة',
-            activeIcon: Icon(
-              Icons.auto_fix_high_outlined,
-              color: Colors.teal,
-            ),
+      body: _pages[currentIndex],
+      bottomNavigationBar: Container(
+        color: Colors.grey.shade900,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+          child: GNav(
+            backgroundColor: Colors.transparent,
+            tabBackgroundColor: Colors.blueGrey,
+            padding: const EdgeInsets.all(7),
+            gap: 8,
+            onTabChange: (value) => goToPage(value),
+            selectedIndex: 0,
+            tabs: const [
+              GButton(
+                icon: Icons.home_work_sharp,
+                text: 'الرئيسية',
+                iconColor: Colors.white,
+                iconActiveColor: Colors.tealAccent,
+                textStyle: TextStyle(
+                    fontFamily: 'Cario',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              GButton(
+                icon: Icons.paste_outlined,
+                iconColor: Colors.white,
+                iconActiveColor: Colors.tealAccent,
+                text: 'التقارير',
+                textStyle: TextStyle(
+                    fontFamily: 'Cario',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              GButton(
+                icon: Icons.important_devices_rounded,
+                text: 'الأجهزة',
+                iconColor: Colors.white,
+                iconActiveColor: Colors.tealAccent,
+                textStyle: TextStyle(
+                    fontFamily: 'Cario',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              GButton(
+                icon: Icons.construction_sharp,
+                text: 'الصيانة',
+                iconColor: Colors.white,
+                iconActiveColor: Colors.tealAccent,
+                textStyle: TextStyle(
+                    fontFamily: 'Cario',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              GButton(
+                icon: Icons.manage_accounts_outlined,
+                text: ' البلاغات',
+                iconColor: Colors.white,
+                iconActiveColor: Colors.tealAccent,
+                textStyle: TextStyle(
+                    fontFamily: 'Cario',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.report,
-            ),
-            label: 'البلاغات',
-            activeIcon: Icon(
-              Icons.report_gmailerrorred,
-              color: Colors.teal,
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.qr_code,
-            ),
-            label: 'QR Scanner',
-            activeIcon: Icon(
-              Icons.video_call,
-              color: Colors.teal,
-            ),
-          ),
-        ],
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+        ),
       ),
     );
+  }
+
+  void goToPage(index) {
+    setState(() {
+      currentIndex = index;
+    });
   }
 }
