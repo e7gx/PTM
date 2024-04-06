@@ -6,15 +6,22 @@ import 'signup_page.dart';
 import 'package:lottie/lottie.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class LoginPageUser extends StatelessWidget {
-  LoginPageUser({super.key});
+class LoginPageUser extends StatefulWidget {
+  const LoginPageUser({super.key});
+
+  @override
+  State<LoginPageUser> createState() => _LoginPageUserState();
+}
+
+class _LoginPageUserState extends State<LoginPageUser> {
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+  bool obscureTextSET = true;
 
   @override
   Widget build(BuildContext context) {
     // final User? user = FirebaseAuth.instance.currentUser;
-
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -48,64 +55,82 @@ class LoginPageUser extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Lottie.asset(
-                'assets/animation/ppmana.json', // تأكد من مسار الـ asset الصحيح للتحريك
+                'assets/animation/ppmana.json',
                 width: 500.0,
                 height: 230.0,
               ),
               const SizedBox(height: 40.0),
-              TextField(
-                style: const TextStyle(color: Colors.tealAccent),
-                controller: emailController,
-                cursorColor: Colors.cyan,
-                decoration: const InputDecoration(
-                  filled: true,
-                  // fillColor: Color.fromARGB(255, 248, 248, 248),
-                  labelText: 'البريد الإلكتروني',
-                  labelStyle: TextStyle(
-                      fontFamily: 'Cario',
-                      fontWeight: FontWeight.bold,
-                      color: Colors.teal), // Cyan color for label text
-                  prefixIcon: Icon(Icons.email_outlined,
-                      color: Colors.teal), // Cyan color for icon
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.tealAccent),
+                  controller: emailController,
+                  cursorColor: Colors.cyan,
+                  decoration: const InputDecoration(
+                    filled: true,
+                    // fillColor: Color.fromARGB(255, 248, 248, 248),
+                    labelText: 'البريد الإلكتروني',
+                    labelStyle: TextStyle(
+                        fontFamily: 'Cario',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.teal), // Cyan color for label text
+                    prefixIcon: Icon(Icons.email_outlined,
+                        color: Colors.teal), // Cyan color for icon
 
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.teal), // Consistent border color
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors.teal), // Consistent border color
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.tealAccent),
+                    ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.tealAccent),
-                  ),
+                  keyboardType: TextInputType.emailAddress,
                 ),
-                keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 25.0),
-              TextField(
-                style: const TextStyle(color: Colors.tealAccent),
-                controller: passwordController,
-                obscureText: true,
-                cursorColor: Colors.tealAccent,
-                decoration: const InputDecoration(
-                  filled: true,
-
-                  labelText: 'كلمة المرور',
-                  labelStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Cario',
-                      color: Colors.teal), // Cyan color for label text
-                  prefixIcon: Icon(Icons.lock_outline,
-                      color: Colors.teal), // Cyan color for icon
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.teal), // Consistent border color
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.tealAccent),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.tealAccent),
+                  controller: passwordController,
+                  obscureText: obscureTextSET,
+                  cursorColor: Colors.tealAccent,
+                  decoration: InputDecoration(
+                    filled: true,
+                    suffix: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          obscureTextSET = !obscureTextSET;
+                        });
+                      },
+                      child: Icon(
+                        size: 20,
+                        obscureTextSET
+                            ? Icons.visibility_outlined
+                            : Icons.visibility_off_outlined,
+                      ),
+                    ),
+                    labelText: 'كلمة المرور',
+                    labelStyle: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Cario',
+                        color: Colors.teal), // Cyan color for label text
+                    prefixIcon: const Icon(Icons.lock_outline,
+                        color: Colors.teal), // Cyan color for icon
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors.teal), // Consistent border color
+                    ),
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.tealAccent),
+                    ),
                   ),
                 ),
               ),

@@ -1,3 +1,4 @@
+import 'package:first_time/register_assets/password_assets.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:first_time/Auth/login_page.dart';
@@ -9,7 +10,6 @@ import 'package:first_time/controller/home/home.dart';
 import 'package:first_time/settings/accont_setting.dart';
 import 'package:first_time/controller/model/dashboard.dart';
 import 'package:first_time/device_table/device_location.dart';
-import 'package:first_time/register_assets/register_assets.dart';
 import 'package:first_time/reports/it_tasks/it_reports_received.dart';
 import 'package:first_time/reports/user_reports/device_display_reports.dart';
 import 'package:first_time/reports/it_reports/write_it_reports/it_write_solution_report.dart';
@@ -155,7 +155,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const RegisterDevice()),
+                        builder: (context) => const PasswordAccessWidget()),
                   );
                 },
               ),

@@ -4,6 +4,7 @@ import 'package:first_time/admin/Users/Regular%20user/users_normal.dart';
 import 'package:first_time/admin/home/home_admin.dart';
 import 'package:first_time/admin/reports/it_report/it_all_reports.dart';
 import 'package:first_time/admin/reports/user_report/user_reports.dart';
+import 'package:first_time/register_assets/register_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -87,7 +88,8 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 ),
                 child: Center(
                   child: Text(
-                    '           PTM\n To Make IT Easy',
+                    'PTM\n To Make IT Easy',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 34,
                       color: Colors.white,
@@ -157,7 +159,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
               ),
               ListTile(
                 title: const Text(
-                  'طرق التواصل',
+                  'أضافة أصول',
                   style: TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
@@ -170,13 +172,11 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   color: Colors.teal,
                 ),
                 onTap: () {
-                  // Update the state of the app
-
-                  // // Then close the drawer
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => const HowAreWe()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RegisterDevice()),
+                  );
                 },
               ),
               const SizedBox(height: 10),

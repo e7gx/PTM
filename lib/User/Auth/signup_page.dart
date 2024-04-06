@@ -95,7 +95,7 @@ class _SignUpPageState extends State<SignUpPageUser> {
         if (mounted) {
           // Check if the widget is still in the tree
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => LoginPageUser()),
+            MaterialPageRoute(builder: (context) => const LoginPageUser()),
           );
         }
       } on FirebaseAuthException catch (e) {

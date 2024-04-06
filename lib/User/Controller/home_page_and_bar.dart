@@ -1,4 +1,4 @@
-import 'package:first_time/User/View/user_mintines.dart';
+import 'package:first_time/User/Reports/minitines/user_mintines.dart';
 import 'package:flutter/material.dart';
 import 'package:first_time/User/Auth/login_page.dart';
 import 'package:first_time/User/code/qr_scannerpage.dart';
@@ -241,7 +241,8 @@ class _HomePageState extends State<HomePage> {
                   // Then close the drawer
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginPageUser()),
+                    MaterialPageRoute(
+                        builder: (context) => const LoginPageUser()),
                   );
                 },
               ),

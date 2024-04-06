@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/controller/routes/navbar_drawer.dart';
+import 'package:first_time/reports/it_reports/write_it_reports/it_report_solution_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -248,7 +248,7 @@ class _DetailsOfTheReceivedReportState
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            const WelcomePage(),
+                                            const DetailsPage(),
                                       ),
                                     );
                                     Fluttertoast.showToast(

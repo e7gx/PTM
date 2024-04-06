@@ -1,13 +1,144 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/User/Data/how_are_we.dart';
+import 'package:first_time/User/Styles/style.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class DitelsUserMintines extends StatelessWidget {
+class DitelsUserMintines extends StatefulWidget {
   final String userReportId;
 
   const DitelsUserMintines({super.key, required this.userReportId});
+
+  @override
+  State<DitelsUserMintines> createState() => _DitelsUserMintinesState();
+}
+
+class _DitelsUserMintinesState extends State<DitelsUserMintines> {
+  final TextEditingController userRateTextController = TextEditingController();
+  double userRateNum = 0.0;
+
+  TextEditingController userRateNumController = TextEditingController();
+
+  void uploadReport(
+    String userRateText,
+    double userRateNum, // Assuming rateNum is of type double in Firestore
+  ) {
+    var reportData = {
+      'date': FieldValue.serverTimestamp(),
+      'rateText': userRateText,
+      'rateNum': userRateNum, // Pass the rating directly
+      'User_uid': FirebaseAuth.instance.currentUser!.uid,
+    };
+
+    FirebaseFirestore.instance
+        .collection('User_feedback')
+        .add(reportData)
+        .then((documentReference) {
+      // print('Document added with ID: ${documentReference.id}');
+    }).catchError((e) {
+      // print(e);
+    });
+  }
+
+  void _submitReport(BuildContext context) {
+    if (userRateTextController.text.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
+            title: Lottie.asset(
+              'assets/animation/WOR.json',
+              height: 200,
+            ),
+            content: const Text(
+              'يرجى تعبئة جميع الحقول',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+                fontFamily: 'Cario',
+              ),
+            ),
+            actions: [
+              TextButton(
+                child: const Text(
+                  'حسنا',
+                  style: TextStyle(
+                    color: Colors.tealAccent,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Cario',
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      uploadReport(userRateTextController.text.trim(), userRateNum);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(35),
+            ),
+            title: Lottie.asset(
+              'assets/animation/like1.json',
+              height: 180,
+            ),
+            content: const Text(
+              '! شكرًا لك على تعاونك',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Cario'),
+            ),
+            actions: [
+              TextButton(
+                child: const Text(
+                  'حسنا',
+                  style: TextStyle(
+                    color: Colors.tealAccent,
+                    fontFamily: 'Cario',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+
+                  Fluttertoast.showToast(
+                    msg: "🚀 تم الإرسال",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    textColor: Colors.white,
+                    fontSize: 16.0,
+                  );
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +197,7 @@ class DitelsUserMintines extends StatelessWidget {
           child: FutureBuilder<DocumentSnapshot>(
             future: FirebaseFirestore.instance
                 .collection('User_Maintenance_Message')
-                .doc(userReportId)
+                .doc(widget.userReportId)
                 .get(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -109,7 +240,7 @@ class DitelsUserMintines extends StatelessWidget {
                       height: 200, //  الارتفاع
                       fit: BoxFit.contain,
                     ),
-                    const SizedBox(height: 0),
+                    const SizedBox(height: 50),
                     const Text(
                       'رقم الجهاز او رقم البلاغ:',
                       style: TextStyle(
@@ -166,7 +297,26 @@ class DitelsUserMintines extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     const Text(
-                      'حل المشكلة:',
+                      'وصف المشكلة:',
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF0F92EF),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      reportData['problem'] ?? 'لا يوجد وصف متاح.',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                        fontFamily: 'Cario',
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'وصف المشكلة:',
                       style: TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
@@ -189,50 +339,76 @@ class DitelsUserMintines extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           showModalBottomSheet(
+                            // backgroundColor: Color.fromARGB(255, 255, 255, 255),
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(16.0),
                               ),
                             ),
-                            // context and builder are
-                            // required properties in this widget
                             context: context,
                             builder: (BuildContext context) {
-                              // we set up a container inside which
-                              // we create center column and display text
-
-                              // Returning SizedBox instead of a Container
                               return SizedBox(
-                                height: 500,
-                                child: Center(
+                                height: 650,
+                                child: SingleChildScrollView(
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () =>
+                                                  Navigator.pop(context),
+                                              child: const Icon(
+                                                Icons.close_rounded,
+                                                size: 40,
+                                                color: Colors.teal,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Lottie.asset(
+                                        'assets/animation/like1.json',
+                                        width: 200,
+                                        height: 150, //  الارتفاع
+                                      ),
+                                      const SizedBox(height: 10),
                                       const Text(
                                         'تقييم الخدمة',
                                         style: TextStyle(
                                           fontFamily: 'Cario',
-                                          fontSize: 20,
+                                          fontSize: 22,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.teal,
                                         ),
                                       ),
-                                      const SizedBox(height: 15),
                                       const Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 12.0),
                                         child: Text(
-                                          'يمكنك هنا تقييم الخدمة التي قدمت لك من قبل الدعم الفني نرجو ان يكون هنالك مصداقية في عملية التقييم لكي لايؤثر الامر سلبا على الموظف',
+                                          ' هنا تقييم الخدمة التي قدمت لك من قبل الدعم الفني نرجو ان يكون هنالك مصداقية في عملية التقييم لكي لايؤثر الامر سلبا على الموظف',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             fontFamily: 'Cario',
-                                            fontSize: 14,
+                                            fontSize: 12,
                                             fontWeight: FontWeight.normal,
                                             color: Colors.teal,
                                           ),
                                         ),
                                       ),
                                       const SizedBox(height: 15),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: buildTextFieldTextUserRating(
+                                          userRateTextController,
+                                          'تقييم الخدمة',
+                                          'أدخل وصف الخدمة',
+                                        ),
+                                      ),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Card(
@@ -258,39 +434,65 @@ class DitelsUserMintines extends StatelessWidget {
                                                 color: Colors.yellowAccent,
                                               ),
                                               onRatingUpdate: (rating) {
-                                                // print(rating);
+                                                setState(() {
+                                                  userRateNum = rating;
+                                                });
+                                                // print(userRateNum);
                                               },
                                             ),
                                           ),
                                         ),
                                       ),
-                                      const SizedBox(height: 15),
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 50, vertical: 8),
-                                          backgroundColor: Colors.teal,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(14.0),
+                                      const SizedBox(height: 5),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            _submitReport(context);
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 75, vertical: 8),
+                                            backgroundColor: Colors.teal,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(14.0),
+                                            ),
                                           ),
-                                        ),
-                                        child: const Text(
-                                          'إرسال',
-                                          style: TextStyle(
-                                            fontFamily: 'Cario',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
+                                          child: const Text(
+                                            'إرسال',
+                                            style: TextStyle(
+                                              fontFamily: 'Cario',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
                                           ),
                                         ),
                                       ),
+                                      const SizedBox(height: 10),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const HowAreWe(),
+                                            ),
+                                          );
+                                        },
+                                        child: const Text(
+                                          'أضغط هنا لعرض بيانات التواصل',
+                                          style: TextStyle(
+                                            fontFamily: 'Cario',
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.normal,
+                                            color: Color.fromARGB(
+                                                255, 45, 255, 234),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
                                     ],
                                   ),
                                 ),
@@ -316,8 +518,6 @@ class DitelsUserMintines extends StatelessWidget {
                         ),
                       ),
                     ),
-
-                    const SizedBox(height: 20),
                   ],
                 ),
               );

@@ -166,7 +166,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                           child: BarChart(
                             swapAnimationDuration: const Duration(seconds: 4),
                             BarChartData(
-                              backgroundColor: const Color(0xFFC2C2C2),
+                              backgroundColor: Colors.white,
                               maxY:
                                   9, // Change this value according to your data
                               minY: 2,

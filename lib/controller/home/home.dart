@@ -34,20 +34,42 @@ class _HomeState extends State<Home> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2),
             child: TextField(
-              cursorColor: Colors.cyan,
+              style: const TextStyle(color: Colors.teal, fontFamily: 'Cario'),
+              cursorColor: Colors.teal,
               textAlign: TextAlign.end,
               decoration: InputDecoration(
+                filled: true,
                 fillColor: Colors.white,
+                focusColor: Colors.teal,
                 hintText: 'البحث عن صفحة',
                 hintStyle: const TextStyle(
                     fontFamily: 'Cario',
-                    color: Color(0xFF0099FF),
+                    color: Colors.blue,
                     fontSize: 12,
                     fontWeight: FontWeight.bold),
-                prefixIcon: const Icon(Icons.search_rounded),
+                prefixIcon: const Icon(
+                  Icons.search_rounded,
+                  color: Colors.blue,
+                ),
+                iconColor: Colors.blue,
                 border: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.teal, width: 2),
-                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(
+                    color: Colors.blue,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    color: Color(0xFF0F92EF),
+                    width: 3.0,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide:
+                      const BorderSide(color: Color(0xFF0F92EF), width: 1.0),
                 ),
               ),
             ),
