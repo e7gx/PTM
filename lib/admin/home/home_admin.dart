@@ -45,7 +45,7 @@ class BarData {
 }
 
 class AdminDashboard extends StatefulWidget {
-  const AdminDashboard({Key? key}) : super(key: key);
+  const AdminDashboard({super.key});
 
   @override
   State<AdminDashboard> createState() => _TechnicalSupportStatisticsPageState();
@@ -107,6 +107,18 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                       width: 2,
                     ),
                     borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      color: Colors.teal,
+                      width: 3.0,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide:
+                        const BorderSide(color: Colors.teal, width: 1.0),
                   ),
                 ),
               ),

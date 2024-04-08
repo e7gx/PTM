@@ -114,12 +114,9 @@ class _ReportsReceivedState extends State<ReportsReceived> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'بلاغ رقم ${index + 1}',
+                                  'Report Location:   ${reportData['reportNumber'] ?? 'No Location'}',
                                   style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14.0,
-                                    color: Colors.white,
-                                  ),
+                                      fontSize: 12.0, color: Colors.white),
                                 ),
                                 Text(
                                   'Report Date : ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',

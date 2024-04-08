@@ -50,7 +50,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
         height: 60,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.cyan, // Set the background color to cyan
+            backgroundColor: Colors.teal, // Set the background color to cyan
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.zero, // Set border radius to zero
             ),
@@ -72,7 +72,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           title: " من نحن؟",
           body: "نحن طلاب من جامعة ام القرى و نهدف لمساعدة المنشات عبر تطبيقنا",
           image: Lottie.asset(
-            'assets/animation/ppmana.json',
+            'assets/animation/reportGreen.json',
             fit: BoxFit.cover,
           ),
           decoration: pageDecoration,
@@ -82,7 +82,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           body:
               " يبسط إدارة مؤسستك ويزيد من كفائتها مع واجهة سهلة وأدوات متطورة لتحسين الأداء وتوفير الكثير من الوقت",
           image: Lottie.asset(
-            'assets/animation/aichat.json',
+            'assets/animation/userLog.json',
             fit: BoxFit.cover,
           ),
           decoration: pageDecoration,
@@ -92,7 +92,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           body:
               "  يعزز التواصل والتعاون،وايضا يساعد في اتخاذ قرارات أفضل، ويزيد من الكفاءة في إدارة مؤسستك بشكل افضل",
           image: Lottie.asset(
-            'assets/animation/data.json',
+            'assets/animation/reportGreen.json',
             fit: BoxFit.fitWidth,
           ),
           decoration: pageDecoration,
@@ -102,7 +102,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           body:
               "  جرد الأجهزة يسهل توثيق وتتبع أجهزة مؤسستك لتحقيق إدارة فعّالة و خدمة افضل للعميل وصيانة سهلة",
           image: Lottie.asset(
-            'assets/animation/p2p.json',
+            'assets/animation/green.json',
             fit: BoxFit.fitWidth,
           ),
           decoration: pageDecoration,
@@ -112,7 +112,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           body:
               "تواصل يجمع بين مزايا التواصل الفعّال وسهولة الاستخدام لتحسين التفاهم وتنسيق الجهود لزيادة الانتاجية  ",
           image: Lottie.asset(
-            'assets/animation/reportsman.json',
+            'assets/animation/green.json',
             fit: BoxFit.fitWidth,
           ),
           decoration: pageDecoration,
@@ -122,7 +122,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           body:
               "سجّل دخولك إلى التطبيق  للاستفادة من التواصل الجيد ومزايا إدارة الممتلكات التقنية",
           image: Lottie.asset(
-            'assets/animation/signup1.json',
+            'assets/animation/userLog.json',
             fit: BoxFit.contain,
           ),
           decoration: pageDecoration,
@@ -137,25 +137,25 @@ class OnBoardingPageState extends State<OnBoardingPage> {
       //rtl: true, // Display as right-to-left
       back: const Icon(
         Icons.rocket_launch_rounded,
-        color: Colors.cyan,
+        color: Colors.teal,
       ),
       skip: const Text(
         'تخطي',
         style: TextStyle(
             fontFamily: 'Cario',
             fontWeight: FontWeight.w600,
-            color: Colors.cyan),
+            color: Colors.tealAccent),
       ),
       next: const Icon(
         Icons.rocket_launch_rounded,
-        color: Colors.cyan,
+        color: Colors.tealAccent,
       ),
       done: const Text(
         'حسنا',
         style: TextStyle(
             fontFamily: 'Cario',
             fontWeight: FontWeight.w600,
-            color: Colors.cyan),
+            color: Colors.tealAccent),
       ),
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: const EdgeInsets.all(16),
@@ -164,21 +164,21 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           : const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
       dotsDecorator: const DotsDecorator(
         size: Size(10.0, 10.0),
-        color: Colors.cyan,
+        color: Colors.teal,
         activeSize: Size(22.0, 10.0),
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25.0)),
           side:
-              BorderSide(color: Colors.cyan), // Set the border color to orange
+              BorderSide(color: Colors.black), // Set the border color to orange
         ),
-        activeColor: Colors.cyan, // Set the active color to orange
+        activeColor: Colors.tealAccent, // Set the active color to orange
       ),
 
       dotsContainerDecorator: const ShapeDecoration(
         color: Colors.black87,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
-          side: BorderSide(color: Colors.cyan), //حواف
+          side: BorderSide(color: Colors.tealAccent), //حواف
         ),
       ),
     );

@@ -9,3 +9,16 @@ class FirebaseApi {
     print('abdullah:$fCMToken');
   }
 }
+
+void initializeNotifications() async {
+  // Create an instance of FirebaseApi
+  final firebaseApi = FirebaseApi();
+  // Call the initNotifications method
+  await firebaseApi.initNotifications();
+}
+
+// Example usage of initializeNotifications on a certain action
+void onCertainAction() {
+  // Call initializeNotifications when the certain action occurs
+  initializeNotifications();
+}

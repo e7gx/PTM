@@ -14,7 +14,7 @@ class PasswordAccessWidget extends StatefulWidget {
 class _PasswordAccessWidgetState extends State<PasswordAccessWidget> {
   final List<TextEditingController> _passwordControllers =
       List.generate(5, (index) => TextEditingController());
-  final String _correctPassword = '12345'; // Replace with your correct password
+  final String _correctPassword = '14221'; // Replace with your correct password
 
   @override
   Widget build(BuildContext context) {
@@ -65,9 +65,12 @@ class _PasswordAccessWidgetState extends State<PasswordAccessWidget> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Lottie.asset('assets/animation/userLog.json', height: 300),
+            const SizedBox(height: 50),
+            Lottie.asset('assets/animation/green.json',
+                fit: BoxFit.contain, width: double.infinity, height: 200),
             const Text(
               'PasswordAccessWidget',
               style: TextStyle(

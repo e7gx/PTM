@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/notification/notification.dart';
 import 'package:first_time/reports/it_reports/write_it_reports/it_report_solution_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -44,10 +45,10 @@ class _DetailsOfTheReceivedReportState
           },
         ),
         centerTitle: true,
-        title: Text(
-          'تفاصيل بلاغ رقم ${widget.reportNumber}',
+        title: const Text(
+          'تفاصيل البلاغ',
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
               fontSize: 18,
@@ -113,11 +114,19 @@ class _DetailsOfTheReceivedReportState
                       height: 300,
                     ),
                     const SizedBox(height: 16),
-                    Text(
-                      'بلاغ رقم:\n ${widget.reportNumber}',
-                      style: const TextStyle(
+                    const Text(
+                      'بلاغ رقم:',
+                      style: TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '${reportData['reportNumber'] ?? 'No Location'}',
+                      style: const TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 30,
                           color: Colors.blue,
                           fontWeight: FontWeight.bold),
                     ),
@@ -192,24 +201,6 @@ class _DetailsOfTheReceivedReportState
                     // حدث عند الضغط على زر "نقل البلاغ إلى قسم تقنية المعلومات"
                     ElevatedButton(
                       onPressed: () async {
-                        await FirebaseFirestore.instance
-                            .collection('IT_Reports_Received')
-                            .doc(widget.reportId)
-                            .delete();
-
-                        //! إضافة البلاغ إلى قسم تقنية المعلومات باستخدام بيانات البلاغ المسترجعة من Firestore
-                        Map<String, dynamic> reportData =
-                            snapshot.data!.data() as Map<String, dynamic>;
-
-                        // قم بإضافة معرف المستخدم (UID) للمستلم الجديد إلى بيانات البلاغ
-                        reportData['receiver_uid'] =
-                            FirebaseAuth.instance.currentUser!.uid;
-
-                        await FirebaseFirestore.instance
-                            .collection('User_Maintenance_Message')
-                            .doc(widget.reportId)
-                            .set(reportData);
-
                         showDialog(
                           // ignore: use_build_context_synchronously
                           context: context,
@@ -251,6 +242,7 @@ class _DetailsOfTheReceivedReportState
                                             const DetailsPage(),
                                       ),
                                     );
+                                    onCertainAction();
                                     Fluttertoast.showToast(
                                       msg: "❤️ شكرا لك",
                                       toastLength: Toast.LENGTH_SHORT,
@@ -273,6 +265,23 @@ class _DetailsOfTheReceivedReportState
                             );
                           },
                         );
+                        //! إضافة البلاغ إلى قسم تقنية المعلومات باستخدام بيانات البلاغ المسترجعة من Firestore
+                        Map<String, dynamic> reportData =
+                            snapshot.data!.data() as Map<String, dynamic>;
+
+                        // قم بإضافة معرف المستخدم (UID) للمستلم الجديد إلى بيانات البلاغ
+                        reportData['receiver_uid'] =
+                            FirebaseAuth.instance.currentUser!.uid;
+
+                        await FirebaseFirestore.instance
+                            .collection('User_Maintenance_Message')
+                            .doc(widget.reportId)
+                            .set(reportData);
+
+                        await FirebaseFirestore.instance
+                            .collection('IT_Reports_Received')
+                            .doc(widget.reportId)
+                            .delete();
 
                         // حذف البلاغ من قسم الدعم الفني
                         await FirebaseFirestore.instance
@@ -297,7 +306,7 @@ class _DetailsOfTheReceivedReportState
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

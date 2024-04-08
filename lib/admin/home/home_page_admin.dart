@@ -278,18 +278,18 @@ class _AdminHomePageState extends State<AdminHomePage> {
                     color: Colors.white),
               ),
               GButton(
-                icon: Icons.paste_outlined,
+                icon: Icons.person_search_outlined,
                 iconColor: Colors.white,
                 iconActiveColor: Colors.tealAccent,
-                text: 'التقارير',
+                text: 'المستخدمين',
                 textStyle: TextStyle(
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
               GButton(
-                icon: Icons.important_devices_rounded,
-                text: 'الأجهزة',
+                icon: Icons.person_sharp,
+                text: 'موظفي الدعم',
                 iconColor: Colors.white,
                 iconActiveColor: Colors.tealAccent,
                 textStyle: TextStyle(

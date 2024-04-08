@@ -1,4 +1,5 @@
 import 'package:first_time/Auth/reset_password.dart';
+import 'package:first_time/Auth/signup_page.dart';
 import 'package:first_time/admin/Auth/admin_login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -346,11 +347,22 @@ class LoginPage extends StatelessWidget {
                           color: Color(0xFF0F92EF)),
                     ),
                   ),
-                  const Text(
-                    '',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Cario',
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignUpPage(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      'حساب جديد',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Cario',
+                          fontSize: 16,
+                          color: Color(0xFF0F92EF)),
                     ),
                   ),
                 ],

@@ -67,7 +67,7 @@ class _UserMintinesState extends State<UserMintines> {
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('User_Maintenance_Message')
-              .where('User_uid', isEqualTo: userId?.uid)
+              .where('userUid', isEqualTo: userId?.uid)
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -108,8 +108,8 @@ class _UserMintinesState extends State<UserMintines> {
                     .format((reportData['date'] as Timestamp).toDate());
                 return ReportCard(
                   report: Report(
-                    title: reportData['title'] ??
-                        'تقرير رقم ${index + 1}', // العنوان
+                    title:
+                        reportData[''] ?? 'تقرير رقم ${index + 1}', // العنوان
                     date: formattedDate, // التاريخ المنسق
                     location: reportData['location'] ?? 'غير محدد', // الموقع
                     image: reportData['imageUrl'] ??

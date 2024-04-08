@@ -56,7 +56,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Lottie.asset(
-                'assets/animation/ppmana.json',
+                'assets/animation/green.json',
                 width: 500.0,
                 height: 230.0,
               ),
@@ -357,6 +357,3 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
     );
   }
 }
-
-final TextEditingController emailController = TextEditingController();
-final TextEditingController passwordController = TextEditingController();

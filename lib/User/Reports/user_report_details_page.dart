@@ -16,21 +16,40 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   User? userId = FirebaseAuth.instance.currentUser;
+  int _reportNumber = 0; // Initialize report number
 
   final TextEditingController locationController = TextEditingController();
   final TextEditingController deviceController = TextEditingController();
   final TextEditingController problemController = TextEditingController();
   final TextEditingController currentUserController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    _fetchLastReportNumber(); // Fetch last report number when the page initializes
+  }
+
+  // Method to fetch the last report number from Firestore
+  Future<void> _fetchLastReportNumber() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('User_Reports')
+        .orderBy('reportNumber', descending: true)
+        .limit(1)
+        .get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      _reportNumber = querySnapshot.docs.first['reportNumber'] ?? 0;
+    }
+  }
 
   void uploadReport(String location, String device, String problem) {
+    _reportNumber++; // Increment report number
     var reportData = {
-      'date':
-          FieldValue.serverTimestamp(), // هذا يستخدم الوقت من سيرفرات Firestore
+      'reportNumber': _reportNumber, // Include report number in report data
+      'date': FieldValue.serverTimestamp(),
       'location': location,
       'device': device,
       'problem': problem,
-      'User_uid': FirebaseAuth.instance.currentUser!
-          .uid, //!UID FOR THE CURRENT USER TO KNOW HOW SEND THE REPORT
+      'userUid': FirebaseAuth.instance.currentUser!.uid,
     };
 
     FirebaseFirestore.instance
@@ -39,7 +58,7 @@ class _DetailsPageState extends State<DetailsPage> {
         .then((documentReference) {
       // print('Document added with ID: ${documentReference.id}');
     }).catchError((e) {
-      // print(e);
+      // print('Error adding document: $e');
     });
   }
 

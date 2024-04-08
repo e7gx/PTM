@@ -242,7 +242,7 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                     ),
                     const SizedBox(height: 50),
                     const Text(
-                      'رقم الجهاز او رقم البلاغ:',
+                      'رقم البلاغ:',
                       style: TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
@@ -252,9 +252,13 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      reportData['device'] ?? 'لا يوجد وصف متاح.',
-                      style:
-                          const TextStyle(fontSize: 16, color: Colors.black87),
+                      reportData['reportNumber'].toString(),
+                      style: const TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
                     ),
                     const SizedBox(height: 10),
                     // النصوص والمحتويات الأخرى تأتي هنا

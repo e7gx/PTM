@@ -55,7 +55,7 @@ class _LoginPageUserState extends State<LoginPageUser> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Lottie.asset(
-                'assets/animation/ppmana.json',
+                'assets/animation/green.json',
                 width: 500.0,
                 height: 230.0,
               ),
@@ -63,9 +63,9 @@ class _LoginPageUserState extends State<LoginPageUser> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  style: const TextStyle(color: Colors.tealAccent),
+                  style: const TextStyle(color: Colors.teal),
                   controller: emailController,
-                  cursorColor: Colors.cyan,
+                  cursorColor: Colors.teal,
                   decoration: const InputDecoration(
                     filled: true,
                     // fillColor: Color.fromARGB(255, 248, 248, 248),
@@ -95,10 +95,10 @@ class _LoginPageUserState extends State<LoginPageUser> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  style: const TextStyle(color: Colors.tealAccent),
+                  style: const TextStyle(color: Colors.teal),
                   controller: passwordController,
                   obscureText: obscureTextSET,
-                  cursorColor: Colors.tealAccent,
+                  cursorColor: Colors.teal,
                   decoration: InputDecoration(
                     filled: true,
                     suffix: GestureDetector(
@@ -147,7 +147,7 @@ class _LoginPageUserState extends State<LoginPageUser> {
                       );
                     },
                     style: TextButton.styleFrom(
-                      foregroundColor: Colors.tealAccent,
+                      foregroundColor: Colors.teal,
                     ),
                     child: const Text(
                       'نسيت كلمة السر؟',
@@ -363,7 +363,7 @@ class _LoginPageUserState extends State<LoginPageUser> {
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Cario',
                           fontSize: 14,
-                          color: Colors.tealAccent),
+                          color: Colors.teal),
                     ),
                   ),
                   const Text(
