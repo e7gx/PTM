@@ -57,8 +57,8 @@ class ReportDetailsITPage extends StatelessWidget {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 255, 255, 255),
-                Color.fromARGB(255, 169, 223, 255),
+                Color(0xFFFFFFFF),
+                Color(0xFFA9DFFF),
               ],
               begin: Alignment.topRight,
               end: Alignment.bottomCenter,
@@ -96,7 +96,7 @@ class ReportDetailsITPage extends StatelessWidget {
                   children: [
                     // الصورة في الأعلى
                     Lottie.asset(
-                      'assets/animation/reportsman.json',
+                      'assets/animation/green.json',
                       width: 400,
                       height: 300, //  الارتفاع
                       fit: BoxFit.contain,
@@ -111,14 +111,35 @@ class ReportDetailsITPage extends StatelessWidget {
                         color: Color.fromARGB(255, 15, 146, 239),
                       ),
                     ),
+
                     const SizedBox(height: 10),
                     Text(
-                      reportData['user_report_num'] ?? 'لا يوجد وصف متاح.',
+                      reportData['reportNumber'].toString(),
                       style:
                           const TextStyle(fontSize: 16, color: Colors.black87),
                     ),
                     const SizedBox(height: 10),
-                    // النصوص والمحتويات الأخرى تأتي هنا
+
+                    const Text(
+                      'رقم الجهاز:',
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 15, 146, 239),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      reportData['device'] ?? 'لا يوجد وصف متاح.',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                        fontFamily: 'Cario',
+                      ),
+                    ),
+
+                    const SizedBox(height: 10),
                     const Text(
                       'تاريخ التقرير:',
                       style: TextStyle(
@@ -156,17 +177,37 @@ class ReportDetailsITPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     const Text(
+                      'وصف المشكلة:',
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF0F92EF),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      reportData['problem'] ?? 'لا يوجد وصف متاح.',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                        fontFamily: 'Cario',
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+
+                    const Text(
                       'حل المشكلة:',
                       style: TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 15, 146, 239),
+                        color: Color(0xFF0F92EF),
                       ),
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      reportData['it_report_solution'] ?? 'لا يوجد وصف متاح.',
+                      reportData['solution'] ?? 'لا يوجد وصف متاح.',
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black87,

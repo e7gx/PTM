@@ -152,32 +152,28 @@ class ReportCard extends StatelessWidget {
             return const Icon(Icons.image, size: 100.0);
           },
         ),
-        title: Center(
-          child: Text(
-            report.title, textAlign: TextAlign.center,
-// عنوان التقرير
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Cario',
-              fontSize: 16,
-              color: Colors.black,
-            ),
+        title: Text(
+          report.title, textAlign: TextAlign.center,
+          // عنوان التقرير
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Cario',
+            fontSize: 16,
+            color: Colors.black,
           ),
         ),
-        subtitle: Center(
-          child: SafeArea(
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(left: 4, right: 4, bottom: 10, top: 4),
-              child: Text(
-                'التاريخ: ${report.date}\nالموقع: ${report.location}',
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Cario',
-                    fontSize: 12,
-                    color: Colors.black54),
-              ),
+        subtitle: SafeArea(
+          child: Padding(
+            padding:
+                const EdgeInsets.only(left: 4, right: 4, bottom: 10, top: 4),
+            child: Text(
+              'التاريخ: ${report.date}',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Cario',
+                  fontSize: 12,
+                  color: Colors.black54),
             ),
           ),
         ),

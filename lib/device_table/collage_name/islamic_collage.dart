@@ -68,6 +68,7 @@ class HistoryCollage extends StatelessWidget {
         automaticallyImplyLeading: true,
       ),
       body: Container(
+        height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -148,276 +149,279 @@ class _DeviceListState extends State<DeviceList> {
                 itemBuilder: (context, index) {
                   final device = widget.devices[index];
                   return SingleChildScrollView(
-                    child: SafeArea(
-                      child: Card(
-                        elevation: 3.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(15.0), // Rounded corners
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            ListTile(
-                              leading: Image.asset(
-                                'assets/images/uqu.png', // Replace with the device image
-                                width: 80.0, // Image size
-                                height: 80.0,
-                              ),
-                              selected: true,
-                              trailing: const Icon(
-                                Icons.location_city_sharp,
-                                color: Colors.blue,
-                                size: 30,
-                              ),
-                              title: const Text(
-                                'الموقع الرئيسي',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Cario',
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: SafeArea(
+                        child: Card(
+                          elevation: 3.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(15.0), // Rounded corners
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              ListTile(
+                                leading: Image.asset(
+                                  'assets/images/uqu.png', // Replace with the device image
+                                  width: 80.0, // Image size
+                                  height: 80.0,
+                                ),
+                                selected: true,
+                                trailing: const Icon(
+                                  Icons.location_city_sharp,
+                                  color: Colors.blue,
+                                  size: 30,
+                                ),
+                                title: const Text(
+                                  'الموقع الرئيسي',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontFamily: 'Cario',
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                subtitle: SelectableText(
+                                  device.collageName,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontSize: 12.0,
+                                      color: Colors.black87,
+                                      fontFamily: 'Cario',
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              subtitle: SelectableText(
-                                device.collageName,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontSize: 12.0,
-                                    color: Colors.black87,
+                              ListTile(
+                                leading: Image.asset(
+                                  'assets/images/uqu.png', // Replace with the device image
+                                  width: 80.0, // Image size
+                                  height: 80.0,
+                                ),
+                                selected: true,
+                                trailing: const Icon(
+                                  Icons.home_work_sharp,
+                                  color: Colors.blue,
+                                  size: 30,
+                                ),
+                                title: const Text(
+                                  'الموقع الفرعي',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
                                     fontFamily: 'Cario',
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            ListTile(
-                              leading: Image.asset(
-                                'assets/images/uqu.png', // Replace with the device image
-                                width: 80.0, // Image size
-                                height: 80.0,
-                              ),
-                              selected: true,
-                              trailing: const Icon(
-                                Icons.home_work_sharp,
-                                color: Colors.blue,
-                                size: 30,
-                              ),
-                              title: const Text(
-                                'الموقع الفرعي',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Cario',
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                subtitle: SelectableText(
+                                  ' ${device.deviceLocation}', //! Location
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontSize: 15.0,
+                                      color: Colors.black87,
+                                      fontFamily: 'Cario',
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              subtitle: SelectableText(
-                                ' ${device.deviceLocation}', //! Location
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontSize: 15.0,
-                                    color: Colors.black87,
-                                    fontFamily: 'Cario',
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            //!.....................................
+                              //!.....................................
 
-                            ListTile(
-                              leading: Image.asset(
-                                'assets/images/uqu.png', // Replace with the device image
-                                width: 80.0, // Image size
-                                height: 80.0,
-                              ),
-                              selected: true,
-                              trailing: const Icon(
-                                Icons.important_devices_rounded,
-                                color: Colors.blue,
-                                size: 30,
-                              ),
-                              title: const Text(
-                                'موديل الجهاز',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Cario',
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
+                              ListTile(
+                                leading: Image.asset(
+                                  'assets/images/uqu.png', // Replace with the device image
+                                  width: 80.0, // Image size
+                                  height: 80.0,
+                                ),
+                                selected: true,
+                                trailing: const Icon(
+                                  Icons.important_devices_rounded,
+                                  color: Colors.blue,
+                                  size: 30,
+                                ),
+                                title: const Text(
+                                  'موديل الجهاز',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontFamily: 'Cario',
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                subtitle: SelectableText(
+                                  device.brandOfDevice,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontSize: 12.0,
+                                      color: Colors.black87,
+                                      fontFamily: 'Cario',
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              subtitle: SelectableText(
-                                device.brandOfDevice,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontSize: 12.0,
-                                    color: Colors.black87,
+                              ListTile(
+                                leading: Image.asset(
+                                  'assets/images/uqu.png', // Replace with the device image
+                                  width: 80.0, // Image size
+                                  height: 80.0,
+                                ),
+                                selected: true,
+                                trailing: const Icon(
+                                  Icons.sd_storage_outlined,
+                                  color: Colors.blue,
+                                  size: 30,
+                                ),
+                                title: const Text(
+                                  'نوع المعالج',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
                                     fontFamily: 'Cario',
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            ListTile(
-                              leading: Image.asset(
-                                'assets/images/uqu.png', // Replace with the device image
-                                width: 80.0, // Image size
-                                height: 80.0,
-                              ),
-                              selected: true,
-                              trailing: const Icon(
-                                Icons.sd_storage_outlined,
-                                color: Colors.blue,
-                                size: 30,
-                              ),
-                              title: const Text(
-                                'نوع المعالج',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Cario',
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                subtitle: SelectableText(
+                                  device.deviceCpu,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontSize: 12.0,
+                                      color: Colors.black87,
+                                      fontFamily: 'Cario',
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              subtitle: SelectableText(
-                                device.deviceCpu,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontSize: 12.0,
-                                    color: Colors.black87,
+                              ListTile(
+                                leading: Image.asset(
+                                  'assets/images/uqu.png', // Replace with the device image
+                                  width: 80.0, // Image size
+                                  height: 80.0,
+                                ),
+                                selected: true,
+                                trailing: const Icon(
+                                  Icons.storage_rounded,
+                                  color: Colors.blue,
+                                  size: 30,
+                                ),
+                                title: const Text(
+                                  'القرص الصلب ',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
                                     fontFamily: 'Cario',
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            ListTile(
-                              leading: Image.asset(
-                                'assets/images/uqu.png', // Replace with the device image
-                                width: 80.0, // Image size
-                                height: 80.0,
-                              ),
-                              selected: true,
-                              trailing: const Icon(
-                                Icons.storage_rounded,
-                                color: Colors.blue,
-                                size: 30,
-                              ),
-                              title: const Text(
-                                'القرص الصلب ',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Cario',
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                subtitle: SelectableText(
+                                  device.deviceHarddisk,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontSize: 12.0,
+                                      color: Colors.black87,
+                                      fontFamily: 'Cario',
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              subtitle: SelectableText(
-                                device.deviceHarddisk,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontSize: 12.0,
-                                    color: Colors.black87,
+                              ListTile(
+                                leading: Image.asset(
+                                  'assets/images/uqu.png', // Replace with the device image
+                                  width: 80.0, // Image size
+                                  height: 80.0,
+                                ),
+                                selected: true,
+                                trailing: const Icon(
+                                  Icons.handyman_rounded,
+                                  color: Colors.blue,
+                                  size: 30,
+                                ),
+                                title: const Text(
+                                  'عنوان ماك',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
                                     fontFamily: 'Cario',
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            ListTile(
-                              leading: Image.asset(
-                                'assets/images/uqu.png', // Replace with the device image
-                                width: 80.0, // Image size
-                                height: 80.0,
-                              ),
-                              selected: true,
-                              trailing: const Icon(
-                                Icons.handyman_rounded,
-                                color: Colors.blue,
-                                size: 30,
-                              ),
-                              title: const Text(
-                                'عنوان ماك',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Cario',
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                subtitle: SelectableText(
+                                  device.macAddress,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontSize: 12.0,
+                                      color: Colors.black87,
+                                      fontFamily: 'Cario',
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              subtitle: SelectableText(
-                                device.macAddress,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontSize: 12.0,
-                                    color: Colors.black87,
+                              ListTile(
+                                leading: Image.asset(
+                                  'assets/images/uqu.png', // Replace with the device image
+                                  width: 80.0, // Image size
+                                  height: 80.0,
+                                ),
+                                selected: true,
+                                trailing: const Icon(
+                                  Icons.format_list_numbered_rtl,
+                                  color: Colors.blue,
+                                  size: 30,
+                                ),
+                                title: const Text(
+                                  'الرقم التسلسلي',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
                                     fontFamily: 'Cario',
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            ListTile(
-                              leading: Image.asset(
-                                'assets/images/uqu.png', // Replace with the device image
-                                width: 80.0, // Image size
-                                height: 80.0,
-                              ),
-                              selected: true,
-                              trailing: const Icon(
-                                Icons.format_list_numbered_rtl,
-                                color: Colors.blue,
-                                size: 30,
-                              ),
-                              title: const Text(
-                                'الرقم التسلسلي',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Cario',
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                subtitle: SelectableText(
+                                  device.serialNumber,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontSize: 12.0,
+                                      color: Colors.black87,
+                                      fontFamily: 'Cario',
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              subtitle: SelectableText(
-                                device.serialNumber,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontSize: 12.0,
-                                    color: Colors.black87,
+                              ListTile(
+                                leading: Image.asset(
+                                  'assets/images/uqu.png', // Replace with the device image
+                                  width: 80.0, // Image size
+                                  height: 80.0,
+                                ),
+                                selected: true,
+                                trailing: const Icon(
+                                  Icons.format_list_numbered_rtl,
+                                  color: Colors.blue,
+                                  size: 30,
+                                ),
+                                title: const Text(
+                                  'الرقم الوزاري',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
                                     fontFamily: 'Cario',
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            ListTile(
-                              leading: Image.asset(
-                                'assets/images/uqu.png', // Replace with the device image
-                                width: 80.0, // Image size
-                                height: 80.0,
-                              ),
-                              selected: true,
-                              trailing: const Icon(
-                                Icons.format_list_numbered_rtl,
-                                color: Colors.blue,
-                                size: 30,
-                              ),
-                              title: const Text(
-                                'الرقم الوزاري',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Cario',
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                subtitle: SelectableText(
+                                  device.ministryNumber,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontSize: 12.0,
+                                      color: Colors.black87,
+                                      fontFamily: 'Cario',
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              subtitle: SelectableText(
-                                device.ministryNumber,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontSize: 12.0,
-                                    color: Colors.black87,
-                                    fontFamily: 'Cario',
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

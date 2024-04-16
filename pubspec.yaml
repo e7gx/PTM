@@ -1,22 +1,12 @@
 name: first_time
 description: A new Flutter project.
 
-
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
-
-
 environment:
-  sdk: '>=3.1.0 <4.0.0'
-
-
-
-
-
-
+  sdk: ">=3.1.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -25,7 +15,7 @@ dependencies:
   introduction_screen: ^3.1.9
   convex_bottom_bar: ^3.2.0
   dots_indicator: ^2.1.2
-  fl_chart: ^0.66.1
+  fl_chart: ^0.67.0
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.13.0
   cloud_firestore: ^4.13.6
@@ -50,30 +40,23 @@ dependencies:
   pdf: ^3.10.8
   path_provider: ^2.1.2
   flutter_rating_bar: ^4.0.1
-
-
-
-  
-
-
+  flutter_localizations:
+    sdk: flutter
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.13.1"
- 
+
 flutter_native_splash:
   image: assets/images/user.png
   color: "#f9f9f9"
   image_dark: assets/images/PTM_IT.png
   color_dark: "#000000"
-  
+
 flutter_launcher_icons:
   android: true
   ios: true
   image_path: "assets/images/PTM_IT.png"
-
-
-
 
 flutter:
   uses-material-design: true
@@ -85,12 +68,10 @@ flutter:
     - assets/animation/
     - assets/animation/ppmana.json
 
-
-  fonts: 
+  fonts:
     - family: Cario
       fonts:
         - asset: assets/font/Cairo-Regular.ttf
         - asset: assets/font/Cairo-ExtraBold.ttf
-       
-
-     
+flutter_intl:
+  enabled: true

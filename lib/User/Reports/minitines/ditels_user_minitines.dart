@@ -184,6 +184,7 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
           centerTitle: true,
         ),
         body: Container(
+          height: MediaQuery.of(context).size.height,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
@@ -320,7 +321,7 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                     ),
                     const SizedBox(height: 10),
                     const Text(
-                      'وصف المشكلة:',
+                      'حل المشكلة:',
                       style: TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
@@ -330,7 +331,7 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      reportData['problem'] ?? 'لا يوجد وصف متاح.',
+                      reportData['solution'] ?? 'لا يوجد وصف متاح.',
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black87,
@@ -340,187 +341,7 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                     const SizedBox(height: 20),
 
                     Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          showModalBottomSheet(
-                            // backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(16.0),
-                              ),
-                            ),
-                            context: context,
-                            builder: (BuildContext context) {
-                              return SizedBox(
-                                height: 650,
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: [
-                                            GestureDetector(
-                                              onTap: () =>
-                                                  Navigator.pop(context),
-                                              child: const Icon(
-                                                Icons.close_rounded,
-                                                size: 40,
-                                                color: Colors.teal,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Lottie.asset(
-                                        'assets/animation/like1.json',
-                                        width: 200,
-                                        height: 150, //  الارتفاع
-                                      ),
-                                      const SizedBox(height: 10),
-                                      const Text(
-                                        'تقييم الخدمة',
-                                        style: TextStyle(
-                                          fontFamily: 'Cario',
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.teal,
-                                        ),
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 12.0),
-                                        child: Text(
-                                          ' هنا تقييم الخدمة التي قدمت لك من قبل الدعم الفني نرجو ان يكون هنالك مصداقية في عملية التقييم لكي لايؤثر الامر سلبا على الموظف',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: 'Cario',
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.teal,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 15),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: buildTextFieldTextUserRating(
-                                          userRateTextController,
-                                          'تقييم الخدمة',
-                                          'أدخل وصف الخدمة',
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Card(
-                                          color: Colors.transparent,
-                                          shadowColor: Colors.tealAccent,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(16.0),
-                                          ),
-                                          child: Center(
-                                            child: RatingBar.builder(
-                                              initialRating: 3,
-                                              minRating: 1,
-                                              direction: Axis.horizontal,
-                                              allowHalfRating: true,
-                                              itemCount: 5,
-                                              itemPadding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 4.0),
-                                              itemBuilder: (context, _) =>
-                                                  const Icon(
-                                                Icons.star,
-                                                color: Colors.yellowAccent,
-                                              ),
-                                              onRatingUpdate: (rating) {
-                                                setState(() {
-                                                  userRateNum = rating;
-                                                });
-                                                // print(userRateNum);
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 5),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            _submitReport(context);
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 75, vertical: 8),
-                                            backgroundColor: Colors.teal,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(14.0),
-                                            ),
-                                          ),
-                                          child: const Text(
-                                            'إرسال',
-                                            style: TextStyle(
-                                              fontFamily: 'Cario',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const HowAreWe(),
-                                            ),
-                                          );
-                                        },
-                                        child: const Text(
-                                          'أضغط هنا لعرض بيانات التواصل',
-                                          style: TextStyle(
-                                            fontFamily: 'Cario',
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
-                                            color: Color.fromARGB(
-                                                255, 45, 255, 234),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 10),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 50, vertical: 10),
-                          backgroundColor: Colors.teal,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14.0),
-                          ),
-                        ),
-                        child: const Text(
-                          'تقييم الخدمة',
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontFamily: 'Cario',
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
+                      child: rateService(),
                     ),
                   ],
                 ),
@@ -528,6 +349,181 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
             },
           ),
         ),
+      ),
+    );
+  }
+
+//!ويدجت خاصة بتقييم الخدمة تم ربط تقييم الخدمة ب فايربيس
+  ElevatedButton rateService() {
+    return ElevatedButton(
+      onPressed: () {
+        showModalBottomSheet(
+          // backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(16.0),
+            ),
+          ),
+          context: context,
+          builder: (BuildContext context) {
+            return SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            onTap: () => Navigator.pop(context),
+                            child: const Icon(
+                              Icons.close_rounded,
+                              size: 40,
+                              color: Colors.teal,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Lottie.asset(
+                      'assets/animation/like1.json',
+                      width: 200,
+                      height: 150, //  الارتفاع
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'تقييم الخدمة',
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.teal,
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 12.0),
+                      child: Text(
+                        ' هنا تقييم الخدمة التي قدمت لك من قبل الدعم الفني نرجو ان يكون هنالك مصداقية في عملية التقييم لكي لايؤثر الامر سلبا على الموظف',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.teal,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: buildTextFieldTextUserRating(
+                        userRateTextController,
+                        'تقييم الخدمة',
+                        'أدخل وصف الخدمة',
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Card(
+                        color: Colors.transparent,
+                        shadowColor: Colors.tealAccent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                        child: Center(
+                          child: RatingBar.builder(
+                            initialRating: 3,
+                            minRating: 1,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemPadding:
+                                const EdgeInsets.symmetric(horizontal: 4.0),
+                            itemBuilder: (context, _) => const Icon(
+                              Icons.star,
+                              color: Colors.yellowAccent,
+                            ),
+                            onRatingUpdate: (rating) {
+                              setState(() {
+                                userRateNum = rating;
+                              });
+                              // print(userRateNum);
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _submitReport(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 75, vertical: 8),
+                          backgroundColor: Colors.teal,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14.0),
+                          ),
+                        ),
+                        child: const Text(
+                          'إرسال',
+                          style: TextStyle(
+                            fontFamily: 'Cario',
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HowAreWe(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'أضغط هنا لعرض بيانات التواصل',
+                        style: TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.teal,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+        backgroundColor: Colors.teal,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14.0),
+        ),
+      ),
+      child: const Text(
+        'تقييم الخدمة',
+        style: TextStyle(
+            fontSize: 16,
+            color: Colors.white,
+            fontFamily: 'Cario',
+            fontWeight: FontWeight.bold),
       ),
     );
   }

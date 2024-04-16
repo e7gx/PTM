@@ -95,7 +95,7 @@ class _ReportsReceivedState extends State<ReportsReceived> {
                     child: Stack(
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(16.0),
                           child: Image.asset(
                             reportData['imageUrl'] ?? 'assets/images/uqu.png',
                             width: double.infinity,

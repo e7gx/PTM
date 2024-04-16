@@ -52,8 +52,8 @@ class ReportsPage extends StatelessWidget {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 169, 223, 255),
+              Color(0xFFFFFFFF),
+              Color(0xFFA9DFFF),
             ],
             begin: Alignment.topRight,
             end: Alignment.bottomCenter,
@@ -62,7 +62,7 @@ class ReportsPage extends StatelessWidget {
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('IT_Reports')
-              .where('IT_receiver_uid', isEqualTo: userId?.uid)
+              .where('receiver_uid', isEqualTo: userId?.uid)
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {

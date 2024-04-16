@@ -1,7 +1,8 @@
+import 'package:first_time/qrcode/qrcode_scanner.dart';
 import 'package:first_time/register_assets/password_assets.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
-import 'package:first_time/Auth/login_page.dart';
+import 'package:first_time/Auth/login_page_it.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/Chat/ai_chat_page.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -12,7 +13,6 @@ import 'package:first_time/controller/model/dashboard.dart';
 import 'package:first_time/device_table/device_location.dart';
 import 'package:first_time/reports/it_tasks/it_reports_received.dart';
 import 'package:first_time/reports/user_reports/device_display_reports.dart';
-import 'package:first_time/reports/it_reports/write_it_reports/it_write_solution_report.dart';
 import 'package:first_time/reports/it_reports/submited_it_reports/it_display_reports_page.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -29,7 +29,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
   final List _pages = [
     const Home(),
-    const ReportSolutionPage(),
+    const QRScannerPageIT(),
     const DisplayLocationsNavBar(),
     const ReportsReceived(),
     const DeviceReports(),
@@ -314,7 +314,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
                   );
                 },
               ),
@@ -348,10 +348,10 @@ class _WelcomePageState extends State<WelcomePage> {
                     color: Colors.white),
               ),
               GButton(
-                icon: Icons.paste_outlined,
+                icon: Icons.qr_code_scanner_outlined,
                 iconColor: Colors.white,
                 iconActiveColor: Colors.cyan,
-                text: 'التقارير',
+                text: 'Qrcode',
                 textStyle: TextStyle(
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,

@@ -1,39 +1,12 @@
+import 'dart:ui';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'package:fl_chart/fl_chart.dart';
-
-class IndividualBar {
-  final int x;
-  final double y;
-  IndividualBar({required this.x, required this.y});
-}
-
-class BarData {
-  final int sumReports;
-  final int sumProblem;
-  final int sumSloution;
-  final int sumGood;
-
-  BarData({
-    required this.sumGood,
-    required this.sumProblem,
-    required this.sumSloution,
-    required this.sumReports,
-  });
-
-  List<IndividualBar> barData = [];
-  void initalizeBarData() {
-    barData = [
-      IndividualBar(x: 0, y: sumGood.toDouble()),
-      IndividualBar(x: 10, y: sumProblem.toDouble()),
-      IndividualBar(x: 20, y: sumSloution.toDouble()),
-      IndividualBar(x: 30, y: sumReports.toDouble()),
-    ];
-  }
-}
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:lottie/lottie.dart';
 
 class TechnicalSupportStatisticsPage extends StatefulWidget {
-  const TechnicalSupportStatisticsPage({Key? key}) : super(key: key);
+  const TechnicalSupportStatisticsPage({super.key});
 
   @override
   State<TechnicalSupportStatisticsPage> createState() =>
@@ -42,26 +15,78 @@ class TechnicalSupportStatisticsPage extends StatefulWidget {
 
 class _TechnicalSupportStatisticsPageState
     extends State<TechnicalSupportStatisticsPage> {
-  List<int> dashboard = [
-    1,
-    4,
-    5,
-    5,
-    2,
-    4,
-    5,
-  ];
+  int totalReports = 0;
+  int resolvedReports = 0;
+  double resolutionRate = 0.0;
+  double averageResolutionTime = 0.0;
+  User? userId = FirebaseAuth.instance.currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    // Fetch data from Firestore
+    fetchReports();
+  }
+
+  Future<void> fetchReports() async {
+    try {
+      // Fetch reports received by the employee
+      final QuerySnapshot receivedSnapshot = await FirebaseFirestore.instance
+          .collection('IT_Reports_Received')
+          .where('receiver_uid', isEqualTo: userId?.uid)
+          .get();
+
+      // Fetch reports resolved by the employee
+      final QuerySnapshot resolvedSnapshot = await FirebaseFirestore.instance
+          .collection('IT_Reports')
+          .where('receiver_uid', isEqualTo: userId?.uid)
+          .get();
+
+      // Calculate metrics based on fetched data
+      final List<DocumentSnapshot> receivedDocs = receivedSnapshot.docs;
+      final List<DocumentSnapshot> resolvedDocs = resolvedSnapshot.docs;
+
+      // Calculate total received and resolved reports
+      totalReports = receivedDocs.length;
+      resolvedReports = resolvedDocs.length;
+
+      // Calculate resolution rate
+      if (totalReports > 0) {
+        resolutionRate = resolvedReports / totalReports;
+      }
+
+      // Calculate average resolution time
+      int totalResolutionTime = 0;
+      for (final resolvedDoc in resolvedDocs) {
+        final Timestamp resolvedTime = resolvedDoc['date'];
+        final Timestamp receivedTime = receivedDocs.firstWhere(
+          (receivedDoc) =>
+              receivedDoc['reportNumber'] == resolvedDoc['reportNumber'],
+        )['date'];
+
+        // Calculate time difference in milliseconds
+        final int difference = resolvedTime.millisecondsSinceEpoch -
+            receivedTime.millisecondsSinceEpoch;
+
+        // Convert milliseconds to days
+        final int days = (difference / (1000 * 60 * 60 * 24)).ceil();
+        totalResolutionTime += days;
+      }
+
+      if (resolvedReports > 0) {
+        // Calculate average resolution time only if there are resolved reports
+        averageResolutionTime = totalResolutionTime / resolvedReports;
+      }
+
+      // Update the UI with the calculated metrics
+      setState(() {});
+    } catch (error) {
+      // print('Error fetching reports: $error');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    BarData myBarData = BarData(
-      sumGood: dashboard[4],
-      sumProblem: dashboard[1],
-      sumSloution: dashboard[6],
-      sumReports: dashboard[5],
-    );
-    myBarData.initalizeBarData();
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -71,23 +96,19 @@ class _TechnicalSupportStatisticsPageState
           },
         ),
         title: const Text(
-          'مؤشر الدعم الفني',
-          textAlign: TextAlign.center,
+          'تقرير حل المشكلة',
           style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
             fontFamily: 'Cario',
+            color: Colors.white,
+            fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
+            fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.cyan,
-        iconTheme: const IconThemeData(color: Colors.white),
-        centerTitle: true,
-        toolbarHeight: 50,
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  Color.fromARGB(255, 105, 142, 255),
+                  Colors.teal,
                   Color(0xFF00CCFF),
                 ],
                 begin: FractionalOffset(0.0, 0.0),
@@ -96,256 +117,159 @@ class _TechnicalSupportStatisticsPageState
                 tileMode: TileMode.clamp),
           ),
         ),
+        iconTheme: const IconThemeData(color: Colors.white),
+        centerTitle: true,
+        toolbarHeight: 50,
         automaticallyImplyLeading: true,
       ), //AppBar
-      body: SingleChildScrollView(
+
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Lottie.asset(
+              'assets/animation/afterAfect.json',
+              fit: BoxFit.fill,
+            ),
+          ),
+          Positioned.fill(
+            child: Lottie.asset(
+              'assets/animation/ppmana.json',
+              fit: BoxFit.fill,
+            ),
+          ),
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+              child: const SizedBox(),
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(vertical: 10.0),
+              //   child: Lottie.asset(
+              //     'assets/animation/green.json',
+              //     width: MediaQuery.of(context).size.width,
+              //   ),
+              // ),
+              // SizedBox(
+              //   width: double.infinity,
+              //   child: _buildMetricCardRate(
+              //     title: 'تقييم الموظف',
+              //     value: '${(resolutionRate * 100).toStringAsFixed(2)}%',
+              //   ),
+              // ),
+              Expanded(
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  children: [
+                    _buildMetricCard(
+                      title: 'البلاغات المستلمة',
+                      value: totalReports.toString(),
+                    ),
+                    _buildMetricCard(
+                      title: 'البلاغات المغلقة',
+                      value: resolvedReports.toString(),
+                    ),
+                    _buildMetricCard(
+                      title: 'متوسط وقت الحل',
+                      value: '${averageResolutionTime.toStringAsFixed(2)} days',
+                    ),
+                    _buildMetricCardRate(
+                      title: 'تقييم الموظف',
+                      value: '${(resolutionRate * 100).toStringAsFixed(2)}%',
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMetricCardRate({required String title, required String value}) {
+    return SafeArea(
+      child: Card(
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(color: Colors.white70, width: 1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        shadowColor: Colors.teal,
+        elevation: 4,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SafeArea(
-              child: Card(
-                elevation: 10,
-                shadowColor: Colors.cyan,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(25.0),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(15, 15, 15, 40),
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      SizedBox(
-                        height: 200,
-                        child: BarChart(
-                          BarChartData(
-                            backgroundColor: const Color(0xFF797373),
-                            maxY:
-                                10, // Change this value according to your data
-                            minY: 0,
-                            gridData: const FlGridData(
-                              show: false,
-                            ),
-                            titlesData: const FlTitlesData(
-                              show: true,
-                              topTitles: AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
-                              ),
-                              leftTitles: AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
-                              ),
-                              rightTitles: AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
-                              ),
-                            ),
-                            borderData: FlBorderData(show: false),
-                            barGroups: myBarData.barData
-                                .map(
-                                  (data) => BarChartGroupData(
-                                    x: data.x,
-                                    barRods: [
-                                      BarChartRodData(
-                                        toY: data.y,
-                                        color: const Color(0xFF36A8F4),
-                                        width: 25,
-                                        borderRadius: BorderRadius.circular(2),
-                                        backDrawRodData:
-                                            BackgroundBarChartRodData(
-                                          show: true,
-                                          toY: 10,
-                                          color: const Color.fromARGB(
-                                              255, 229, 241, 241),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                                .toList(),
-                          ),
-                        ),
-                      ),
-                      const Text(
-                        'Dashboard',
-                        style: TextStyle(
-                          fontFamily: 'Cario',
-
-                          color: Colors.black,
-                          fontSize: 40, //  تغيير هذه القيمة لتكون الحجم
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Lottie.asset(
+                'assets/animation/like1.json',
+                height: 65,
               ),
             ),
-            const SizedBox(height: 80),
-            SafeArea(
-              child: Card(
-                elevation: 10,
-                shadowColor: Colors.cyan,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(25.0),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(15, 15, 15, 40),
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      SizedBox(
-                        height: 200,
-                        child: BarChart(
-                          BarChartData(
-                            backgroundColor: const Color(0xFF797373),
-                            maxY:
-                                10, // Change this value according to your data
-                            minY: 0,
-                            gridData: const FlGridData(
-                              show: false,
-                            ),
-                            titlesData: const FlTitlesData(
-                              show: true,
-                              topTitles: AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
-                              ),
-                              leftTitles: AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
-                              ),
-                              rightTitles: AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
-                              ),
-                            ),
-                            borderData: FlBorderData(show: false),
-                            barGroups: myBarData.barData
-                                .map(
-                                  (data) => BarChartGroupData(
-                                    x: data.x,
-                                    barRods: [
-                                      BarChartRodData(
-                                        toY: data.y,
-                                        color: const Color(0xFF36A8F4),
-                                        width: 25,
-                                        borderRadius: BorderRadius.circular(2),
-                                        backDrawRodData:
-                                            BackgroundBarChartRodData(
-                                          show: true,
-                                          toY: 10,
-                                          color: const Color.fromARGB(
-                                              255, 229, 241, 241),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                                .toList(),
-                          ),
-                        ),
-                      ),
-                      const Text(
-                        'Reports',
-                        style: TextStyle(
-                          fontFamily: 'Cario',
-
-                          color: Colors.black,
-                          fontSize: 40, //  تغيير هذه القيمة لتكون الحجم
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              value,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.black,
               ),
             ),
-            const SizedBox(height: 80),
           ],
         ),
       ),
     );
   }
+
+  Widget _buildMetricCard({required String title, required String value}) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(color: Colors.white70, width: 1),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      shadowColor: Colors.teal,
+      elevation: 4,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              'assets/images/uqu.png',
+              height: 65,
+            ),
+          ),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            value,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
-
-
-
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return Scaffold(
-// //       appBar: AppBar(
-// //         title: const Text(
-// //           'مؤشر الدعم الفني',
-// //           textAlign: TextAlign.center,
-// //           style: TextStyle(
-// //             color: Colors.white,
-// //             fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
-// //             fontWeight: FontWeight.bold,
-// //           ),
-// //         ),
-// //         backgroundColor: Colors.cyan,
-// //         iconTheme: const IconThemeData(color: Colors.white),
-// //         centerTitle: true,
-// //         toolbarHeight: 50,
-// //         flexibleSpace: Container(
-// //           decoration: const BoxDecoration(
-// //             gradient: LinearGradient(
-// //                 colors: [
-// //                   Color.fromARGB(255, 105, 142, 255),
-// //                   Color(0xFF00CCFF),
-// //                 ],
-// //                 begin: FractionalOffset(0.0, 0.0),
-// //                 end: FractionalOffset(1.0, 0.0),
-// //                 stops: [0.0, 1.0],
-// //                 tileMode: TileMode.clamp),
-// //           ),
-// //         ),
-// //         automaticallyImplyLeading: true,
-// //       ), //AppBar
-// //       body: Center(
-// //         child: Container(
-// //           decoration: const BoxDecoration(
-// //             gradient: LinearGradient(
-// //               colors: [
-// //                 Color.fromARGB(255, 255, 255, 255),
-// //                 Color.fromARGB(255, 169, 223, 255),
-// //               ],
-// //               begin: Alignment.topRight,
-// //               end: Alignment.bottomCenter,
-// //             ),
-// //           ),
-// //           child: const SingleChildScrollView(
-// //             child: Column(
-// //               mainAxisAlignment: MainAxisAlignment.start,
-// //               children: <Widget>[
-// //                 SupportStatisticCard(
-// //                   title: 'سرعة الاستجابة للبلاغ',
-// //                   value: '90%',
-// //                   icon: Icons.access_time, // أيقونة سرعة الاستجابة
-// //                   iconColor: Colors.blue, // لون أيقونة سرعة الاستجابة
-// //                 ),
-// //                 SupportStatisticCard(
-// //                   title: 'نسبة حل المشكلة',
-// //                   value: '75%',
-// //                   icon: Icons.check_circle, // أيقونة نسبة حل المشكلة
-// //                   iconColor: Colors.green,
-// //                 ),
-// //                 SupportStatisticCard(
-// //                   title: 'التقييم الشامل',
-// //                   value: '4.5/5',
-// //                   icon: Icons.star, // أيقونة التقييم الشامل
-// //                   iconColor: Colors.orange, // لون أيقونة التقييم الشامل
-// //                 ),
-// //                 SizedBox(
-// //                   height: 30,
-// //                 )
-// //               ],
-// //             ),
-// //           ),
-// //         ),
-// //       ),
-// //     );
-// //   }
-// // }

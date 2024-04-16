@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:first_time/Chat/chatgpt_api.dart';
 import 'package:http/http.dart' as http;
+import 'package:lottie/lottie.dart';
 import 'package:typewritertext/typewritertext.dart';
 
 class AiChatPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class AiChatPage extends StatefulWidget {
 class _MainPageState extends State<AiChatPage> {
   final List<Message> _messages = [];
   final TextEditingController _textEditingController = TextEditingController();
+  bool _userSentMessage = false; // Track whether the user sent a message
 
   void onSendMessage() async {
     String userMessage = _textEditingController.text;
@@ -21,8 +23,8 @@ class _MainPageState extends State<AiChatPage> {
     _textEditingController.clear();
     setState(() {
       _messages.insert(0, message);
+      _userSentMessage = true; // Update the flag when the user sends a message
     });
-
     if (userMessage.startsWith("PTM")) {
       // تحديد مجال PTM
       String response = await getResponseInPTMDomain(userMessage);
@@ -171,17 +173,14 @@ class _MainPageState extends State<AiChatPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30),
-          child: Text(
-            'مساعدي الذكي',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontFamily: 'Cario',
-              color: Colors.white,
-              fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
-              fontWeight: FontWeight.bold,
-            ),
+        centerTitle: true,
+        title: const Text(
+          'مساعدي الذكي',
+          style: TextStyle(
+            fontFamily: 'Cario',
+            color: Colors.white,
+            fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
+            fontWeight: FontWeight.bold,
           ),
         ),
         flexibleSpace: Container(
@@ -211,6 +210,38 @@ class _MainPageState extends State<AiChatPage> {
         ),
         child: Column(
           children: <Widget>[
+            // Add the explanatory message here
+            if (!_userSentMessage)
+              Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Colors.teal[100],
+                  border: Border.all(color: Colors.teal),
+                ),
+                child: Row(
+                  children: [
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        ' مرحباً! أنا مساعدك الذكي\n يرجى وصف مشكلتك، وسأحاول مساعدتك',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.teal[900],
+                          fontSize: 14,
+                          fontFamily: 'Cario', // استخدام الخط Cario هنا
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Lottie.asset(
+                      'assets/animation/like1.json',
+                      fit: BoxFit.fitWidth,
+                      height: 80,
+                    ),
+                  ],
+                ),
+              ),
+
             Expanded(
               child: ListView.builder(
                 reverse: true,

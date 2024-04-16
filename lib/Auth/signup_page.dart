@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:first_time/Auth/login_page.dart';
+import 'package:first_time/Auth/login_page_it.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -95,7 +95,7 @@ class _SignUpPageState extends State<SignUpPage> {
         if (mounted) {
           // Check if the widget is still in the tree
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => LoginPage()),
+            MaterialPageRoute(builder: (context) => const LoginPage()),
           );
         }
       } on FirebaseAuthException catch (e) {

@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:first_time/controller/routes/it_or_user.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -34,9 +37,12 @@ class OnBoardingPageState extends State<OnBoardingPage> {
     );
 
     return IntroductionScreen(
+      globalBackgroundColor:
+          Colors.teal, //! Background Color Ask Me Time aboute the Colors
+      // showDoneButton: true,
       allowImplicitScrolling: true,
       autoScrollDuration: 6500,
-      infiniteAutoScroll: false,
+      infiniteAutoScroll: true,
       globalHeader: const Align(
         alignment: Alignment.center,
         child: SafeArea(
@@ -50,14 +56,14 @@ class OnBoardingPageState extends State<OnBoardingPage> {
         height: 60,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.teal, // Set the background color to cyan
+            backgroundColor: Colors.teal, //! Set the background color to cyan
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.zero, // Set border radius to zero
             ),
           ),
-          child: const Text(
-            'هيا بنا لتجربة مختلفة',
-            style: TextStyle(
+          child: Text(
+            S.of(context).first,
+            style: const TextStyle(
                 fontFamily: 'Cario',
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
@@ -69,8 +75,8 @@ class OnBoardingPageState extends State<OnBoardingPage> {
 
       pages: [
         PageViewModel(
-          title: " من نحن؟",
-          body: "نحن طلاب من جامعة ام القرى و نهدف لمساعدة المنشات عبر تطبيقنا",
+          title: S.of(context).aboutUs,
+          body: S.of(context).aboutUsDescription,
           image: Lottie.asset(
             'assets/animation/reportGreen.json',
             fit: BoxFit.cover,
@@ -78,9 +84,8 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: " ماذا سنضيف؟ ",
-          body:
-              " يبسط إدارة مؤسستك ويزيد من كفائتها مع واجهة سهلة وأدوات متطورة لتحسين الأداء وتوفير الكثير من الوقت",
+          title: S.of(context).whatWeOffer,
+          body: S.of(context).whatWeOfferDescription,
           image: Lottie.asset(
             'assets/animation/userLog.json',
             fit: BoxFit.cover,
@@ -88,9 +93,8 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "كيف سيؤثر؟",
-          body:
-              "  يعزز التواصل والتعاون،وايضا يساعد في اتخاذ قرارات أفضل، ويزيد من الكفاءة في إدارة مؤسستك بشكل افضل",
+          title: S.of(context).howItWillAffect,
+          body: S.of(context).howItWillAffectDescription,
           image: Lottie.asset(
             'assets/animation/reportGreen.json',
             fit: BoxFit.fitWidth,
@@ -98,9 +102,8 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "جرد أجهزة المنشاة؟",
-          body:
-              "  جرد الأجهزة يسهل توثيق وتتبع أجهزة مؤسستك لتحقيق إدارة فعّالة و خدمة افضل للعميل وصيانة سهلة",
+          title: S.of(context).facilityInventory,
+          body: S.of(context).facilityInventoryDescription,
           image: Lottie.asset(
             'assets/animation/green.json',
             fit: BoxFit.fitWidth,
@@ -108,9 +111,8 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "!تواصل افضل ",
-          body:
-              "تواصل يجمع بين مزايا التواصل الفعّال وسهولة الاستخدام لتحسين التفاهم وتنسيق الجهود لزيادة الانتاجية  ",
+          title: S.of(context).betterCommunication,
+          body: S.of(context).howItWillAffectDescription,
           image: Lottie.asset(
             'assets/animation/green.json',
             fit: BoxFit.fitWidth,
@@ -118,9 +120,8 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "تسجيل الدخول  ",
-          body:
-              "سجّل دخولك إلى التطبيق  للاستفادة من التواصل الجيد ومزايا إدارة الممتلكات التقنية",
+          title: S.of(context).login,
+          body: S.of(context).loginDescription,
           image: Lottie.asset(
             'assets/animation/userLog.json',
             fit: BoxFit.contain,
@@ -139,9 +140,9 @@ class OnBoardingPageState extends State<OnBoardingPage> {
         Icons.rocket_launch_rounded,
         color: Colors.teal,
       ),
-      skip: const Text(
-        'تخطي',
-        style: TextStyle(
+      skip: Text(
+        S.of(context).Skip,
+        style: const TextStyle(
             fontFamily: 'Cario',
             fontWeight: FontWeight.w600,
             color: Colors.tealAccent),
@@ -150,9 +151,9 @@ class OnBoardingPageState extends State<OnBoardingPage> {
         Icons.rocket_launch_rounded,
         color: Colors.tealAccent,
       ),
-      done: const Text(
-        'حسنا',
-        style: TextStyle(
+      done: Text(
+        S.of(context).Okay,
+        style: const TextStyle(
             fontFamily: 'Cario',
             fontWeight: FontWeight.w600,
             color: Colors.tealAccent),
@@ -181,6 +182,31 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           side: BorderSide(color: Colors.tealAccent), //حواف
         ),
       ),
+    );
+  }
+
+  Stack afterAfectSTACK() {
+    return Stack(
+      children: [
+        Lottie.asset(
+          'assets/animation/afterAfect.json',
+          fit: BoxFit.fill,
+          height: double.infinity,
+          width: double.infinity,
+        ),
+        Lottie.asset(
+          'assets/animation/green.json',
+          fit: BoxFit.fill,
+          height: MediaQuery.sizeOf(context).height,
+          width: MediaQuery.sizeOf(context).width,
+        ),
+        Positioned.fill(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 40, sigmaY: 30),
+            child: const SizedBox(),
+          ),
+        ),
+      ],
     );
   }
 }

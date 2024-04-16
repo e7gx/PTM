@@ -7,11 +7,18 @@ import 'package:first_time/controller/routes/navbar_drawer.dart';
 import 'package:lottie/lottie.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+  bool obscureTextSET = true;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +45,7 @@ class LoginPage extends StatelessWidget {
             bottomLeft: Radius.circular(7000),
           ),
         ),
-        backgroundColor: const Color(0xFF0F92EF),
+        backgroundColor: Colors.teal,
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
@@ -50,65 +57,82 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Lottie.asset(
-                'assets/animation/ppmana.json', // تأكد من مسار الـ asset الصحيح للتحريك
+                'assets/animation/green.json',
                 width: 500.0,
                 height: 230.0,
               ),
               const SizedBox(height: 40.0),
-              TextField(
-                style: const TextStyle(
-                    color: Colors.lightBlueAccent, fontFamily: 'Cario'),
-                controller: emailController,
-                cursorColor: Colors.cyan,
-                decoration: const InputDecoration(
-                  filled: true,
-                  labelText: 'البريد الإلكتروني',
-                  labelStyle: TextStyle(
-                      fontFamily: 'Cario',
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF0F92EF)), // Cyan color for label text
-                  prefixIcon: Icon(Icons.email_outlined,
-                      color: Color(0xFF0F92EF)), // Cyan color for icon
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.teal),
+                  controller: emailController,
+                  cursorColor: Colors.teal,
+                  decoration: const InputDecoration(
+                    filled: true,
+                    // fillColor: Color.fromARGB(255, 248, 248, 248),
+                    labelText: 'البريد الإلكتروني',
+                    labelStyle: TextStyle(
+                        fontFamily: 'Cario',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.teal), // Cyan color for label text
+                    prefixIcon: Icon(Icons.email_outlined,
+                        color: Colors.teal), // Cyan color for icon
 
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.cyan), // Consistent border color
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors.teal), // Consistent border color
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.tealAccent),
+                    ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.lightBlueAccent),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blueAccent),
-                  ),
+                  keyboardType: TextInputType.emailAddress,
                 ),
-                keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 25.0),
-              TextField(
-                style: const TextStyle(
-                    color: Colors.lightBlueAccent, fontFamily: 'Cario'),
-                controller: passwordController,
-                obscureText: true,
-                cursorColor: Colors.cyan,
-                decoration: const InputDecoration(
-                  filled: true,
-
-                  labelText: 'كلمة المرور',
-                  labelStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Cario',
-                      color: Color(0xFF0F92EF)), // Cyan color for label text
-                  prefixIcon: Icon(Icons.lock_outline,
-                      color: Color(0xFF0F92EF)), // Cyan color for icon
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Color(0xFF0F92EF)), // Consistent border color
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.lightBlueAccent),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF0F92EF)),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.teal),
+                  controller: passwordController,
+                  obscureText: obscureTextSET,
+                  cursorColor: Colors.teal,
+                  decoration: InputDecoration(
+                    filled: true,
+                    suffix: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          obscureTextSET = !obscureTextSET;
+                        });
+                      },
+                      child: Icon(
+                        size: 20,
+                        obscureTextSET
+                            ? Icons.visibility_outlined
+                            : Icons.visibility_off_outlined,
+                      ),
+                    ),
+                    labelText: 'كلمة المرور',
+                    labelStyle: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Cario',
+                        color: Colors.teal), // Cyan color for label text
+                    prefixIcon: const Icon(Icons.lock_outline,
+                        color: Colors.teal), // Cyan color for icon
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors.teal), // Consistent border color
+                    ),
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.tealAccent),
+                    ),
                   ),
                 ),
               ),
@@ -125,7 +149,7 @@ class LoginPage extends StatelessWidget {
                       );
                     },
                     style: TextButton.styleFrom(
-                      foregroundColor: const Color(0xFF0F92EF),
+                      foregroundColor: Colors.teal,
                     ),
                     child: const Text(
                       'نسيت كلمة السر؟',
@@ -188,7 +212,7 @@ class LoginPage extends StatelessWidget {
                                     fontFamily: 'Cario',
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
+                                    color: Colors.teal),
                               ),
                             ),
                           ],
@@ -211,7 +235,7 @@ class LoginPage extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Lottie.asset(
-                                  'assets/animation/p2p.json', //! importint Change The Animaiton pls
+                                  'assets/animation/green.json', //! importint Change The Animaiton pls
                                   height: 200),
                               const SizedBox(height: 10),
                               const Center(
@@ -221,7 +245,7 @@ class LoginPage extends StatelessWidget {
                                       fontFamily: 'Cario',
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.blue),
+                                      color: Colors.teal),
                                 ),
                               ),
                               const SizedBox(height: 20),
@@ -230,6 +254,7 @@ class LoginPage extends StatelessWidget {
                         );
                       },
                     );
+
                     await FirebaseAuth.instance.signInWithEmailAndPassword(
                       email: email,
                       password: password,
@@ -299,7 +324,7 @@ class LoginPage extends StatelessWidget {
                                     fontFamily: 'Cario',
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
+                                    color: Colors.teal),
                               ),
                             ),
                           ],
@@ -311,7 +336,7 @@ class LoginPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 65.0),
-                  backgroundColor: const Color(0xFF0F92EF),
+                  backgroundColor: Colors.teal,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
@@ -326,27 +351,9 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20.0),
-              Row(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AdminLoginPage(),
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      'Admin',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Cario',
-                          fontSize: 16,
-                          color: Color(0xFF0F92EF)),
-                    ),
-                  ),
                   TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -361,8 +368,25 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Cario',
+                          fontSize: 18,
+                          color: Colors.teal),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AdminLoginPage(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      'Admin',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
                           fontSize: 16,
-                          color: Color(0xFF0F92EF)),
+                          color: Colors.tealAccent),
                     ),
                   ),
                 ],

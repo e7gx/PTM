@@ -1,7 +1,7 @@
 import 'package:first_time/controller/connection/dependency_injection.dart';
 import 'package:first_time/notification/notification.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:first_time/page/ppm.dart';
+import 'package:first_time/App/ppm.dart';
 import 'firebase/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -1,9 +1,13 @@
+import 'dart:ui';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:first_time/device_table/collage_name/business_collage.dart';
 import 'package:first_time/device_table/collage_name/computer_collage.dart';
 import 'package:first_time/device_table/collage_name/islamic_collage.dart';
 import 'package:first_time/device_table/collage_name/sciences_collage.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:lottie/lottie.dart';
 
 class IndividualBar {
   final int x;
@@ -61,6 +65,38 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
     6,
     6,
   ];
+  int itReportsCount = 0;
+  int itReportsReceivedCount = 0;
+  int userReportsCount = 0;
+  int AssetsCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchReportCounts();
+  }
+
+  Future<void> fetchReportCounts() async {
+    final QuerySnapshot itReportsSnapshot =
+        await FirebaseFirestore.instance.collection('IT_Reports').get();
+    final QuerySnapshot itReportsReceivedSnapshot = await FirebaseFirestore
+        .instance
+        .collection('IT_Reports_Received')
+        .get();
+    final QuerySnapshot numberOfAssetsSnapshot = await FirebaseFirestore
+        .instance
+        .collection('IT_Reports_Received')
+        .get();
+    final QuerySnapshot userReportsSnapshot =
+        await FirebaseFirestore.instance.collection('User_Reports').get();
+
+    setState(() {
+      itReportsCount = itReportsSnapshot.size;
+      itReportsReceivedCount = itReportsReceivedSnapshot.size;
+      userReportsCount = userReportsSnapshot.size;
+      AssetsCount = numberOfAssetsSnapshot.size;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,89 +112,210 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
     myBarData.initalizeBarData();
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
-              child: TextField(
-                style: const TextStyle(color: Colors.teal, fontFamily: 'Cario'),
-                cursorColor: Colors.teal,
-                textAlign: TextAlign.end,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  focusColor: Colors.teal,
-                  hintText: 'البحث عن صفحة',
-                  hintStyle: const TextStyle(
-                      fontFamily: 'Cario',
+      body: Stack(children: [
+        afterAfectSTACK(),
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
+                child: TextField(
+                  style:
+                      const TextStyle(color: Colors.teal, fontFamily: 'Cario'),
+                  cursorColor: Colors.teal,
+                  textAlign: TextAlign.end,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    focusColor: Colors.teal,
+                    hintText: 'البحث عن صفحة',
+                    hintStyle: const TextStyle(
+                        fontFamily: 'Cario',
+                        color: Colors.teal,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold),
+                    prefixIcon: const Icon(
+                      Icons.search_rounded,
                       color: Colors.teal,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold),
-                  prefixIcon: const Icon(
-                    Icons.search_rounded,
-                    color: Colors.teal,
-                  ),
-                  iconColor: Colors.teal,
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                      color: Colors.teal,
-                      width: 2,
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                      color: Colors.teal,
-                      width: 3.0,
+                    iconColor: Colors.teal,
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.teal,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide:
-                        const BorderSide(color: Colors.teal, width: 1.0),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                        color: Colors.teal,
+                        width: 3.0,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide:
+                          const BorderSide(color: Colors.teal, width: 1.0),
+                    ),
                   ),
                 ),
               ),
-            ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'بيانات الكليات',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      fontFamily: 'Cario',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'البيانات الرئيسية',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween, // Adjust as needed
-                children: [
-                  cardNumberOne(),
-                  cardNumberTwo(),
-                  cardNumberThree(),
-                  cardNumberFour(),
                 ],
               ),
-            ),
-            SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
+              const SizedBox(height: 10),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ReportCard(
+                        title: 'البلاغات المستلمه',
+                        count: itReportsReceivedCount),
+                    ReportCard(
+                        title: 'بلاغات المستخدمين', count: userReportsCount),
+                    ReportCard(title: 'تقارير الدعم', count: itReportsCount),
+                    ReportCard(title: 'عدد الاصول المسجلة', count: AssetsCount),
+                  ],
+                ),
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'بيانات الكليات',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment:
+                      MainAxisAlignment.spaceBetween, // Adjust as needed
+                  children: [
+                    cardNumberOne(),
+                    cardNumberTwo(),
+                    cardNumberThree(),
+                    cardNumberFour(),
+                  ],
+                ),
+              ),
+              SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    color: Colors.transparent,
+                    elevation: 10,
+                    shadowColor: Colors.teal,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(25.0),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          SizedBox(
+                            height: 280,
+                            child: BarChart(
+                              swapAnimationDuration: const Duration(seconds: 4),
+                              BarChartData(
+                                backgroundColor: Colors.white,
+                                maxY:
+                                    9, // Change this value according to your data
+                                minY: 2,
+
+                                gridData: const FlGridData(
+                                  show: true,
+                                ),
+                                titlesData: const FlTitlesData(
+                                  show: true,
+                                  topTitles: AxisTitles(
+                                    sideTitles: SideTitles(showTitles: false),
+                                  ),
+                                  leftTitles: AxisTitles(
+                                    sideTitles: SideTitles(showTitles: true),
+                                  ),
+                                  rightTitles: AxisTitles(
+                                    sideTitles: SideTitles(showTitles: false),
+                                  ),
+                                ),
+                                borderData: FlBorderData(show: true),
+                                barGroups: myBarData.barData
+                                    .map(
+                                      (data) => BarChartGroupData(
+                                        x: data.x,
+                                        barRods: [
+                                          BarChartRodData(
+                                            toY: data.y,
+                                            color: Colors.teal,
+                                            width: 25,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            backDrawRodData:
+                                                BackgroundBarChartRodData(
+                                              show: true,
+                                              toY: 9,
+                                              color: const Color(0xFF075A5A),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                    .toList(),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            ' عدد البلاغات الاسبوعية',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Cario',
+                              fontSize: 15, //  تغيير هذه القيمة لتكون الحجم
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 80),
+              SafeArea(
                 child: Card(
-                  color: Colors.transparent,
+                  color: Colors.black,
                   elevation: 10,
                   shadowColor: Colors.teal,
                   shape: const RoundedRectangleBorder(
@@ -176,12 +333,12 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                         SizedBox(
                           height: 280,
                           child: BarChart(
-                            swapAnimationDuration: const Duration(seconds: 4),
+                            swapAnimationDuration: const Duration(seconds: 3),
                             BarChartData(
-                              backgroundColor: Colors.white,
+                              backgroundColor: const Color(0xFFC2C2C2),
                               maxY:
                                   9, // Change this value according to your data
-                              minY: 2,
+                              minY: 1,
 
                               gridData: const FlGridData(
                                 show: true,
@@ -226,7 +383,16 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                         ),
                         const SizedBox(height: 10),
                         const Text(
-                          ' عدد البلاغات الاسبوعية',
+                          'عدد البلاغات الاجمالية',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Cario',
+                            fontSize: 15, //  تغيير هذه القيمة لتكون الحجم
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Text(
+                          'عدد البلاغات الاجماليةالاجماليةالاجماليةالاجماليةالاجماليةالاجماليةالاجماليةالاجماليةالاجماليةالاجمالية',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontFamily: 'Cario',
@@ -239,93 +405,11 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 80),
-            SafeArea(
-              child: Card(
-                color: Colors.transparent,
-                elevation: 10,
-                shadowColor: Colors.teal,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(25.0),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      SizedBox(
-                        height: 280,
-                        child: BarChart(
-                          swapAnimationDuration: const Duration(seconds: 3),
-                          BarChartData(
-                            backgroundColor: const Color(0xFFC2C2C2),
-                            maxY: 9, // Change this value according to your data
-                            minY: 1,
-
-                            gridData: const FlGridData(
-                              show: true,
-                            ),
-                            titlesData: const FlTitlesData(
-                              show: true,
-                              topTitles: AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
-                              ),
-                              leftTitles: AxisTitles(
-                                sideTitles: SideTitles(showTitles: true),
-                              ),
-                              rightTitles: AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
-                              ),
-                            ),
-                            borderData: FlBorderData(show: true),
-                            barGroups: myBarData.barData
-                                .map(
-                                  (data) => BarChartGroupData(
-                                    x: data.x,
-                                    barRods: [
-                                      BarChartRodData(
-                                        toY: data.y,
-                                        color: Colors.teal,
-                                        width: 25,
-                                        borderRadius: BorderRadius.circular(10),
-                                        backDrawRodData:
-                                            BackgroundBarChartRodData(
-                                          show: true,
-                                          toY: 9,
-                                          color: const Color(0xFF075A5A),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                                .toList(),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      const Text(
-                        'عدد البلاغات الاجمالية',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: 'Cario',
-                          fontSize: 15, //  تغيير هذه القيمة لتكون الحجم
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 80),
-          ],
+              const SizedBox(height: 80),
+            ],
+          ),
         ),
-      ),
+      ]),
     );
   }
 
@@ -568,6 +652,72 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Stack afterAfectSTACK() {
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: Lottie.asset(
+            'assets/animation/afterAfect.json',
+            fit: BoxFit.fill,
+          ),
+        ),
+        Positioned.fill(
+          child: Lottie.asset(
+            'assets/animation/ppmana.json',
+            fit: BoxFit.fill,
+          ),
+        ),
+        Positioned.fill(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+            child: const SizedBox(),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ReportCard extends StatelessWidget {
+  final String title;
+  final int count;
+
+  const ReportCard({super.key, required this.title, required this.count});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 6,
+      shadowColor: Colors.teal,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                fontFamily: 'Cario',
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Colors.teal,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              count.toString(),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+                color: Colors.teal,
+              ),
+            ),
+          ],
         ),
       ),
     );

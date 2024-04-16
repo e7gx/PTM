@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../api/chatgpt_api.dart';
 import 'package:http/http.dart' as http;
@@ -15,7 +16,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final List<Message> _messages = [];
   final TextEditingController _textEditingController = TextEditingController();
-
+  bool _userSentMessage = false;
   void onSendMessage() async {
     String userMessage = _textEditingController.text;
     Message message = Message(text: userMessage, isMe: true);
@@ -24,6 +25,7 @@ class _MainPageState extends State<MainPage> {
 
     setState(() {
       _messages.insert(0, message);
+      _userSentMessage = true; // Update the flag when the user sends a message
     });
 
     if (userMessage.startsWith("PTM")) {
@@ -177,6 +179,36 @@ class _MainPageState extends State<MainPage> {
         ),
         child: Column(
           children: <Widget>[
+            if (!_userSentMessage)
+              Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Colors.teal[100],
+                  border: Border.all(color: Colors.teal),
+                ),
+                child: Row(
+                  children: [
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        ' مرحباً! أنا مساعدك الذكي مصلح يرجى وصف مشكلتك، وسأحاول مساعدتك',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.teal[900],
+                          fontSize: 14,
+                          fontFamily: 'Cario', // استخدام الخط Cario هنا
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Lottie.asset(
+                      'assets/animation/like1.json',
+                      fit: BoxFit.fitWidth,
+                      height: 80,
+                    ),
+                  ],
+                ),
+              ),
             Expanded(
               child: ListView.builder(
                 reverse: true,

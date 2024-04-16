@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/controller/routes/navbar_drawer.dart';
 import 'package:first_time/notification/notification.dart';
-import 'package:first_time/reports/it_reports/write_it_reports/it_report_solution_details_page.dart';
+import 'package:first_time/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -18,6 +19,8 @@ class DetailsOfTheReceivedReport extends StatefulWidget {
   State<DetailsOfTheReceivedReport> createState() =>
       _DetailsOfTheReceivedReportState();
 }
+
+final TextEditingController itreportController = TextEditingController();
 
 class _DetailsOfTheReceivedReportState
     extends State<DetailsOfTheReceivedReport> {
@@ -197,6 +200,21 @@ class _DetailsOfTheReceivedReportState
                         fontFamily: 'Cario',
                       ),
                     ),
+                    const SizedBox(height: 34),
+                    const SafeArea(
+                      child: Text(
+                        'يرجى ارفاق تفاصيل حل المشكلة',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Cario',
+                            fontSize: 20,
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    buildTextFieldITReports(
+                        itreportController, 'حل المشكلة', 'أدخل حل المشكلة'),
                     const SizedBox(height: 25),
                     // حدث عند الضغط على زر "نقل البلاغ إلى قسم تقنية المعلومات"
                     ElevatedButton(
@@ -239,7 +257,7 @@ class _DetailsOfTheReceivedReportState
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            const DetailsPage(),
+                                            const WelcomePage(),
                                       ),
                                     );
                                     onCertainAction();
@@ -266,24 +284,32 @@ class _DetailsOfTheReceivedReportState
                           },
                         );
                         //! إضافة البلاغ إلى قسم تقنية المعلومات باستخدام بيانات البلاغ المسترجعة من Firestore
+                        // Fetch the report data
                         Map<String, dynamic> reportData =
                             snapshot.data!.data() as Map<String, dynamic>;
-
-                        // قم بإضافة معرف المستخدم (UID) للمستلم الجديد إلى بيانات البلاغ
+                        // Add the current user's UID to the report data
                         reportData['receiver_uid'] =
                             FirebaseAuth.instance.currentUser!.uid;
 
+                        // Retrieve the solution entered in the text field
+                        String solution = itreportController.text;
+
+                        // Add the solution to the report data
+                        reportData['solution'] = solution;
+
+                        // Update the report in the User_Maintenance_Message collection
                         await FirebaseFirestore.instance
                             .collection('User_Maintenance_Message')
                             .doc(widget.reportId)
                             .set(reportData);
 
-                        await FirebaseFirestore.instance
-                            .collection('IT_Reports_Received')
-                            .doc(widget.reportId)
-                            .delete();
+                        // Update the report in the IT_Reports collection
 
-                        // حذف البلاغ من قسم الدعم الفني
+                        await FirebaseFirestore.instance
+                            .collection('IT_Reports')
+                            .doc(widget.reportId)
+                            .set(reportData);
+                        // Delete the report from the IT_Reports_Received collection
                         await FirebaseFirestore.instance
                             .collection('IT_Reports_Received')
                             .doc(widget.reportId)

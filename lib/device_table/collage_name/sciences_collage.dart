@@ -68,6 +68,7 @@ class SciencesCollage extends StatelessWidget {
         automaticallyImplyLeading: true,
       ),
       body: Container(
+        height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [

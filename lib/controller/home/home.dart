@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,113 +28,137 @@ class _HomeState extends State<Home> {
 
   SingleChildScrollView buildBody() {
     return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2),
-            child: TextField(
-              style: const TextStyle(color: Colors.teal, fontFamily: 'Cario'),
-              cursorColor: Colors.teal,
-              textAlign: TextAlign.end,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                focusColor: Colors.teal,
-                hintText: 'البحث عن صفحة',
-                hintStyle: const TextStyle(
-                    fontFamily: 'Cario',
-                    color: Colors.blue,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold),
-                prefixIcon: const Icon(
-                  Icons.search_rounded,
-                  color: Colors.blue,
-                ),
-                iconColor: Colors.blue,
-                border: OutlineInputBorder(
-                  borderSide: const BorderSide(
-                    color: Colors.blue,
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Color(0xFF0F92EF),
-                    width: 3.0,
-                  ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide:
-                      const BorderSide(color: Color(0xFF0F92EF), width: 1.0),
-                ),
-              ),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Lottie.asset(
+              'assets/animation/afterAfect.json',
+              fit: BoxFit.fill,
             ),
           ),
-
-          //!1111111111111111111111111  Card Number One   1111111111111111111111111111111111111111111111111111
-
-          const Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                '\t⚡🔧 بلاغات اليوم ',
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                    fontFamily: 'Cario',
-                    color: Color(0xFF0099FF),
-                    fontSize: 23,
-                    fontWeight: FontWeight.bold),
+          Positioned.fill(
+            child: Lottie.asset(
+              'assets/animation/ppmana.json',
+              fit: BoxFit.fill,
+            ),
+          ),
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+              child: const SizedBox(),
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(height: 20),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2),
+                child: TextField(
+                  style:
+                      const TextStyle(color: Colors.teal, fontFamily: 'Cario'),
+                  cursorColor: Colors.teal,
+                  textAlign: TextAlign.end,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    focusColor: Colors.teal,
+                    hintText: 'البحث عن صفحة',
+                    hintStyle: const TextStyle(
+                        fontFamily: 'Cario',
+                        color: Colors.blue,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold),
+                    prefixIcon: const Icon(
+                      Icons.search_rounded,
+                      color: Colors.blue,
+                    ),
+                    iconColor: Colors.blue,
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.blue,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                        color: Color(0xFF0F92EF),
+                        width: 3.0,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                          color: Color(0xFF0F92EF), width: 1.0),
+                    ),
+                  ),
+                ),
               ),
-              SizedBox(height: 50),
+
+              //!1111111111111111111111111  Card Number One   1111111111111111111111111111111111111111111111111111
+
+              const Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    '\t⚡🔧 بلاغات اليوم ',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                        fontFamily: 'Cario',
+                        color: Color(0xFF0099FF),
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 50),
+                ],
+              ),
+              const SizedBox(height: 10),
+
+              buildSlideViewTwo(),
+
+              const SizedBox(height: 20),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    '🚀 صيانتي اليوم',
+                    style: TextStyle(
+                        fontFamily: 'Cario',
+                        color: Color(0xFF0099FF),
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ), //! debugPrint(عد
+              //!222222222222222222222222   Card Number Two   2222222222222222222222222222222222222222222222222222
+
+              buildSlideView(),
+
+              const Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    '\t📑📝 التقارير ',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                        fontFamily: 'Cario',
+                        color: Color(0xFF0099FF),
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 30),
+                ],
+              ),
+              buildSlideViewThree(),
+              const SizedBox(height: 30),
             ],
           ),
-          const SizedBox(height: 10),
-
-          buildSlideViewTwo(),
-
-          const SizedBox(height: 20),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                '🚀 صيانتي اليوم',
-                style: TextStyle(
-                    fontFamily: 'Cario',
-                    color: Color(0xFF0099FF),
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
-          ), //! debugPrint(عد
-          //!222222222222222222222222   Card Number Two   2222222222222222222222222222222222222222222222222222
-
-          buildSlideView(),
-
-          const Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                '\t📑📝 التقارير ',
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                    fontFamily: 'Cario',
-                    color: Color(0xFF0099FF),
-                    fontSize: 23,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 30),
-            ],
-          ),
-          buildSlideViewThree(),
-          const SizedBox(height: 30),
         ],
       ),
     );
@@ -296,7 +322,7 @@ class _HomeState extends State<Home> {
       child: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('IT_Reports')
-            .where('IT_receiver_uid', isEqualTo: userId?.uid)
+            .where('receiver_uid', isEqualTo: userId?.uid)
             .limit(3) // الحصول على آخر ثلاثة بلاغات فقط
             .snapshots(),
         builder: (context, snapshot) {
@@ -334,7 +360,7 @@ class _HomeState extends State<Home> {
             return SlideData(
               image: 'assets/images/uqu.png',
               title: data['location'] ?? 'جهاز غير معروف',
-              content: data['it_report_solution'] ?? 'مشكلة غير معروفة',
+              content: data['solution'] ?? 'مشكلة غير معروفة',
             );
           }).toList();
 

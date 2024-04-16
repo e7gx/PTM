@@ -28,7 +28,7 @@ class NetworkController extends GetxController {
           isDismissible: false,
           forwardAnimationCurve: Curves.easeOutBack,
           reverseAnimationCurve: Curves.linearToEaseOut,
-          backgroundColor: Colors.lightBlueAccent,
+          backgroundColor: Colors.redAccent,
           duration: const Duration(days: 1),
           icon: const Icon(
             Icons.wifi_off_sharp,

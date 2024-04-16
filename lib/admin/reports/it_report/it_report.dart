@@ -78,93 +78,145 @@ class ITReportDetailsAdminPage extends StatelessWidget {
               ));
             }
             var reportData = snapshot.data!.data() as Map<String, dynamic>;
-            return SingleChildScrollView(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // الصورة في الأعلى
-                  Lottie.asset(
-                    'assets/animation/userLog2.json',
-                    width: 400,
-                    height: 300, //  الارتفاع
-                    fit: BoxFit.contain,
-                  ),
-                  const SizedBox(height: 0),
-                  const Text(
-                    'رقم البلاغ:',
-                    style: TextStyle(
-                      fontFamily: 'Cario',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.teal,
+            return Container(
+              height: MediaQuery.of(context).size.height,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.white,
+                    Colors.tealAccent,
+                  ],
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // الصورة في الأعلى
+                    Lottie.asset(
+                      'assets/animation/userLog2.json',
+                      width: 400,
+                      height: 300, //  الارتفاع
+                      fit: BoxFit.contain,
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    reportData['user_report_num'] ?? 'لا يوجد وصف متاح.',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Cario',
+                    const SizedBox(height: 0),
+                    const Text(
+                      'رقم البلاغ:',
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 15, 146, 239),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  // النصوص والمحتويات الأخرى تأتي هنا
-                  const Text(
-                    'تاريخ التقرير:',
-                    style: TextStyle(
-                      fontFamily: 'Cario',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.teal,
+
+                    const SizedBox(height: 10),
+                    Text(
+                      reportData['reportNumber'].toString(),
+                      style:
+                          const TextStyle(fontSize: 16, color: Colors.black87),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    DateFormat('dd/MM/yyyy')
-                        .format((reportData['date'] as Timestamp).toDate()),
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Cario',
+                    const SizedBox(height: 10),
+
+                    const Text(
+                      'رقم الجهاز:',
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 15, 146, 239),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'الموقع:',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Cario',
-                      fontWeight: FontWeight.bold,
-                      color: Colors.teal,
+                    const SizedBox(height: 10),
+                    Text(
+                      reportData['device'] ?? 'لا يوجد وصف متاح.',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                        fontFamily: 'Cario',
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    '${reportData['location']}',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Cario',
+
+                    const SizedBox(height: 10),
+                    const Text(
+                      'تاريخ التقرير:',
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 15, 146, 239),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'حل المشكلة:',
-                    style: TextStyle(
-                      fontFamily: 'Cario',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.teal,
+                    const SizedBox(height: 10),
+                    Text(
+                      DateFormat('dd/MM/yyyy')
+                          .format((reportData['date'] as Timestamp).toDate()),
+                      style:
+                          const TextStyle(fontSize: 16, color: Colors.black87),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    reportData['it_report_solution'] ?? 'لا يوجد وصف متاح.',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Cario',
+                    const SizedBox(height: 10),
+                    const Text(
+                      'الموقع:',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Cario',
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 15, 146, 239),
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 10),
+                    Text(
+                      '${reportData['location']}',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                        fontFamily: 'Cario',
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'وصف المشكلة:',
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF0F92EF),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      reportData['problem'] ?? 'لا يوجد وصف متاح.',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                        fontFamily: 'Cario',
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+
+                    const Text(
+                      'حل المشكلة:',
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF0F92EF),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      reportData['solution'] ?? 'لا يوجد وصف متاح.',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                        fontFamily: 'Cario',
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           },
