@@ -1,13 +1,12 @@
-import 'dart:ui';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:first_time/device_table/collage_name/business_collage.dart';
 import 'package:first_time/device_table/collage_name/computer_collage.dart';
 import 'package:first_time/device_table/collage_name/islamic_collage.dart';
 import 'package:first_time/device_table/collage_name/sciences_collage.dart';
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'dart:ui';
 
 class IndividualBar {
   final int x;
@@ -392,7 +391,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                           ),
                         ),
                         const Text(
-                          'عدد البلاغات الاجماليةالاجماليةالاجماليةالاجماليةالاجماليةالاجماليةالاجماليةالاجماليةالاجماليةالاجمالية',
+                          'عدد البلاغات الاجمالية\nعدد البلاغات الإجمالية يُظهر عدد البلاغات الكلي التي تم تسجيلها أو تلقيها في نطاق معين، ويُستخدم هذا الرقم لتقييم حجم الأنشطة أو المشكلات التي تحتاج إلى متابعة أو حل في النظام أو التطبيق',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontFamily: 'Cario',

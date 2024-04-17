@@ -4,9 +4,9 @@ import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:first_time/reports/it_tasks/it_reports_received.dart';
+// import 'package:first_time/reports/it_tasks/it_reports_received.dart';
 import 'package:first_time/controller/home/display_slide_homepage.dart';
-import 'package:first_time/reports/user_reports/device_display_reports.dart';
+// import 'package:first_time/reports/user_reports/device_display_reports.dart';
 import 'package:first_time/reports/it_reports/submited_it_reports/it_display_reports_page.dart';
 
 class Home extends StatefulWidget {
@@ -217,19 +217,10 @@ class _HomeState extends State<Home> {
             controller: _pageController,
             itemCount: slides.length,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const DeviceReports()),
-                  );
-                },
-                child: SlideWidget(
-                  image: slides[index].image,
-                  title: slides[index].title,
-                  content: slides[index].content,
-                ),
+              return SlideWidget(
+                image: slides[index].image,
+                title: slides[index].title,
+                content: slides[index].content,
               );
             },
           );
@@ -293,19 +284,10 @@ class _HomeState extends State<Home> {
             controller: _pageController,
             itemCount: slides.length,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ReportsReceived()),
-                  );
-                },
-                child: SlideWidgetTwo(
-                  image: slides[index].image,
-                  title: slides[index].title,
-                  // content: slides[index].content,
-                ),
+              return SlideWidgetTwo(
+                image: slides[index].image,
+                title: slides[index].title,
+                // content: slides[index].content,
               );
             },
           );
