@@ -7,6 +7,7 @@ import 'package:first_time/admin/reports/user_report/user_reports.dart';
 import 'package:first_time/register_assets/register_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AdminHomePage extends StatefulWidget {
   const AdminHomePage({super.key});
@@ -236,10 +237,13 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   size: 36.0,
                   color: Colors.teal,
                 ),
-                onTap: () {
-                  // Update the state of the app
-
+                onTap: () async {
+                  final SharedPreferences sharedPreferences =
+                      await SharedPreferences.getInstance();
+                  sharedPreferences
+                      .remove('isLoggedIn'); // Remove saved login status
                   Navigator.pushReplacement(
+                    // ignore: use_build_context_synchronously
                     context,
                     MaterialPageRoute(
                         builder: (context) => const AdminLoginPage()),

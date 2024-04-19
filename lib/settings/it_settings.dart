@@ -1,63 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-class SupportStatisticCard extends StatelessWidget {
-  final String title;
-  final String value;
-  final IconData icon;
-  final Color iconColor;
-
-  const SupportStatisticCard({
-    super.key,
-    required this.title,
-    required this.value,
-    required this.icon,
-    required this.iconColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      elevation: 5,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(60),
-        child: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Icon(
-                  icon,
-                  color: iconColor,
-                  size: 40,
-                ),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Text(
-              value,
-              style: const TextStyle(
-                color: Colors.blue,
-                fontSize: 16,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class MyDataPage extends StatefulWidget {
   const MyDataPage({super.key});
@@ -67,14 +10,54 @@ class MyDataPage extends StatefulWidget {
 }
 
 class _MyDataPageState extends State<MyDataPage> {
-  final UserData userData = UserData(
-    jobNumber: '441003568',
-    fullName: 'Abdullah Al-Ghamdi',
-    organization: 'جامعة ام القرى',
-    position: 'فني صيانة الاجهزة',
-    email: 's441003562@st.uqu.edu.sa',
-    username: 'abdulla2001',
-  );
+  String firstName = ''; // Variable to store the user's first name
+  String lastName = ''; // Variable to store the user's last name
+  String fullName = ''; // Variable to store the user's full name
+  String email = ''; // Variable to store the user's email
+  String data = ''; // Variable to store the user's email
+
+  @override
+  void initState() {
+    super.initState();
+    fetchNameFromFirestore();
+  }
+
+  Future<void> fetchNameFromFirestore() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        String uid = user.uid;
+
+        QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+            .instance
+            .collection('Users_IT')
+            .where('uid', isEqualTo: uid)
+            .limit(1)
+            .get();
+
+        if (snapshot.docs.isNotEmpty) {
+          // Get the first document in the snapshot
+          DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+              snapshot.docs.first;
+
+          // Retrieve the user's first name from the document
+          String firstName = documentSnapshot.data()?['first name'] ?? '';
+          String lastName = documentSnapshot.data()?['last name'] ?? '';
+          String email = documentSnapshot.data()?['email'] ?? 'opss';
+
+          setState(() {
+            fullName = '$firstName $lastName ';
+            data = '$email ';
+          });
+        } else {
+          // print('User data not found');
+        }
+      }
+    } catch (e) {
+      // print('Error fetching user data: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,20 +69,20 @@ class _MyDataPageState extends State<MyDataPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          'بيانات المستخدم',
-          style: TextStyle(
-            fontFamily: 'Cario', color: Colors.white,
-            fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: const Text('بيانات المستخدم '),
+        centerTitle: true,
+        titleTextStyle: const TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontFamily: 'Cario',
+            fontWeight: FontWeight.bold),
+        iconTheme: const IconThemeData(color: Colors.white),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  Color.fromARGB(255, 105, 142, 255),
-                  Color(0xFF00CCFF),
+                  Colors.teal,
+                  Colors.tealAccent,
                 ],
                 begin: FractionalOffset(0.0, 0.0),
                 end: FractionalOffset(1.0, 0.0),
@@ -107,43 +90,25 @@ class _MyDataPageState extends State<MyDataPage> {
                 tileMode: TileMode.clamp),
           ),
         ),
-        iconTheme: const IconThemeData(color: Colors.white),
-        centerTitle: true,
-        toolbarHeight: 50,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(5000),
-            bottomLeft: Radius.circular(0),
-          ),
-        ),
-        automaticallyImplyLeading: true,
-      ), //AppBar
+      ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             UserAvatarInfoCard(
               imageUrl: 'assets/images/chat.png',
-              fullName: userData.fullName,
-              jobTitle: userData.position,
+              name: fullName,
+              lastNameWidget: "مستفيد",
             ),
             UserDetailTile(
               title: 'اسم المستخدم',
-              value: userData.username,
+              value: fullName,
               icon: Icons.person_2_rounded,
             ),
             UserDetailTile(
-              title: 'الرقم الوظيفي',
-              value: userData.jobNumber,
-              icon: Icons.work,
-            ),
-            UserDetailTile(
-              title: 'الموسسة',
-              value: userData.organization,
-              icon: Icons.business,
-            ),
-            UserDetailTile(
               title: 'البريد الإلكتروني',
-              value: userData.email,
+              value: data,
               icon: Icons.email,
             ),
           ],
@@ -155,14 +120,14 @@ class _MyDataPageState extends State<MyDataPage> {
 
 class UserAvatarInfoCard extends StatelessWidget {
   final String imageUrl;
-  final String fullName;
-  final String jobTitle;
+  final String name;
+  final String lastNameWidget;
 
   const UserAvatarInfoCard({
     super.key,
     required this.imageUrl,
-    required this.fullName,
-    required this.jobTitle,
+    required this.name,
+    required this.lastNameWidget,
   });
 
   @override
@@ -174,8 +139,6 @@ class UserAvatarInfoCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ClipRRect(
             borderRadius: const BorderRadius.only(
@@ -185,30 +148,28 @@ class UserAvatarInfoCard extends StatelessWidget {
             child: Image.asset(
               imageUrl,
               width: double.infinity,
-              height: 350,
-              fit: BoxFit.fill,
+              height: 300,
+              fit: BoxFit.contain,
             ),
           ),
           ListTile(
             title: Center(
               child: Text(
-                fullName,
+                name,
                 style: const TextStyle(
-                  fontFamily: 'Cario',
-                  color: Colors.blue,
-                  fontSize: 24,
+                  fontSize: 20,
+                  color: Colors.teal,
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'Cario',
                 ),
               ),
             ),
             subtitle: Center(
               child: Text(
-                jobTitle,
+                lastNameWidget,
                 style: const TextStyle(
+                  color: Colors.teal,
                   fontFamily: 'Cario',
-                  color: Colors.blue,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -222,47 +183,35 @@ class UserAvatarInfoCard extends StatelessWidget {
 class UserDetailTile extends StatelessWidget {
   final String title;
   final String value;
-  final IconData? icon;
 
-  const UserDetailTile({
-    super.key,
-    required this.title,
-    required this.value,
-    this.icon,
-  });
+  final IconData? icon;
+  final TextStyle? style;
+
+  const UserDetailTile(
+      {super.key,
+      required this.title,
+      required this.value,
+      this.icon,
+      this.style});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: icon != null ? Icon(icon) : null,
+      leading: icon != null
+          ? Icon(
+              icon,
+            )
+          : null,
       title: Text(
         title,
         style: const TextStyle(
-          fontFamily: 'Cario',
-          color: Colors.grey,
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
+            fontSize: 18,
+            fontFamily: 'Cario',
+            fontWeight: FontWeight.bold,
+            color: Colors.teal),
       ),
       subtitle: Text(value),
+      textColor: Colors.teal,
     );
   }
-}
-
-class UserData {
-  final String jobNumber;
-  final String fullName;
-  final String organization;
-  final String position;
-  final String email;
-  final String username;
-
-  UserData({
-    required this.jobNumber,
-    required this.fullName,
-    required this.organization,
-    required this.position,
-    required this.email,
-    required this.username,
-  });
 }

@@ -1,3 +1,4 @@
+import 'package:first_time/generated/l10n.dart';
 import 'package:first_time/qrcode/qrcode_scanner.dart';
 import 'package:first_time/register_assets/password_assets.dart';
 import 'package:lottie/lottie.dart';
@@ -14,6 +15,8 @@ import 'package:first_time/device_table/device_location.dart';
 import 'package:first_time/reports/it_tasks/it_reports_received.dart';
 import 'package:first_time/reports/user_reports/device_display_reports.dart';
 import 'package:first_time/reports/it_reports/submited_it_reports/it_display_reports_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -34,6 +37,48 @@ class _WelcomePageState extends State<WelcomePage> {
     const ReportsReceived(),
     const DeviceReports(),
   ];
+  String fullName = ''; // Variable to store the user's full name
+
+  @override
+  void initState() {
+    super.initState();
+    fetchNameFromFirestore();
+  }
+
+  Future<void> fetchNameFromFirestore() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        String uid = user.uid;
+
+        QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+            .instance
+            .collection('Users_IT')
+            .where('uid', isEqualTo: uid)
+            .limit(1)
+            .get();
+
+        if (snapshot.docs.isNotEmpty) {
+          // Get the first document in the snapshot
+          DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+              snapshot.docs.first;
+
+          // Retrieve the user's first name from the document
+          String firstName = documentSnapshot.data()?['first name'] ?? '';
+
+          setState(() {
+            fullName = firstName;
+          });
+        } else {
+          // print('User data not found');
+        }
+      }
+    } catch (e) {
+      // print('Error fetching user data: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,9 +144,9 @@ class _WelcomePageState extends State<WelcomePage> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Colors.white, // Red
-                Color(0xFFD6F7F7), // Green
-                Colors.white, // Orange
+                Colors.white,
+                Color(0xFFD6F7F7),
+                Colors.white,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -110,28 +155,41 @@ class _WelcomePageState extends State<WelcomePage> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
+              DrawerHeader(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Color(0xFFFFFFFF),
-                      Color(0xFF00CCFF),
-                      Color(0xFF00CCFF),
+                      Colors.blueAccent,
+                      Colors.lightBlue,
+                      Colors.blue,
                     ],
                     begin: Alignment.topRight,
                     end: Alignment.bottomCenter,
                   ),
                 ),
-                child: Center(
-                  child: Text(
-                    'PTM \n To Make IT Easy',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 34,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                child: Column(
+                  children: [
+                    const Text(
+                      'PTM \n To Make IT Easy',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 25,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
+                    Text(
+                      '${S.of(context).welcome} $fullName ',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 15,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
 
@@ -309,12 +367,18 @@ class _WelcomePageState extends State<WelcomePage> {
                   color: Colors.blue[800],
                 ),
                 selected: _selectedIndex == 2,
-                onTap: () {
-                  FirebaseAuth.instance.signOut();
+                onTap: () async {
+                  final SharedPreferences sharedPreferences =
+                      await SharedPreferences.getInstance();
+                  sharedPreferences
+                      .remove('isLoggedIn'); // Remove saved login status
 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                  // Navigate back to the login page
+                  // ignore: use_build_context_synchronously
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(),
+                    ),
                   );
                 },
               ),

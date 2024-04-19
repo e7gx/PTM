@@ -1,10 +1,10 @@
 import 'dart:ui';
-
 import 'package:first_time/Auth/reset_password.dart';
 import 'package:first_time/User/controller/home_page_and_bar.dart';
 import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'signup_page.dart';
 import 'package:lottie/lottie.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -21,6 +21,25 @@ class _LoginPageUserState extends State<LoginPageUser> {
 
   final TextEditingController passwordController = TextEditingController();
   bool obscureTextSET = true;
+  @override
+  void initState() {
+    super.initState();
+    checkLoginStatus();
+  }
+
+  void checkLoginStatus() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    final bool isLoggedIn = sharedPreferences.getBool('isLoggedIn') ?? false;
+
+    if (isLoggedIn) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +68,7 @@ class _LoginPageUserState extends State<LoginPageUser> {
         backgroundColor: Colors.teal,
         automaticallyImplyLeading: false,
       ),
-      body: Stack(alignment: Alignment.center, children: [
+      body: Stack(alignment: Alignment.topCenter, children: [
         Lottie.asset(
           'assets/animation/afterAfect.json',
           fit: BoxFit.fill,
@@ -97,33 +116,34 @@ class _LoginPageUserState extends State<LoginPageUser> {
                   child: Material(
                     elevation: 16,
                     shadowColor: Colors.teal,
-                    child: TextFormField(
-                      showCursor: true,
-                      style: const TextStyle(color: Colors.teal),
-                      controller: emailController,
-                      cursorColor: Colors.teal,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        labelText: S.of(context).email,
-                        labelStyle: const TextStyle(
-                            fontFamily: 'Cario',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.teal), // Cyan color for label text
-                        prefixIcon: const Icon(Icons.email_outlined,
-                            color: Colors.teal), // Cyan color for icon
-                        border: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Colors.teal), // Consistent border color
+                    borderRadius:
+                        BorderRadius.circular(10), // Set border radius here
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                          10), // Apply borderRadius to ClipRRect
+                      child: TextFormField(
+                        showCursor: true,
+                        style: const TextStyle(color: Colors.teal),
+                        controller: emailController,
+                        cursorColor: Colors.teal,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          labelText: S.of(context).email,
+                          labelStyle: const TextStyle(
+                              fontFamily: 'Cario',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.teal), // Cyan color for label text
+                          prefixIcon: const Icon(Icons.email_outlined,
+                              color: Colors.teal), // Cyan color for icon
+                          border: InputBorder.none, // Remove border here
+                          enabledBorder:
+                              InputBorder.none, // Remove enabled border here
+                          focusedBorder:
+                              InputBorder.none, // Remove focused border here
                         ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.tealAccent),
-                        ),
+                        keyboardType: TextInputType.emailAddress,
                       ),
-                      keyboardType: TextInputType.emailAddress,
                     ),
                   ),
                 ),
@@ -133,44 +153,44 @@ class _LoginPageUserState extends State<LoginPageUser> {
                   child: Material(
                     elevation: 16,
                     shadowColor: Colors.teal,
-                    child: TextFormField(
-                      style: const TextStyle(color: Colors.teal),
-                      controller: passwordController,
-                      obscureText: obscureTextSET,
-                      cursorColor: Colors.teal,
-                      decoration: InputDecoration(
-                        fillColor: Colors.white,
-
-                        filled: true,
-                        suffix: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              obscureTextSET = !obscureTextSET;
-                            });
-                          },
-                          child: Icon(
-                            size: 20,
-                            obscureTextSET
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined,
+                    borderRadius:
+                        BorderRadius.circular(10), // Set border radius here
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                          10), // Apply borderRadius to ClipRRect
+                      child: TextFormField(
+                        style: const TextStyle(color: Colors.teal),
+                        controller: passwordController,
+                        obscureText: obscureTextSET,
+                        cursorColor: Colors.teal,
+                        decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          suffix: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                obscureTextSET = !obscureTextSET;
+                              });
+                            },
+                            child: Icon(
+                              size: 20,
+                              obscureTextSET
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                            ),
                           ),
-                        ),
-                        labelText: S.of(context).password,
-                        labelStyle: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Cario',
-                            color: Colors.teal), // Cyan color for label text
-                        prefixIcon: const Icon(Icons.lock_outline,
-                            color: Colors.teal), // Cyan color for icon
-                        border: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Colors.teal), // Consistent border color
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.tealAccent),
+                          labelText: S.of(context).password,
+                          labelStyle: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Cario',
+                              color: Colors.teal), // Cyan color for label text
+                          prefixIcon: const Icon(Icons.lock_outline,
+                              color: Colors.teal), // Cyan color for icon
+                          border: InputBorder.none, // Remove border here
+                          enabledBorder:
+                              InputBorder.none, // Remove enabled border here
+                          focusedBorder:
+                              InputBorder.none, // Remove focused border here
                         ),
                       ),
                     ),
@@ -295,6 +315,11 @@ class _LoginPageUserState extends State<LoginPageUser> {
                         email: email,
                         password: password,
                       );
+
+                      final SharedPreferences sharedPreferences =
+                          await SharedPreferences.getInstance();
+                      sharedPreferences.setBool('isLoggedIn', true);
+                      checkLoginStatus();
                       // ignore: use_build_context_synchronously
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
@@ -302,6 +327,7 @@ class _LoginPageUserState extends State<LoginPageUser> {
                         ),
                       );
                     } on FirebaseAuthException catch (e) {
+                      // ignore: use_build_context_synchronously
                       String message = '${e.code}\n ${S.of(context).validData}';
                       String lottieAsset =
                           'assets/animation/WOR.json'; // مسار ملف تحريك Lottie للخطأ

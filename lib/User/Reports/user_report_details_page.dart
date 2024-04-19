@@ -6,6 +6,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../styles/style.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+const List<String> collegeList = <String>[
+  'كلية الحاسب الالي  جامعة ام القرى',
+  'كلية ادارة الاعمال جامعة ام القرى',
+  'كلية الشريعة الإسلامية جامعة ام القرى',
+  'كلية العلوم التطبيقية جامعة ام القرى'
+];
+
 class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key});
 
@@ -22,6 +29,8 @@ class _DetailsPageState extends State<DetailsPage> {
   final TextEditingController deviceController = TextEditingController();
   final TextEditingController problemController = TextEditingController();
   final TextEditingController currentUserController = TextEditingController();
+  String dropdownValue = collegeList.first;
+
   @override
   void initState() {
     super.initState();
@@ -242,6 +251,14 @@ class _DetailsPageState extends State<DetailsPage> {
                       ),
                     ),
                     const SizedBox(height: 10),
+                    DropdownMenuExample(
+                      onSelected: (String value) {
+                        setState(() {
+                          dropdownValue = value;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 20),
                     buildTextFieldLocation(
                       locationController,
                       'الموقع',
@@ -290,6 +307,82 @@ class _DetailsPageState extends State<DetailsPage> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class DropdownMenuExample extends StatefulWidget {
+  final ValueChanged<String> onSelected;
+
+  const DropdownMenuExample({Key? key, required this.onSelected})
+      : super(key: key);
+
+  @override
+  State<DropdownMenuExample> createState() => _DropdownMenuExampleState();
+}
+
+class _DropdownMenuExampleState extends State<DropdownMenuExample> {
+  String dropdownValue = collegeList.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15.0),
+        border: Border.all(
+          color: Colors.teal,
+          style: BorderStyle.solid,
+        ),
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xFFFFFFFF),
+            Colors.teal,
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+        child: DropdownButton<String>(
+          value: dropdownValue,
+          icon: const Padding(
+            padding: EdgeInsets.all(5.0),
+            child: Icon(
+              Icons.location_pin,
+              size: 30,
+              color: Colors.redAccent,
+            ),
+          ),
+          borderRadius: BorderRadius.circular(20),
+          iconSize: 24,
+          elevation: 16,
+          style: const TextStyle(color: Colors.teal),
+          underline: Container(
+            color: Colors.transparent,
+          ),
+          onChanged: (String? newValue) {
+            setState(() {
+              dropdownValue = newValue!;
+              widget.onSelected(newValue); // Notify the parent widget
+            });
+          },
+          items: collegeList.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(
+                value,
+                style: const TextStyle(
+                  fontFamily: 'Cario',
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            );
+          }).toList(),
         ),
       ),
     );

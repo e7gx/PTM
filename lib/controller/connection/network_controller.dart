@@ -15,7 +15,7 @@ class NetworkController extends GetxController {
     if (connectivityResult == ConnectivityResult.none) {
       Get.rawSnackbar(
           messageText: const Text(
-            '🛜  لايوجد اتصال بالانترنت ',
+            'لايوجد اتصال بالانترنت ',
             textAlign: TextAlign.end,
             style: TextStyle(
               fontFamily: 'Cario',

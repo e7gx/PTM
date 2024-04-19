@@ -77,9 +77,7 @@ class _SettingsPageState extends State<SettingsPage> {
               },
             ),
 
-            onTap: () async {
-              await launchUrl(Uri.parse('https://github.com/e7gx'));
-            },
+            onTap: () {},
           ),
           const Divider(), // خط فاصل بين القوائم
 

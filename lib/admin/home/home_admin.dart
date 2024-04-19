@@ -67,7 +67,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
   int itReportsCount = 0;
   int itReportsReceivedCount = 0;
   int userReportsCount = 0;
-  int AssetsCount = 0;
+  int assetsCount = 0;
 
   @override
   void initState() {
@@ -93,7 +93,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
       itReportsCount = itReportsSnapshot.size;
       itReportsReceivedCount = itReportsReceivedSnapshot.size;
       userReportsCount = userReportsSnapshot.size;
-      AssetsCount = numberOfAssetsSnapshot.size;
+      assetsCount = numberOfAssetsSnapshot.size;
     });
   }
 
@@ -190,7 +190,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                     ReportCard(
                         title: 'بلاغات المستخدمين', count: userReportsCount),
                     ReportCard(title: 'تقارير الدعم', count: itReportsCount),
-                    ReportCard(title: 'عدد الاصول المسجلة', count: AssetsCount),
+                    ReportCard(title: 'عدد الاصول المسجلة', count: assetsCount),
                   ],
                 ),
               ),

@@ -1,16 +1,63 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class MyDataPage extends StatelessWidget {
-  final UserData userData = UserData(
-    jobNumber: '441003568',
-    fullName: 'Abdullah Al-Ghamdi',
-    organization: 'جامعة ام القرى',
-    position: 'مستفيد',
-    email: 's441003562@st.uqu.edu.sa',
-    username: 'abdulla2001',
-  );
+class MyDataPage extends StatefulWidget {
+  const MyDataPage({super.key});
 
-  MyDataPage({super.key});
+  @override
+  State<MyDataPage> createState() => _MyDataPageState();
+}
+
+class _MyDataPageState extends State<MyDataPage> {
+  String firstName = ''; // Variable to store the user's first name
+  String lastName = ''; // Variable to store the user's last name
+  String fullName = ''; // Variable to store the user's full name
+  String email = ''; // Variable to store the user's email
+  String data = ''; // Variable to store the user's email
+
+  @override
+  void initState() {
+    super.initState();
+    fetchNameFromFirestore();
+  }
+
+  Future<void> fetchNameFromFirestore() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        String uid = user.uid;
+
+        QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+            .instance
+            .collection('Users_Normal')
+            .where('uid', isEqualTo: uid)
+            .limit(1)
+            .get();
+
+        if (snapshot.docs.isNotEmpty) {
+          // Get the first document in the snapshot
+          DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+              snapshot.docs.first;
+
+          // Retrieve the user's first name from the document
+          String firstName = documentSnapshot.data()?['first name'] ?? '';
+          String lastName = documentSnapshot.data()?['last name'] ?? '';
+          String email = documentSnapshot.data()?['email'] ?? 'opss';
+
+          setState(() {
+            fullName = '$firstName $lastName ';
+            data = '$email ';
+          });
+        } else {
+          // print('User data not found');
+        }
+      }
+    } catch (e) {
+      // print('Error fetching user data: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,18 +97,18 @@ class MyDataPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             UserAvatarInfoCard(
-              imageUrl: 'assets/images/ME.jpg',
-              fullName: userData.fullName,
-              jobTitle: userData.position,
+              imageUrl: 'assets/images/chat.png',
+              name: fullName,
+              lastNameWidget: "مستفيد",
             ),
             UserDetailTile(
               title: 'اسم المستخدم',
-              value: userData.username,
+              value: fullName,
               icon: Icons.person_2_rounded,
             ),
             UserDetailTile(
               title: 'البريد الإلكتروني',
-              value: userData.email,
+              value: data,
               icon: Icons.email,
             ),
           ],
@@ -73,14 +120,14 @@ class MyDataPage extends StatelessWidget {
 
 class UserAvatarInfoCard extends StatelessWidget {
   final String imageUrl;
-  final String fullName;
-  final String jobTitle;
+  final String name;
+  final String lastNameWidget;
 
   const UserAvatarInfoCard({
     super.key,
     required this.imageUrl,
-    required this.fullName,
-    required this.jobTitle,
+    required this.name,
+    required this.lastNameWidget,
   });
 
   @override
@@ -108,19 +155,21 @@ class UserAvatarInfoCard extends StatelessWidget {
           ListTile(
             title: Center(
               child: Text(
-                fullName,
+                name,
                 style: const TextStyle(
                   fontSize: 20,
                   color: Colors.teal,
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'Cario',
                 ),
               ),
             ),
             subtitle: Center(
               child: Text(
-                jobTitle,
+                lastNameWidget,
                 style: const TextStyle(
                   color: Colors.teal,
+                  fontFamily: 'Cario',
                 ),
               ),
             ),
@@ -134,6 +183,7 @@ class UserAvatarInfoCard extends StatelessWidget {
 class UserDetailTile extends StatelessWidget {
   final String title;
   final String value;
+
   final IconData? icon;
   final TextStyle? style;
 
@@ -164,22 +214,4 @@ class UserDetailTile extends StatelessWidget {
       textColor: Colors.teal,
     );
   }
-}
-
-class UserData {
-  final String jobNumber;
-  final String fullName;
-  final String organization;
-  final String position;
-  final String email;
-  final String username;
-
-  UserData({
-    required this.jobNumber,
-    required this.fullName,
-    required this.organization,
-    required this.position,
-    required this.email,
-    required this.username,
-  });
 }

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/User/Reports/minitines/user_mintines.dart';
 import 'package:flutter/material.dart';
 import 'package:first_time/User/Auth/login_page.dart';
@@ -7,6 +9,7 @@ import 'package:first_time/User/reports/user_report_first_page.dart';
 import 'package:first_time/User/data/user_data.dart';
 import 'package:first_time/User/settings/settings_page.dart';
 import 'package:first_time/User/data/how_are_we.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,15 +26,57 @@ class _HomePageState extends State<HomePage> {
     const ReportProblemPage(),
     const QRScannerPage()
   ];
+  String fullName = ''; // Variable to store the user's full name
+
+  @override
+  void initState() {
+    super.initState();
+    fetchNameFromFirestore();
+  }
+
+  Future<void> fetchNameFromFirestore() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        String uid = user.uid;
+
+        QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+            .instance
+            .collection('Users_Normal')
+            .where('uid', isEqualTo: uid)
+            .limit(1)
+            .get();
+
+        if (snapshot.docs.isNotEmpty) {
+          // Get the first document in the snapshot
+          DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+              snapshot.docs.first;
+
+          // Retrieve the user's first name from the document
+          String firstName = documentSnapshot.data()?['first name'] ?? '';
+
+          setState(() {
+            fullName = firstName;
+          });
+        } else {
+          // print('User data not found');
+        }
+      }
+    } catch (e) {
+      // print('Error fetching user data: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: false,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           textAlign: TextAlign.center,
-          '       الصفحة الرئيسية',
-          style: TextStyle(
+          "Hello, $fullName",
+          style: const TextStyle(
               color: Colors.white,
               fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
               fontWeight: FontWeight.bold,
@@ -110,7 +155,7 @@ class _HomePageState extends State<HomePage> {
                   // Then close the drawer
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MyDataPage()),
+                    MaterialPageRoute(builder: (context) => const MyDataPage()),
                   );
                 },
                 leading: const Icon(
@@ -235,11 +280,14 @@ class _HomePageState extends State<HomePage> {
                   size: 36.0,
                   color: Colors.teal,
                 ),
-                onTap: () {
-                  // Update the state of the app
-
+                onTap: () async {
+                  final SharedPreferences sharedPreferences =
+                      await SharedPreferences.getInstance();
+                  sharedPreferences
+                      .remove('isLoggedIn'); // Remove saved login status
                   // Then close the drawer
                   Navigator.pushReplacement(
+                    // ignore: use_build_context_synchronously
                     context,
                     MaterialPageRoute(
                         builder: (context) => const LoginPageUser()),

@@ -1,9 +1,9 @@
-import 'dart:ui';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/generated/l10n.dart';
+import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'dart:ui';
 
 class TechnicalSupportStatisticsPage extends StatefulWidget {
   const TechnicalSupportStatisticsPage({super.key});
@@ -95,8 +95,10 @@ class _TechnicalSupportStatisticsPageState
             Navigator.pop(context);
           },
         ),
+        centerTitle: true,
         title: const Text(
           'تقرير حل المشكلة',
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
@@ -104,25 +106,24 @@ class _TechnicalSupportStatisticsPageState
             fontWeight: FontWeight.bold,
           ),
         ),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [
-                  Colors.teal,
-                  Color(0xFF00CCFF),
-                ],
-                begin: FractionalOffset(0.0, 0.0),
-                end: FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp),
-          ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
         ),
-        iconTheme: const IconThemeData(color: Colors.white),
-        centerTitle: true,
-        toolbarHeight: 50,
-        automaticallyImplyLeading: true,
-      ), //AppBar
-
+        onPressed: () {
+          setState(() {
+            fetchReports();
+          });
+        },
+        backgroundColor: Colors.white,
+        child: const Icon(
+          Icons.refresh,
+          color: Colors.teal,
+          size: 35,
+        ),
+      ),
       body: Stack(
         children: [
           Positioned.fill(
@@ -139,7 +140,7 @@ class _TechnicalSupportStatisticsPageState
           ),
           Positioned.fill(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+              filter: ImageFilter.blur(sigmaX: 70, sigmaY: 70),
               child: const SizedBox(),
             ),
           ),
@@ -147,20 +148,6 @@ class _TechnicalSupportStatisticsPageState
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(vertical: 10.0),
-              //   child: Lottie.asset(
-              //     'assets/animation/green.json',
-              //     width: MediaQuery.of(context).size.width,
-              //   ),
-              // ),
-              // SizedBox(
-              //   width: double.infinity,
-              //   child: _buildMetricCardRate(
-              //     title: 'تقييم الموظف',
-              //     value: '${(resolutionRate * 100).toStringAsFixed(2)}%',
-              //   ),
-              // ),
               Expanded(
                 child: GridView.count(
                   crossAxisCount: 2,

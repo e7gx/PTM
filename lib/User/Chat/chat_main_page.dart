@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../api/chatgpt_api.dart';
+import 'package:first_time/User/api/chatgpt_api.dart';
 import 'package:http/http.dart' as http;
 import 'package:typewritertext/typewritertext.dart';
 
@@ -17,6 +19,14 @@ class _MainPageState extends State<MainPage> {
   final List<Message> _messages = [];
   final TextEditingController _textEditingController = TextEditingController();
   bool _userSentMessage = false;
+  String fullName = ''; // Variable to store the user's full name
+
+  @override
+  void initState() {
+    super.initState();
+    fetchNameFromFirestore();
+  }
+
   void onSendMessage() async {
     String userMessage = _textEditingController.text;
     Message message = Message(text: userMessage, isMe: true);
@@ -41,6 +51,40 @@ class _MainPageState extends State<MainPage> {
       setState(() {
         _messages.insert(0, chatGpt);
       });
+    }
+  }
+
+  Future<void> fetchNameFromFirestore() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        String uid = user.uid;
+
+        QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+            .instance
+            .collection('Users_Normal')
+            .where('uid', isEqualTo: uid)
+            .limit(1)
+            .get();
+
+        if (snapshot.docs.isNotEmpty) {
+          // Get the first document in the snapshot
+          DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+              snapshot.docs.first;
+
+          // Retrieve the user's first name from the document
+          String firstName = documentSnapshot.data()?['first name'] ?? '';
+
+          setState(() {
+            fullName = firstName;
+          });
+        } else {
+          // print('User data not found');
+        }
+      }
+    } catch (e) {
+      // print('Error fetching user data: $e');
     }
   }
 
@@ -191,7 +235,7 @@ class _MainPageState extends State<MainPage> {
                     const SizedBox(width: 10),
                     Expanded(
                       child: Text(
-                        ' مرحباً! أنا مساعدك الذكي مصلح يرجى وصف مشكلتك، وسأحاول مساعدتك',
+                        ' مرحباً $fullName ! أنا مساعدك الذكي  يرجى وصف مشكلتك، وسأحاول مساعدتك',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.teal[900],
