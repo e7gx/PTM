@@ -113,8 +113,9 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                       height: 300,
                     ),
                     const SizedBox(height: 16),
+
                     Text(
-                      'بلاغ رقم:\n ${widget.reportNumber}',
+                      'بلاغ رقم:\n${reportData['reportNumber'] ?? 'No Location'}',
                       style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
@@ -156,6 +157,23 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                     const SizedBox(height: 16),
                     const Text(
                       'الموقع:',
+                      style: TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue),
+                    ),
+                    Text(
+                      ' ${reportData['selected_option'] ?? 'No Location'}',
+                      style: const TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Cario',
+                          color: Colors.black),
+                    ),
+                    const SizedBox(height: 16),
+
+                    const Text(
+                      'موقع المعمل:',
                       style: TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
@@ -250,7 +268,7 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                                       ),
                                     );
                                     Fluttertoast.showToast(
-                                      msg: "👍 تمت عملية استلام الطلب ",
+                                      msg: "👍 تمت عملية استلام الطلب",
                                       toastLength: Toast.LENGTH_SHORT,
                                       gravity: ToastGravity.CENTER,
                                       timeInSecForIosWeb: 1,

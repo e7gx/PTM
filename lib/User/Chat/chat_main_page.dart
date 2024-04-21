@@ -111,14 +111,14 @@ class _MainPageState extends State<MainPage> {
   }
 
   Future<String> sendMessageToChatGpt(String message) async {
-    Uri uri = Uri.parse("https://api.openai.com/v1/chat/completions");
+    Uri uri = Uri.parse("https://api.openai.com/v1/completions");
 
     Map<String, dynamic> body = {
       "model": "gpt-3.5-turbo",
       "messages": [
         {"role": "user", "content": message}
       ],
-      "max_tokens": 250,
+      "max_tokens": 201,
     };
 
     try {

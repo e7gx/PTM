@@ -55,16 +55,16 @@ class _HomeState extends State<Home> {
               const SizedBox(height: 20),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2),
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 0),
                 child: TextField(
                   style:
-                      const TextStyle(color: Colors.teal, fontFamily: 'Cario'),
-                  cursorColor: Colors.teal,
+                      const TextStyle(color: Colors.cyan, fontFamily: 'Cario'),
+                  cursorColor: Colors.cyan,
                   textAlign: TextAlign.end,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
-                    focusColor: Colors.teal,
+                    focusColor: Colors.blue,
                     hintText: 'البحث عن صفحة',
                     hintStyle: const TextStyle(
                         fontFamily: 'Cario',
@@ -86,14 +86,14 @@ class _HomeState extends State<Home> {
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: const BorderSide(
-                        color: Color(0xFF0F92EF),
+                        color: Colors.transparent,
                         width: 3.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: const BorderSide(
-                          color: Color(0xFF0F92EF), width: 1.0),
+                          color: Colors.transparent, width: 1.0),
                     ),
                   ),
                 ),

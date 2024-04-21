@@ -155,8 +155,10 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide:
-                          const BorderSide(color: Colors.teal, width: 1.0),
+                      borderSide: const BorderSide(
+                        color: Colors.teal,
+                        width: 1.0,
+                      ),
                     ),
                   ),
                 ),
@@ -171,6 +173,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                       textAlign: TextAlign.right,
                       style: TextStyle(
                         fontFamily: 'Cario',
+                        color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -181,17 +184,53 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
               const SizedBox(height: 10),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ReportCard(
-                        title: 'البلاغات المستلمه',
-                        count: itReportsReceivedCount),
-                    ReportCard(
-                        title: 'بلاغات المستخدمين', count: userReportsCount),
-                    ReportCard(title: 'تقارير الدعم', count: itReportsCount),
-                    ReportCard(title: 'عدد الاصول المسجلة', count: assetsCount),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        width: 180,
+                        height: 180,
+                        child: ReportCard(
+                          title: 'البلاغات المستلمة',
+                          count: itReportsReceivedCount,
+                          icon: Icons.inbox,
+                          color: Colors.blue,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 180,
+                        height: 180,
+                        child: ReportCard(
+                          title: 'بلاغات المستخدمين',
+                          count: userReportsCount,
+                          icon: Icons.person,
+                          color: Colors.orange,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 180,
+                        height: 180,
+                        child: ReportCard(
+                          title: 'تقارير الدعم',
+                          count: itReportsCount,
+                          icon: Icons.support_agent,
+                          color: Colors.green,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 180,
+                        height: 180,
+                        child: ReportCard(
+                          title: 'عدد الأصول المسجلة',
+                          count: assetsCount,
+                          icon: Icons.assignment,
+                          color: Colors.purple,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const Row(
@@ -225,6 +264,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                   ],
                 ),
               ),
+              const SizedBox(height: 10),
               SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -250,10 +290,9 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                               swapAnimationDuration: const Duration(seconds: 4),
                               BarChartData(
                                 backgroundColor: Colors.white,
-                                maxY:
-                                    9, // Change this value according to your data
+                                maxY: 9,
+                                // Change this value according to your data
                                 minY: 2,
-
                                 gridData: const FlGridData(
                                   show: true,
                                 ),
@@ -301,10 +340,12 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'Cario',
+                              color: Colors.white,
                               fontSize: 15, //  تغيير هذه القيمة لتكون الحجم
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ),
@@ -314,7 +355,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
               const SizedBox(height: 80),
               SafeArea(
                 child: Card(
-                  color: Colors.black,
+                  color: Colors.transparent,
                   elevation: 10,
                   shadowColor: Colors.teal,
                   shape: const RoundedRectangleBorder(
@@ -326,6 +367,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Column(
                       children: [
+                        const SizedBox(height: 10),
                         const SizedBox(
                           height: 50,
                         ),
@@ -334,11 +376,10 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                           child: BarChart(
                             swapAnimationDuration: const Duration(seconds: 3),
                             BarChartData(
-                              backgroundColor: const Color(0xFFC2C2C2),
+                              backgroundColor: Colors.white,
                               maxY:
                                   9, // Change this value according to your data
                               minY: 1,
-
                               gridData: const FlGridData(
                                 show: true,
                               ),
@@ -382,23 +423,15 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                         ),
                         const SizedBox(height: 10),
                         const Text(
-                          'عدد البلاغات الاجمالية',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'Cario',
-                            fontSize: 15, //  تغيير هذه القيمة لتكون الحجم
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Text(
                           'عدد البلاغات الاجمالية\nعدد البلاغات الإجمالية يُظهر عدد البلاغات الكلي التي تم تسجيلها أو تلقيها في نطاق معين، ويُستخدم هذا الرقم لتقييم حجم الأنشطة أو المشكلات التي تحتاج إلى متابعة أو حل في النظام أو التطبيق',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontFamily: 'Cario',
+                            fontFamily: 'Cario', color: Colors.white,
                             fontSize: 15, //  تغيير هذه القيمة لتكون الحجم
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        const SizedBox(height: 20),
                       ],
                     ),
                   ),
@@ -685,38 +718,56 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
 class ReportCard extends StatelessWidget {
   final String title;
   final int count;
+  final IconData icon;
+  final Color color;
 
-  const ReportCard({super.key, required this.title, required this.count});
+  const ReportCard(
+      {Key? key,
+      required this.title,
+      required this.count,
+      required this.icon,
+      required this.color})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
       shadowColor: Colors.teal,
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontFamily: 'Cario',
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: Colors.teal,
+      child: SizedBox(
+        width: 150,
+        height: 150,
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 30,
+                color: color,
               ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              count.toString(),
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-                color: Colors.teal,
+              const SizedBox(height: 10),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontFamily: 'Cario',
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.teal,
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 5),
+              Text(
+                count.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.teal,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

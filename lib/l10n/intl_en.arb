@@ -26,6 +26,8 @@
     "validData": "Please verify data",
     "Loading": "Loading...",
     "Skip": "Skip",
+    "problem": "Problem solution",
+    "problemSolve": "Type the problem solution",
     "Admin": "Admin"
 
 }

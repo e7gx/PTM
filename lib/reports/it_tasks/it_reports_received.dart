@@ -114,7 +114,7 @@ class _ReportsReceivedState extends State<ReportsReceived> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Report Location:   ${reportData['reportNumber'] ?? 'No Location'}',
+                                  'Report Number:   ${reportData['reportNumber'] ?? 'No Location'}',
                                   style: const TextStyle(
                                       fontSize: 12.0, color: Colors.white),
                                 ),

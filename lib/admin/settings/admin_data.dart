@@ -2,14 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class MyDataPage extends StatefulWidget {
-  const MyDataPage({super.key});
+class AdminDataPage extends StatefulWidget {
+  const AdminDataPage({super.key});
 
   @override
-  State<MyDataPage> createState() => _MyDataPageState();
+  State<AdminDataPage> createState() => _MyDataPageState();
 }
 
-class _MyDataPageState extends State<MyDataPage> {
+class _MyDataPageState extends State<AdminDataPage> {
   String firstName = ''; // Variable to store the user's first name
   String lastName = ''; // Variable to store the user's last name
   String fullName = ''; // Variable to store the user's full name
@@ -99,7 +99,7 @@ class _MyDataPageState extends State<MyDataPage> {
             UserAvatarInfoCard(
               imageUrl: 'assets/images/chat.png',
               name: fullName,
-              lastNameWidget: "موظف",
+              lastNameWidget: "مشرف",
             ),
             UserDetailTile(
               title: 'اسم المستخدم',
@@ -113,7 +113,7 @@ class _MyDataPageState extends State<MyDataPage> {
             ),
             const UserDetailTile(
               title: 'المنصب',
-              value: "موظف دعم فني",
+              value: "مشرف",
               icon: Icons.contact_emergency_sharp,
             ),
           ],

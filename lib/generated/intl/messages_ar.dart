@@ -56,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginDescription": MessageLookupByLibrary.simpleMessage(
             "سجل دخولك إلى التطبيق للاستفادة من التواصل الجيد ومزايا إدارة الممتلكات التقنية"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "problem": MessageLookupByLibrary.simpleMessage("حل المشكلة"),
+        "problemSolve": MessageLookupByLibrary.simpleMessage("أدخل حل المشكلة"),
         "validData":
             MessageLookupByLibrary.simpleMessage("يرجى التحقق من البيانات"),
         "welcome": MessageLookupByLibrary.simpleMessage("أهلا وسهلا بك"),

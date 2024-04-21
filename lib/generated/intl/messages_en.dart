@@ -60,6 +60,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginDescription": MessageLookupByLibrary.simpleMessage(
             "Log in to the application to benefit from good communication and the advantages of managing technical assets"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "problem": MessageLookupByLibrary.simpleMessage("Problem solution"),
+        "problemSolve":
+            MessageLookupByLibrary.simpleMessage("Type the problem solution"),
         "validData": MessageLookupByLibrary.simpleMessage("Please verify data"),
         "welcome": MessageLookupByLibrary.simpleMessage(" Welcome"),
         "whatWeOffer": MessageLookupByLibrary.simpleMessage("What We Offer"),

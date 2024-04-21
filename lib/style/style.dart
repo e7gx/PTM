@@ -113,35 +113,42 @@ Widget buildTextFieldNum(
 }
 
 Widget buildTextFieldITReports(
-    TextEditingController controller, String label, String hint,
-    {int maxLines1 = 5}) {
-  return TextField(
-    style: const TextStyle(color: Colors.teal, fontFamily: 'Cario'),
-    cursorColor: Colors.teal,
+  TextEditingController controller,
+  String label,
+  String hint, {
+  int maxLines1 = 5,
+}) {
+  return TextFormField(
+    style: const TextStyle(color: Colors.blue, fontFamily: 'Cario'),
+    cursorColor: Colors.blue,
     controller: controller,
     maxLines: maxLines1,
     maxLength: 100,
     decoration: InputDecoration(
-      border: InputBorder.none,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide.none,
+      ),
       filled: true,
       fillColor: Colors.grey[200],
       labelText: label,
       hintText: hint,
-      labelStyle: const TextStyle(color: Colors.teal),
-      hintStyle: TextStyle(
-        color: Colors.grey[400],
+      labelStyle: const TextStyle(color: Colors.blue),
+      hintStyle: const TextStyle(
+        color: Colors.grey,
         fontFamily: 'Cario',
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(
-          color: Colors.teal,
-          width: 4.0,
+          color: Colors.transparent,
+          width: 2.0,
         ),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: Colors.teal, width: 2.0),
+        borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
       ),
     ),
     keyboardType: TextInputType.text,

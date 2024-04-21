@@ -58,6 +58,7 @@ class _DetailsPageState extends State<DetailsPage> {
       'location': location,
       'device': device,
       'problem': problem,
+      'selected_option': dropdownValue,
       'userUid': FirebaseAuth.instance.currentUser!.uid,
     };
 

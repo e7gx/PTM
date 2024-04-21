@@ -1,9 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/admin/Auth/admin_login.dart';
 import 'package:first_time/admin/Users/IT/it_users.dart';
 import 'package:first_time/admin/Users/Regular%20user/users_normal.dart';
 import 'package:first_time/admin/home/home_admin.dart';
+import 'package:first_time/admin/model/dashboard.dart';
 import 'package:first_time/admin/reports/it_report/it_all_reports.dart';
 import 'package:first_time/admin/reports/user_report/user_reports.dart';
+import 'package:first_time/admin/settings/admin_data.dart';
+import 'package:first_time/admin/settings/admin_settings.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:first_time/register_assets/register_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -27,18 +33,67 @@ class _AdminHomePageState extends State<AdminHomePage> {
     const ITReportsPage(),
     const UserReportsPage(),
   ];
+  String fullName = ''; // Variable to store the user's full name
+
+  @override
+  void initState() {
+    super.initState();
+    fetchNameFromFirestore();
+  }
+
+  Future<void> fetchNameFromFirestore() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        String uid = user.uid;
+
+        QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+            .instance
+            .collection('Users_IT')
+            .where('uid', isEqualTo: uid)
+            .limit(1)
+            .get();
+
+        if (snapshot.docs.isNotEmpty) {
+          // Get the first document in the snapshot
+          DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+              snapshot.docs.first;
+
+          // Retrieve the user's first name from the document
+          String firstName = documentSnapshot.data()?['first name'] ?? '';
+
+          setState(() {
+            fullName = firstName;
+          });
+        } else {
+          // print('User data not found');
+        }
+      }
+    } catch (e) {
+      // print('Error fetching user data: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          textAlign: TextAlign.center,
-          '       الصفحة الرئيسية',
-          style: TextStyle(
-              color: Colors.white,
-              fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Cario'),
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'الصفحة الرئيسية',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'Cario',
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
         centerTitle: true,
         flexibleSpace: Container(
@@ -75,8 +130,8 @@ class _AdminHomePageState extends State<AdminHomePage> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
+              DrawerHeader(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       Colors.tealAccent,
@@ -87,21 +142,34 @@ class _AdminHomePageState extends State<AdminHomePage> {
                     end: Alignment.bottomLeft,
                   ),
                 ),
-                child: Center(
-                  child: Text(
-                    'PTM\n To Make IT Easy',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 34,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                child: Column(
+                  children: [
+                    const Text(
+                      'PTM \n To Make IT Easy',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 26,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
+                    Text(
+                      '${S.of(context).welcome} $fullName ',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 15,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               ListTile(
                 title: const Text(
-                  'البيانات الشخصية',
+                  '🪪 البيانات الشخصية',
                   style: TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
@@ -111,11 +179,11 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 onTap: () {
                   // Update the state of the app
 
-                  // Then close the drawer
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => MyDataPage()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AdminDataPage()),
+                  );
                 },
                 leading: const Icon(
                   Icons.supervised_user_circle,
@@ -130,7 +198,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
               ),
               ListTile(
                 title: const Text(
-                  '🚀 الصيانة',
+                  '📊 لوحة المعلومات',
                   style: TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
@@ -146,11 +214,11 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   // Update the state of the app
 
                   // // Then close the drawer
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => const UserMintines()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AdminStatisticsPage()),
+                  );
                 },
               ),
               const SizedBox(height: 10),
@@ -203,11 +271,11 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   // Update the state of the app
 
                   // Then close the drawer
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => const SettingsPageUser()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AdminSettingsPage()),
+                  );
                 },
               ),
               const SizedBox(height: 10),

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/controller/routes/navbar_drawer.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:first_time/notification/notification.dart';
 import 'package:first_time/style/style.dart';
 import 'package:flutter/material.dart';
@@ -54,14 +55,14 @@ class _DetailsOfTheReceivedReportState
           style: TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
-              fontSize: 18,
+              fontSize: 20,
               fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 105, 142, 255),
+                Colors.blue,
                 Color(0xFF00CCFF),
               ],
               begin: FractionalOffset(0.0, 0.0),
@@ -125,6 +126,7 @@ class _DetailsOfTheReceivedReportState
                           color: Colors.blue,
                           fontWeight: FontWeight.bold),
                     ),
+
                     Text(
                       '${reportData['reportNumber'] ?? 'No Location'}',
                       style: const TextStyle(
@@ -175,6 +177,22 @@ class _DetailsOfTheReceivedReportState
                           color: Colors.blue),
                     ),
                     Text(
+                      ' ${reportData['selected_option'] ?? 'No Location'}',
+                      style: const TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Cario',
+                          color: Colors.black),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'موقع المعمل:',
+                      style: TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue),
+                    ),
+                    Text(
                       ' ${reportData['location'] ?? 'No Location'}',
                       style: const TextStyle(
                           fontSize: 18,
@@ -213,107 +231,131 @@ class _DetailsOfTheReceivedReportState
                       ),
                     ),
                     const SizedBox(height: 10),
-                    buildTextFieldITReports(
-                        itreportController, 'حل المشكلة', 'أدخل حل المشكلة'),
+                    buildTextFieldITReports(itreportController,
+                        S.of(context).problem, S.of(context).problemSolve),
                     const SizedBox(height: 25),
                     // حدث عند الضغط على زر "نقل البلاغ إلى قسم تقنية المعلومات"
                     ElevatedButton(
                       onPressed: () async {
-                        showDialog(
-                          // ignore: use_build_context_synchronously
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(32.0),
-                                ),
-                              ),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
+                        // Check if the text field is empty
+                        if (itreportController.text.isEmpty) {
+                          // Show a Snackbar indicating that a report must be written
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              backgroundColor: Color(0xFFFF1100),
+                              duration: Duration(seconds: 5),
+                              content: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Lottie.asset('assets/animation/like1.json',
-                                      height:
-                                          200), // يجب أن تكون الصورة موجودة في مجلد الـ assets
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  const Center(
-                                    child: Text(
-                                      '🪛  شكرا لك على تعاونك\n نامل كتابة التقرير الخاص بالبلاغ',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Cario',
-                                      ),
+                                  Icon(Icons.error_outline_rounded,
+                                      color: Colors.white),
+                                  Text(
+                                    'you must write a report',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Cario',
                                     ),
                                   ),
                                 ],
                               ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const WelcomePage(),
-                                      ),
-                                    );
-                                    onCertainAction();
-                                    Fluttertoast.showToast(
-                                      msg: "❤️ شكرا لك",
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.CENTER,
-                                      timeInSecForIosWeb: 1,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0,
-                                    );
-                                  },
-                                  child: const Text(
-                                    'موافق',
-                                    style: TextStyle(
-                                        fontFamily: 'Cario',
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.blue),
+                            ),
+                          );
+                        } else {
+                          // Show the confirmation dialog
+                          showDialog(
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(32.0),
                                   ),
                                 ),
-                              ],
-                            );
-                          },
-                        );
-                        //! إضافة البلاغ إلى قسم تقنية المعلومات باستخدام بيانات البلاغ المسترجعة من Firestore
-                        // Fetch the report data
-                        Map<String, dynamic> reportData =
-                            snapshot.data!.data() as Map<String, dynamic>;
-                        // Add the current user's UID to the report data
-                        reportData['receiver_uid'] =
-                            FirebaseAuth.instance.currentUser!.uid;
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Lottie.asset('assets/animation/like1.json',
+                                        height:
+                                            200), // يجب أن تكون الصورة موجودة في مجلد الـ assets
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    const Center(
+                                      child: Text(
+                                        '🪛  شكرا لك على تعاونك\n نامل كتابة التقرير الخاص بالبلاغ',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Cario',
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const WelcomePage(),
+                                        ),
+                                      );
+                                      onCertainAction();
+                                      Fluttertoast.showToast(
+                                        msg: "❤️ شكرا لك",
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.CENTER,
+                                        timeInSecForIosWeb: 1,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0,
+                                      );
+                                    },
+                                    child: const Text(
+                                      'موافق',
+                                      style: TextStyle(
+                                          fontFamily: 'Cario',
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.blue),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                          // Add the report data to Firestore and update/delete the report
+                          Map<String, dynamic> reportData =
+                              snapshot.data!.data() as Map<String, dynamic>;
+                          reportData['receiver_uid'] =
+                              FirebaseAuth.instance.currentUser!.uid;
+                          reportData['solution'] = itreportController.text;
 
-                        // Retrieve the solution entered in the text field
-                        String solution = itreportController.text;
+                          // Update the report in the User_Maintenance_Message collection
+                          await FirebaseFirestore.instance
+                              .collection('User_Maintenance_Message')
+                              .doc(widget.reportId)
+                              .set(reportData);
 
-                        // Add the solution to the report data
-                        reportData['solution'] = solution;
+                          // Update the report in the IT_Reports collection
+                          await FirebaseFirestore.instance
+                              .collection('IT_Reports')
+                              .doc(widget.reportId)
+                              .set(reportData);
 
-                        // Update the report in the User_Maintenance_Message collection
-                        await FirebaseFirestore.instance
-                            .collection('User_Maintenance_Message')
-                            .doc(widget.reportId)
-                            .set(reportData);
-
-                        // Update the report in the IT_Reports collection
-
-                        await FirebaseFirestore.instance
-                            .collection('IT_Reports')
-                            .doc(widget.reportId)
-                            .set(reportData);
-                        // Delete the report from the IT_Reports_Received collection
-                        await FirebaseFirestore.instance
-                            .collection('IT_Reports_Received')
-                            .doc(widget.reportId)
-                            .delete();
+                          // Delete the report from the IT_Reports_Received collection
+                          await FirebaseFirestore.instance
+                              .collection('IT_Reports_Received')
+                              .doc(widget.reportId)
+                              .delete();
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
@@ -327,10 +369,11 @@ class _DetailsOfTheReceivedReportState
                       child: const Text(
                         'أنهاء الطلب',
                         style: TextStyle(
-                            fontFamily: 'Cario',
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                          fontFamily: 'Cario',
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],

@@ -174,13 +174,13 @@ class _WelcomePageState extends State<WelcomePage> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: 'Cario',
-                        fontSize: 25,
+                        fontSize: 26,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      '${S.of(context).welcome} $fullName ',
+                      '${S.of(context).welcome} $fullName',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontFamily: 'Cario',

@@ -65,7 +65,7 @@ class _DeviceReportsState extends State<DeviceReports> {
                       color: Colors.white,
                     ),
                     label: const Text(
-                      'الاحدث',
+                      'السابق',
                       style: TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 14,
@@ -95,7 +95,7 @@ class _DeviceReportsState extends State<DeviceReports> {
                       ),
                     ),
                     label: const Text(
-                      'السابق',
+                      'الاحدث',
                       style: TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 14,
@@ -194,7 +194,7 @@ class _DeviceReportsState extends State<DeviceReports> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Report Location:   ${reportData['reportNumber'] ?? 'No Location'}',
+                                        'Report Number:   ${reportData['reportNumber'] ?? 'No Location'}',
                                         style: const TextStyle(
                                             fontSize: 12.0,
                                             color: Colors.white),

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:first_time/Chat/chatgpt_api.dart';
@@ -16,6 +18,47 @@ class _MainPageState extends State<AiChatPage> {
   final List<Message> _messages = [];
   final TextEditingController _textEditingController = TextEditingController();
   bool _userSentMessage = false; // Track whether the user sent a message
+  String fullName = ''; // Variable to store the user's full name
+
+  @override
+  void initState() {
+    super.initState();
+    fetchNameFromFirestore();
+  }
+
+  Future<void> fetchNameFromFirestore() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        String uid = user.uid;
+
+        QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+            .instance
+            .collection('Users_IT')
+            .where('uid', isEqualTo: uid)
+            .limit(1)
+            .get();
+
+        if (snapshot.docs.isNotEmpty) {
+          // Get the first document in the snapshot
+          DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+              snapshot.docs.first;
+
+          // Retrieve the user's first name from the document
+          String firstName = documentSnapshot.data()?['first name'] ?? '';
+
+          setState(() {
+            fullName = firstName;
+          });
+        } else {
+          // print('User data not found');
+        }
+      }
+    } catch (e) {
+      // print('Error fetching user data: $e');
+    }
+  }
 
   void onSendMessage() async {
     String userMessage = _textEditingController.text;
@@ -179,7 +222,7 @@ class _MainPageState extends State<AiChatPage> {
           style: TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
-            fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
+            fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -223,7 +266,7 @@ class _MainPageState extends State<AiChatPage> {
                     const SizedBox(width: 10),
                     Expanded(
                       child: Text(
-                        ' مرحباً! أنا مساعدك الذكي\n يرجى وصف مشكلتك، وسأحاول مساعدتك',
+                        ' مرحباً $fullName ! أنا مساعدك الذكي  يرجى وصف مشكلتك، وسأحاول مساعدتك',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.teal[900],

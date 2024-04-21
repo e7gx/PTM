@@ -320,6 +320,26 @@ class S {
     );
   }
 
+  /// `Problem solution`
+  String get problem {
+    return Intl.message(
+      'Problem solution',
+      name: 'problem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type the problem solution`
+  String get problemSolve {
+    return Intl.message(
+      'Type the problem solution',
+      name: 'problemSolve',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Admin`
   String get Admin {
     return Intl.message(
