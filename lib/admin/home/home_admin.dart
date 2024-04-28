@@ -82,10 +82,8 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
         .instance
         .collection('IT_Reports_Received')
         .get();
-    final QuerySnapshot numberOfAssetsSnapshot = await FirebaseFirestore
-        .instance
-        .collection('IT_Reports_Received')
-        .get();
+    final QuerySnapshot numberOfAssetsSnapshot =
+        await FirebaseFirestore.instance.collection('devices_assets').get();
     final QuerySnapshot userReportsSnapshot =
         await FirebaseFirestore.instance.collection('User_Reports').get();
 
@@ -116,64 +114,63 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
         SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
-                child: TextField(
-                  style:
-                      const TextStyle(color: Colors.teal, fontFamily: 'Cario'),
-                  cursorColor: Colors.teal,
-                  textAlign: TextAlign.end,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    focusColor: Colors.teal,
-                    hintText: 'البحث عن صفحة',
-                    hintStyle: const TextStyle(
-                        fontFamily: 'Cario',
-                        color: Colors.teal,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold),
-                    prefixIcon: const Icon(
-                      Icons.search_rounded,
-                      color: Colors.teal,
-                    ),
-                    iconColor: Colors.teal,
-                    border: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Colors.teal,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        color: Colors.teal,
-                        width: 3.0,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        color: Colors.teal,
-                        width: 1.0,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
+              //   child: TextField(
+              //     style:
+              //         const TextStyle(color: Colors.teal, fontFamily: 'Cario'),
+              //     cursorColor: Colors.teal,
+              //     textAlign: TextAlign.end,
+              //     decoration: InputDecoration(
+              //       filled: true,
+              //       fillColor: Colors.white,
+              //       focusColor: Colors.teal,
+              //       hintText: 'البحث عن صفحة',
+              //       hintStyle: const TextStyle(
+              //           fontFamily: 'Cario',
+              //           color: Colors.teal,
+              //           fontSize: 12,
+              //           fontWeight: FontWeight.bold),
+              //       prefixIcon: const Icon(
+              //         Icons.search_rounded,
+              //         color: Colors.teal,
+              //       ),
+              //       iconColor: Colors.teal,
+              //       border: OutlineInputBorder(
+              //         borderSide: const BorderSide(
+              //           color: Colors.teal,
+              //           width: 2,
+              //         ),
+              //         borderRadius: BorderRadius.circular(10),
+              //       ),
+              //       focusedBorder: OutlineInputBorder(
+              //         borderRadius: BorderRadius.circular(10),
+              //         borderSide: const BorderSide(
+              //           color: Colors.teal,
+              //           width: 3.0,
+              //         ),
+              //       ),
+              //       enabledBorder: OutlineInputBorder(
+              //         borderRadius: BorderRadius.circular(10),
+              //         borderSide: const BorderSide(
+              //           color: Colors.teal,
+              //           width: 1.0,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(20.0),
                     child: Text(
                       'البيانات الرئيسية',
                       textAlign: TextAlign.right,
                       style: TextStyle(
                         fontFamily: 'Cario',
-                        color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -197,6 +194,16 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                           count: itReportsReceivedCount,
                           icon: Icons.inbox,
                           color: Colors.blue,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 180,
+                        height: 180,
+                        child: ReportCard(
+                          title: 'البلاغات المغلقة',
+                          count: itReportsCount,
+                          icon: Icons.done_all,
+                          color: Colors.green,
                         ),
                       ),
                       SizedBox(
@@ -265,6 +272,23 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                 ),
               ),
               const SizedBox(height: 10),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                      'لوحة المعلومات',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),

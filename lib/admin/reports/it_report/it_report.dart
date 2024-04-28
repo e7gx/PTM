@@ -142,7 +142,7 @@ class ITReportDetailsAdminPage extends StatelessWidget {
 
                     const SizedBox(height: 10),
                     const Text(
-                      'تاريخ التقرير:',
+                      'تاريخ بداية البلاغ:',
                       style: TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
@@ -156,6 +156,27 @@ class ITReportDetailsAdminPage extends StatelessWidget {
                           .format((reportData['date'] as Timestamp).toDate()),
                       style:
                           const TextStyle(fontSize: 16, color: Colors.black87),
+                    ),
+                    const SizedBox(height: 16),
+                    const SizedBox(height: 10),
+                    // النصوص والمحتويات الأخرى تأتي هنا
+                    const Text(
+                      'تاريخ نهاية البلاغ:',
+                      style: TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF0F92EF),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      DateFormat('dd/MM/yyyy').format(
+                          (reportData['endReportDate'] as Timestamp).toDate()),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                      ),
                     ),
                     const SizedBox(height: 10),
                     const Text(

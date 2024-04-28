@@ -31,7 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("beneficiary the service"),
         "Loading": MessageLookupByLibrary.simpleMessage("Loading..."),
         "LoginAlertEmailPassword": MessageLookupByLibrary.simpleMessage(
-            "Please fill in both\nemail and password fields"),
+            "Please fill in both\n email and password fields"),
         "LoginAppBar": MessageLookupByLibrary.simpleMessage("LogIn"),
         "Okay": MessageLookupByLibrary.simpleMessage("Okay"),
         "Skip": MessageLookupByLibrary.simpleMessage("Skip"),

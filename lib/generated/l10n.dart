@@ -270,10 +270,10 @@ class S {
     );
   }
 
-  /// `Please fill in both\nemail and password fields`
+  /// `Please fill in both\n email and password fields`
   String get LoginAlertEmailPassword {
     return Intl.message(
-      'Please fill in both\nemail and password fields',
+      'Please fill in both\n email and password fields',
       name: 'LoginAlertEmailPassword',
       desc: '',
       args: [],

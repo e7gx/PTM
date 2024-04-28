@@ -22,6 +22,8 @@ class DetailsOfTheReceivedReport extends StatefulWidget {
 }
 
 final TextEditingController itreportController = TextEditingController();
+final TextEditingController endReportDate = TextEditingController();
+// Update the Firestore data model
 
 class _DetailsOfTheReceivedReportState
     extends State<DetailsOfTheReceivedReport> {
@@ -243,7 +245,7 @@ class _DetailsOfTheReceivedReportState
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               backgroundColor: Color(0xFFFF1100),
-                              duration: Duration(seconds: 5),
+                              duration: Duration(seconds: 2),
                               content: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
@@ -288,7 +290,7 @@ class _DetailsOfTheReceivedReportState
                                     ),
                                     const Center(
                                       child: Text(
-                                        '🪛  شكرا لك على تعاونك\n نامل كتابة التقرير الخاص بالبلاغ',
+                                        '🪛 شكرا لك على تعاونك',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontSize: 15,
@@ -331,30 +333,33 @@ class _DetailsOfTheReceivedReportState
                               );
                             },
                           );
-                          // Add the report data to Firestore and update/delete the report
                           Map<String, dynamic> reportData =
                               snapshot.data!.data() as Map<String, dynamic>;
                           reportData['receiver_uid'] =
                               FirebaseAuth.instance.currentUser!.uid;
                           reportData['solution'] = itreportController.text;
 
-                          // Update the report in the User_Maintenance_Message collection
+// Update the report data with the End Report Date
+                          reportData['endReportDate'] = DateTime.now();
+
+// Update the report in the User_Maintenance_Message collection
                           await FirebaseFirestore.instance
                               .collection('User_Maintenance_Message')
                               .doc(widget.reportId)
                               .set(reportData);
 
-                          // Update the report in the IT_Reports collection
+// Update the report in the IT_Reports collection
                           await FirebaseFirestore.instance
                               .collection('IT_Reports')
                               .doc(widget.reportId)
                               .set(reportData);
 
-                          // Delete the report from the IT_Reports_Received collection
+// Delete the report from the IT_Reports_Received collection
                           await FirebaseFirestore.instance
                               .collection('IT_Reports_Received')
                               .doc(widget.reportId)
                               .delete();
+                          itreportController.clear();
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -363,7 +368,7 @@ class _DetailsOfTheReceivedReportState
                         padding: const EdgeInsets.symmetric(
                             horizontal: 50, vertical: 8),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(14.0),
                         ),
                       ),
                       child: const Text(
@@ -374,6 +379,210 @@ class _DetailsOfTheReceivedReportState
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        showModalBottomSheet(
+                          // backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(16.0),
+                            ),
+                          ),
+                          context: context,
+                          builder: (BuildContext context) {
+                            return SizedBox(
+                              height: MediaQuery.of(context).size.height,
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () => Navigator.pop(context),
+                                            child: const Icon(
+                                              Icons.close_rounded,
+                                              size: 40,
+                                              color: Colors.blueAccent,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Lottie.asset(
+                                      'assets/animation/WOR.json',
+                                      width: 300,
+                                      height: 150, //  الارتفاع
+                                    ),
+                                    const SizedBox(height: 10),
+                                    const Text(
+                                      'أعادة البلاغ',
+                                      style: TextStyle(
+                                        fontFamily: 'Cario',
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.blueAccent,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 12.0),
+                                      child: Text(
+                                        " هنا يتم أعادة البلاغ بسبب عدم التمكن من حل المشكلة من طرفكم وهذا سيكون عليه تأثير على التقييم الخاص بك مستقبلا ",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontFamily: 'Cario',
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.blueAccent,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 30),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ElevatedButton(
+                                        onPressed: () async {
+                                          await FirebaseFirestore.instance
+                                              .collection('IT_Reports_Received')
+                                              .doc(widget.reportId)
+                                              .delete();
+
+                                          //! إضافة البلاغ إلى قسم تقنية المعلومات باستخدام بيانات البلاغ المسترجعة من Firestore
+                                          Map<String, dynamic> reportData =
+                                              snapshot.data!.data()
+                                                  as Map<String, dynamic>;
+
+                                          await FirebaseFirestore.instance
+                                              .collection('User_Reports')
+                                              .doc(widget.reportId)
+                                              .set(reportData);
+
+                                          showDialog(
+                                            // ignore: use_build_context_synchronously
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                shape:
+                                                    const RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                    Radius.circular(32.0),
+                                                  ),
+                                                ),
+                                                content: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    Lottie.asset(
+                                                        'assets/animation/like1.json',
+                                                        height:
+                                                            200), // يجب أن تكون الصورة موجودة في مجلد الـ assets
+                                                    const SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    const Center(
+                                                      child: Text(
+                                                        ' 🪛 تم أعادة البلاغ بنجاح',
+                                                        style: TextStyle(
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontFamily: 'Cario',
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .push(
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const WelcomePage(),
+                                                        ),
+                                                      );
+                                                      Fluttertoast.showToast(
+                                                        msg:
+                                                            "👍 تمت عملية أعادة الطلب",
+                                                        toastLength:
+                                                            Toast.LENGTH_SHORT,
+                                                        gravity:
+                                                            ToastGravity.CENTER,
+                                                        timeInSecForIosWeb: 1,
+                                                        textColor: Colors.white,
+                                                        fontSize: 16.0,
+                                                      );
+                                                    },
+                                                    child: const Text(
+                                                      'موافق',
+                                                      style: TextStyle(
+                                                          fontFamily: 'Cario',
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.blue),
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              Colors.blueAccent.shade700,
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 50, vertical: 5),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                        ),
+                                        child: const Text(
+                                          'أعادة البلاغ',
+                                          style: TextStyle(
+                                              fontFamily: 'Cario',
+                                              fontSize: 16,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    const SizedBox(height: 10),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 50, vertical: 10),
+                        backgroundColor: Colors.red,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14.0),
+                        ),
+                      ),
+                      child: const Text(
+                        'أعادة البلاغ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontFamily: 'Cario',
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],

@@ -20,6 +20,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminStatisticsPage> {
   int assetsCount = 0;
   int numberOfUsersEmp = 0;
   int numberOfITEmp = 0;
+  int serviceReivew = 0;
   Future<void> fetchReportCounts() async {
     final QuerySnapshot itReportsSnapshot =
         await FirebaseFirestore.instance.collection('IT_Reports').get();
@@ -129,9 +130,9 @@ class _TechnicalSupportStatisticsPageState extends State<AdminStatisticsPage> {
                   mainAxisSpacing: 16,
                   children: [
                     _buildMetricCard(
-                      title: 'البلاغات المستلمة',
+                      title: 'البلاغات المستخدمين',
                       value: userReportsCount.toString(),
-                      icon: Icons.document_scanner_outlined,
+                      icon: Icons.construction_sharp,
                     ),
                     _buildMetricCard(
                       title: 'البلاغات المغلقة',
@@ -139,24 +140,29 @@ class _TechnicalSupportStatisticsPageState extends State<AdminStatisticsPage> {
                       icon: Icons.receipt,
                     ),
                     _buildMetricCard(
-                      title: 'عدد البلاغات المستلمة',
+                      title: 'عدد التقارير',
+                      value: itReportsCount.toString(),
+                      icon: Icons.real_estate_agent_outlined,
+                    ),
+                    _buildMetricCard(
+                      title: 'البلاغات المستلمة',
                       value: '$itReportsReceivedCount',
                       icon: Icons.receipt,
                     ),
                     _buildMetricCard(
                       title: 'موظفين الدعم',
                       value: '${(numberOfITEmp)}',
-                      icon: Icons.paragliding,
+                      icon: Icons.manage_accounts_outlined,
                     ),
                     _buildMetricCard(
                       title: 'عدد المستفيدين',
                       value: '${(numberOfUsersEmp)}',
-                      icon: Icons.person,
+                      icon: Icons.supervised_user_circle_rounded,
                     ),
                     _buildMetricCard(
                       title: 'عدد الاصول المسجلة',
                       value: assetsCount.toString(),
-                      icon: Icons.devices,
+                      icon: Icons.important_devices_rounded,
                     ),
                   ],
                 ),
@@ -168,47 +174,47 @@ class _TechnicalSupportStatisticsPageState extends State<AdminStatisticsPage> {
     );
   }
 
-  Widget _buildMetricCardRate({required String title, required String value}) {
-    return SafeArea(
-      child: Card(
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(color: Colors.white70, width: 1),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        shadowColor: Colors.teal,
-        elevation: 4,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Lottie.asset(
-                'assets/animation/like1.json',
-                height: 65,
-              ),
-            ),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              value,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget _buildMetricCardRate({required String title, required String value}) {
+  //   return SafeArea(
+  //     child: Card(
+  //       shape: RoundedRectangleBorder(
+  //         side: const BorderSide(color: Colors.white70, width: 1),
+  //         borderRadius: BorderRadius.circular(10),
+  //       ),
+  //       shadowColor: Colors.teal,
+  //       elevation: 4,
+  //       child: Column(
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: [
+  //           Padding(
+  //             padding: const EdgeInsets.all(8.0),
+  //             child: Lottie.asset(
+  //               'assets/animation/like1.json',
+  //               height: 65,
+  //             ),
+  //           ),
+  //           Text(
+  //             title,
+  //             textAlign: TextAlign.center,
+  //             style: const TextStyle(
+  //                 fontSize: 16,
+  //                 fontWeight: FontWeight.bold,
+  //                 color: Colors.black),
+  //           ),
+  //           const SizedBox(height: 8),
+  //           Text(
+  //             value,
+  //             textAlign: TextAlign.center,
+  //             style: const TextStyle(
+  //               fontSize: 20,
+  //               color: Colors.black,
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _buildMetricCard(
       {required String title, required String value, required IconData icon}) {

@@ -37,7 +37,7 @@ class _DeviceReportsState extends State<DeviceReports> {
               decoration: BoxDecoration(
                 gradient: const LinearGradient(colors: [
                   Colors.blue,
-                  Colors.white,
+                  Colors.black,
                 ]),
                 border: Border.all(color: Colors.blueAccent),
               ),
@@ -55,7 +55,7 @@ class _DeviceReportsState extends State<DeviceReports> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30, vertical: 8),
                       backgroundColor:
-                          sortByNewest ? Colors.black : Colors.lightBlue,
+                          sortByNewest ? Colors.redAccent : Colors.lightBlue,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14.0),
                       ),
@@ -89,7 +89,7 @@ class _DeviceReportsState extends State<DeviceReports> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30, vertical: 8),
                       backgroundColor:
-                          sortByOldest ? Colors.black : Colors.lightBlue,
+                          sortByOldest ? Colors.teal : Colors.lightBlue,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14.0),
                       ),
@@ -150,6 +150,26 @@ class _DeviceReportsState extends State<DeviceReports> {
                       var report = snapshot.data!.docs[index];
                       var reportData = report.data() as Map<String, dynamic>;
 
+                      // Calculate the difference in days between the current date and the report date
+                      DateTime reportDate = reportData['date'].toDate();
+                      DateTime currentDate = DateTime.now();
+                      int differenceInDays =
+                          currentDate.difference(reportDate).inDays;
+
+                      // Define color and status text based on the difference in days
+                      Color statusColor;
+                      String statusText;
+                      if (differenceInDays >= 4) {
+                        statusColor = Colors.red;
+                        statusText = 'اولوية';
+                      } else if (differenceInDays >= 2) {
+                        statusColor = Colors.yellow;
+                        statusText = 'متاخر';
+                      } else {
+                        statusColor = Colors.teal;
+                        statusText = 'سليم';
+                      }
+
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(
@@ -189,27 +209,50 @@ class _DeviceReportsState extends State<DeviceReports> {
                                 child: Container(
                                   color: Colors.blue.shade700.withOpacity(0.6),
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        'Report Number:   ${reportData['reportNumber'] ?? 'No Location'}',
-                                        style: const TextStyle(
-                                            fontSize: 12.0,
-                                            color: Colors.white),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Report Number:   ${reportData['reportNumber'] ?? 'No Location'}',
+                                            style: const TextStyle(
+                                                fontSize: 12.0,
+                                                color: Colors.white),
+                                          ),
+                                          Text(
+                                            'Report Date : ${DateFormat('dd/MM/yyyy').format(reportDate)}',
+                                            style: const TextStyle(
+                                                fontSize: 12.0,
+                                                color: Colors.white),
+                                          ),
+                                          Text(
+                                            'Report Location:   ${reportData['location'] ?? 'No Location'}',
+                                            style: const TextStyle(
+                                              fontSize: 12.0,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        'Report Date : ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
-                                        style: const TextStyle(
-                                            fontSize: 12.0,
-                                            color: Colors.white),
-                                      ),
-                                      Text(
-                                        'Report Location:   ${reportData['location'] ?? 'No Location'}',
-                                        style: const TextStyle(
-                                          fontSize: 12.0,
-                                          color: Colors.white,
+                                      // Display the status circle with color and text
+                                      Container(
+                                        width: 80,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: statusColor,
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          statusText,
+                                          style: const TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                     ],

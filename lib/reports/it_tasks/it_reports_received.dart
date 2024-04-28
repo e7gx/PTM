@@ -70,6 +70,26 @@ class _ReportsReceivedState extends State<ReportsReceived> {
                 var report = snapshot.data!.docs[index];
                 var reportData = report.data() as Map<String, dynamic>;
 
+                // Calculate the difference in days between the current date and the report date
+                DateTime reportDate = reportData['date'].toDate();
+                DateTime currentDate = DateTime.now();
+                int differenceInDays =
+                    currentDate.difference(reportDate).inDays;
+
+                // Define color and status text based on the difference in days
+                Color statusColor;
+                String statusText;
+                if (differenceInDays >= 4) {
+                  statusColor = Colors.red;
+                  statusText = 'اولوية';
+                } else if (differenceInDays >= 2) {
+                  statusColor = Colors.yellow;
+                  statusText = 'متاخر';
+                } else {
+                  statusColor = Colors.teal;
+                  statusText = 'سليم';
+                }
+
                 return GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
@@ -110,26 +130,50 @@ class _ReportsReceivedState extends State<ReportsReceived> {
                           child: Container(
                             color: const Color(0xFF003496).withOpacity(0.6),
                             padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  'Report Number:   ${reportData['reportNumber'] ?? 'No Location'}',
-                                  style: const TextStyle(
-                                      fontSize: 12.0, color: Colors.white),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Report Number: ${reportData['reportNumber'] ?? 'No Location'}',
+                                      style: const TextStyle(
+                                        fontSize: 12.0,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Report Date: ${DateFormat('dd/MM/yyyy').format(reportDate)}',
+                                      style: const TextStyle(
+                                        fontSize: 12.0,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Report Location: ${reportData['location'] ?? 'No Location'}',
+                                      style: const TextStyle(
+                                        fontSize: 12.0,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  'Report Date : ${DateFormat('dd/MM/yyyy').format(DateTime.parse(reportData['date'].toDate().toString()))}',
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
-                                    color: Colors.white,
+                                // Display the status circle with color and text
+                                Container(
+                                  width: 80,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: statusColor,
                                   ),
-                                ),
-                                Text(
-                                  'Report Location:   ${reportData['location'] ?? 'No Location'}',
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
-                                    color: Colors.white,
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    statusText,
+                                    style: const TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ],

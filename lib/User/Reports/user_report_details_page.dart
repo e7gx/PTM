@@ -28,6 +28,8 @@ class _DetailsPageState extends State<DetailsPage> {
   final TextEditingController locationController = TextEditingController();
   final TextEditingController deviceController = TextEditingController();
   final TextEditingController problemController = TextEditingController();
+  final TextEditingController userInfoController = TextEditingController();
+
   final TextEditingController currentUserController = TextEditingController();
   String dropdownValue = collegeList.first;
 
@@ -50,7 +52,8 @@ class _DetailsPageState extends State<DetailsPage> {
     }
   }
 
-  void uploadReport(String location, String device, String problem) {
+  void uploadReport(
+      String location, String device, String problem, String userInfo) {
     _reportNumber++; // Increment report number
     var reportData = {
       'reportNumber': _reportNumber, // Include report number in report data
@@ -58,6 +61,8 @@ class _DetailsPageState extends State<DetailsPage> {
       'location': location,
       'device': device,
       'problem': problem,
+      'userInfo': userInfo,
+
       'selected_option': dropdownValue,
       'userUid': FirebaseAuth.instance.currentUser!.uid,
     };
@@ -75,6 +80,7 @@ class _DetailsPageState extends State<DetailsPage> {
   void _submitReport(BuildContext context) {
     if (locationController.text.isEmpty ||
         deviceController.text.isEmpty ||
+        userInfoController.text.isEmpty ||
         problemController.text.isEmpty) {
       showDialog(
         context: context,
@@ -120,6 +126,7 @@ class _DetailsPageState extends State<DetailsPage> {
         locationController.text,
         deviceController.text,
         problemController.text,
+        userInfoController.text,
       );
       showDialog(
         context: context,
@@ -262,7 +269,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     const SizedBox(height: 20),
                     buildTextFieldLocation(
                       locationController,
-                      'الموقع',
+                      'المعمل',
                       'أدخل اسم المعمل',
                     ),
                     const SizedBox(height: 10),
@@ -271,6 +278,11 @@ class _DetailsPageState extends State<DetailsPage> {
                     const SizedBox(height: 10),
                     buildTextFieldTextUserProblem(
                         problemController, 'وصف المشكلة', 'أدخل وصف المشكلة'),
+                    const SizedBox(height: 10),
+                    buildTextFieldTextUserProblem(
+                        userInfoController,
+                        'أدخل بياناتك',
+                        'الرجاء كتابة الاسم الثلاثي و رقم الهاتف'),
                     const SizedBox(height: 30),
                     SizedBox(
                       width: 150,

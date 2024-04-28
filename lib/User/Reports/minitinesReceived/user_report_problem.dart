@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/User/Reports/minitines/ditels_user_minitines.dart';
+import 'package:first_time/User/Reports/minitinesReceived/user_report_problem_ditels.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -26,7 +26,7 @@ class _UserMintinesState extends State<UserMintinesStageOne> {
           },
         ),
         title: const Text(
-          'الصيانة',
+          'الصيانة الغير منتهية',
           style: TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
@@ -166,14 +166,27 @@ class ReportCard extends StatelessWidget {
           child: Padding(
             padding:
                 const EdgeInsets.only(left: 4, right: 4, bottom: 10, top: 4),
-            child: Text(
-              'التاريخ: ${report.date}',
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Cario',
-                  fontSize: 12,
-                  color: Colors.black54),
+            child: Column(
+              children: [
+                Text(
+                  'التاريخ: ${report.date}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Cario',
+                      fontSize: 12,
+                      color: Colors.black54),
+                ),
+                Text(
+                  'الموقع: ${report.location}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Cario',
+                      fontSize: 12,
+                      color: Colors.black54),
+                ),
+              ],
             ),
           ),
         ),
@@ -183,7 +196,7 @@ class ReportCard extends StatelessWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) =>
-                    DitelsUserMintines(userReportId: userReportId),
+                    UserMintinesStageOneDitels(userReportId: userReportId),
               ),
             );
           },
@@ -194,7 +207,7 @@ class ReportCard extends StatelessWidget {
             ),
           ),
           child: const Text(
-            'عرض التقرير',
+            'عرض البلاغ',
             style: TextStyle(
               color: Colors.white, fontFamily: 'Cario',
               fontSize: 14, //  تغيير هذه القيمة لتكون الحجم

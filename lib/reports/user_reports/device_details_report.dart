@@ -307,7 +307,7 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

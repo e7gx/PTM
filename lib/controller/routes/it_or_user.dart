@@ -56,6 +56,33 @@ class _ItOrUserState extends State<ItOrUser> {
                       fontWeight: FontWeight.bold,
                       fontSize: 45),
                 ),
+                const SizedBox(height: 40),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: ((context) => const LoginPageUser()),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.teal,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(9.0),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 11),
+                  ),
+                  child: Text(
+                    S.of(context).ItOrUser_User,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Cario',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
+                  ),
+                ),
                 const SizedBox(
                   height: 30,
                 ),
@@ -77,33 +104,6 @@ class _ItOrUserState extends State<ItOrUser> {
                   ),
                   child: Text(
                     S.of(context).ItOrUser_It,
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Cario',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16),
-                  ),
-                ),
-                const SizedBox(height: 40),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: ((context) => const LoginPageUser()),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(9.0),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 50, vertical: 11),
-                  ),
-                  child: Text(
-                    S.of(context).ItOrUser_User,
                     style: const TextStyle(
                         color: Colors.white,
                         fontFamily: 'Cario',

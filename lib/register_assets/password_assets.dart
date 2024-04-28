@@ -235,7 +235,7 @@ class _PasswordAccessWidgetState extends State<PasswordAccessWidget> {
       return index.toString();
     } else if (index == 10) {
       return const Icon(
-        Icons.check_circle_outline,
+        Icons.fingerprint_sharp,
         color: Colors.green,
       );
     } else if (index == 12) {

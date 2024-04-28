@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/User/Reports/minitines/ditels_user_minitines.dart';
+import 'package:first_time/User/Reports/minitinesDone/ditels_user_minitines.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -26,7 +26,7 @@ class _UserMintinesState extends State<UserMintines> {
           },
         ),
         title: const Text(
-          'الصيانة',
+          'الصيانىة المنتهية',
           style: TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,

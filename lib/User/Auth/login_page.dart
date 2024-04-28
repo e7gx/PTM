@@ -33,6 +33,7 @@ class _LoginPageUserState extends State<LoginPageUser> {
     final bool isLoggedIn = sharedPreferences.getBool('isLoggedIn') ?? false;
 
     if (isLoggedIn) {
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const HomePage(),

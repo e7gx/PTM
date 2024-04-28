@@ -169,7 +169,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
               ),
               ListTile(
                 title: const Text(
-                  '🪪 البيانات الشخصية',
+                  'البيانات الشخصية',
                   style: TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
@@ -198,7 +198,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
               ),
               ListTile(
                 title: const Text(
-                  '📊 لوحة المعلومات',
+                  ' لوحة المعلومات',
                   style: TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
@@ -206,7 +206,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                       fontFamily: 'Cario'),
                 ),
                 leading: const Icon(
-                  Icons.help_outline,
+                  Icons.bar_chart_sharp,
                   size: 30.0,
                   color: Colors.teal,
                 ),
@@ -236,7 +236,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                       fontFamily: 'Cario'),
                 ),
                 leading: const Icon(
-                  Icons.help_outline,
+                  Icons.devices_rounded,
                   size: 30.0,
                   color: Colors.teal,
                 ),

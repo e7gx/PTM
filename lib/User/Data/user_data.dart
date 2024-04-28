@@ -111,6 +111,11 @@ class _MyDataPageState extends State<MyDataPage> {
               value: data,
               icon: Icons.email,
             ),
+            const UserDetailTile(
+              title: 'المسمى الوظيفي',
+              value: 'مستفيد',
+              icon: Icons.contact_emergency_sharp,
+            ),
           ],
         ),
       ),

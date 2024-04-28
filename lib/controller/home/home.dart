@@ -53,51 +53,51 @@ class _HomeState extends State<Home> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               const SizedBox(height: 20),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 0),
-                child: TextField(
-                  style:
-                      const TextStyle(color: Colors.cyan, fontFamily: 'Cario'),
-                  cursorColor: Colors.cyan,
-                  textAlign: TextAlign.end,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    focusColor: Colors.blue,
-                    hintText: 'البحث عن صفحة',
-                    hintStyle: const TextStyle(
-                        fontFamily: 'Cario',
-                        color: Colors.blue,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold),
-                    prefixIcon: const Icon(
-                      Icons.search_rounded,
-                      color: Colors.blue,
-                    ),
-                    iconColor: Colors.blue,
-                    border: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Colors.blue,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        color: Colors.transparent,
-                        width: 3.0,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                          color: Colors.transparent, width: 1.0),
-                    ),
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.symmetric(horizontal: 8.0, vertical: 0),
+              //   child: TextField(
+              //     style:
+              //         const TextStyle(color: Colors.cyan, fontFamily: 'Cario'),
+              //     cursorColor: Colors.cyan,
+              //     textAlign: TextAlign.end,
+              //     decoration: InputDecoration(
+              //       filled: true,
+              //       fillColor: Colors.white,
+              //       focusColor: Colors.blue,
+              //       hintText: 'البحث عن صفحة',
+              //       hintStyle: const TextStyle(
+              //           fontFamily: 'Cario',
+              //           color: Colors.blue,
+              //           fontSize: 12,
+              //           fontWeight: FontWeight.bold),
+              //       prefixIcon: const Icon(
+              //         Icons.search_rounded,
+              //         color: Colors.blue,
+              //       ),
+              //       iconColor: Colors.blue,
+              //       border: OutlineInputBorder(
+              //         borderSide: const BorderSide(
+              //           color: Colors.blue,
+              //           width: 2,
+              //         ),
+              //         borderRadius: BorderRadius.circular(10),
+              //       ),
+              //       focusedBorder: OutlineInputBorder(
+              //         borderRadius: BorderRadius.circular(10),
+              //         borderSide: const BorderSide(
+              //           color: Colors.transparent,
+              //           width: 3.0,
+              //         ),
+              //       ),
+              //       enabledBorder: OutlineInputBorder(
+              //         borderRadius: BorderRadius.circular(10),
+              //         borderSide: const BorderSide(
+              //             color: Colors.transparent, width: 1.0),
+              //       ),
+              //     ),
+              //   ),
+              // ),
 
               //!1111111111111111111111111  Card Number One   1111111111111111111111111111111111111111111111111111
 

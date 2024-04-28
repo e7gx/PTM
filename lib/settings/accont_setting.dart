@@ -143,7 +143,7 @@ class _SettingsPageState extends State<SettingsPage> {
               color: Colors.blue,
             ), // أيقونة التقييم
             title: const Text(
-              'التقييم وتعديل الصور',
+              'من نحن',
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.blue,

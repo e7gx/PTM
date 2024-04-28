@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 // import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:first_time/style/style.dart';
@@ -107,7 +108,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
           "تسجيل جهاز جديد",
           style: TextStyle(
             fontFamily: 'Cario',
-            fontSize: 25,
+            fontSize: 21,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -292,6 +293,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
               decoration: InputDecoration(
                 labelText: label,
                 hintText: hint,
+                labelStyle: const TextStyle(color: Colors.teal),
                 filled: true,
                 fillColor: Colors.white54,
                 border: OutlineInputBorder(
@@ -310,10 +312,10 @@ class RegisterDeviceState extends State<RegisterDevice> {
                   child: Text(
                     value,
                     style: const TextStyle(
-                      fontFamily: 'Cario',
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
+                        fontFamily: 'Cario',
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue),
                   ),
                 );
               }).toList(),
@@ -325,11 +327,12 @@ class RegisterDeviceState extends State<RegisterDevice> {
           controller: controller,
           maxLines: maxLines1,
           style: const TextStyle(
-            color: Colors.black,
+            color: Colors.teal,
             fontFamily: 'Cario',
           ),
           decoration: InputDecoration(
             labelText: 'معلمومات اضافية',
+            labelStyle: const TextStyle(color: Colors.teal),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(color: Colors.teal, width: 2.0),
@@ -337,6 +340,18 @@ class RegisterDeviceState extends State<RegisterDevice> {
             filled: true,
             fillColor: Colors.white,
             hintText: 'Enter your own',
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(
+                color: Colors.transparent,
+                width: 4.0,
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide:
+                  const BorderSide(color: Colors.transparent, width: 2.0),
+            ),
           ),
           onChanged: (String value) {
             controller.text = value;
@@ -347,6 +362,9 @@ class RegisterDeviceState extends State<RegisterDevice> {
             }
             return null;
           },
+          inputFormatters: [
+            FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+          ],
         ),
       ],
     );

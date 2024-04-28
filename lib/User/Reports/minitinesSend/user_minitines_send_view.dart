@@ -8,16 +8,16 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class DitelsUserMintines extends StatefulWidget {
+class UserMintinesViewData extends StatefulWidget {
   final String userReportId;
 
-  const DitelsUserMintines({super.key, required this.userReportId});
+  const UserMintinesViewData({super.key, required this.userReportId});
 
   @override
-  State<DitelsUserMintines> createState() => _DitelsUserMintinesState();
+  State<UserMintinesViewData> createState() => _DitelsUserMintinesState();
 }
 
-class _DitelsUserMintinesState extends State<DitelsUserMintines> {
+class _DitelsUserMintinesState extends State<UserMintinesViewData> {
   final TextEditingController userRateTextController = TextEditingController();
   double userRateNum = 0.0;
 
@@ -102,9 +102,10 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
               '! شكرًا لك على تعاونك',
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Cario'),
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Cario',
+              ),
             ),
             actions: [
               TextButton(
@@ -163,11 +164,11 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
             },
           ),
           title: const Text(
-            'تفاصيل الصيانة',
+            ' الصيانة المرسلة الغير منتهية',
             style: TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
-              fontSize: 22, //  تغيير هذه القيمة لتكون الحجم
+              fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -197,7 +198,7 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
           ),
           child: FutureBuilder<DocumentSnapshot>(
             future: FirebaseFirestore.instance
-                .collection('User_Maintenance_Message')
+                .collection('User_Reports')
                 .doc(widget.userReportId)
                 .get(),
             builder: (context, snapshot) {
@@ -264,7 +265,7 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                     const SizedBox(height: 10),
                     // النصوص والمحتويات الأخرى تأتي هنا
                     const Text(
-                      'تاريخ التقرير:',
+                      'تاريخ البلاغ:',
                       style: TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
@@ -320,24 +321,6 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      'حل المشكلة:',
-                      style: TextStyle(
-                        fontFamily: 'Cario',
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF0F92EF),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      reportData['solution'] ?? 'لا يوجد وصف متاح.',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.black87,
-                        fontFamily: 'Cario',
-                      ),
-                    ),
                     const SizedBox(height: 20),
 
                     Center(

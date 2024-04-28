@@ -34,10 +34,10 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
           },
         ),
         centerTitle: true,
-        title: Text(
-          'تفاصيل بلاغ رقم ${widget.reportNumber}',
+        title: const Text(
+          'تفاصيل البلاغ ',
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
               fontSize: 20,
@@ -102,14 +102,24 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                     height: 300,
                   ),
                   const SizedBox(height: 16),
-                  Text(
-                    'بلاغ رقم:\n ${widget.reportNumber}',
-                    style: const TextStyle(
+                  const Text(
+                    'بلاغ رقم:',
+                    style: TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         color: Colors.teal,
                         fontWeight: FontWeight.bold),
                   ),
+
+                  Text(
+                    '${reportData['reportNumber'] ?? 'No Location'}',
+                    style: const TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 30,
+                        color: Colors.teal,
+                        fontWeight: FontWeight.bold),
+                  ),
+
                   const SizedBox(height: 20),
                   const Text(
                     'التاريخ:',

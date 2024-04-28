@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/User/Reports/minitines/user_mintines.dart';
-import 'package:first_time/User/Reports/minitines/user_report_problem.dart';
+import 'package:first_time/User/Reports/minitinesDone/user_mintines.dart';
+import 'package:first_time/User/Reports/minitinesReceived/user_report_problem.dart';
+import 'package:first_time/User/Reports/minitinesSend/user_minitines_send.dart';
 import 'package:flutter/material.dart';
 import 'package:first_time/User/Auth/login_page.dart';
 import 'package:first_time/User/code/qr_scannerpage.dart';
@@ -172,7 +173,7 @@ class _HomePageState extends State<HomePage> {
               ),
               ListTile(
                 title: const Text(
-                  '🚀 الصيانة',
+                  'الصيانة المنتهية',
                   style: TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
@@ -180,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: 'Cario'),
                 ),
                 leading: const Icon(
-                  Icons.help_outline,
+                  Icons.done_all_sharp,
                   size: 30.0,
                   color: Colors.teal,
                 ),
@@ -202,7 +203,7 @@ class _HomePageState extends State<HomePage> {
               ),
               ListTile(
                 title: const Text(
-                  'عدلها',
+                  'الصيانة المستلمة',
                   style: TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
@@ -210,7 +211,7 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: 'Cario'),
                 ),
                 leading: const Icon(
-                  Icons.help_outline,
+                  Icons.done,
                   size: 30.0,
                   color: Colors.teal,
                 ),
@@ -232,6 +233,36 @@ class _HomePageState extends State<HomePage> {
               ),
               ListTile(
                 title: const Text(
+                  'البلاغ المرسل ',
+                  style: TextStyle(
+                      color: Color(0xC3252525),
+                      fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Cario'),
+                ),
+                leading: const Icon(
+                  Icons.send_rounded,
+                  size: 30.0,
+                  color: Colors.teal,
+                ),
+                onTap: () {
+                  // Update the state of the app
+
+                  // Then close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const UserMintinesView()),
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+              const Divider(
+                height: 2,
+                thickness: BorderSide.strokeAlignOutside,
+              ),
+              ListTile(
+                title: const Text(
                   'طرق التواصل',
                   style: TextStyle(
                       color: Color(0xC3252525),
@@ -240,7 +271,7 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: 'Cario'),
                 ),
                 leading: const Icon(
-                  Icons.help_outline,
+                  Icons.connect_without_contact,
                   size: 30.0,
                   color: Colors.teal,
                 ),

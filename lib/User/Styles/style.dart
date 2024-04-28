@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 Widget buildTextFieldText(
     TextEditingController controller, String label, String hint,
@@ -26,6 +27,9 @@ Widget buildTextFieldText(
       ),
     ),
     keyboardType: TextInputType.text,
+    inputFormatters: [
+      FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+    ],
   );
 }
 
@@ -35,7 +39,7 @@ Widget buildTextFieldTextUserProblem(
   return TextField(
     controller: controller,
     maxLines: maxLines,
-    maxLength: 50,
+    maxLength: 100,
     style: const TextStyle(color: Colors.teal, fontFamily: 'Cario'),
     decoration: InputDecoration(
       border: InputBorder.none,
@@ -55,6 +59,9 @@ Widget buildTextFieldTextUserProblem(
       ),
     ),
     keyboardType: TextInputType.text,
+    inputFormatters: [
+      FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+    ],
   );
 }
 
@@ -84,6 +91,9 @@ Widget buildTextFieldTextUserRating(
       ),
     ),
     keyboardType: TextInputType.text,
+    inputFormatters: [
+      FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+    ],
   );
 }
 
@@ -113,6 +123,9 @@ Widget buildTextFieldLocation(
       ),
     ),
     keyboardType: TextInputType.text,
+    inputFormatters: [
+      FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+    ],
   );
 }
 
@@ -142,5 +155,8 @@ Widget buildTextFieldNum(
       ),
     ),
     keyboardType: TextInputType.number,
+    inputFormatters: [
+      FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+    ],
   );
 }

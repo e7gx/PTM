@@ -34,7 +34,7 @@ class ReportDetailsITPage extends StatelessWidget {
             style: TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
-              fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
+              fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -96,7 +96,7 @@ class ReportDetailsITPage extends StatelessWidget {
                   children: [
                     // الصورة في الأعلى
                     Lottie.asset(
-                      'assets/animation/green.json',
+                      'assets/animation/p2p.json',
                       width: 400,
                       height: 300, //  الارتفاع
                       fit: BoxFit.contain,
@@ -141,7 +141,7 @@ class ReportDetailsITPage extends StatelessWidget {
 
                     const SizedBox(height: 10),
                     const Text(
-                      'تاريخ التقرير:',
+                      'تاريخ بداية البلاغ:',
                       style: TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
@@ -156,26 +156,61 @@ class ReportDetailsITPage extends StatelessWidget {
                       style:
                           const TextStyle(fontSize: 16, color: Colors.black87),
                     ),
+                    const SizedBox(height: 16),
                     const SizedBox(height: 10),
+                    // النصوص والمحتويات الأخرى تأتي هنا
                     const Text(
-                      'الموقع:',
+                      'تاريخ نهاية البلاغ:',
                       style: TextStyle(
-                        fontSize: 20,
                         fontFamily: 'Cario',
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 15, 146, 239),
+                        color: Color(0xFF0F92EF),
                       ),
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      '${reportData['location']}',
+                      DateFormat('dd/MM/yyyy').format(
+                          (reportData['endReportDate'] as Timestamp).toDate()),
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black87,
-                        fontFamily: 'Cario',
                       ),
                     ),
                     const SizedBox(height: 10),
+
+                    const Text(
+                      'الموقع:',
+                      style: TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue),
+                    ),
+                    Text(
+                      ' ${reportData['selected_option'] ?? 'No Location'}',
+                      style: const TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Cario',
+                          color: Colors.black),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'موقع المعمل:',
+                      style: TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue),
+                    ),
+                    Text(
+                      ' ${reportData['location'] ?? 'No Location'}',
+                      style: const TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Cario',
+                          color: Colors.black),
+                    ),
+                    const SizedBox(height: 16),
                     const Text(
                       'وصف المشكلة:',
                       style: TextStyle(

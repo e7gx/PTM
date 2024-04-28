@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 Widget buildTextFieldRegisterAssets(
     TextEditingController controller, String label, String hint,
@@ -24,15 +25,18 @@ Widget buildTextFieldRegisterAssets(
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(9),
           borderSide: const BorderSide(
-            color: Colors.teal,
+            color: Colors.transparent,
             width: 4.0,
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.teal, width: 2.0),
+          borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
         ),
       ),
+      inputFormatters: [
+        FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+      ],
     ),
   );
 }
@@ -62,15 +66,18 @@ Widget buildTextField(
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(
-          color: Colors.teal,
+          color: Colors.transparent,
           width: 4.0,
         ),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: Colors.teal, width: 2.0),
+        borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
       ),
     ),
+    inputFormatters: [
+      FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+    ],
   );
 }
 
@@ -99,16 +106,19 @@ Widget buildTextFieldNum(
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(
-          color: Colors.teal,
+          color: Colors.transparent,
           width: 4.0,
         ),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: Colors.teal, width: 2.0),
+        borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
       ),
     ),
     keyboardType: TextInputType.number,
+    inputFormatters: [
+      FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+    ],
   );
 }
 
@@ -152,6 +162,9 @@ Widget buildTextFieldITReports(
       ),
     ),
     keyboardType: TextInputType.text,
+    inputFormatters: [
+      FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+    ],
   );
 }
 
@@ -178,15 +191,18 @@ Widget buildTextFieldITReportslocation(
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(
-          color: Colors.teal,
+          color: Colors.transparent,
           width: 4.0,
         ),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: Colors.teal, width: 2.0),
+        borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
       ),
     ),
+    inputFormatters: [
+      FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+    ],
     keyboardType: TextInputType.text,
   );
 }
