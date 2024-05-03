@@ -68,6 +68,10 @@ class _UserMintinesState extends State<UserMintines> {
           stream: FirebaseFirestore.instance
               .collection('User_Maintenance_Message')
               .where('userUid', isEqualTo: userId?.uid)
+              // .orderBy('endReportDate',
+              //     descending:
+              //         true) // Assuming 'date' is the field representing time
+
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -166,14 +170,27 @@ class ReportCard extends StatelessWidget {
           child: Padding(
             padding:
                 const EdgeInsets.only(left: 4, right: 4, bottom: 10, top: 4),
-            child: Text(
-              'التاريخ: ${report.date}',
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Cario',
-                  fontSize: 12,
-                  color: Colors.black54),
+            child: Column(
+              children: [
+                Text(
+                  'التاريخ: ${report.date}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Cario',
+                      fontSize: 12,
+                      color: Colors.black54),
+                ),
+                Text(
+                  'الموقع: ${report.location}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Cario',
+                      fontSize: 12,
+                      color: Colors.black54),
+                ),
+              ],
             ),
           ),
         ),

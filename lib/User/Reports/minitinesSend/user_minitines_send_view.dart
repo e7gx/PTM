@@ -303,6 +303,26 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
                     ),
                     const SizedBox(height: 10),
                     const Text(
+                      'بيانات التواصل:',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Cario',
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 15, 146, 239),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      '${reportData['userInfo']}',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                        fontFamily: 'Cario',
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+
+                    const Text(
                       'وصف المشكلة:',
                       style: TextStyle(
                         fontFamily: 'Cario',

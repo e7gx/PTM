@@ -35,7 +35,14 @@ Widget buildTextFieldRegisterAssets(
         ),
       ),
       inputFormatters: [
-        FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+        TextInputFormatter.withFunction((oldValue, newValue) {
+          // Allow newValue if it's empty or doesn't start with a space
+          if (newValue.text.isEmpty || newValue.text[0] != ' ') {
+            return newValue;
+          }
+          // Otherwise, return oldValue to prevent adding the space at the beginning
+          return oldValue;
+        }),
       ],
     ),
   );
@@ -76,7 +83,14 @@ Widget buildTextField(
       ),
     ),
     inputFormatters: [
-      FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+      TextInputFormatter.withFunction((oldValue, newValue) {
+        // Allow newValue if it's empty or doesn't start with a space
+        if (newValue.text.isEmpty || newValue.text[0] != ' ') {
+          return newValue;
+        }
+        // Otherwise, return oldValue to prevent adding the space at the beginning
+        return oldValue;
+      }),
     ],
   );
 }
@@ -117,53 +131,59 @@ Widget buildTextFieldNum(
     ),
     keyboardType: TextInputType.number,
     inputFormatters: [
-      FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+      TextInputFormatter.withFunction((oldValue, newValue) {
+        // Allow newValue if it's empty or doesn't start with a space
+        if (newValue.text.isEmpty || newValue.text[0] != ' ') {
+          return newValue;
+        }
+        // Otherwise, return oldValue to prevent adding the space at the beginning
+        return oldValue;
+      }),
     ],
   );
 }
 
 Widget buildTextFieldITReports(
-  TextEditingController controller,
-  String label,
-  String hint, {
-  int maxLines1 = 5,
-}) {
-  return TextFormField(
-    style: const TextStyle(color: Colors.blue, fontFamily: 'Cario'),
-    cursorColor: Colors.blue,
+    TextEditingController controller, String label, String hint,
+    {int maxLines = 3}) {
+  return TextField(
     controller: controller,
-    maxLines: maxLines1,
+    maxLines: maxLines,
     maxLength: 100,
+    style: const TextStyle(
+      color: Colors.blue,
+      fontFamily: 'Cario',
+    ),
     decoration: InputDecoration(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
-        borderSide: BorderSide.none,
-      ),
+      border: InputBorder.none,
       filled: true,
       fillColor: Colors.grey[200],
       labelText: label,
       hintText: hint,
       labelStyle: const TextStyle(color: Colors.blue),
-      hintStyle: const TextStyle(
-        color: Colors.grey,
-        fontFamily: 'Cario',
-      ),
+      hintStyle: TextStyle(fontFamily: 'Cario', color: Colors.grey[400]),
       focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+      ),
+      enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(
           color: Colors.transparent,
           width: 2.0,
         ),
       ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
-      ),
     ),
     keyboardType: TextInputType.text,
     inputFormatters: [
-      FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+      TextInputFormatter.withFunction((oldValue, newValue) {
+        // Allow newValue if it's empty or doesn't start with a space
+        if (newValue.text.isEmpty || newValue.text[0] != ' ') {
+          return newValue;
+        }
+        // Otherwise, return oldValue to prevent adding the space at the beginning
+        return oldValue;
+      }),
     ],
   );
 }
@@ -201,7 +221,14 @@ Widget buildTextFieldITReportslocation(
       ),
     ),
     inputFormatters: [
-      FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+      TextInputFormatter.withFunction((oldValue, newValue) {
+        // Allow newValue if it's empty or doesn't start with a space
+        if (newValue.text.isEmpty || newValue.text[0] != ' ') {
+          return newValue;
+        }
+        // Otherwise, return oldValue to prevent adding the space at the beginning
+        return oldValue;
+      }),
     ],
     keyboardType: TextInputType.text,
   );

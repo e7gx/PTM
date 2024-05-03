@@ -363,7 +363,14 @@ class RegisterDeviceState extends State<RegisterDevice> {
             return null;
           },
           inputFormatters: [
-            FilteringTextInputFormatter.deny(RegExp(r'\s')), // Deny spaces
+            TextInputFormatter.withFunction((oldValue, newValue) {
+              // Allow newValue if it's empty or doesn't start with a space
+              if (newValue.text.isEmpty || newValue.text[0] != ' ') {
+                return newValue;
+              }
+              // Otherwise, return oldValue to prevent adding the space at the beginning
+              return oldValue;
+            }),
           ],
         ),
       ],

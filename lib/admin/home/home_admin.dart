@@ -11,40 +11,15 @@ import 'dart:ui';
 class IndividualBar {
   final int x;
   final double y;
-  IndividualBar({required this.x, required this.y});
-}
+  final String label;
+  final Color color; // Add this property
 
-class BarData {
-  final int sunday;
-  final int monday;
-  final int tuesday;
-  final int wednesday;
-  final int thursday;
-  final int friday;
-  final int saturday;
-
-  BarData({
-    required this.sunday,
-    required this.monday,
-    required this.tuesday,
-    required this.wednesday,
-    required this.thursday,
-    required this.friday,
-    required this.saturday,
+  IndividualBar({
+    required this.x,
+    required this.y,
+    required this.label,
+    required this.color, // Update the constructor
   });
-
-  List<IndividualBar> barData = [];
-  void initalizeBarData() {
-    barData = [
-      IndividualBar(x: 0, y: sunday.toDouble()),
-      IndividualBar(x: 10, y: monday.toDouble()),
-      IndividualBar(x: 20, y: tuesday.toDouble()),
-      IndividualBar(x: 30, y: wednesday.toDouble()),
-      IndividualBar(x: 40, y: thursday.toDouble()),
-      IndividualBar(x: 50, y: friday.toDouble()),
-      IndividualBar(x: 60, y: saturday.toDouble()),
-    ];
-  }
 }
 
 class AdminDashboard extends StatefulWidget {
@@ -55,27 +30,9 @@ class AdminDashboard extends StatefulWidget {
 }
 
 class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
-  List<int> dashboard = [
-    0,
-    2,
-    3,
-    4,
-    5,
-    6,
-    6,
-  ];
-  int itReportsCount = 0;
-  int itReportsReceivedCount = 0;
-  int userReportsCount = 0;
-  int assetsCount = 0;
+  List<IndividualBar> barData = [];
 
-  @override
-  void initState() {
-    super.initState();
-    fetchReportCounts();
-  }
-
-  Future<void> fetchReportCounts() async {
+  void fetchReportCounts() async {
     final QuerySnapshot itReportsSnapshot =
         await FirebaseFirestore.instance.collection('IT_Reports').get();
     final QuerySnapshot itReportsReceivedSnapshot = await FirebaseFirestore
@@ -96,17 +53,63 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    fetchReportCounts(); // Call the function to fetch data when the page is initialized
+  }
+
+  int itReportsCount = 0;
+  int itReportsReceivedCount = 0;
+  int userReportsCount = 0;
+  int assetsCount = 0;
+
+  Color _getColorForType(int x) {
+    if (x < 5) {
+      return Colors.teal; // اللون الافتراضي إذا كانت القيمة أقل من 5
+    } else if (x < 10) {
+      return Colors.orange; // اللون الافتراضي إذا كانت القيمة بين 5 و 10
+    } else if (x < 20) {
+      return Colors.redAccent; // اللون الافتراضي إذا كانت القيمة بين 10 و 20
+    } else {
+      return Colors.red; // اللون الافتراضي لجميع القيم الأخرى
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    BarData myBarData = BarData(
-      sunday: dashboard[3],
-      monday: dashboard[1],
-      tuesday: dashboard[2],
-      wednesday: dashboard[3],
-      thursday: dashboard[4],
-      friday: dashboard[5],
-      saturday: dashboard[6],
-    );
-    myBarData.initalizeBarData();
+    Map<String, int> textToValueMap = {
+      'User Reports': userReportsCount,
+      'Closed Reports': itReportsCount,
+      'Technical Support Reports': itReportsReceivedCount,
+      'Assets Count': assetsCount,
+    };
+    List<Color> barColors = [
+      Colors.red,
+      Colors.green,
+      Colors.blue,
+      Colors.yellow,
+    ];
+
+    List<IndividualBar> barData = [
+      IndividualBar(
+        x: textToValueMap['Technical Support Reports']!,
+        y: textToValueMap['Technical Support Reports']!.toDouble(),
+        label: 'Technical Support Reports', // Text label for the bar
+        color: barColors[0], // Assigning color to the bar
+      ),
+      IndividualBar(
+        x: textToValueMap['Closed Reports']!,
+        y: textToValueMap['Closed Reports']!.toDouble(),
+        label: 'Closed Reports', // Text label for the bar
+        color: barColors[1], // Assigning color to the bar
+      ),
+      IndividualBar(
+        x: textToValueMap['User Reports']!,
+        y: textToValueMap['User Reports']!.toDouble(),
+        label: 'User Reports', // Text label for the bar
+        color: barColors[2], // Assigning color to the bar
+      ),
+    ];
 
     return Scaffold(
       body: Stack(children: [
@@ -114,53 +117,6 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
         SingleChildScrollView(
           child: Column(
             children: [
-              // Padding(
-              //   padding:
-              //       const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
-              //   child: TextField(
-              //     style:
-              //         const TextStyle(color: Colors.teal, fontFamily: 'Cario'),
-              //     cursorColor: Colors.teal,
-              //     textAlign: TextAlign.end,
-              //     decoration: InputDecoration(
-              //       filled: true,
-              //       fillColor: Colors.white,
-              //       focusColor: Colors.teal,
-              //       hintText: 'البحث عن صفحة',
-              //       hintStyle: const TextStyle(
-              //           fontFamily: 'Cario',
-              //           color: Colors.teal,
-              //           fontSize: 12,
-              //           fontWeight: FontWeight.bold),
-              //       prefixIcon: const Icon(
-              //         Icons.search_rounded,
-              //         color: Colors.teal,
-              //       ),
-              //       iconColor: Colors.teal,
-              //       border: OutlineInputBorder(
-              //         borderSide: const BorderSide(
-              //           color: Colors.teal,
-              //           width: 2,
-              //         ),
-              //         borderRadius: BorderRadius.circular(10),
-              //       ),
-              //       focusedBorder: OutlineInputBorder(
-              //         borderRadius: BorderRadius.circular(10),
-              //         borderSide: const BorderSide(
-              //           color: Colors.teal,
-              //           width: 3.0,
-              //         ),
-              //       ),
-              //       enabledBorder: OutlineInputBorder(
-              //         borderRadius: BorderRadius.circular(10),
-              //         borderSide: const BorderSide(
-              //           color: Colors.teal,
-              //           width: 1.0,
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -226,16 +182,6 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                           color: Colors.green,
                         ),
                       ),
-                      SizedBox(
-                        width: 180,
-                        height: 180,
-                        child: ReportCard(
-                          title: 'عدد الأصول المسجلة',
-                          count: assetsCount,
-                          icon: Icons.assignment,
-                          color: Colors.purple,
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -296,10 +242,8 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                     color: Colors.transparent,
                     elevation: 10,
                     shadowColor: Colors.teal,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(25.0),
-                      ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25.0),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -314,9 +258,14 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                               swapAnimationDuration: const Duration(seconds: 4),
                               BarChartData(
                                 backgroundColor: Colors.white,
-                                maxY: 9,
-                                // Change this value according to your data
-                                minY: 2,
+                                maxY: barData.map((data) => data.y).reduce(
+                                    (max, current) =>
+                                        max > current ? max : current),
+                                // يمكننا استخدام reduce للعثور على أعلى قيمة في القائمة وجعلها maxY لارتفاع البار
+                                minY: barData.map((data) => data.y).reduce(
+                                    (min, current) =>
+                                        min < current ? min : current),
+                                // يمكننا استخدام reduce للعثور على أدنى قيمة في القائمة وجعلها minY لارتفاع البار
                                 gridData: const FlGridData(
                                   show: true,
                                 ),
@@ -326,46 +275,53 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                                     sideTitles: SideTitles(showTitles: false),
                                   ),
                                   leftTitles: AxisTitles(
-                                    sideTitles: SideTitles(showTitles: true),
+                                    sideTitles: SideTitles(showTitles: false),
                                   ),
                                   rightTitles: AxisTitles(
                                     sideTitles: SideTitles(showTitles: false),
                                   ),
                                 ),
                                 borderData: FlBorderData(show: true),
-                                barGroups: myBarData.barData
-                                    .map(
-                                      (data) => BarChartGroupData(
-                                        x: data.x,
-                                        barRods: [
-                                          BarChartRodData(
-                                            toY: data.y,
-                                            color: Colors.teal,
-                                            width: 25,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            backDrawRodData:
-                                                BackgroundBarChartRodData(
-                                              show: true,
-                                              toY: 9,
-                                              color: const Color(0xFF075A5A),
-                                            ),
+                                barGroups: barData.map((data) {
+                                  return BarChartGroupData(
+                                    x: data.x,
+                                    barRods: [
+                                      BarChartRodData(
+                                        toY: data.y,
+                                        color: _getColorForType(data
+                                            .x), // Color assigned based on type
+                                        width: 25,
+                                        borderRadius: BorderRadius.circular(10),
+                                        backDrawRodData:
+                                            BackgroundBarChartRodData(
+                                          show: true,
+                                          toY: data.y,
+                                          color: _getColorForType(data
+                                              .x), // Color assigned based on type
+                                        ),
+                                        rodStackItems: [
+                                          BarChartRodStackItem(
+                                            0,
+                                            data.y,
+                                            _getColorForType(data
+                                                .x), // Color assigned based on type
                                           ),
                                         ],
                                       ),
-                                    )
-                                    .toList(),
+                                    ],
+                                  );
+                                }).toList(),
                               ),
                             ),
                           ),
                           const SizedBox(height: 10),
                           const Text(
-                            ' عدد البلاغات الاسبوعية',
+                            'عدد البلاغات الأسبوعية',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'Cario',
                               color: Colors.white,
-                              fontSize: 15, //  تغيير هذه القيمة لتكون الحجم
+                              fontSize: 15,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -376,92 +332,92 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                   ),
                 ),
               ),
-              const SizedBox(height: 80),
-              SafeArea(
-                child: Card(
-                  color: Colors.transparent,
-                  elevation: 10,
-                  shadowColor: Colors.teal,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(25.0),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 10),
-                        const SizedBox(
-                          height: 50,
-                        ),
-                        SizedBox(
-                          height: 280,
-                          child: BarChart(
-                            swapAnimationDuration: const Duration(seconds: 3),
-                            BarChartData(
-                              backgroundColor: Colors.white,
-                              maxY:
-                                  9, // Change this value according to your data
-                              minY: 1,
-                              gridData: const FlGridData(
-                                show: true,
-                              ),
-                              titlesData: const FlTitlesData(
-                                show: true,
-                                topTitles: AxisTitles(
-                                  sideTitles: SideTitles(showTitles: false),
-                                ),
-                                leftTitles: AxisTitles(
-                                  sideTitles: SideTitles(showTitles: true),
-                                ),
-                                rightTitles: AxisTitles(
-                                  sideTitles: SideTitles(showTitles: false),
-                                ),
-                              ),
-                              borderData: FlBorderData(show: true),
-                              barGroups: myBarData.barData
-                                  .map(
-                                    (data) => BarChartGroupData(
-                                      x: data.x,
-                                      barRods: [
-                                        BarChartRodData(
-                                          toY: data.y,
-                                          color: Colors.teal,
-                                          width: 25,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          backDrawRodData:
-                                              BackgroundBarChartRodData(
-                                            show: true,
-                                            toY: 9,
-                                            color: const Color(0xFF075A5A),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                  .toList(),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        const Text(
-                          'عدد البلاغات الاجمالية\nعدد البلاغات الإجمالية يُظهر عدد البلاغات الكلي التي تم تسجيلها أو تلقيها في نطاق معين، ويُستخدم هذا الرقم لتقييم حجم الأنشطة أو المشكلات التي تحتاج إلى متابعة أو حل في النظام أو التطبيق',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'Cario', color: Colors.white,
-                            fontSize: 15, //  تغيير هذه القيمة لتكون الحجم
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 80),
+              // const SizedBox(height: 80),
+              // SafeArea(
+              //   child: Card(
+              //     color: Colors.transparent,
+              //     elevation: 10,
+              //     shadowColor: Colors.teal,
+              //     shape: const RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.all(
+              //         Radius.circular(25.0),
+              //       ),
+              //     ),
+              //     child: Padding(
+              //       padding: const EdgeInsets.symmetric(horizontal: 30),
+              //       child: Column(
+              //         children: [
+              //           const SizedBox(height: 10),
+              //           const SizedBox(
+              //             height: 50,
+              //           ),
+              //           SizedBox(
+              //             height: 280,
+              //             child: BarChart(
+              //               swapAnimationDuration: const Duration(seconds: 3),
+              //               BarChartData(
+              //                 backgroundColor: Colors.white,
+              //                 maxY:
+              //                     9, // Change this value according to your data
+              //                 minY: 1,
+              //                 gridData: const FlGridData(
+              //                   show: true,
+              //                 ),
+              //                 titlesData: const FlTitlesData(
+              //                   show: true,
+              //                   topTitles: AxisTitles(
+              //                     sideTitles: SideTitles(showTitles: false),
+              //                   ),
+              //                   leftTitles: AxisTitles(
+              //                     sideTitles: SideTitles(showTitles: true),
+              //                   ),
+              //                   rightTitles: AxisTitles(
+              //                     sideTitles: SideTitles(showTitles: false),
+              //                   ),
+              //                 ),
+              //                 borderData: FlBorderData(show: true),
+              //                 barGroups: barData
+              //                     .map(
+              //                       (data) => BarChartGroupData(
+              //                         x: data.x,
+              //                         barRods: [
+              //                           BarChartRodData(
+              //                             toY: data.y,
+              //                             color: Colors.teal,
+              //                             width: 25,
+              //                             borderRadius:
+              //                                 BorderRadius.circular(10),
+              //                             backDrawRodData:
+              //                                 BackgroundBarChartRodData(
+              //                               show: true,
+              //                               toY: 9,
+              //                               color: const Color(0xFF075A5A),
+              //                             ),
+              //                           ),
+              //                         ],
+              //                       ),
+              //                     )
+              //                     .toList(),
+              //               ),
+              //             ),
+              //           ),
+              //           const SizedBox(height: 10),
+              //           const Text(
+              //             'عدد البلاغات الاجمالية\nعدد البلاغات الإجمالية يُظهر عدد البلاغات الكلي التي تم تسجيلها أو تلقيها في نطاق معين، ويُستخدم هذا الرقم لتقييم حجم الأنشطة أو المشكلات التي تحتاج إلى متابعة أو حل في النظام أو التطبيق',
+              //             textAlign: TextAlign.center,
+              //             style: TextStyle(
+              //               fontFamily: 'Cario', color: Colors.white,
+              //               fontSize: 15, //  تغيير هذه القيمة لتكون الحجم
+              //               fontWeight: FontWeight.bold,
+              //             ),
+              //           ),
+              //           const SizedBox(height: 20),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(height: 80),
             ],
           ),
         ),

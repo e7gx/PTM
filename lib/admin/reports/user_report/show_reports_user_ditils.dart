@@ -189,6 +189,25 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                       fontFamily: 'Cario',
                     ),
                   ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'بيانات التواصل:',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Cario',
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 15, 146, 239),
+                    ),
+                  ),
+                  Text(
+                    '${reportData['userInfo']}',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black87,
+                      fontFamily: 'Cario',
+                    ),
+                  ),
+                  const SizedBox(height: 10),
                   const SizedBox(height: 25),
                   // حدث عند الضغط على زر "نقل البلاغ إلى قسم تقنية المعلومات"
                   ElevatedButton(

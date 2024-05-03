@@ -130,7 +130,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminStatisticsPage> {
                   mainAxisSpacing: 16,
                   children: [
                     _buildMetricCard(
-                      title: 'البلاغات المستخدمين',
+                      title: 'بلاغات المفتوحة',
                       value: userReportsCount.toString(),
                       icon: Icons.construction_sharp,
                     ),
@@ -163,6 +163,11 @@ class _TechnicalSupportStatisticsPageState extends State<AdminStatisticsPage> {
                       title: 'عدد الاصول المسجلة',
                       value: assetsCount.toString(),
                       icon: Icons.important_devices_rounded,
+                    ),
+                    _buildMetricCard(
+                      title: 'بلاغات المستخدمين',
+                      value: userReportsCount.toString(),
+                      icon: Icons.construction_sharp,
                     ),
                   ],
                 ),

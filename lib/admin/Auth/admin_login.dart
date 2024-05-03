@@ -303,10 +303,10 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                                       'assets/animation/reportGreen.json', //! importint Change The Animaiton pls
                                       height: 200),
                                   const SizedBox(height: 10),
-                                  const Center(
+                                  Center(
                                     child: Text(
-                                      '.... يرجى الانتظار قليلا',
-                                      style: TextStyle(
+                                      S.of(context).Loading,
+                                      style: const TextStyle(
                                           fontFamily: 'Cario',
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
@@ -334,15 +334,9 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                         );
                       } on FirebaseAuthException catch (e) {
                         String message =
-                            'كلمة المرور او البريد الإلكتروني\nغير صحيح حاول مرة اخرى ';
+                            '${e.code}\n ${S.of(context).validData}';
                         String lottieAsset =
                             'assets/animation/WOR.json'; // مسار ملف تحريك Lottie للخطأ
-
-                        if (e.code == 'user-not-found') {
-                          message = 'لم يتم العثور على المستخدم!';
-                        } else if (e.code == 'wrong-password') {
-                          message = 'كلمة المرور غير صحيحة!';
-                        }
 
                         showDialog(
                           context: context,
@@ -375,7 +369,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                                 TextButton(
                                   onPressed: () {
                                     Fluttertoast.showToast(
-                                      msg: "تاكد من البيانات وشبكة الانترنت",
+                                      msg: S.of(context).validData,
                                       toastLength: Toast.LENGTH_SHORT,
                                       gravity: ToastGravity.CENTER,
                                       timeInSecForIosWeb: 1,
@@ -383,12 +377,11 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                                       fontSize: 16.0,
                                     );
                                     Navigator.of(context).pop();
-
                                     Navigator.of(context).pop();
                                   },
-                                  child: const Text(
-                                    'موافق',
-                                    style: TextStyle(
+                                  child: Text(
+                                    S.of(context).Okay,
+                                    style: const TextStyle(
                                         fontFamily: 'Cario',
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,

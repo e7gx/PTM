@@ -69,7 +69,7 @@ class _TechnicalSupportStatisticsPageState
         ),
         centerTitle: true,
         title: const Text(
-          'تقرير حل المشكلة',
+          'تقيماتي',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'Cario',
@@ -82,8 +82,8 @@ class _TechnicalSupportStatisticsPageState
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  Colors.teal,
-                  Color(0xFF00CCFF),
+                  Colors.blue,
+                  Colors.black,
                 ],
                 begin: FractionalOffset(0.0, 0.0),
                 end: FractionalOffset(1.0, 0.0),
@@ -105,7 +105,7 @@ class _TechnicalSupportStatisticsPageState
         backgroundColor: Colors.white,
         child: const Icon(
           Icons.refresh,
-          color: Colors.teal,
+          color: Colors.blue,
           size: 35,
         ),
       ),
@@ -113,7 +113,7 @@ class _TechnicalSupportStatisticsPageState
         children: [
           Positioned.fill(
             child: Lottie.asset(
-              'assets/animation/afterAfect.json',
+              'assets/animation/p2p.json',
               fit: BoxFit.fill,
             ),
           ),
@@ -125,7 +125,7 @@ class _TechnicalSupportStatisticsPageState
           ),
           Positioned.fill(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 70, sigmaY: 70),
+              filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
               child: const SizedBox(),
             ),
           ),
@@ -153,6 +153,10 @@ class _TechnicalSupportStatisticsPageState
                     ),
                     _buildMetricCard(
                       title: 'البلاغات المغلقة',
+                      value: resolvedReports.toString(),
+                    ),
+                    _buildMetricCard(
+                      title: 'التقارير المنجزة',
                       value: resolvedReports.toString(),
                     ),
                     _buildMetricCardRate(
@@ -183,7 +187,7 @@ class _TechnicalSupportStatisticsPageState
           side: const BorderSide(color: Colors.white70, width: 1),
           borderRadius: BorderRadius.circular(10),
         ),
-        shadowColor: Colors.teal,
+        shadowColor: Colors.blue,
         elevation: 4,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -245,7 +249,7 @@ class _TechnicalSupportStatisticsPageState
         side: const BorderSide(color: Colors.white70, width: 1),
         borderRadius: BorderRadius.circular(10),
       ),
-      shadowColor: Colors.teal,
+      shadowColor: Colors.blue,
       elevation: 4,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -254,7 +258,7 @@ class _TechnicalSupportStatisticsPageState
             padding: EdgeInsets.all(8.0),
             child: Icon(
               Icons.bar_chart_sharp,
-              color: Colors.teal,
+              color: Colors.blue,
               size: 50,
             ),
           ),
