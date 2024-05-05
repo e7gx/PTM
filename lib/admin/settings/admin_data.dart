@@ -188,34 +188,37 @@ class UserAvatarInfoCard extends StatelessWidget {
 class UserDetailTile extends StatelessWidget {
   final String title;
   final String value;
-
   final IconData? icon;
   final TextStyle? style;
 
-  const UserDetailTile(
-      {super.key,
-      required this.title,
-      required this.value,
-      this.icon,
-      this.style});
+  const UserDetailTile({
+    Key? key,
+    required this.title,
+    required this.value,
+    this.icon,
+    this.style,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final isRTL = Localizations.localeOf(context).languageCode == 'ar';
+
     return ListTile(
-      leading: icon != null
-          ? Icon(
-              icon,
-            )
-          : null,
+      leading: icon != null ? Icon(icon) : null,
       title: Text(
         title,
         style: const TextStyle(
-            fontSize: 18,
-            fontFamily: 'Cario',
-            fontWeight: FontWeight.bold,
-            color: Colors.teal),
+          fontSize: 18,
+          fontFamily: 'Cario',
+          fontWeight: FontWeight.bold,
+          color: Colors.teal,
+        ),
+        textDirection: isRTL ? TextDirection.ltr : TextDirection.rtl,
       ),
-      subtitle: Text(value),
+      subtitle: Text(
+        value,
+        textDirection: isRTL ? TextDirection.ltr : TextDirection.rtl,
+      ),
       textColor: Colors.teal,
     );
   }

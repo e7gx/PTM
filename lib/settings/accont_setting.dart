@@ -1,5 +1,7 @@
 import 'package:first_time/Auth/reset_password.dart';
+import 'package:first_time/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -53,7 +55,36 @@ class _SettingsPageState extends State<SettingsPage> {
       ), //AppBar
       body: ListView(
         children: [
-          // قائمة الإشعارات
+          ListTile(
+            leading: const Icon(
+              Icons.brightness_6,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'تغيير السمة',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Cario',
+              ),
+            ),
+            trailing: Switch(
+              value: Theme.of(context).brightness == Brightness.dark,
+              onChanged: (value) {
+                final themeProvider =
+                    Provider.of<ThemeProvider>(context, listen: false);
+                themeProvider.toggleTheme();
+              },
+              activeTrackColor: Colors.cyan,
+              activeColor: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.blue
+                  : Colors.cyan,
+              inactiveThumbColor: Colors.blue[100],
+              inactiveTrackColor: Colors.blueAccent[200],
+            ),
+          ),
+          const Divider(),
           ListTile(
             leading: const Icon(
               Icons.notifications,
@@ -70,6 +101,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             trailing: Switch(
               value: abdullahSwitch,
+              activeColor: Colors.blue,
               onChanged: (value) {
                 setState(() {
                   abdullahSwitch = value;

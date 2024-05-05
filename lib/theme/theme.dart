@@ -58,3 +58,16 @@ ThemeData darkMode = ThemeData(
   colorScheme: const ColorScheme.dark(
       background: Color(0xFF272727), primary: Colors.teal),
 );
+
+class ThemeProvider extends ChangeNotifier {
+  static ThemeMode themeMode = ThemeMode.light;
+
+  static ThemeData getTheme(BuildContext context) {
+    return themeMode == ThemeMode.light ? lightMode : darkMode;
+  }
+
+  void toggleTheme() {
+    themeMode = themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    notifyListeners();
+  }
+}

@@ -66,9 +66,9 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
   Color _getColorForType(int x) {
     if (x < 5) {
       return Colors.teal; // اللون الافتراضي إذا كانت القيمة أقل من 5
-    } else if (x < 10) {
+    } else if (x <= 10) {
       return Colors.orange; // اللون الافتراضي إذا كانت القيمة بين 5 و 10
-    } else if (x < 20) {
+    } else if (x <= 20) {
       return Colors.redAccent; // اللون الافتراضي إذا كانت القيمة بين 10 و 20
     } else {
       return Colors.red; // اللون الافتراضي لجميع القيم الأخرى
@@ -332,92 +332,6 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                   ),
                 ),
               ),
-              // const SizedBox(height: 80),
-              // SafeArea(
-              //   child: Card(
-              //     color: Colors.transparent,
-              //     elevation: 10,
-              //     shadowColor: Colors.teal,
-              //     shape: const RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.all(
-              //         Radius.circular(25.0),
-              //       ),
-              //     ),
-              //     child: Padding(
-              //       padding: const EdgeInsets.symmetric(horizontal: 30),
-              //       child: Column(
-              //         children: [
-              //           const SizedBox(height: 10),
-              //           const SizedBox(
-              //             height: 50,
-              //           ),
-              //           SizedBox(
-              //             height: 280,
-              //             child: BarChart(
-              //               swapAnimationDuration: const Duration(seconds: 3),
-              //               BarChartData(
-              //                 backgroundColor: Colors.white,
-              //                 maxY:
-              //                     9, // Change this value according to your data
-              //                 minY: 1,
-              //                 gridData: const FlGridData(
-              //                   show: true,
-              //                 ),
-              //                 titlesData: const FlTitlesData(
-              //                   show: true,
-              //                   topTitles: AxisTitles(
-              //                     sideTitles: SideTitles(showTitles: false),
-              //                   ),
-              //                   leftTitles: AxisTitles(
-              //                     sideTitles: SideTitles(showTitles: true),
-              //                   ),
-              //                   rightTitles: AxisTitles(
-              //                     sideTitles: SideTitles(showTitles: false),
-              //                   ),
-              //                 ),
-              //                 borderData: FlBorderData(show: true),
-              //                 barGroups: barData
-              //                     .map(
-              //                       (data) => BarChartGroupData(
-              //                         x: data.x,
-              //                         barRods: [
-              //                           BarChartRodData(
-              //                             toY: data.y,
-              //                             color: Colors.teal,
-              //                             width: 25,
-              //                             borderRadius:
-              //                                 BorderRadius.circular(10),
-              //                             backDrawRodData:
-              //                                 BackgroundBarChartRodData(
-              //                               show: true,
-              //                               toY: 9,
-              //                               color: const Color(0xFF075A5A),
-              //                             ),
-              //                           ),
-              //                         ],
-              //                       ),
-              //                     )
-              //                     .toList(),
-              //               ),
-              //             ),
-              //           ),
-              //           const SizedBox(height: 10),
-              //           const Text(
-              //             'عدد البلاغات الاجمالية\nعدد البلاغات الإجمالية يُظهر عدد البلاغات الكلي التي تم تسجيلها أو تلقيها في نطاق معين، ويُستخدم هذا الرقم لتقييم حجم الأنشطة أو المشكلات التي تحتاج إلى متابعة أو حل في النظام أو التطبيق',
-              //             textAlign: TextAlign.center,
-              //             style: TextStyle(
-              //               fontFamily: 'Cario', color: Colors.white,
-              //               fontSize: 15, //  تغيير هذه القيمة لتكون الحجم
-              //               fontWeight: FontWeight.bold,
-              //             ),
-              //           ),
-              //           const SizedBox(height: 20),
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              // const SizedBox(height: 80),
             ],
           ),
         ),

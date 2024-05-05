@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:first_time/App/ppm.dart';
 import 'package:first_time/Auth/reset_password.dart';
 import 'package:first_time/Auth/signup_page.dart';
 import 'package:first_time/admin/Auth/admin_login.dart';
@@ -68,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
             bottomLeft: Radius.circular(7000),
           ),
         ),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.blue,
         automaticallyImplyLeading: false,
       ),
       // backgroundColor: Colors.black,
@@ -76,13 +77,13 @@ class _LoginPageState extends State<LoginPage> {
         alignment: Alignment.topCenter,
         children: [
           Lottie.asset(
-            'assets/animation/afterAfect.json',
+            'assets/animation/aichat.json',
             fit: BoxFit.fill,
             height: double.infinity,
             width: double.infinity,
           ),
           Lottie.asset(
-            'assets/animation/green.json',
+            'assets/animation/p2p.json',
             fit: BoxFit.fill,
             height: MediaQuery.sizeOf(context).height,
             width: MediaQuery.sizeOf(context).width,
@@ -102,17 +103,17 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Lottie.asset(
-                    'assets/animation/green.json',
+                    'assets/animation/p2p.json',
                     width: 500.0,
                     height: 230.0,
                   ),
                   Text(
-                    S.of(context).LoginAppBar,
+                    S.of(context).login,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      fontSize: 40,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
-                      color: Colors.teal,
+                      color: Colors.blue,
                       fontFamily: 'Cario',
                     ),
                   ),
@@ -121,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: Material(
                       elevation: 16,
-                      shadowColor: Colors.teal,
+                      shadowColor: Colors.blue,
                       borderRadius:
                           BorderRadius.circular(10), // Set border radius here
                       child: ClipRRect(
@@ -129,9 +130,9 @@ class _LoginPageState extends State<LoginPage> {
                             10), // Apply borderRadius to ClipRRect
                         child: TextFormField(
                           showCursor: true,
-                          style: const TextStyle(color: Colors.teal),
+                          style: const TextStyle(color: Colors.blue),
                           controller: emailController,
-                          cursorColor: Colors.teal,
+                          cursorColor: Colors.blue,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
@@ -140,9 +141,9 @@ class _LoginPageState extends State<LoginPage> {
                                 fontFamily: 'Cario',
                                 fontWeight: FontWeight.bold,
                                 color:
-                                    Colors.teal), // Cyan color for label text
+                                    Colors.blue), // Cyan color for label text
                             prefixIcon: const Icon(Icons.email_outlined,
-                                color: Colors.teal), // Cyan color for icon
+                                color: Colors.blue), // Cyan color for icon
                             border: InputBorder.none, // Remove border here
                             enabledBorder:
                                 InputBorder.none, // Remove enabled border here
@@ -159,17 +160,17 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: Material(
                       elevation: 16,
-                      shadowColor: Colors.teal,
+                      shadowColor: Colors.blue,
                       borderRadius:
                           BorderRadius.circular(10), // Set border radius here
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(
                             10), // Apply borderRadius to ClipRRect
                         child: TextFormField(
-                          style: const TextStyle(color: Colors.teal),
+                          style: const TextStyle(color: Colors.blue),
                           controller: passwordController,
                           obscureText: obscureTextSET,
-                          cursorColor: Colors.teal,
+                          cursorColor: Colors.blue,
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             filled: true,
@@ -181,7 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                               },
                               child: Icon(
                                 size: 20,
-                                color: Colors.teal,
+                                color: Colors.blue,
                                 obscureTextSET
                                     ? Icons.visibility_outlined
                                     : Icons.visibility_off_outlined,
@@ -192,9 +193,9 @@ class _LoginPageState extends State<LoginPage> {
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Cario',
                                 color:
-                                    Colors.teal), // Cyan color for label text
+                                    Colors.blue), // Cyan color for label text
                             prefixIcon: const Icon(Icons.lock_outline,
-                                color: Colors.teal), // Cyan color for icon
+                                color: Colors.blue), // Cyan color for icon
                             border: InputBorder.none, // Remove border here
                             enabledBorder:
                                 InputBorder.none, // Remove enabled border here
@@ -206,7 +207,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
                         onPressed: () {
@@ -218,16 +218,20 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         },
                         style: TextButton.styleFrom(
-                          foregroundColor: Colors.teal,
+                          foregroundColor: Colors.blue,
                         ),
                         child: Text(
                           S.of(context).Forgot_password,
-                          textAlign: TextAlign.left,
+                          textAlign: TextAlign
+                              .start, // Align text start for RTL or LTR based on language
                           style: const TextStyle(
                             fontFamily: 'Cario',
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                           ),
+                          textDirection: isArabic()
+                              ? TextDirection.rtl
+                              : TextDirection.ltr,
                         ),
                       ),
                     ],
@@ -281,7 +285,7 @@ class _LoginPageState extends State<LoginPage> {
                                         fontFamily: 'Cario',
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.teal),
+                                        color: Colors.blue),
                                   ),
                                 ),
                               ],
@@ -304,7 +308,7 @@ class _LoginPageState extends State<LoginPage> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Lottie.asset(
-                                      'assets/animation/green.json', //! importint Change The Animaiton pls
+                                      'assets/animation/p2p.json', //! importint Change The Animaiton pls
                                       height: 200),
                                   const SizedBox(height: 10),
                                   Center(
@@ -314,7 +318,7 @@ class _LoginPageState extends State<LoginPage> {
                                           fontFamily: 'Cario',
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.teal),
+                                          color: Colors.blue),
                                     ),
                                   ),
                                   const SizedBox(height: 20),
@@ -399,7 +403,7 @@ class _LoginPageState extends State<LoginPage> {
                                         fontFamily: 'Cario',
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.teal),
+                                        color: Colors.blue),
                                   ),
                                 ),
                               ],
@@ -411,13 +415,13 @@ class _LoginPageState extends State<LoginPage> {
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                           vertical: 10.0, horizontal: 65.0),
-                      backgroundColor: Colors.teal,
+                      backgroundColor: Colors.blue,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
                     child: Text(
-                      S.of(context).LoginAppBar,
+                      S.of(context).login,
                       style: const TextStyle(
                           fontSize: 18.0,
                           color: Colors.white,
@@ -448,7 +452,7 @@ class _LoginPageState extends State<LoginPage> {
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Cario',
                                   fontSize: 16,
-                                  color: Colors.teal),
+                                  color: Colors.blue),
                             ),
                           ),
                           Text(
@@ -474,7 +478,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
-                              color: Colors.tealAccent),
+                              color: Colors.blue),
                         ),
                       ),
                     ],

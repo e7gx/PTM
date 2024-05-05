@@ -81,8 +81,8 @@ class _MyDataPageState extends State<MyDataPage> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  Colors.teal,
-                  Colors.tealAccent,
+                  Colors.blue,
+                  Colors.cyan,
                 ],
                 begin: FractionalOffset(0.0, 0.0),
                 end: FractionalOffset(1.0, 0.0),
@@ -163,7 +163,7 @@ class UserAvatarInfoCard extends StatelessWidget {
                 name,
                 style: const TextStyle(
                   fontSize: 20,
-                  color: Colors.teal,
+                  color: Colors.blue,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Cario',
                 ),
@@ -173,7 +173,7 @@ class UserAvatarInfoCard extends StatelessWidget {
               child: Text(
                 lastNameWidget,
                 style: const TextStyle(
-                  color: Colors.teal,
+                  color: Colors.blue,
                   fontFamily: 'Cario',
                 ),
               ),
@@ -188,35 +188,38 @@ class UserAvatarInfoCard extends StatelessWidget {
 class UserDetailTile extends StatelessWidget {
   final String title;
   final String value;
-
   final IconData? icon;
   final TextStyle? style;
 
-  const UserDetailTile(
-      {super.key,
-      required this.title,
-      required this.value,
-      this.icon,
-      this.style});
+  const UserDetailTile({
+    Key? key,
+    required this.title,
+    required this.value,
+    this.icon,
+    this.style,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final isRTL = Localizations.localeOf(context).languageCode == 'ar';
+
     return ListTile(
-      leading: icon != null
-          ? Icon(
-              icon,
-            )
-          : null,
+      leading: icon != null ? Icon(icon) : null,
       title: Text(
         title,
         style: const TextStyle(
-            fontSize: 18,
-            fontFamily: 'Cario',
-            fontWeight: FontWeight.bold,
-            color: Colors.teal),
+          fontSize: 18,
+          fontFamily: 'Cario',
+          fontWeight: FontWeight.bold,
+          color: Colors.blue,
+        ),
+        textDirection: isRTL ? TextDirection.ltr : TextDirection.rtl,
       ),
-      subtitle: Text(value),
-      textColor: Colors.teal,
+      subtitle: Text(
+        value,
+        textDirection: isRTL ? TextDirection.ltr : TextDirection.rtl,
+      ),
+      textColor: Colors.blue,
     );
   }
 }

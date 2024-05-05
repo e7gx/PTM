@@ -23,7 +23,7 @@ Widget buildTextFieldText(
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: Colors.teal, width: 2.0),
+        borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
       ),
     ),
     keyboardType: TextInputType.text,
@@ -62,7 +62,7 @@ Widget buildTextFieldTextUserProblem(
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: Colors.teal, width: 2.0),
+        borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
       ),
     ),
     keyboardType: TextInputType.text,
@@ -101,7 +101,7 @@ Widget buildTextFieldTextUserRating(
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: Colors.teal, width: 2.0),
+        borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
       ),
     ),
     keyboardType: TextInputType.text,
@@ -140,7 +140,7 @@ Widget buildTextFieldLocation(
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: Colors.teal, width: 2.0),
+        borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
       ),
     ),
     keyboardType: TextInputType.text,
@@ -179,7 +179,7 @@ Widget buildTextFieldNum(
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: Colors.teal, width: 2.0),
+        borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
       ),
     ),
     keyboardType: TextInputType.number,

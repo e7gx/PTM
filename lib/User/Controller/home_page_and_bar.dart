@@ -181,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: 'Cario'),
                 ),
                 leading: const Icon(
-                  Icons.done_all_sharp,
+                  Icons.add_task_rounded,
                   size: 30.0,
                   color: Colors.teal,
                 ),
@@ -211,7 +211,7 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: 'Cario'),
                 ),
                 leading: const Icon(
-                  Icons.done,
+                  Icons.done_all_sharp,
                   size: 30.0,
                   color: Colors.teal,
                 ),
@@ -241,7 +241,7 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: 'Cario'),
                 ),
                 leading: const Icon(
-                  Icons.send_rounded,
+                  Icons.done,
                   size: 30.0,
                   color: Colors.teal,
                 ),
