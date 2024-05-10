@@ -3,24 +3,24 @@ import 'package:first_time/device_table/collage_name/computer_collage.dart';
 import 'package:first_time/device_table/collage_name/islamic_collage.dart';
 import 'package:first_time/device_table/collage_name/sciences_collage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fl_chart/fl_chart.dart';
+// import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:ui';
 
-class IndividualBar {
-  final int x;
-  final double y;
-  final String label;
-  final Color color; // Add this property
+// class IndividualBar {
+//   final int x;
+//   final double y;
+//   final String label;
+//   final Color color; // Add this property
 
-  IndividualBar({
-    required this.x,
-    required this.y,
-    required this.label,
-    required this.color, // Update the constructor
-  });
-}
+//   IndividualBar({
+//     required this.x,
+//     required this.y,
+//     required this.label,
+//     required this.color, // Update the constructor
+//   });
+// }
 
 class AdminDashboard extends StatefulWidget {
   const AdminDashboard({super.key});
@@ -30,7 +30,7 @@ class AdminDashboard extends StatefulWidget {
 }
 
 class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
-  List<IndividualBar> barData = [];
+  // List<IndividualBar> barData = [];
 
   void fetchReportCounts() async {
     final QuerySnapshot itReportsSnapshot =
@@ -77,265 +77,269 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, int> textToValueMap = {
-      'User Reports': userReportsCount,
-      'Closed Reports': itReportsCount,
-      'Technical Support Reports': itReportsReceivedCount,
-      'Assets Count': assetsCount,
-    };
-    List<Color> barColors = [
-      Colors.red,
-      Colors.green,
-      Colors.blue,
-      Colors.yellow,
-    ];
+    // Map<String, int> textToValueMap = {
+    //   'User Reports': userReportsCount,
+    //   'Closed Reports': itReportsCount,
+    //   'Technical Support Reports': itReportsReceivedCount,
+    //   'Assets Count': assetsCount,
+    // };
+    // List<Color> barColors = [
+    //   Colors.red,
+    //   Colors.green,
+    //   Colors.blue,
+    //   Colors.yellow,
+    // ];
 
-    List<IndividualBar> barData = [
-      IndividualBar(
-        x: textToValueMap['Technical Support Reports']!,
-        y: textToValueMap['Technical Support Reports']!.toDouble(),
-        label: 'Technical Support Reports', // Text label for the bar
-        color: barColors[0], // Assigning color to the bar
-      ),
-      IndividualBar(
-        x: textToValueMap['Closed Reports']!,
-        y: textToValueMap['Closed Reports']!.toDouble(),
-        label: 'Closed Reports', // Text label for the bar
-        color: barColors[1], // Assigning color to the bar
-      ),
-      IndividualBar(
-        x: textToValueMap['User Reports']!,
-        y: textToValueMap['User Reports']!.toDouble(),
-        label: 'User Reports', // Text label for the bar
-        color: barColors[2], // Assigning color to the bar
-      ),
-    ];
+    // List<IndividualBar> barData = [
+    //   IndividualBar(
+    //     x: textToValueMap['Technical Support Reports']!,
+    //     y: textToValueMap['Technical Support Reports']!.toDouble(),
+    //     label: 'Technical Support Reports', // Text label for the bar
+    //     color: barColors[0], // Assigning color to the bar
+    //   ),
+    //   IndividualBar(
+    //     x: textToValueMap['Closed Reports']!,
+    //     y: textToValueMap['Closed Reports']!.toDouble(),
+    //     label: 'Closed Reports', // Text label for the bar
+    //     color: barColors[1], // Assigning color to the bar
+    //   ),
+    //   IndividualBar(
+    //     x: textToValueMap['User Reports']!,
+    //     y: textToValueMap['User Reports']!.toDouble(),
+    //     label: 'User Reports', // Text label for the bar
+    //     color: barColors[2], // Assigning color to the bar
+    //   ),
+    // ];
 
     return Scaffold(
-      body: Stack(children: [
-        afterAfectSTACK(),
-        SingleChildScrollView(
-          child: Column(
-            children: [
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Text(
-                      'البيانات الرئيسية',
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        fontFamily: 'Cario',
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+      body: Stack(
+        children: [
+          afterAfectSTACK(),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Text(
+                        'البيانات الرئيسية',
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                          width: 180,
+                          height: 180,
+                          child: ReportCard(
+                            title: 'البلاغات المستلمة',
+                            count: itReportsReceivedCount,
+                            icon: Icons.inbox,
+                            color: Colors.blue,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 180,
+                          height: 180,
+                          child: ReportCard(
+                            title: 'البلاغات المغلقة',
+                            count: itReportsCount,
+                            icon: Icons.done_all,
+                            color: Colors.green,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 180,
+                          height: 180,
+                          child: ReportCard(
+                            title: 'بلاغات المستخدمين',
+                            count: userReportsCount,
+                            icon: Icons.person,
+                            color: Colors.orange,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 180,
+                          height: 180,
+                          child: ReportCard(
+                            title: 'تقارير الدعم',
+                            count: itReportsCount,
+                            icon: Icons.support_agent,
+                            color: Colors.green,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'بيانات الكليات',
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          fontFamily: 'Cario',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment:
+                        MainAxisAlignment.spaceBetween, // Adjust as needed
                     children: [
-                      SizedBox(
-                        width: 180,
-                        height: 180,
-                        child: ReportCard(
-                          title: 'البلاغات المستلمة',
-                          count: itReportsReceivedCount,
-                          icon: Icons.inbox,
-                          color: Colors.blue,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 180,
-                        height: 180,
-                        child: ReportCard(
-                          title: 'البلاغات المغلقة',
-                          count: itReportsCount,
-                          icon: Icons.done_all,
-                          color: Colors.green,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 180,
-                        height: 180,
-                        child: ReportCard(
-                          title: 'بلاغات المستخدمين',
-                          count: userReportsCount,
-                          icon: Icons.person,
-                          color: Colors.orange,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 180,
-                        height: 180,
-                        child: ReportCard(
-                          title: 'تقارير الدعم',
-                          count: itReportsCount,
-                          icon: Icons.support_agent,
-                          color: Colors.green,
-                        ),
-                      ),
+                      cardNumberOne(),
+                      cardNumberTwo(),
+                      cardNumberThree(),
+                      cardNumberFour(),
                     ],
                   ),
                 ),
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'بيانات الكليات',
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        fontFamily: 'Cario',
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.spaceBetween, // Adjust as needed
-                  children: [
-                    cardNumberOne(),
-                    cardNumberTwo(),
-                    cardNumberThree(),
-                    cardNumberFour(),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Text(
-                      'لوحة المعلومات',
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        fontFamily: 'Cario',
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    color: Colors.transparent,
-                    elevation: 10,
-                    shadowColor: Colors.teal,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 50,
-                          ),
-                          SizedBox(
-                            height: 280,
-                            child: BarChart(
-                              swapAnimationDuration: const Duration(seconds: 4),
-                              BarChartData(
-                                backgroundColor: Colors.white,
-                                maxY: barData.map((data) => data.y).reduce(
-                                    (max, current) =>
-                                        max > current ? max : current),
-                                // يمكننا استخدام reduce للعثور على أعلى قيمة في القائمة وجعلها maxY لارتفاع البار
-                                minY: barData.map((data) => data.y).reduce(
-                                    (min, current) =>
-                                        min < current ? min : current),
-                                // يمكننا استخدام reduce للعثور على أدنى قيمة في القائمة وجعلها minY لارتفاع البار
-                                gridData: const FlGridData(
-                                  show: true,
-                                ),
-                                titlesData: const FlTitlesData(
-                                  show: true,
-                                  topTitles: AxisTitles(
-                                    sideTitles: SideTitles(showTitles: false),
-                                  ),
-                                  leftTitles: AxisTitles(
-                                    sideTitles: SideTitles(showTitles: false),
-                                  ),
-                                  rightTitles: AxisTitles(
-                                    sideTitles: SideTitles(showTitles: false),
-                                  ),
-                                ),
-                                borderData: FlBorderData(show: true),
-                                barGroups: barData.map((data) {
-                                  return BarChartGroupData(
-                                    x: data.x,
-                                    barRods: [
-                                      BarChartRodData(
-                                        toY: data.y,
-                                        color: _getColorForType(data
-                                            .x), // Color assigned based on type
-                                        width: 25,
-                                        borderRadius: BorderRadius.circular(10),
-                                        backDrawRodData:
-                                            BackgroundBarChartRodData(
-                                          show: true,
-                                          toY: data.y,
-                                          color: _getColorForType(data
-                                              .x), // Color assigned based on type
-                                        ),
-                                        rodStackItems: [
-                                          BarChartRodStackItem(
-                                            0,
-                                            data.y,
-                                            _getColorForType(data
-                                                .x), // Color assigned based on type
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  );
-                                }).toList(),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          const Text(
-                            'عدد البلاغات الأسبوعية',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: 'Cario',
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+                // const SizedBox(height: 10),
+                // const Row(
+                //   mainAxisAlignment: MainAxisAlignment.end,
+                //   children: [
+                //     Padding(
+                //       padding: EdgeInsets.all(20.0),
+                //       child: Text(
+                //         'لوحة المعلومات',
+                //         textAlign: TextAlign.right,
+                //         style: TextStyle(
+                //           fontFamily: 'Cario',
+                //           fontSize: 20,
+                //           fontWeight: FontWeight.bold,
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // SafeArea(
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(8.0),
+                //     child: Card(
+                //       color: Colors.transparent,
+                //       elevation: 10,
+                //       shadowColor: Colors.teal,
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(25.0),
+                //       ),
+                //       child: Padding(
+                //         padding: const EdgeInsets.symmetric(horizontal: 30),
+                //         child: Column(
+                //           children: [
+                //             const SizedBox(
+                //               height: 50,
+                //             ),
+                //             SizedBox(
+                //               height: 280,
+                //               child: BarChart(
+                //                 swapAnimationDuration:
+                //                     const Duration(seconds: 4),
+                //                 BarChartData(
+                //                   backgroundColor: Colors.white,
+                //                   maxY: barData.map((data) => data.y).reduce(
+                //                       (max, current) =>
+                //                           max > current ? max : current),
+                //                   // يمكننا استخدام reduce للعثور على أعلى قيمة في القائمة وجعلها maxY لارتفاع البار
+                //                   minY: barData.map((data) => data.y).reduce(
+                //                       (min, current) =>
+                //                           min < current ? min : current),
+                //                   // يمكننا استخدام reduce للعثور على أدنى قيمة في القائمة وجعلها minY لارتفاع البار
+                //                   gridData: const FlGridData(
+                //                     show: true,
+                //                   ),
+                //                   titlesData: const FlTitlesData(
+                //                     show: true,
+                //                     topTitles: AxisTitles(
+                //                       sideTitles: SideTitles(showTitles: false),
+                //                     ),
+                //                     leftTitles: AxisTitles(
+                //                       sideTitles: SideTitles(showTitles: false),
+                //                     ),
+                //                     rightTitles: AxisTitles(
+                //                       sideTitles: SideTitles(showTitles: false),
+                //                     ),
+                //                   ),
+                //                   borderData: FlBorderData(show: true),
+                //                   barGroups: barData.map((data) {
+                //                     return BarChartGroupData(
+                //                       x: data.x,
+                //                       barRods: [
+                //                         BarChartRodData(
+                //                           toY: data.y,
+                //                           color: _getColorForType(data
+                //                               .x), // Color assigned based on type
+                //                           width: 25,
+                //                           borderRadius:
+                //                               BorderRadius.circular(10),
+                //                           backDrawRodData:
+                //                               BackgroundBarChartRodData(
+                //                             show: true,
+                //                             toY: data.y,
+                //                             color: _getColorForType(data
+                //                                 .x), // Color assigned based on type
+                //                           ),
+                //                           rodStackItems: [
+                //                             BarChartRodStackItem(
+                //                               0,
+                //                               data.y,
+                //                               _getColorForType(data
+                //                                   .x), // Color assigned based on type
+                //                             ),
+                //                           ],
+                //                         ),
+                //                       ],
+                //                     );
+                //                   }).toList(),
+                //                 ),
+                //               ),
+                //             ),
+                //             const SizedBox(height: 10),
+                //             const Text(
+                //               'عدد البلاغات الأسبوعية',
+                //               textAlign: TextAlign.center,
+                //               style: TextStyle(
+                //                 fontFamily: 'Cario',
+                //                 color: Colors.white,
+                //                 fontSize: 15,
+                //                 fontWeight: FontWeight.bold,
+                //               ),
+                //             ),
+                //             const SizedBox(height: 10),
+                //           ],
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
           ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 

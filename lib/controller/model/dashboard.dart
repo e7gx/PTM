@@ -83,7 +83,7 @@ class _TechnicalSupportStatisticsPageState
             gradient: LinearGradient(
                 colors: [
                   Colors.blue,
-                  Colors.black,
+                  Colors.cyan,
                 ],
                 begin: FractionalOffset(0.0, 0.0),
                 end: FractionalOffset(1.0, 0.0),
@@ -133,13 +133,8 @@ class _TechnicalSupportStatisticsPageState
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Image.asset(
-                  'assets/images/uqu.png',
-                  width: 300,
-                  height: 200,
-                ),
+              const SizedBox(
+                height: 40,
               ),
               Expanded(
                 child: GridView.count(

@@ -199,6 +199,25 @@ class ITReportDetailsAdminPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     const Text(
+                      'المبنى:',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Cario',
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 15, 146, 239),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      '${reportData['selected_option']}',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                        fontFamily: 'Cario',
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
                       'وصف المشكلة:',
                       style: TextStyle(
                         fontFamily: 'Cario',

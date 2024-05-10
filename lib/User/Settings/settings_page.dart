@@ -88,13 +88,13 @@ class _SettingsPageState extends State<SettingsPageUser> {
           ListTile(
             leading: const Icon(
               Icons.notifications,
-              color: Colors.tealAccent,
+              color: Colors.teal,
             ), // أيقونة الإشعارات
             title: const Text(
               'الإشعارات',
               style: TextStyle(
                 fontSize: 20,
-                color: Colors.tealAccent,
+                color: Colors.teal,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Cario',
               ),
@@ -114,20 +114,20 @@ class _SettingsPageState extends State<SettingsPageUser> {
           ListTile(
             leading: const Icon(
               Icons.lock,
-              color: Colors.tealAccent,
+              color: Colors.teal,
             ), // أيقونة تعديل كلمة المرور
             title: const Text(
               'تعديل كلمة المرور',
               style: TextStyle(
                 fontSize: 20,
-                color: Colors.tealAccent,
+                color: Colors.teal,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Cario',
               ),
             ),
             trailing: const Icon(
               Icons.arrow_forward_ios,
-              color: Colors.tealAccent,
+              color: Colors.teal,
             ), // أيقونة الانتقال لصفحة تعديل كلمة المرور إذا كان هناك
             onTap: () {
               Navigator.push(
@@ -145,45 +145,20 @@ class _SettingsPageState extends State<SettingsPageUser> {
           ListTile(
             leading: const Icon(
               Icons.language,
-              color: Colors.tealAccent,
+              color: Colors.teal,
             ), // أيقونة اللغة
             title: const Text(
               'اللغة',
               style: TextStyle(
                 fontSize: 20,
-                color: Colors.tealAccent,
+                color: Colors.teal,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Cario',
               ),
             ),
             trailing: const Icon(
               Icons.arrow_forward_ios,
-              color: Colors.tealAccent,
-            ),
-            onTap: () async {
-              await launchUrl(Uri.parse('https://github.com/e7gx'));
-            },
-          ),
-          const Divider(),
-
-          // قائمة التقييم وتعديل الصور
-          ListTile(
-            leading: const Icon(
-              Icons.rate_review,
-              color: Colors.tealAccent,
-            ), // أيقونة التقييم
-            title: const Text(
-              'التقييم وتعديل الصور',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.tealAccent,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Cario',
-              ),
-            ),
-            trailing: const Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.tealAccent,
+              color: Colors.teal,
             ),
             onTap: () async {
               await launchUrl(Uri.parse('https://github.com/e7gx'));

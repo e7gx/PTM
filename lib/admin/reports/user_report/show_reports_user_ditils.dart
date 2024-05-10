@@ -172,6 +172,25 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
+                  const Text(
+                    'المبنى:',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Cario',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.teal,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    '${reportData['selected_option']}',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black87,
+                      fontFamily: 'Cario',
+                    ),
+                  ),
+                  const SizedBox(height: 16),
                   const SafeArea(
                     child: Text(
                       'وصف المشكلة:',
@@ -196,7 +215,7 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                       fontSize: 20,
                       fontFamily: 'Cario',
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 15, 146, 239),
+                      color: Colors.teal,
                     ),
                   ),
                   Text(

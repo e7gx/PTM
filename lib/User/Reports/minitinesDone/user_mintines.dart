@@ -26,7 +26,7 @@ class _UserMintinesState extends State<UserMintines> {
           },
         ),
         title: const Text(
-          'الصيانىة المنتهية',
+          'الصيانة المنتهية',
           style: TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,

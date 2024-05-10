@@ -320,9 +320,6 @@ class _HomePageState extends State<HomePage> {
                 height: 2,
                 thickness: BorderSide.strokeAlignOutside,
               ),
-              const SizedBox(
-                height: 175,
-              ),
               const Divider(
                 endIndent: BorderSide.strokeAlignCenter,
                 height: 5,

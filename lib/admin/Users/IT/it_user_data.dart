@@ -34,7 +34,7 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
         ),
         centerTitle: true,
         title: Text(
-          'بيانات الموظف ${widget.userNumber}',
+          'بيانات الموظف ',
           textAlign: TextAlign.center,
           style: const TextStyle(
               fontFamily: 'Cario',
@@ -101,24 +101,6 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
                     height: 300,
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    ': الموظف رقم',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                        fontFamily: 'Cario',
-                        fontSize: 20,
-                        color: Colors.teal,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SelectableText(
-                    '${widget.userNumber}',
-                    textAlign: TextAlign.right,
-                    style: const TextStyle(
-                      fontFamily: 'Cario',
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
 
                   const SizedBox(height: 16),
                   const Text(

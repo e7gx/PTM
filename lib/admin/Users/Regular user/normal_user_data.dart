@@ -35,7 +35,7 @@ class _ReportDetailsPageState extends State<UserDataInAdminPage> {
         ),
         centerTitle: true,
         title: Text(
-          'بيانات المسفيد ${widget.userNumber}',
+          'بيانات المسفيد ',
           textAlign: TextAlign.center,
           style: const TextStyle(
               fontFamily: 'Cario',
@@ -100,25 +100,6 @@ class _ReportDetailsPageState extends State<UserDataInAdminPage> {
                     reportData['imageUrl'] ?? 'assets/images/chat.png',
                     fit: BoxFit.fitWidth,
                     height: 300,
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    ': المستفيد رقم',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                        fontFamily: 'Cario',
-                        fontSize: 20,
-                        color: Colors.teal,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SelectableText(
-                    '${widget.userNumber}',
-                    textAlign: TextAlign.right,
-                    style: const TextStyle(
-                      fontFamily: 'Cario',
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
                   ),
 
                   const SizedBox(height: 16),
