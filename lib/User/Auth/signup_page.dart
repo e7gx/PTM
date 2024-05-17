@@ -1,5 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:first_time/User/Auth/login_page.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -39,13 +42,15 @@ class _SignUpPageState extends State<SignUpPageUser> {
     final String confirmedPassword = _confirmedpasswordController.text.trim();
 
     if (email.isEmpty || password.isEmpty || confirmedPassword.isEmpty) {
-      _showDialog('يرجى ملء جميع الحقول', 'assets/animation/WOR.json');
+      _showDialog(S.of(context).user_minitines_send_viewFillAllFields,
+          'assets/animation/WOR.json');
     } else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email)) {
-      _showDialog('يرجى إدخال بريد إلكتروني صالح', 'assets/animation/WOR.json');
+      _showDialog(
+          S.of(context).signup_pageValidEmail, 'assets/animation/WOR.json');
     } else if (password != confirmedPassword) {
-      _showDialog('يجب أن تتطابق كلمة المرور المؤكدة مع كلمة المرور',
-          'assets/animation/WOR.json');
+      _showDialog(
+          S.of(context).signup_pageConfirmedMatch, 'assets/animation/WOR.json');
     } else {
       try {
         showDialog(
@@ -66,10 +71,10 @@ class _SignUpPageState extends State<SignUpPageUser> {
                           200), // يجب أن تكون الصورة موجودة في مجلد الـ assets
                   const SizedBox(height: 10),
 
-                  const Center(
+                  Center(
                     child: Text(
-                      '.... يرجى الانتظار قليلا',
-                      style: TextStyle(
+                      S.of(context).Loading,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -99,7 +104,7 @@ class _SignUpPageState extends State<SignUpPageUser> {
           );
         }
       } on FirebaseAuthException catch (e) {
-        String errorMessage = 'حدث خطأ أثناء التسجيل. يرجى المحاولة مرة أخرى';
+        String errorMessage = S.of(context).signup_pageErorrTryAgain;
         Center(
           child: Text(
             errorMessage,
@@ -112,9 +117,9 @@ class _SignUpPageState extends State<SignUpPageUser> {
           ),
         );
         if (e.code == 'weak-password') {
-          errorMessage = 'كلمة المرور التي أدخلتها ضعيفة جدًا';
+          errorMessage = S.of(context).signup_pageWeakPassword;
         } else if (e.code == 'email-already-in-use') {
-          errorMessage = 'البريد الإلكتروني الذي أدخلته مستخدم';
+          errorMessage = S.of(context).signup_pageEmailAlreadyUsed;
         }
         if (mounted) {
           // Also check here before showing the dialog
@@ -146,9 +151,9 @@ class _SignUpPageState extends State<SignUpPageUser> {
               Radius.circular(32.0),
             ),
           ),
-          title: const Text(
-            'خطأ',
-            style: TextStyle(
+          title: Text(
+            S.of(context).signup_pageErorr,
+            style: const TextStyle(
                 fontFamily: 'Cario',
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -183,9 +188,9 @@ class _SignUpPageState extends State<SignUpPageUser> {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
               },
-              child: const Text(
-                'حسنا',
-                style: TextStyle(
+              child: Text(
+                S.of(context).signup_pageOk,
+                style: const TextStyle(
                     fontFamily: 'Cario',
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -207,9 +212,9 @@ class _SignUpPageState extends State<SignUpPageUser> {
               Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-        title: const Text(
-          "تسجيل حساب جديد",
-          style: TextStyle(
+        title: Text(
+          S.of(context).signup_pageSignUpNewAccount,
+          style: const TextStyle(
             fontSize: 21,
             fontWeight: FontWeight.bold,
             color: Colors.white,
@@ -247,30 +252,30 @@ class _SignUpPageState extends State<SignUpPageUser> {
                 style: const TextStyle(color: Colors.teal),
                 cursorColor: Colors.cyan,
                 controller: _nameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   filled: true,
 
-                  labelText: 'الاسم الاول',
-                  labelStyle: TextStyle(
+                  labelText: S.of(context).signup_pageFirstNAme,
+                  labelStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Cario',
                     color: Colors.teal,
                   ), // Cyan color for label text
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.person_add_alt,
                     color: Colors.tealAccent,
                   ), // Cyan color for icon
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.tealAccent,
                     ), // Cyan color for border
                   ),
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.teal,
                     ), // Cyan color for enabled border
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.tealAccent,
                     ), // Cyan color for focused border
@@ -282,30 +287,30 @@ class _SignUpPageState extends State<SignUpPageUser> {
                 style: const TextStyle(color: Colors.teal),
                 cursorColor: Colors.cyan,
                 controller: _lastNameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   filled: true,
 
-                  labelText: 'الاسم الاخير',
-                  labelStyle: TextStyle(
+                  labelText: S.of(context).signup_pageLastName,
+                  labelStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Cario',
                     color: Colors.teal,
                   ), // Cyan color for label text
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.person_add_alt,
                     color: Colors.tealAccent,
                   ), // Cyan color for icon
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Color.fromARGB(255, 15, 146, 239),
                     ), // Cyan color for border
                   ),
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.teal,
                     ), // Cyan color for enabled border
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.tealAccent,
                     ), // Cyan color for focused border
@@ -317,30 +322,30 @@ class _SignUpPageState extends State<SignUpPageUser> {
                 style: const TextStyle(color: Colors.teal),
                 cursorColor: const Color(0xFF0F92EF),
                 controller: _emailController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   filled: true,
 
-                  labelText: 'البريد الإلكتروني',
-                  labelStyle: TextStyle(
+                  labelText: S.of(context).signup_pageEmail,
+                  labelStyle: const TextStyle(
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
                     color: Colors.teal,
                   ), // Cyan color for label text
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.email_outlined,
                     color: Colors.tealAccent,
                   ), // Cyan color for icon
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.teal,
                     ), // Cyan color for border
                   ),
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.teal,
                     ), // Cyan color for enabled border
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.tealAccent,
                     ), // Cyan color for focused border
@@ -354,30 +359,30 @@ class _SignUpPageState extends State<SignUpPageUser> {
                 cursorColor: Colors.cyan,
                 controller: _passwordController,
                 obscureText: true,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   filled: true,
 
-                  labelText: 'كلمة المرور',
-                  labelStyle: TextStyle(
+                  labelText: S.of(context).signup_pagePassword,
+                  labelStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Cario',
                     color: Colors.teal,
                   ), // Cyan color for label text
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.lock_outline,
                     color: Colors.tealAccent,
                   ), // Cyan color for icon
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Color.fromARGB(255, 15, 146, 239),
                     ), // Cyan color for border
                   ),
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.teal,
                     ), // Cyan color for enabled border
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.tealAccent,
                     ), // Cyan color for focused border
@@ -390,30 +395,30 @@ class _SignUpPageState extends State<SignUpPageUser> {
                 cursorColor: Colors.teal,
                 controller: _confirmedpasswordController,
                 obscureText: true,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   filled: true,
 
-                  labelText: 'تاكيد كلمة المرور',
-                  labelStyle: TextStyle(
+                  labelText: S.of(context).signup_pageConfirmPassword,
+                  labelStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Cario',
                     color: Colors.teal,
                   ), // Cyan color for label text
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.lock_outline,
                     color: Colors.tealAccent,
                   ), // Cyan color for icon
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xFF0F92EF),
                     ), // Cyan color for border
                   ),
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.teal,
                     ), // Cyan color for enabled border
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.tealAccent,
                     ), // Cyan color for focused border
@@ -431,9 +436,9 @@ class _SignUpPageState extends State<SignUpPageUser> {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
-                child: const Text(
-                  ' تسجيل جديد ',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).signup_pageNewRegistration,
+                  style: const TextStyle(
                     fontFamily: 'Cario',
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,

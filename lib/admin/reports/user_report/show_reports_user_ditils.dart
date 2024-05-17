@@ -186,7 +186,6 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                     '${reportData['selected_option']}',
                     style: const TextStyle(
                       fontSize: 16,
-                      color: Colors.black87,
                       fontFamily: 'Cario',
                     ),
                   ),
@@ -222,7 +221,6 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                     '${reportData['userInfo']}',
                     style: const TextStyle(
                       fontSize: 16,
-                      color: Colors.black87,
                       fontFamily: 'Cario',
                     ),
                   ),

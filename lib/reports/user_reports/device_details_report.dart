@@ -34,10 +34,10 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
           },
         ),
         centerTitle: true,
-        title: Text(
-          'تفاصيل بلاغ رقم ${widget.reportNumber}',
+        title: const Text(
+          'تفاصيل البلاغ ',
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
               fontSize: 20,

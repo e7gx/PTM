@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:flutter/services.dart';
 
 import 'package:first_time/User/api/chatgpt_api.dart';
 import 'package:http/http.dart' as http;
@@ -20,40 +21,6 @@ class _MainPageState extends State<MainPage> {
   final TextEditingController _textEditingController = TextEditingController();
   bool _userSentMessage = false;
   String fullName = ''; // Variable to store the user's full name
-
-  @override
-  void initState() {
-    super.initState();
-    fetchNameFromFirestore();
-  }
-
-  void onSendMessage() async {
-    String userMessage = _textEditingController.text;
-    Message message = Message(text: userMessage, isMe: true);
-
-    _textEditingController.clear();
-
-    setState(() {
-      _messages.insert(0, message);
-      _userSentMessage = true; // Update the flag when the user sends a message
-    });
-
-    if (userMessage.startsWith("PTM")) {
-      // تحديد مجال PTM
-      String response = await getResponseInPTMDomain(userMessage);
-      Message chatGpt = Message(text: response, isMe: false);
-      setState(() {
-        _messages.insert(0, chatGpt);
-      });
-    } else {
-      String response = await sendMessageToChatGpt(userMessage);
-      Message chatGpt = Message(text: response, isMe: false);
-      setState(() {
-        _messages.insert(0, chatGpt);
-      });
-    }
-  }
-
   Future<void> fetchNameFromFirestore() async {
     try {
       User? user = FirebaseAuth.instance.currentUser;
@@ -88,51 +55,61 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
-  Future<String> getResponseInPTMDomain(String message) async {
-    // تحديد الردود المحددة في مجال PTM
-    Map<String, String> domainQuestions = {
-      "What does PTM stand for?":
-          "PTM stands for \"Technology Management Project.\"",
-      "What is the aim of PTM?":
-          "PTM is aimed at revolutionizing the management of technological assets within companies and organizations.",
-      "What aspects does PTM encompass?":
-          "PTM encompasses various aspects, including asset tracking, inventory management, technical support provision, and employee performance evaluation.",
-      "What is the goal of PTM?":
-          "The goal of PTM is to enhance efficiency, streamline operations, and improve overall productivity in managing technological resources.",
-    };
+  @override
+  void initState() {
+    super.initState();
+    fetchNameFromFirestore();
+  }
 
-    // إرسال السؤال إلى ChatGPT
-    if (domainQuestions.containsKey(message)) {
-      return domainQuestions[message]!;
-    } else {
-      String response = await sendMessageToChatGpt(message);
-      return response;
+  void onSendMessage() {
+    String trimmedText = _textEditingController.text.trim();
+    if (trimmedText.isEmpty) {
+      // هنا يمكنك عرض رسالة تنبيه للمستخدم أو تجاهل العملية
+      return; // توقف عن تنفيذ باقي الكود في هذه الدالة إذا كان الحقل فارغ
     }
+
+    setState(() {
+      _userSentMessage = true;
+      Message message = Message(text: trimmedText, isMe: true);
+      _messages.insert(0, message);
+      _textEditingController.clear();
+    });
+
+    sendMessageToChatGpt(trimmedText).then((response) {
+      Message chatGptMessage = Message(text: response, isMe: false);
+      setState(() {
+        _messages.insert(0, chatGptMessage);
+      });
+    }).catchError((error) {
+      // يمكنك التعامل مع الخطأ هنا
+      // print('Error sending message to ChatGPT: $error');
+    });
   }
 
   Future<String> sendMessageToChatGpt(String message) async {
-    Uri uri = Uri.parse("https://api.openai.com/v1/completions");
+    Uri uri = Uri.parse("https://api.openai.com/v1/chat/completions");
 
     Map<String, dynamic> body = {
       "model": "gpt-3.5-turbo",
       "messages": [
         {"role": "user", "content": message}
       ],
-      "max_tokens": 201,
+      "max_tokens": 250,
     };
 
     try {
       final response = await http.post(
         uri,
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json; charset=UTF-8",
           "Authorization": "Bearer ${APIKey.apikey}",
         },
         body: json.encode(body),
       );
 
       if (response.statusCode == 200) {
-        Map<String, dynamic> parsedResponse = json.decode(response.body);
+        Map<String, dynamic> parsedResponse =
+            json.decode(utf8.decode(response.bodyBytes));
         if (parsedResponse.containsKey('choices') &&
             parsedResponse['choices'].isNotEmpty &&
             parsedResponse['choices'][0].containsKey('message')) {
@@ -146,7 +123,7 @@ class _MainPageState extends State<MainPage> {
       }
     } catch (e) {
       // print("Error sending message to ChatGPT: $e");
-      return "حصل خطاء ما الخدمة غير متوفره حاليا";
+      return "Error: Exception during API call.";
     }
   }
 
@@ -223,36 +200,7 @@ class _MainPageState extends State<MainPage> {
         ),
         child: Column(
           children: <Widget>[
-            if (!_userSentMessage)
-              Container(
-                padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: Colors.teal[100],
-                  border: Border.all(color: Colors.teal),
-                ),
-                child: Row(
-                  children: [
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Text(
-                        ' مرحباً $fullName ! أنا مساعدك الذكي  يرجى وصف مشكلتك، وسأحاول مساعدتك',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.teal[900],
-                          fontSize: 14,
-                          fontFamily: 'Cario', // استخدام الخط Cario هنا
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Lottie.asset(
-                      'assets/animation/like1.json',
-                      fit: BoxFit.fitWidth,
-                      height: 80,
-                    ),
-                  ],
-                ),
-              ),
+            if (!_userSentMessage) _buildWelcomeMessage(),
             Expanded(
               child: ListView.builder(
                 reverse: true,
@@ -290,8 +238,18 @@ class _MainPageState extends State<MainPage> {
                         hintTextDirection: TextDirection.rtl,
                         border: InputBorder.none,
                       ),
-                      textDirection:
-                          TextDirection.rtl, // تحديد اتجاه النص للغة عربية
+                      textDirection: TextDirection.rtl,
+                      inputFormatters: [
+                        TextInputFormatter.withFunction((oldValue, newValue) {
+                          // Allow newValue if it's empty or doesn't start with a space
+                          if (newValue.text.isEmpty ||
+                              newValue.text[0] != ' ') {
+                            return newValue;
+                          }
+                          // Otherwise, return oldValue to prevent adding the space at the beginning
+                          return oldValue;
+                        }),
+                      ],
                     ),
                   ),
                   IconButton(
@@ -308,6 +266,42 @@ class _MainPageState extends State<MainPage> {
         ),
       ),
     );
+  }
+
+  Widget _buildWelcomeMessage() {
+    if (!_userSentMessage && _textEditingController.text.isEmpty) {
+      return Container(
+        padding: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          color: Colors.teal[100],
+          border: Border.all(color: Colors.teal),
+        ),
+        child: Row(
+          children: [
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                ' مرحباً $fullName ! أنا مساعدك الذكي  يرجى وصف مشكلتك، وسأحاول مساعدتك',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.teal[900],
+                  fontSize: 14,
+                  fontFamily: 'Cario', // استخدام الخط Cario هنا
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Lottie.asset(
+              'assets/animation/like1.json',
+              fit: BoxFit.fitWidth,
+              height: 80,
+            ),
+          ],
+        ),
+      );
+    } else {
+      return const SizedBox(); // يعود بعرض مربع فارغ بدون أي شيء
+    }
   }
 }
 

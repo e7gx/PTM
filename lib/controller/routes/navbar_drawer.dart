@@ -195,6 +195,35 @@ class _WelcomePageState extends State<WelcomePage> {
 
               ListTile(
                 title: const Text(
+                  'البيانات الشخصية',
+                  style: TextStyle(
+                    fontFamily: 'Cario',
+                    color: Color(0xF9257BEC),
+
+                    fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                leading: Icon(
+                  Icons.supervised_user_circle,
+                  size: 30.0,
+                  color: Colors.blue[800],
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyDataPage()),
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+
+              const Divider(
+                height: 2,
+                thickness: BorderSide.strokeAlignOutside,
+              ), //
+              ListTile(
+                title: const Text(
                   'أضافة أصول تقنية',
                   style: TextStyle(
                     fontFamily: 'Cario',
@@ -223,36 +252,6 @@ class _WelcomePageState extends State<WelcomePage> {
                 height: 2,
                 thickness: BorderSide.strokeAlignOutside,
               ),
-
-              ListTile(
-                title: const Text(
-                  'البيانات الشخصية',
-                  style: TextStyle(
-                    fontFamily: 'Cario',
-                    color: Color(0xF9257BEC),
-
-                    fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                leading: Icon(
-                  Icons.supervised_user_circle,
-                  size: 30.0,
-                  color: Colors.blue[800],
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyDataPage()),
-                  );
-                },
-              ),
-              const SizedBox(height: 10),
-
-              const Divider(
-                height: 2,
-                thickness: BorderSide.strokeAlignOutside,
-              ), // خط فاصل بينقوائم
               ListTile(
                 title: const Text(
                   ' مؤشر الاداء العام',
@@ -288,6 +287,38 @@ class _WelcomePageState extends State<WelcomePage> {
               ), // خط فاصل بين
               ListTile(
                 title: const Text(
+                  'التقارير',
+                  style: TextStyle(
+                    fontFamily: 'Cario',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xF9257BEC),
+                  ),
+                ),
+                leading: Icon(
+                  Icons.gpp_good_outlined,
+                  size: 30.0,
+                  color: Colors.blue[800],
+                ),
+                selected: _selectedIndex == 0,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ReportsPage()),
+                  );
+                },
+              ),
+
+              const SizedBox(height: 10),
+
+              const Divider(
+                height: 2,
+                thickness: BorderSide.strokeAlignOutside,
+              ), // خط فاصل بين
+
+              ListTile(
+                title: const Text(
                   'اعدادات البرنامج',
                   style: TextStyle(
                     fontFamily: 'Cario',
@@ -315,42 +346,7 @@ class _WelcomePageState extends State<WelcomePage> {
               const Divider(
                 height: 2,
                 thickness: BorderSide.strokeAlignOutside,
-              ), // خط فاصل بين
-              ListTile(
-                title: const Text(
-                  'التقارير',
-                  style: TextStyle(
-                    fontFamily: 'Cario',
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xF9257BEC),
-                  ),
-                ),
-                leading: Icon(
-                  Icons.gpp_good_outlined,
-                  size: 30.0,
-                  color: Colors.blue[800],
-                ),
-                selected: _selectedIndex == 0,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ReportsPage()),
-                  );
-                },
               ),
-              const SizedBox(height: 10),
-
-              const Divider(
-                height: 2,
-                thickness: BorderSide.strokeAlignOutside,
-              ),
-              const SizedBox(height: 120),
-              const Divider(
-                height: 2,
-                thickness: BorderSide.strokeAlignOutside,
-              ), // خط فاصل بين
               ListTile(
                 title: const Text(
                   'تسجيل خروج',

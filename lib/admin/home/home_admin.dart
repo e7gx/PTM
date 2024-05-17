@@ -63,17 +63,17 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
   int userReportsCount = 0;
   int assetsCount = 0;
 
-  Color _getColorForType(int x) {
-    if (x < 5) {
-      return Colors.teal; // اللون الافتراضي إذا كانت القيمة أقل من 5
-    } else if (x <= 10) {
-      return Colors.orange; // اللون الافتراضي إذا كانت القيمة بين 5 و 10
-    } else if (x <= 20) {
-      return Colors.redAccent; // اللون الافتراضي إذا كانت القيمة بين 10 و 20
-    } else {
-      return Colors.red; // اللون الافتراضي لجميع القيم الأخرى
-    }
-  }
+  // Color _getColorForType(int x) {
+  //   if (x < 5) {
+  //     return Colors.teal; // اللون الافتراضي إذا كانت القيمة أقل من 5
+  //   } else if (x <= 10) {
+  //     return Colors.orange; // اللون الافتراضي إذا كانت القيمة بين 5 و 10
+  //   } else if (x <= 20) {
+  //     return Colors.redAccent; // اللون الافتراضي إذا كانت القيمة بين 10 و 20
+  //   } else {
+  //     return Colors.red; // اللون الافتراضي لجميع القيم الأخرى
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

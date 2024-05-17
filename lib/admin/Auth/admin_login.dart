@@ -3,6 +3,7 @@
 import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:first_time/admin/home/home_page_admin.dart';
 import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +22,9 @@ class AdminLoginPage extends StatefulWidget {
 
 class _AdminLoginPageState extends State<AdminLoginPage> {
   final TextEditingController emailController = TextEditingController();
-
   final TextEditingController passwordController = TextEditingController();
   bool obscureTextSET = true;
+
   @override
   void initState() {
     super.initState();
@@ -42,6 +43,135 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
         ),
       );
     }
+  }
+
+  Future<void> signInAdmin(String email, String password) async {
+    try {
+      // عرض مربع الحوار "جارٍ التحميل"
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(32.0),
+              ),
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Lottie.asset('assets/animation/green.json', height: 200),
+                const SizedBox(height: 10),
+                Center(
+                  child: Text(
+                    S.of(context).Loading,
+                    style: const TextStyle(
+                        fontFamily: 'Cario',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.teal),
+                  ),
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
+          );
+        },
+      );
+
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      User? user = userCredential.user;
+
+      if (user != null) {
+        // تحقق من Firestore إذا كان المستخدم لديه صلاحيات المسؤول
+        QuerySnapshot<Map<String, dynamic>> adminSnapshot =
+            await FirebaseFirestore.instance
+                .collection('Admin')
+                .where('email', isEqualTo: email)
+                .limit(1)
+                .get();
+
+        // إغلاق مربع الحوار "جارٍ التحميل"
+        Navigator.of(context).pop();
+
+        if (adminSnapshot.docs.isNotEmpty) {
+          final SharedPreferences sharedPreferences =
+              await SharedPreferences.getInstance();
+          sharedPreferences.setBool('isLoggedIn', true);
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const AdminHomePage(),
+            ),
+          );
+        } else {
+          showErrorDialog('ليس لديك صلاحية الوصول كمسؤول');
+        }
+      }
+    } on FirebaseAuthException catch (e) {
+      // إغلاق مربع الحوار "جارٍ التحميل"
+      Navigator.of(context).pop();
+      showErrorDialog('${e.code}\n ${S.of(context).validData}');
+    }
+  }
+
+  void showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(32.0),
+            ),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Lottie.asset('assets/animation/WOR.json',
+                  width: 150, height: 200),
+              const SizedBox(height: 10),
+              Text(
+                message,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Cario',
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Fluttertoast.showToast(
+                  msg: S.of(context).validData,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  timeInSecForIosWeb: 1,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                S.of(context).Okay,
+                style: const TextStyle(
+                    fontFamily: 'Cario',
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.teal),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -118,11 +248,9 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                     child: Material(
                       elevation: 16,
                       shadowColor: Colors.teal,
-                      borderRadius:
-                          BorderRadius.circular(10), // Set border radius here
+                      borderRadius: BorderRadius.circular(10),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(
-                            10), // Apply borderRadius to ClipRRect
+                        borderRadius: BorderRadius.circular(10),
                         child: TextFormField(
                           showCursor: true,
                           style: const TextStyle(color: Colors.teal),
@@ -135,15 +263,12 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                             labelStyle: const TextStyle(
                                 fontFamily: 'Cario',
                                 fontWeight: FontWeight.bold,
-                                color:
-                                    Colors.teal), // Cyan color for label text
+                                color: Colors.teal),
                             prefixIcon: const Icon(Icons.email_outlined,
-                                color: Colors.teal), // Cyan color for icon
-                            border: InputBorder.none, // Remove border here
-                            enabledBorder:
-                                InputBorder.none, // Remove enabled border here
-                            focusedBorder:
-                                InputBorder.none, // Remove focused border here
+                                color: Colors.teal),
+                            border: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
                           ),
                           keyboardType: TextInputType.emailAddress,
                         ),
@@ -156,11 +281,9 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                     child: Material(
                       elevation: 16,
                       shadowColor: Colors.teal,
-                      borderRadius:
-                          BorderRadius.circular(10), // Set border radius here
+                      borderRadius: BorderRadius.circular(10),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(
-                            10), // Apply borderRadius to ClipRRect
+                        borderRadius: BorderRadius.circular(10),
                         child: TextFormField(
                           style: const TextStyle(color: Colors.teal),
                           controller: passwordController,
@@ -187,15 +310,12 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                             labelStyle: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Cario',
-                                color:
-                                    Colors.teal), // Cyan color for label text
+                                color: Colors.teal),
                             prefixIcon: const Icon(Icons.lock_outline,
-                                color: Colors.teal), // Cyan color for icon
-                            border: InputBorder.none, // Remove border here
-                            enabledBorder:
-                                InputBorder.none, // Remove enabled border here
-                            focusedBorder:
-                                InputBorder.none, // Remove focused border here
+                                color: Colors.teal),
+                            border: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
                           ),
                         ),
                       ),
@@ -233,8 +353,8 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                     onPressed: () async {
                       final String email = emailController.text.trim();
                       final String password = passwordController.text.trim();
+
                       if (email.isEmpty || password.isEmpty) {
-                        // عرض رسالة الخطأ مع صورة
                         showDialog(
                           context: context,
                           builder: (context) {
@@ -248,11 +368,8 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Lottie.asset('assets/animation/WOR.json',
-                                      height:
-                                          200), // يجب أن تكون الصورة موجودة في مجلد الـ assets
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
+                                      height: 200),
+                                  const SizedBox(height: 10),
                                   const Center(
                                     child: Text(
                                       'يرجى ملء كل من حقول البريد \nالإلكتروني وكلمة المرور',
@@ -286,113 +403,8 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                         );
                         return;
                       }
-                      try {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(32.0),
-                                ),
-                              ),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Lottie.asset(
-                                      'assets/animation/reportGreen.json', //! importint Change The Animaiton pls
-                                      height: 200),
-                                  const SizedBox(height: 10),
-                                  Center(
-                                    child: Text(
-                                      S.of(context).Loading,
-                                      style: const TextStyle(
-                                          fontFamily: 'Cario',
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.teal),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 20),
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                        await FirebaseAuth.instance.signInWithEmailAndPassword(
-                          email: email,
-                          password: password,
-                        );
 
-                        final SharedPreferences sharedPreferences =
-                            await SharedPreferences.getInstance();
-                        sharedPreferences.setBool('isLoggedIn', true);
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => const AdminHomePage(),
-                          ),
-                        );
-                      } on FirebaseAuthException catch (e) {
-                        String message =
-                            '${e.code}\n ${S.of(context).validData}';
-                        String lottieAsset =
-                            'assets/animation/WOR.json'; // مسار ملف تحريك Lottie للخطأ
-
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(32.0),
-                                ),
-                              ),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Lottie.asset(lottieAsset,
-                                      width: 150, height: 200), // تحريك Lottie
-                                  const SizedBox(height: 10),
-
-                                  Text(
-                                    message,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Cario',
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Fluttertoast.showToast(
-                                      msg: S.of(context).validData,
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.CENTER,
-                                      timeInSecForIosWeb: 1,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0,
-                                    );
-                                    Navigator.of(context).pop();
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text(
-                                    S.of(context).Okay,
-                                    style: const TextStyle(
-                                        fontFamily: 'Cario',
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.teal),
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
+                      await signInAdmin(email, password);
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(

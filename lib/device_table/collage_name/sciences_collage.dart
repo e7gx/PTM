@@ -96,15 +96,15 @@ class SciencesCollage extends StatelessWidget {
               final devices = snapshot.data!.docs.map((doc) {
                 final data = doc.data() as Map<String, dynamic>;
                 return DeviceInfo(
-                  data['device_brand'] ?? '',
-                  data['device_location'] ?? '',
-                  data['device_hard_disk'] ?? '',
-                  data['device_cpu'] ?? '',
-                  data['ministry_number'] ?? '',
-                  data['serial_number'] ?? '',
-                  data['selected_option'] ?? '',
-                  data['mac_address'] ?? '',
-                  data['mac_address'] ?? '',
+                  data['device_brand'] ?? 'البيانات غير متوفرة',
+                  data['device_location'] ?? 'البيانات غير متوفرة',
+                  data['device_hard_disk'] ?? 'البيانات غير متوفرة',
+                  data['device_cpu'] ?? 'البيانات غير متوفرة',
+                  data['ministry_number'] ?? 'البيانات غير متوفرة',
+                  data['serial_number'] ?? 'البيانات غير متوفرة',
+                  data['selected_option'] ?? 'البيانات غير متوفرة',
+                  data['mac_address'] ?? 'البيانات غير متوفرة',
+                  data['mac_address'] ?? 'البيانات غير متوفرة',
                 );
               }).toList();
               return DeviceList(devices: devices);

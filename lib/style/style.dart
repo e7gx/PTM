@@ -203,7 +203,7 @@ Widget buildTextFieldITReportslocation(
       fillColor: Colors.grey[200],
       labelText: label,
       hintText: hint,
-      labelStyle: const TextStyle(color: Color.fromRGBO(15, 146, 239, 1)),
+      labelStyle: const TextStyle(color: Color(0xFF0F92EF)),
       hintStyle: TextStyle(
         color: Colors.grey[400],
         fontFamily: 'Cario',

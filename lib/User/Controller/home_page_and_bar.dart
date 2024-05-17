@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(
           textAlign: TextAlign.center,
-          "Hello, $fullName",
+          "مرحبا, $fullName",
           style: const TextStyle(
               color: Colors.white,
               fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
@@ -181,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: 'Cario'),
                 ),
                 leading: const Icon(
-                  Icons.add_task_rounded,
+                  Icons.real_estate_agent_outlined,
                   size: 30.0,
                   color: Colors.teal,
                 ),

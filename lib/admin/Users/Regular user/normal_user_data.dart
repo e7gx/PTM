@@ -34,10 +34,10 @@ class _ReportDetailsPageState extends State<UserDataInAdminPage> {
           },
         ),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'بيانات المسفيد ',
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
               fontSize: 20,

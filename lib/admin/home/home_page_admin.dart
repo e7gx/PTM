@@ -3,7 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/admin/Auth/admin_login.dart';
 import 'package:first_time/admin/Users/IT/it_users.dart';
 import 'package:first_time/admin/Users/Regular%20user/users_normal.dart';
+import 'package:first_time/admin/chat/admin_chat_page.dart';
 import 'package:first_time/admin/home/home_admin.dart';
+import 'package:first_time/admin/reports/admin_solve_report/user_reports_admin.dart';
+import 'package:first_time/admin/reports/admin_upload_report/admin_upload_report.dart';
+import 'package:lottie/lottie.dart';
 import 'package:first_time/admin/model/dashboard.dart';
 import 'package:first_time/admin/reports/it_report/it_all_reports.dart';
 import 'package:first_time/admin/reports/user_report/user_reports.dart';
@@ -31,7 +35,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
     const AllUsersPage(),
     const AllITUsersPage(),
     const ITReportsPage(),
-    const UserReportsPage(),
+    const AdminSolveReport(),
   ];
   String fullName = ''; // Variable to store the user's full name
 
@@ -113,6 +117,24 @@ class _AdminHomePageState extends State<AdminHomePage> {
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 4,
         toolbarHeight: 50,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const AdminAiChatPage(),
+            ),
+          );
+        },
+        backgroundColor: const Color.fromARGB(103, 0, 150, 135),
+        child: Container(
+          child: Lottie.asset('assets/animation/green.json',
+              width: 500, height: 500),
+        ),
       ),
       drawer: Drawer(
         child: Container(
@@ -228,6 +250,68 @@ class _AdminHomePageState extends State<AdminHomePage> {
               ),
               ListTile(
                 title: const Text(
+                  'بلاغات المستخدمين',
+                  style: TextStyle(
+                      color: Color(0xC3252525),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Cario'),
+                ),
+                leading: const Icon(
+                  Icons.done_all_sharp,
+                  size: 30.0,
+                  color: Colors.teal,
+                ),
+                onTap: () {
+                  // Update the state of the app
+
+                  // Then close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const UserReportsPage(),
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+              const Divider(
+                height: 2,
+                thickness: BorderSide.strokeAlignOutside,
+              ),
+              ListTile(
+                title: const Text(
+                  'أضافة بلاغ',
+                  style: TextStyle(
+                      color: Color(0xC3252525),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Cario'),
+                ),
+                leading: const Icon(
+                  Icons.report_gmailerrorred_rounded,
+                  size: 30.0,
+                  color: Colors.teal,
+                ),
+                onTap: () {
+                  // Update the state of the app
+
+                  // Then close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AdminUploadReport(),
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+              const Divider(
+                height: 2,
+                thickness: BorderSide.strokeAlignOutside,
+              ),
+              ListTile(
+                title: const Text(
                   'أضافة أصول',
                   style: TextStyle(
                       color: Color(0xC3252525),
@@ -283,13 +367,6 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 height: 2,
                 thickness: BorderSide.strokeAlignOutside,
               ),
-              const SizedBox(
-                height: 175,
-              ),
-              const Divider(
-                endIndent: BorderSide.strokeAlignCenter,
-                height: 5,
-              ),
               ListTile(
                 title: const Text(
                   'تسجيل خروج',
@@ -318,9 +395,10 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   );
                 },
               ),
+              const SizedBox(height: 10),
               const Divider(
-                height: 5,
-                color: Colors.white,
+                height: 2,
+                thickness: BorderSide.strokeAlignOutside,
               ),
             ],
           ),

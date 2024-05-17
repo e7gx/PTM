@@ -1,25 +1,26 @@
+import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:first_time/Chat/chatgpt_api.dart';
-import 'package:http/http.dart' as http;
 import 'package:lottie/lottie.dart';
-import 'package:typewritertext/typewritertext.dart';
 import 'package:flutter/services.dart';
+import 'package:first_time/admin/api/api.dart';
+import 'package:http/http.dart' as http;
+import 'package:typewritertext/typewritertext.dart';
 
-class AiChatPage extends StatefulWidget {
-  const AiChatPage({super.key});
+class AdminAiChatPage extends StatefulWidget {
+  const AdminAiChatPage({super.key});
 
   @override
-  State<AiChatPage> createState() => _MainPageState();
+  State<AdminAiChatPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<AiChatPage> {
+class _MainPageState extends State<AdminAiChatPage> {
   final List<Message> _messages = [];
   final TextEditingController _textEditingController = TextEditingController();
   bool _userSentMessage = false;
   String fullName = ''; // Variable to store the user's full name
+
   Future<void> fetchNameFromFirestore() async {
     try {
       User? user = FirebaseAuth.instance.currentUser;
@@ -29,17 +30,14 @@ class _MainPageState extends State<AiChatPage> {
 
         QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
             .instance
-            .collection('Users_IT')
+            .collection('Users_Normal')
             .where('uid', isEqualTo: uid)
             .limit(1)
             .get();
 
         if (snapshot.docs.isNotEmpty) {
-          // Get the first document in the snapshot
           DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
               snapshot.docs.first;
-
-          // Retrieve the user's first name from the document
           String firstName = documentSnapshot.data()?['first name'] ?? '';
 
           setState(() {
@@ -59,23 +57,6 @@ class _MainPageState extends State<AiChatPage> {
     super.initState();
     fetchNameFromFirestore();
   }
-
-  // void onSendMessage() async {
-  //   Message message = Message(text: _textEditingController.text, isMe: true);
-
-  //   _textEditingController.clear();
-
-  //   setState(() {
-  //     _messages.insert(0, message);
-  //   });
-
-  //   String response = await sendMessageToChatGpt(message.text);
-
-  //   Message chatGpt = Message(text: response, isMe: false);
-  //   setState(() {
-  //     _messages.insert(0, chatGpt);
-  //   });
-  // }
 
   void onSendMessage() {
     String trimmedText = _textEditingController.text.trim();
@@ -144,7 +125,6 @@ class _MainPageState extends State<AiChatPage> {
   }
 
   Widget _buildMessage(Message message) {
-    // تحديد مسار صورة المتحدث
     String imagePath =
         message.isMe ? 'assets/images/chat.png' : 'assets/images/robot.png';
 
@@ -154,7 +134,7 @@ class _MainPageState extends State<AiChatPage> {
         mainAxisAlignment:
             message.isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
-          if (!message.isMe) // لعرض صورة الـ AI قبل الرسالة
+          if (!message.isMe)
             CircleAvatar(
               backgroundImage: AssetImage(imagePath),
             ),
@@ -172,7 +152,7 @@ class _MainPageState extends State<AiChatPage> {
                       style: const TextStyle(
                         color: Colors.black,
                         fontSize: 17,
-                        fontFamily: 'Cario', // استخدام الخط Cario هنا
+                        fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,
                       ),
                     )
@@ -182,19 +162,18 @@ class _MainPageState extends State<AiChatPage> {
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 17,
-                          fontFamily: 'Cario', // استخدام الخط Cario هنا
+                          fontFamily: 'Cario',
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      duration: const Duration(
-                          milliseconds: 5), // تحديد سرعة الكتابة هنا
+                      duration: const Duration(milliseconds: 5),
                     ),
             ),
           ),
-          if (message.isMe) // لعرض صورة المستخدم بعد الرسالة
-            const SizedBox(width: 6),
+          if (message.isMe) const SizedBox(width: 6),
           if (message.isMe)
             CircleAvatar(
+              backgroundColor: Colors.teal,
               backgroundImage: AssetImage(imagePath),
             ),
         ],
@@ -202,7 +181,6 @@ class _MainPageState extends State<AiChatPage> {
     );
   }
 
-//! KEYBOARD STYLE HERE //!
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -219,7 +197,7 @@ class _MainPageState extends State<AiChatPage> {
           style: TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
-            fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -227,7 +205,7 @@ class _MainPageState extends State<AiChatPage> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  Color(0xFF698EFF),
+                  Colors.teal,
                   Color(0xFF00CCFF),
                 ],
                 begin: FractionalOffset(0.0, 0.0),
@@ -244,15 +222,12 @@ class _MainPageState extends State<AiChatPage> {
         decoration: const BoxDecoration(
           gradient: LinearGradient(colors: [
             Color(0xFFFFFFFF),
-            Color(0xFF698EFF),
-            Color(0xFF00CCFF),
+            Colors.teal,
           ], begin: Alignment.topLeft, end: Alignment.bottomRight),
         ),
         child: Column(
           children: <Widget>[
-            // Add the explanatory message here
             if (!_userSentMessage) _buildWelcomeMessage(),
-
             Expanded(
               child: ListView.builder(
                 reverse: true,
@@ -266,8 +241,9 @@ class _MainPageState extends State<AiChatPage> {
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xFF698EFF),
-                    Color(0xFF00CCFF),
+                    Color(0xFFB6FFEE),
+                    Color(0xFFB6FFEE),
+                    Colors.white,
                   ],
                   begin: Alignment.topRight,
                   end: Alignment.bottomCenter,
@@ -281,7 +257,7 @@ class _MainPageState extends State<AiChatPage> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
-                      style: const TextStyle(color: Colors.indigo),
+                      style: const TextStyle(color: Colors.teal),
                       controller: _textEditingController,
                       decoration: const InputDecoration(
                         contentPadding: EdgeInsets.all(10.0),
@@ -289,25 +265,23 @@ class _MainPageState extends State<AiChatPage> {
                         hintTextDirection: TextDirection.rtl,
                         border: InputBorder.none,
                       ),
-                      textDirection: TextDirection.ltr,
+                      textDirection: TextDirection.rtl,
                       inputFormatters: [
                         TextInputFormatter.withFunction((oldValue, newValue) {
-                          // Allow newValue if it's empty or doesn't start with a space
                           if (newValue.text.isEmpty ||
                               newValue.text[0] != ' ') {
                             return newValue;
                           }
-                          // Otherwise, return oldValue to prevent adding the space at the beginning
                           return oldValue;
                         }),
-                      ], // تحديد اتجاه النص للغة عربية
+                      ],
                     ),
                   ),
                   IconButton(
                     onPressed: onSendMessage,
                     icon: const Icon(
                       Icons.rocket_launch,
-                      color: Colors.indigo,
+                      color: Colors.teal,
                     ),
                   ),
                 ],
@@ -337,7 +311,7 @@ class _MainPageState extends State<AiChatPage> {
                 style: TextStyle(
                   color: Colors.teal[900],
                   fontSize: 14,
-                  fontFamily: 'Cario', // استخدام الخط Cario هنا
+                  fontFamily: 'Cario',
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -351,7 +325,7 @@ class _MainPageState extends State<AiChatPage> {
         ),
       );
     } else {
-      return const SizedBox(); // يعود بعرض مربع فارغ بدون أي شيء
+      return const SizedBox();
     }
   }
 }

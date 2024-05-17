@@ -1,3 +1,4 @@
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -37,105 +38,107 @@ class HowAreWe extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.black,
-              Colors.teal,
-              Colors.black,
-            ],
-            begin: Alignment.topRight,
-            end: Alignment.bottomCenter,
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.black,
+                Colors.teal,
+                Colors.black,
+              ],
+              begin: Alignment.topRight,
+              end: Alignment.bottomCenter,
+            ),
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Lottie.asset('assets/animation/Whatsapp.json',
-                fit: BoxFit.fitWidth, height: 400),
-            const Divider(
-              color: Colors.white,
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.mark_email_read_rounded,
-                color: Colors.tealAccent,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Lottie.asset('assets/animation/Whatsapp.json',
+                  fit: BoxFit.fitWidth, height: 400),
+              const Divider(
+                color: Colors.white,
               ),
-              title: const Text(
-                'الايميل',
-                style: TextStyle(
-                    fontFamily: 'Cario',
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
-              ),
-              trailing: const Text(
-                'abalgabo@gmail.com',
-                textAlign: TextAlign.left,
-                style: TextStyle(
+              ListTile(
+                leading: const Icon(
+                  Icons.mark_email_read_rounded,
                   color: Colors.tealAccent,
-                  fontSize: 18,
                 ),
-              ),
-              onTap: () async {
-                await launchUrl(Uri.parse('https://github.com/e7gx'));
-              },
-            ),
-            const Divider(
-              height: 2,
-              color: Colors.white,
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.call,
-                color: Colors.tealAccent,
-              ),
-              title: const Text(
-                'أتصل بنا',
-                style: TextStyle(
-                    fontFamily: 'Cario',
-                    color: Colors.white,
+                title: const Text(
+                  'الايميل',
+                  style: TextStyle(
+                      fontFamily: 'Cario',
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+                trailing: const Text(
+                  'abalgabo@gmail.com',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Colors.tealAccent,
                     fontSize: 18,
-                    fontWeight: FontWeight.bold),
+                  ),
+                ),
+                onTap: () async {
+                  await launchUrl(Uri.parse('https://github.com/e7gx'));
+                },
               ),
-              trailing: const Text(
-                '+966549970539',
-                textAlign: TextAlign.left,
-                style: TextStyle(color: Colors.tealAccent, fontSize: 18),
+              const Divider(
+                height: 2,
+                color: Colors.white,
               ),
-              onTap: () {},
-            ),
-            const Divider(
-              color: Colors.white,
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.bookmark_add_rounded,
-                color: Colors.tealAccent,
+              ListTile(
+                leading: const Icon(
+                  Icons.call,
+                  color: Colors.tealAccent,
+                ),
+                title: Text(
+                  S.of(context).home_admin_SearchForpage,
+                  style: const TextStyle(
+                      fontFamily: 'Cario',
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+                trailing: const SelectableText(
+                  '+966549970539',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(color: Colors.tealAccent, fontSize: 18),
+                ),
+                onTap: () {},
               ),
-              title: const Text(
-                'تويتر',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'Cario',
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
+              const Divider(
+                color: Colors.white,
               ),
-              trailing: const Text(
-                '@ PTM ',
-                textAlign: TextAlign.left,
-                style: TextStyle(color: Colors.tealAccent, fontSize: 18),
+              ListTile(
+                leading: const Icon(
+                  Icons.bookmark_add_rounded,
+                  color: Colors.tealAccent,
+                ),
+                title: const Text(
+                  'تويتر',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Cario',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+                trailing: const Text(
+                  '@ PTM ',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(color: Colors.tealAccent, fontSize: 18),
+                ),
+                onTap: () async {
+                  await launchUrl(Uri.parse('https://twitter.com/abdu_algh'));
+                },
               ),
-              onTap: () async {
-                await launchUrl(Uri.parse('https://twitter.com/abdu_algh'));
-              },
-            ),
-            const Divider(
-              color: Colors.white,
-            ),
-          ],
+              const Divider(
+                color: Colors.white,
+              ),
+            ],
+          ),
         ),
       ),
     );

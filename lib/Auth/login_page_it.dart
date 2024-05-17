@@ -108,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 230.0,
                   ),
                   Text(
-                    S.of(context).login,
+                    S.of(context).LoginAppBar,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 30,
@@ -308,7 +308,7 @@ class _LoginPageState extends State<LoginPage> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Lottie.asset(
-                                      'assets/animation/p2p.json', //! importint Change The Animaiton pls
+                                      'assets/animation/p2p.json', //!  Change The Animaiton pls
                                       height: 200),
                                   const SizedBox(height: 10),
                                   Center(
@@ -421,7 +421,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     child: Text(
-                      S.of(context).login,
+                      S.of(context).LoginAppBar,
                       style: const TextStyle(
                           fontSize: 18.0,
                           color: Colors.white,

@@ -179,48 +179,6 @@ class _TechnicalSupportStatisticsPageState extends State<AdminStatisticsPage> {
     );
   }
 
-  // Widget _buildMetricCardRate({required String title, required String value}) {
-  //   return SafeArea(
-  //     child: Card(
-  //       shape: RoundedRectangleBorder(
-  //         side: const BorderSide(color: Colors.white70, width: 1),
-  //         borderRadius: BorderRadius.circular(10),
-  //       ),
-  //       shadowColor: Colors.teal,
-  //       elevation: 4,
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: [
-  //           Padding(
-  //             padding: const EdgeInsets.all(8.0),
-  //             child: Lottie.asset(
-  //               'assets/animation/like1.json',
-  //               height: 65,
-  //             ),
-  //           ),
-  //           Text(
-  //             title,
-  //             textAlign: TextAlign.center,
-  //             style: const TextStyle(
-  //                 fontSize: 16,
-  //                 fontWeight: FontWeight.bold,
-  //                 color: Colors.black),
-  //           ),
-  //           const SizedBox(height: 8),
-  //           Text(
-  //             value,
-  //             textAlign: TextAlign.center,
-  //             style: const TextStyle(
-  //               fontSize: 20,
-  //               color: Colors.black,
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Widget _buildMetricCard(
       {required String title, required String value, required IconData icon}) {
     return Card(

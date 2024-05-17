@@ -28,9 +28,8 @@ class _SettingsPageState extends State<SettingsPageUser> {
           'الاعدادات',
           style: TextStyle(
             fontFamily: 'Cario',
-
             color: Colors.white,
-            fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
+            fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -54,62 +53,6 @@ class _SettingsPageState extends State<SettingsPageUser> {
       ), //AppBar
       body: ListView(
         children: [
-          ListTile(
-            leading: const Icon(
-              Icons.brightness_6,
-              color: Colors.teal,
-            ),
-            title: const Text(
-              'تغيير السمة',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.teal,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Cario',
-              ),
-            ),
-            trailing: Switch(
-              value: Theme.of(context).brightness == Brightness.dark,
-              onChanged: (value) {
-                final themeProvider =
-                    Provider.of<ThemeProvider>(context, listen: false);
-                themeProvider.toggleTheme();
-              },
-              activeTrackColor: Colors.tealAccent,
-              activeColor: Theme.of(context).brightness == Brightness.dark
-                  ? Colors.teal
-                  : Colors.tealAccent,
-              inactiveThumbColor: Colors.teal[100],
-              inactiveTrackColor: Colors.teal[200],
-            ),
-          ),
-          const Divider(),
-
-          ListTile(
-            leading: const Icon(
-              Icons.notifications,
-              color: Colors.teal,
-            ), // أيقونة الإشعارات
-            title: const Text(
-              'الإشعارات',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.teal,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Cario',
-              ),
-            ),
-            trailing: Switch(
-              value: abdullahSwitch,
-              onChanged: (value) {
-                setState(() {
-                  abdullahSwitch = value;
-                });
-              },
-            ),
-          ),
-          const Divider(), // خط فاصل بين القوائم
-
           // قائمة تعديل كلمة المرور
           ListTile(
             leading: const Icon(
@@ -163,6 +106,63 @@ class _SettingsPageState extends State<SettingsPageUser> {
             onTap: () async {
               await launchUrl(Uri.parse('https://github.com/e7gx'));
             },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(
+              Icons.brightness_6,
+              color: Colors.teal,
+            ),
+            title: const Text(
+              'تغيير السمة',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.teal,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Cario',
+              ),
+            ),
+            trailing: Switch(
+              value: Theme.of(context).brightness == Brightness.dark,
+              onChanged: (value) {
+                final themeProvider =
+                    Provider.of<ThemeProvider>(context, listen: false);
+                themeProvider.toggleTheme();
+              },
+              activeTrackColor: Colors.tealAccent,
+              activeColor: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.teal
+                  : Colors.tealAccent,
+              inactiveThumbColor: Colors.teal[100],
+              inactiveTrackColor: Colors.teal[200],
+            ),
+          ),
+          const Divider(),
+
+          ListTile(
+            leading: const Icon(
+              Icons.notifications,
+              color: Colors.teal,
+            ),
+            title: const Text(
+              'الإشعارات',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.teal,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Cario',
+              ),
+            ),
+            trailing: Switch(
+              value: abdullahSwitch,
+              inactiveThumbColor: Colors.teal[100],
+              inactiveTrackColor: Colors.teal[200],
+              onChanged: (value) {
+                setState(() {
+                  abdullahSwitch = value;
+                });
+              },
+            ),
           ),
           const Divider(),
         ],

@@ -38,6 +38,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
         "aboutUsDescription": MessageLookupByLibrary.simpleMessage(
             "We are students from Umm Al-Qura University and we aim to assist establishments through our application"),
+        "ai_chat_pageDescribeProblem": MessageLookupByLibrary.simpleMessage(
+            "Please Describe The Problem, And I Will Try To Help You \n Hello, I`am Your Smart Assistant"),
+        "ai_chat_pageHello": MessageLookupByLibrary.simpleMessage("Hello..."),
+        "ai_chat_pageSmartAssistant":
+            MessageLookupByLibrary.simpleMessage("My Smart Assistant"),
         "betterCommunication":
             MessageLookupByLibrary.simpleMessage("Better Communication!"),
         "betterCommunicationDescription": MessageLookupByLibrary.simpleMessage(
@@ -52,6 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Inventorying devices facilitates documenting and tracking your establishment\'s devices for effective management, better customer service, and easy maintenance"),
         "first": MessageLookupByLibrary.simpleMessage(
             "Let\'s go for a different experience"),
+        "home_admin_SearchForpage":
+            MessageLookupByLibrary.simpleMessage("Search for a page"),
         "howItWillAffect":
             MessageLookupByLibrary.simpleMessage("How It Will Affect"),
         "howItWillAffectDescription": MessageLookupByLibrary.simpleMessage(
@@ -59,10 +66,43 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login Now!"),
         "loginDescription": MessageLookupByLibrary.simpleMessage(
             "Log in to the application to benefit from good communication and the advantages of managing technical assets"),
+        "network_controllerNoInternet":
+            MessageLookupByLibrary.simpleMessage("No Internet Connection"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "problem": MessageLookupByLibrary.simpleMessage("Problem solution"),
         "problemSolve":
             MessageLookupByLibrary.simpleMessage("Type the problem solution"),
+        "signup_pageConfirmPassword":
+            MessageLookupByLibrary.simpleMessage("Confirme Password"),
+        "signup_pageConfirmedMatch": MessageLookupByLibrary.simpleMessage(
+            "The Confirmed Password Must Be Match With Password"),
+        "signup_pageEmail": MessageLookupByLibrary.simpleMessage("Email"),
+        "signup_pageEmailAlreadyUsed":
+            MessageLookupByLibrary.simpleMessage("Email Already in Use"),
+        "signup_pageErorr": MessageLookupByLibrary.simpleMessage("Erorr"),
+        "signup_pageErorrTryAgain": MessageLookupByLibrary.simpleMessage(
+            "An Erorr Occurred, Please Try Again"),
+        "signup_pageFillFields":
+            MessageLookupByLibrary.simpleMessage("Please Fill Out All Fields "),
+        "signup_pageFirstNAme":
+            MessageLookupByLibrary.simpleMessage("First Name"),
+        "signup_pageLastName":
+            MessageLookupByLibrary.simpleMessage("Last Name"),
+        "signup_pageNewRegistration":
+            MessageLookupByLibrary.simpleMessage("New Registration"),
+        "signup_pageOk": MessageLookupByLibrary.simpleMessage("OK"),
+        "signup_pagePassword": MessageLookupByLibrary.simpleMessage("Password"),
+        "signup_pagePleaseWait":
+            MessageLookupByLibrary.simpleMessage("Please Wait..."),
+        "signup_pageSignUpNewAccount":
+            MessageLookupByLibrary.simpleMessage("Sigup For New Account"),
+        "signup_pageUID": MessageLookupByLibrary.simpleMessage("User ID"),
+        "signup_pageValidEmail":
+            MessageLookupByLibrary.simpleMessage("Please Enter A Valid Email"),
+        "signup_pageWeakPassword":
+            MessageLookupByLibrary.simpleMessage("Weak Password"),
+        "user_minitines_send_viewFillAllFields":
+            MessageLookupByLibrary.simpleMessage("Please fill out all fields"),
         "validData": MessageLookupByLibrary.simpleMessage("Please verify data"),
         "welcome": MessageLookupByLibrary.simpleMessage(" Welcome"),
         "whatWeOffer": MessageLookupByLibrary.simpleMessage("What We Offer"),

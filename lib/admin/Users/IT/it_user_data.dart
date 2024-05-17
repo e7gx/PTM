@@ -33,10 +33,10 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
           },
         ),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'بيانات الموظف ',
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
               fontSize: 20,
