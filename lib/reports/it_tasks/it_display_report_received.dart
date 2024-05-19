@@ -51,10 +51,10 @@ class _DetailsOfTheReceivedReportState
           },
         ),
         centerTitle: true,
-        title: const Text(
-          'تفاصيل البلاغ',
+        title: Text(
+          S.of(context).it_display_report_received_ReportDetails,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
               fontSize: 20,
@@ -94,10 +94,10 @@ class _DetailsOfTheReceivedReportState
               return const Center(child: CircularProgressIndicator());
             }
             if (!snapshot.hasData || snapshot.data!.data() == null) {
-              return const Center(
+              return Center(
                   child: Text(
-                'لا يوجد تفاصيل للبلاغ',
-                style: TextStyle(
+                S.of(context).it_display_report_received_NoReportDetails,
+                style: const TextStyle(
                   fontFamily: 'Cario',
                   fontSize: 30,
                   color: Colors.lightBlue,
@@ -120,9 +120,9 @@ class _DetailsOfTheReceivedReportState
                       height: 300,
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'بلاغ رقم:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).it_display_report_received_ReportNum,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
                           color: Colors.blue,
@@ -138,9 +138,9 @@ class _DetailsOfTheReceivedReportState
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 20),
-                    const Text(
-                      'التاريخ:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).it_display_report_received_Date,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -154,9 +154,9 @@ class _DetailsOfTheReceivedReportState
                           color: Colors.black),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'رقم الجهاز:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).it_display_report_received_ReportNum,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -170,9 +170,9 @@ class _DetailsOfTheReceivedReportState
                           color: Colors.black),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'الموقع:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).it_display_report_received_Location,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -186,9 +186,9 @@ class _DetailsOfTheReceivedReportState
                           color: Colors.black),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'موقع المعمل:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).it_display_report_received_LabLocation,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -203,9 +203,11 @@ class _DetailsOfTheReceivedReportState
                     ),
                     const SizedBox(height: 16),
 
-                    const Text(
-                      'بيانات التواصل:',
-                      style: TextStyle(
+                    Text(
+                      S
+                          .of(context)
+                          .it_display_report_received_ContactInformation,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,
@@ -223,10 +225,12 @@ class _DetailsOfTheReceivedReportState
                     ),
 
                     const SizedBox(height: 16),
-                    const SafeArea(
+                    SafeArea(
                       child: Text(
-                        'وصف المشكلة:',
-                        style: TextStyle(
+                        S
+                            .of(context)
+                            .it_display_report_received_DescriptionOfTheProblem,
+                        style: const TextStyle(
                             fontFamily: 'Cario',
                             fontSize: 20,
                             color: Colors.blue,
@@ -242,11 +246,13 @@ class _DetailsOfTheReceivedReportState
                       ),
                     ),
                     const SizedBox(height: 34),
-                    const SafeArea(
+                    SafeArea(
                       child: Text(
-                        'يرجى ارفاق تفاصيل حل المشكلة',
+                        S
+                            .of(context)
+                            .it_display_report_received_AttachDetailsOfSolutionProblem,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontFamily: 'Cario',
                             fontSize: 20,
                             color: Colors.blue,
@@ -264,20 +270,22 @@ class _DetailsOfTheReceivedReportState
                         if (itreportController.text.isEmpty) {
                           // Show a Snackbar indicating that a report must be written
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              backgroundColor: Color(0xFFFF1100),
-                              duration: Duration(seconds: 2),
+                            SnackBar(
+                              backgroundColor: const Color(0xFFFF1100),
+                              duration: const Duration(seconds: 2),
                               content: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Icon(Icons.error_outline_rounded,
+                                  const Icon(Icons.error_outline_rounded,
                                       color: Colors.white),
                                   Text(
-                                    'you must write a report',
+                                    S
+                                        .of(context)
+                                        .it_display_report_received_YouMustWriteReport,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
@@ -309,11 +317,13 @@ class _DetailsOfTheReceivedReportState
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    const Center(
+                                    Center(
                                       child: Text(
-                                        '🪛 شكرا لك على تعاونك',
+                                        S
+                                            .of(context)
+                                            .it_display_report_received_Thanks4YouCooperation,
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
                                           fontFamily: 'Cario',
@@ -333,7 +343,9 @@ class _DetailsOfTheReceivedReportState
                                       );
                                       onCertainAction();
                                       Fluttertoast.showToast(
-                                        msg: "❤️ شكرا لك",
+                                        msg: S
+                                            .of(context)
+                                            .it_display_report_received_Thanks,
                                         toastLength: Toast.LENGTH_SHORT,
                                         gravity: ToastGravity.CENTER,
                                         timeInSecForIosWeb: 1,
@@ -341,9 +353,9 @@ class _DetailsOfTheReceivedReportState
                                         fontSize: 16.0,
                                       );
                                     },
-                                    child: const Text(
-                                      'موافق',
-                                      style: TextStyle(
+                                    child: Text(
+                                      S.of(context).register_assets_Ok,
+                                      style: const TextStyle(
                                           fontFamily: 'Cario',
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
@@ -392,9 +404,9 @@ class _DetailsOfTheReceivedReportState
                           borderRadius: BorderRadius.circular(14.0),
                         ),
                       ),
-                      child: const Text(
-                        'أنهاء الطلب',
-                        style: TextStyle(
+                      child: Text(
+                        S.of(context).it_display_report_received_FinishTheOrder,
+                        style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 18,
                           color: Colors.white,
@@ -443,9 +455,11 @@ class _DetailsOfTheReceivedReportState
                                       height: 150, //  الارتفاع
                                     ),
                                     const SizedBox(height: 10),
-                                    const Text(
-                                      'أعادة البلاغ',
-                                      style: TextStyle(
+                                    Text(
+                                      S
+                                          .of(context)
+                                          .it_display_report_received_ReturnTheReport,
+                                      style: const TextStyle(
                                         fontFamily: 'Cario',
                                         fontSize: 22,
                                         fontWeight: FontWeight.bold,
@@ -453,13 +467,15 @@ class _DetailsOfTheReceivedReportState
                                       ),
                                     ),
                                     const SizedBox(height: 10),
-                                    const Padding(
-                                      padding: EdgeInsets.symmetric(
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
                                           horizontal: 12.0),
                                       child: Text(
-                                        " هنا يتم أعادة البلاغ بسبب عدم التمكن من حل المشكلة من طرفكم وهذا سيكون عليه تأثير على التقييم الخاص بك مستقبلا ",
+                                        S
+                                            .of(context)
+                                            .it_display_report_received_HereYouReturnTheReport,
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontFamily: 'Cario',
                                           fontSize: 12,
                                           fontWeight: FontWeight.normal,
@@ -510,10 +526,12 @@ class _DetailsOfTheReceivedReportState
                                                     const SizedBox(
                                                       height: 10,
                                                     ),
-                                                    const Center(
+                                                    Center(
                                                       child: Text(
-                                                        ' 🪛 تم أعادة البلاغ بنجاح',
-                                                        style: TextStyle(
+                                                        S
+                                                            .of(context)
+                                                            .it_display_report_received_TheReportWasReturnedSuccessfully,
+                                                        style: const TextStyle(
                                                           fontSize: 15,
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -534,8 +552,9 @@ class _DetailsOfTheReceivedReportState
                                                         ),
                                                       );
                                                       Fluttertoast.showToast(
-                                                        msg:
-                                                            "👍 تمت عملية أعادة الطلب",
+                                                        msg: S
+                                                            .of(context)
+                                                            .it_display_report_received_TheReorderHasBeenCompleted,
                                                         toastLength:
                                                             Toast.LENGTH_SHORT,
                                                         gravity:
@@ -545,9 +564,11 @@ class _DetailsOfTheReceivedReportState
                                                         fontSize: 16.0,
                                                       );
                                                     },
-                                                    child: const Text(
-                                                      'موافق',
-                                                      style: TextStyle(
+                                                    child: Text(
+                                                      S
+                                                          .of(context)
+                                                          .register_assets_Ok,
+                                                      style: const TextStyle(
                                                           fontFamily: 'Cario',
                                                           fontSize: 16,
                                                           fontWeight:
@@ -570,9 +591,11 @@ class _DetailsOfTheReceivedReportState
                                                 BorderRadius.circular(8.0),
                                           ),
                                         ),
-                                        child: const Text(
-                                          'أعادة البلاغ',
-                                          style: TextStyle(
+                                        child: Text(
+                                          S
+                                              .of(context)
+                                              .it_display_report_received_ReturnTheReport,
+                                          style: const TextStyle(
                                               fontFamily: 'Cario',
                                               fontSize: 16,
                                               color: Colors.white,
@@ -597,9 +620,11 @@ class _DetailsOfTheReceivedReportState
                           borderRadius: BorderRadius.circular(14.0),
                         ),
                       ),
-                      child: const Text(
-                        'أعادة البلاغ',
-                        style: TextStyle(
+                      child: Text(
+                        S
+                            .of(context)
+                            .it_display_report_received_ReturnTheReport,
+                        style: const TextStyle(
                             fontSize: 16,
                             color: Colors.white,
                             fontFamily: 'Cario',

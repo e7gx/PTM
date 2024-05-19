@@ -1,7 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
 // import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/admin/home/home_page_admin.dart';
+import 'package:first_time/generated/l10n.dart';
+
+import '../../home/home_page_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:intl/intl.dart';
@@ -33,10 +35,10 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
           },
         ),
         centerTitle: true,
-        title: const Text(
-          'بيانات الموظف ',
+        title: Text(
+          S.of(context).it_user_data_EmployeeData,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
               fontSize: 20,
@@ -75,9 +77,9 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
               children: [
                 Lottie.asset('assets/animation/like1.json',
                     fit: BoxFit.contain, width: 100, height: 100),
-                const Text(
-                  'لا يوجد بلاغات',
-                  style: TextStyle(
+                Text(
+                  S.of(context).it_user_data_NoReport,
+                  style: const TextStyle(
                       fontFamily: 'Cario',
                       color: Colors.black54,
                       fontSize: 23,
@@ -103,10 +105,10 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
                   const SizedBox(height: 16),
 
                   const SizedBox(height: 16),
-                  const Text(
-                    ': الاسم الاول',
+                  Text(
+                    S.of(context).it_user_data_FirtsName,
                     textAlign: TextAlign.right,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'Cario',
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -114,7 +116,9 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
                     ),
                   ),
                   SelectableText(
-                    ' ${reportData['first name'] ?? 'حصلت مشكلة ما'}',
+                    ' ${reportData['first name'] ?? {
+                          S.of(context).user_reports_Erorr,
+                        }}',
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                       fontFamily: 'Cario',
@@ -123,10 +127,10 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    ': الاسم الاخير',
+                  Text(
+                    S.of(context).it_user_data_LastName,
                     textAlign: TextAlign.right,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'Cario',
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -134,7 +138,9 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
                     ),
                   ),
                   SelectableText(
-                    ' ${reportData['last name'] ?? 'No Description'}',
+                    ' ${reportData['last name'] ?? {
+                          S.of(context).user_reports_Erorr,
+                        }}',
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                       fontSize: 18,
@@ -143,11 +149,11 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const SafeArea(
+                  SafeArea(
                     child: Text(
-                      ': ايميل الموظف',
+                      S.of(context).it_user_data_EmailOfEmployee,
                       textAlign: TextAlign.right,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
                           color: Colors.teal,
@@ -155,7 +161,10 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
                     ),
                   ),
                   SelectableText(
-                    reportData['email'] ?? 'No Description',
+                    reportData['email'] ??
+                        {
+                          S.of(context).user_reports_Erorr,
+                        },
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                       fontSize: 18,
@@ -192,11 +201,13 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
                                     height:
                                         200), // يجب أن تكون الصورة موجودة في مجلد الـ assets
                                 const SizedBox(height: 10),
-                                const Center(
+                                Center(
                                   child: Text(
-                                    'هل انت متاكد من حذف الموظف؟؟',
+                                    S
+                                        .of(context)
+                                        .it_user_data_SureOFDeleteTheEmployee,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'Cario',
@@ -222,7 +233,9 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
                                           ),
                                         );
                                         Fluttertoast.showToast(
-                                          msg: "👍 تمت عملية حذف الموظف",
+                                          msg: S
+                                              .of(context)
+                                              .it_user_data_DoneDelete,
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.CENTER,
                                           timeInSecForIosWeb: 1,
@@ -230,9 +243,9 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
                                           fontSize: 16.0,
                                         );
                                       },
-                                      child: const Text(
-                                        'نعم',
-                                        style: TextStyle(
+                                      child: Text(
+                                        S.of(context).it_user_data_Done,
+                                        style: const TextStyle(
                                           fontFamily: 'Cario',
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -245,9 +258,9 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
                                       onPressed: () {
                                         Navigator.pop(context);
                                       },
-                                      child: const Text(
-                                        'تراجع',
-                                        style: TextStyle(
+                                      child: Text(
+                                        S.of(context).it_user_data_Undo,
+                                        style: const TextStyle(
                                           fontFamily: 'Cario',
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -271,9 +284,9 @@ class _ReportDetailsPageState extends State<ITDataInAdminPage> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                    child: const Text(
-                      'حذف الموظف',
-                      style: TextStyle(
+                    child: Text(
+                      S.of(context).it_user_data_DoneDelete,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 18,
                           color: Colors.white,

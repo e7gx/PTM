@@ -42,8 +42,8 @@ class _SignUpPageState extends State<SignUpPageUser> {
     final String confirmedPassword = _confirmedpasswordController.text.trim();
 
     if (email.isEmpty || password.isEmpty || confirmedPassword.isEmpty) {
-      _showDialog(S.of(context).user_minitines_send_viewFillAllFields,
-          'assets/animation/WOR.json');
+      _showDialog(
+          S.of(context).signup_pageFillFields, 'assets/animation/WOR.json');
     } else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email)) {
       _showDialog(

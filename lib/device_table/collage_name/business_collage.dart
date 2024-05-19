@@ -1,3 +1,4 @@
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -40,9 +41,9 @@ class BusinessCollage extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          'بيانات الاجهزة',
-          style: TextStyle(
+        title: Text(
+          S.of(context).business_collage_DeviceInfo,
+          style: const TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
             fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
@@ -109,7 +110,8 @@ class BusinessCollage extends StatelessWidget {
               }).toList();
               return DeviceList(devices: devices);
             }
-            return const Center(child: Text('No data available'));
+            return Center(
+                child: Text(S.of(context).business_collage_NoDataAvailable));
           },
         ),
       ),
@@ -174,10 +176,10 @@ class _DeviceListState extends State<DeviceList> {
                                   color: Colors.blue,
                                   size: 30,
                                 ),
-                                title: const Text(
-                                  'الموقع الرئيسي',
+                                title: Text(
+                                  S.of(context).business_collage_MainSite,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontFamily: 'Cario',
                                     color: Colors.black,
                                     fontSize: 15,
@@ -206,10 +208,10 @@ class _DeviceListState extends State<DeviceList> {
                                   color: Colors.blue,
                                   size: 30,
                                 ),
-                                title: const Text(
-                                  'الموقع الفرعي',
+                                title: Text(
+                                  S.of(context).business_collage_SubSite,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontFamily: 'Cario',
                                     color: Colors.black,
                                     fontSize: 15,
@@ -240,10 +242,10 @@ class _DeviceListState extends State<DeviceList> {
                                   color: Colors.blue,
                                   size: 30,
                                 ),
-                                title: const Text(
-                                  'موديل الجهاز',
+                                title: Text(
+                                  S.of(context).business_collage_DeviceModel,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontFamily: 'Cario',
                                     color: Colors.black,
                                     fontSize: 15,
@@ -272,10 +274,10 @@ class _DeviceListState extends State<DeviceList> {
                                   color: Colors.blue,
                                   size: 30,
                                 ),
-                                title: const Text(
-                                  'نوع المعالج',
+                                title: Text(
+                                  S.of(context).business_collage_ProcessorType,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontFamily: 'Cario',
                                     color: Colors.black,
                                     fontSize: 15,
@@ -304,10 +306,10 @@ class _DeviceListState extends State<DeviceList> {
                                   color: Colors.blue,
                                   size: 30,
                                 ),
-                                title: const Text(
-                                  'القرص الصلب ',
+                                title: Text(
+                                  S.of(context).business_collage_HardDisk,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontFamily: 'Cario',
                                     color: Colors.black,
                                     fontSize: 15,
@@ -336,10 +338,10 @@ class _DeviceListState extends State<DeviceList> {
                                   color: Colors.blue,
                                   size: 30,
                                 ),
-                                title: const Text(
-                                  'عنوان ماك',
+                                title: Text(
+                                  S.of(context).business_collage_macddress,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontFamily: 'Cario',
                                     color: Colors.black,
                                     fontSize: 15,
@@ -368,10 +370,10 @@ class _DeviceListState extends State<DeviceList> {
                                   color: Colors.blue,
                                   size: 30,
                                 ),
-                                title: const Text(
-                                  'الرقم التسلسلي',
+                                title: Text(
+                                  S.of(context).business_collage_serialnumber,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontFamily: 'Cario',
                                     color: Colors.black,
                                     fontSize: 15,
@@ -400,10 +402,10 @@ class _DeviceListState extends State<DeviceList> {
                                   color: Colors.blue,
                                   size: 30,
                                 ),
-                                title: const Text(
-                                  'الرقم الوزاري',
+                                title: Text(
+                                  S.of(context).business_collage_ministrynumber,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontFamily: 'Cario',
                                     color: Colors.black,
                                     fontSize: 15,
@@ -493,9 +495,9 @@ class _DeviceListState extends State<DeviceList> {
                     ),
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                   ),
-                  child: const Text(
-                    'عرض الموقع',
-                    style: TextStyle(
+                  child: Text(
+                    S.of(context).business_collage_ShowLocation,
+                    style: const TextStyle(
                         color: Colors.white,
                         fontFamily: 'Cario',
                         fontWeight: FontWeight.bold),

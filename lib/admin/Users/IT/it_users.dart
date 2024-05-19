@@ -1,5 +1,7 @@
 // import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/admin/Users/IT/it_user_data.dart';
+import 'package:first_time/generated/l10n.dart';
+
+import 'it_user_data.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -38,9 +40,9 @@ class _ITReportsPageState extends State<AllITUsersPage> {
                 children: [
                   Lottie.asset('assets/animation/like1.json',
                       fit: BoxFit.contain, width: 200, height: 200),
-                  const Text(
-                    'لا يوجد تقارير',
-                    style: TextStyle(
+                  Text(
+                    S.of(context).it_user_NoReport,
+                    style: const TextStyle(
                         fontFamily: 'Cario',
                         color: Colors.teal,
                         fontSize: 23,
@@ -60,9 +62,10 @@ class _ITReportsPageState extends State<AllITUsersPage> {
 
               return ReportCard(
                 user: Report(
-                  title: 'موظف دعم الفني',
+                  title: S.of(context).it_user_ItSupportEmployee,
                   firstName: reportData['first name'], // التاريخ المنسق
-                  lastName: reportData['last name'] ?? 'غير محدد', // الموقع
+                  lastName: reportData['last name'] ??
+                      S.of(context).it_user_Undefined, // الموقع
                   image: reportData['imageUrl'] ?? 'assets/images/chat.png',
                 ),
                 userId: reportId,
@@ -121,7 +124,7 @@ class ReportCard extends StatelessWidget {
                 children: [
                   const SizedBox(height: 5),
                   Text(
-                    'الاسم الاول : ${user.firstName}',
+                    '${S.of(context).it_user_FirstName}: ${user.firstName}',
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold,
@@ -131,7 +134,7 @@ class ReportCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    'الاسم الاخير : ${user.lastName}',
+                    '${S.of(context).it_user_LastName}: ${user.lastName}',
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold,
@@ -159,9 +162,9 @@ class ReportCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(14.0),
             ),
           ),
-          child: const Text(
-            'عرض البيانات',
-            style: TextStyle(
+          child: Text(
+            S.of(context).it_user_ShowData,
+            style: const TextStyle(
               color: Colors.white, fontFamily: 'Cario',
               fontSize: 14, //  تغيير هذه القيمة لتكون الحجم
               fontWeight: FontWeight.bold,

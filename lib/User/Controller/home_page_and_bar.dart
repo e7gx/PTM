@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/User/Reports/minitinesDone/user_mintines.dart';
 import 'package:first_time/User/Reports/minitinesReceived/user_report_problem.dart';
 import 'package:first_time/User/Reports/minitinesSend/user_minitines_send.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:first_time/User/Auth/login_page.dart';
 import 'package:first_time/User/code/qr_scannerpage.dart';
@@ -77,7 +78,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(
           textAlign: TextAlign.center,
-          "مرحبا, $fullName",
+          "${S.of(context).chat_main_Hello}$fullName",
           style: const TextStyle(
               color: Colors.white,
               fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
@@ -133,7 +134,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 child: Center(
                   child: Text(
-                    '           PTM\n To Make IT Easy',
+                    'PTM\n To Make IT Easy',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 34,
                       color: Colors.white,
@@ -143,9 +145,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               ListTile(
-                title: const Text(
-                  'البيانات الشخصية',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_page_and_bar_PersonalInformation,
+                  style: const TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                       fontWeight: FontWeight.bold,
@@ -172,9 +174,9 @@ class _HomePageState extends State<HomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ),
               ListTile(
-                title: const Text(
-                  'الصيانة المنتهية',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_page_and_bar_CompletedMaintenance,
+                  style: const TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                       fontWeight: FontWeight.bold,
@@ -202,9 +204,9 @@ class _HomePageState extends State<HomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ),
               ListTile(
-                title: const Text(
-                  'الصيانة المستلمة',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_page_and_bar_ReceivedMaintenance,
+                  style: const TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                       fontWeight: FontWeight.bold,
@@ -232,9 +234,9 @@ class _HomePageState extends State<HomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ),
               ListTile(
-                title: const Text(
-                  'البلاغ المرسل ',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_page_and_bar_ReportSent,
+                  style: const TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                       fontWeight: FontWeight.bold,
@@ -262,9 +264,9 @@ class _HomePageState extends State<HomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ),
               ListTile(
-                title: const Text(
-                  'طرق التواصل',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_page_and_bar_WayContact,
+                  style: const TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                       fontWeight: FontWeight.bold,
@@ -291,9 +293,9 @@ class _HomePageState extends State<HomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ),
               ListTile(
-                title: const Text(
-                  'الإعدادات',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_page_and_bar_Settings,
+                  style: const TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                       fontWeight: FontWeight.bold,
@@ -320,14 +322,10 @@ class _HomePageState extends State<HomePage> {
                 height: 2,
                 thickness: BorderSide.strokeAlignOutside,
               ),
-              const Divider(
-                endIndent: BorderSide.strokeAlignCenter,
-                height: 5,
-              ),
               ListTile(
-                title: const Text(
-                  'تسجيل خروج',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_page_admin_SignOut,
+                  style: const TextStyle(
                     color: Color(0xC3252525),
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -363,33 +361,33 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.chat_outlined,
             ),
-            label: 'المحادثة',
-            activeIcon: Icon(
+            label: S.of(context).home_page_and_bar_Chat,
+            activeIcon: const Icon(
               Icons.auto_fix_high_outlined,
               color: Colors.teal,
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.report,
             ),
-            label: 'البلاغات',
-            activeIcon: Icon(
+            label: S.of(context).home_page_and_bar_Reports,
+            activeIcon: const Icon(
               Icons.report_gmailerrorred,
               color: Colors.teal,
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.qr_code,
             ),
-            label: 'QR Scanner',
-            activeIcon: Icon(
+            label: S.of(context).home_page_and_bar_QrScanner,
+            activeIcon: const Icon(
               Icons.video_call,
               color: Colors.teal,
             ),

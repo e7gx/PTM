@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:ui';
@@ -68,10 +69,10 @@ class _TechnicalSupportStatisticsPageState
           },
         ),
         centerTitle: true,
-        title: const Text(
-          'تقيماتي',
+        title: Text(
+          S.of(context).dashboard_MyReviews,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
             fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
@@ -143,19 +144,19 @@ class _TechnicalSupportStatisticsPageState
                   mainAxisSpacing: 16,
                   children: [
                     _buildMetricCard(
-                      title: 'البلاغات المستلمة',
+                      title: S.of(context).dashboard_ReceivedReport,
                       value: totalReports.toString(),
                     ),
                     _buildMetricCard(
-                      title: 'البلاغات المغلقة',
+                      title: S.of(context).dashboard_ClosedReport,
                       value: resolvedReports.toString(),
                     ),
                     _buildMetricCard(
-                      title: 'التقارير المنجزة',
+                      title: S.of(context).dashboard_CompletedReports,
                       value: resolvedReports.toString(),
                     ),
                     _buildMetricCardRate(
-                      title: 'تقييم الموظف',
+                      title: S.of(context).dashboard_EmployeeEvaluation,
                       percentage: resolutionRate * 100,
                     ),
                   ],

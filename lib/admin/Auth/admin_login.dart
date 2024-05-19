@@ -4,7 +4,7 @@ import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:first_time/admin/home/home_page_admin.dart';
+import '../home/home_page_admin.dart';
 import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:first_time/Auth/reset_password.dart';
@@ -109,7 +109,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
             ),
           );
         } else {
-          showErrorDialog('ليس لديك صلاحية الوصول كمسؤول');
+          showErrorDialog(S.of(context).Admin_Access);
         }
       }
     } on FirebaseAuthException catch (e) {
@@ -233,7 +233,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                     height: 230.0,
                   ),
                   Text(
-                    S.of(context).LoginAppBar,
+                    S.of(context).loginNew,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 40,
@@ -370,11 +370,11 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                                   Lottie.asset('assets/animation/WOR.json',
                                       height: 200),
                                   const SizedBox(height: 10),
-                                  const Center(
+                                  Center(
                                     child: Text(
-                                      'يرجى ملء كل من حقول البريد \nالإلكتروني وكلمة المرور',
+                                      S.of(context).LoginAlertEmailPassword,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Cario',
@@ -388,9 +388,9 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: const Text(
-                                    'موافق',
-                                    style: TextStyle(
+                                  child: Text(
+                                    S.of(context).register_assets_Ok,
+                                    style: const TextStyle(
                                         fontFamily: 'Cario',
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
@@ -415,7 +415,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                       ),
                     ),
                     child: Text(
-                      S.of(context).LoginAppBar,
+                      S.of(context).loginNew,
                       style: const TextStyle(
                           fontSize: 18.0,
                           color: Colors.white,

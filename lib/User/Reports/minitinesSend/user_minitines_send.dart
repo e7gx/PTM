@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/User/Reports/minitinesSend/user_minitines_send_view.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -25,9 +26,9 @@ class _UserMintinesState extends State<UserMintinesView> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          'البلاغات المرسلة',
-          style: TextStyle(
+        title: Text(
+          S.of(context).user_maintines_send_ReportsSent,
+          style: const TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
             fontSize: 22, //  تغيير هذه القيمة لتكون الحجم
@@ -84,9 +85,9 @@ class _UserMintinesState extends State<UserMintinesView> {
                   children: [
                     Lottie.asset('assets/animation/like1.json',
                         fit: BoxFit.contain, width: 200, height: 200),
-                    const Text(
-                      'لا يوجد بلاغات',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).user_maintines_send_NoReports,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           color: Colors.white,
                           fontSize: 23,
@@ -108,9 +109,11 @@ class _UserMintinesState extends State<UserMintinesView> {
                     .format((reportData['date'] as Timestamp).toDate());
                 return ReportCard(
                   report: Report(
-                    title: reportData[''] ?? 'بلاغ رقم ${index + 1}', // العنوان
+                    title: reportData[''] ??
+                        '${S.of(context).user_maintines_send_ReportNumber}${index + 1}', // العنوان
                     date: formattedDate, // التاريخ المنسق
-                    location: reportData['location'] ?? 'غير محدد', // الموقع
+                    location: reportData['location'] ??
+                        S.of(context).user_maintines_send_Undefined, // الموقع
                     image: reportData['imageUrl'] ??
                         'assets/images/uqu.png', // الصورة
                   ),
@@ -168,7 +171,7 @@ class ReportCard extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'التاريخ: ${report.date}',
+                  '${S.of(context).user_maintines_send_Date} ${report.date}',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
@@ -177,7 +180,7 @@ class ReportCard extends StatelessWidget {
                       color: Colors.black54),
                 ),
                 Text(
-                  'الموقع: ${report.location}',
+                  '${S.of(context).user_maintines_send_Location} ${report.location}',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
@@ -205,9 +208,9 @@ class ReportCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(14.0),
             ),
           ),
-          child: const Text(
-            'عرض البلاغ',
-            style: TextStyle(
+          child: Text(
+            S.of(context).user_mainitines_ShowReport,
+            style: const TextStyle(
               color: Colors.white, fontFamily: 'Cario',
               fontSize: 14, //  تغيير هذه القيمة لتكون الحجم
               fontWeight: FontWeight.bold,

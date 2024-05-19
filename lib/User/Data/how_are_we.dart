@@ -16,7 +16,7 @@ class HowAreWe extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Text('طرق التواصل'),
+        title: Text(S.of(context).home_page_and_bar_WayContact),
         centerTitle: true,
         titleTextStyle: const TextStyle(
             color: Colors.white,
@@ -65,9 +65,9 @@ class HowAreWe extends StatelessWidget {
                   Icons.mark_email_read_rounded,
                   color: Colors.tealAccent,
                 ),
-                title: const Text(
-                  'الايميل',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).how_are_we_Email,
+                  style: const TextStyle(
                       fontFamily: 'Cario',
                       color: Colors.white,
                       fontSize: 18,
@@ -95,7 +95,7 @@ class HowAreWe extends StatelessWidget {
                   color: Colors.tealAccent,
                 ),
                 title: Text(
-                  S.of(context).home_admin_SearchForpage,
+                  S.of(context).how_are_we_phonenumber,
                   style: const TextStyle(
                       fontFamily: 'Cario',
                       color: Colors.white,
@@ -117,9 +117,9 @@ class HowAreWe extends StatelessWidget {
                   Icons.bookmark_add_rounded,
                   color: Colors.tealAccent,
                 ),
-                title: const Text(
-                  'تويتر',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).how_are_we_Twitter,
+                  style: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'Cario',
                       fontSize: 18,

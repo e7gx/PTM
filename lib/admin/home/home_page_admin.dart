@@ -1,18 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_time/admin/Auth/admin_login.dart';
-import 'package:first_time/admin/Users/IT/it_users.dart';
-import 'package:first_time/admin/Users/Regular%20user/users_normal.dart';
-import 'package:first_time/admin/chat/admin_chat_page.dart';
-import 'package:first_time/admin/home/home_admin.dart';
-import 'package:first_time/admin/reports/admin_solve_report/user_reports_admin.dart';
-import 'package:first_time/admin/reports/admin_upload_report/admin_upload_report.dart';
+import '../Auth/admin_login.dart';
+import '../Users/IT/it_users.dart';
+import '../Users/Regular user/users_normal.dart';
+import '../chat/admin_chat_page.dart';
+import 'home_admin.dart';
+import '../reports/admin_solve_report/user_reports_admin.dart';
+import '../reports/admin_upload_report/admin_upload_report.dart';
 import 'package:lottie/lottie.dart';
-import 'package:first_time/admin/model/dashboard.dart';
-import 'package:first_time/admin/reports/it_report/it_all_reports.dart';
-import 'package:first_time/admin/reports/user_report/user_reports.dart';
-import 'package:first_time/admin/settings/admin_data.dart';
-import 'package:first_time/admin/settings/admin_settings.dart';
+import '../model/dashboard.dart';
+import '../reports/it_report/it_all_reports.dart';
+import '../reports/user_report/user_reports.dart';
+import '../settings/admin_data.dart';
+import '../settings/admin_settings.dart';
 import 'package:first_time/generated/l10n.dart';
 import 'package:first_time/register_assets/register_assets.dart';
 import 'package:flutter/material.dart';
@@ -83,14 +83,14 @@ class _AdminHomePageState extends State<AdminHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'الصفحة الرئيسية',
+              S.of(context).home_page_admin_HomePage,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'Cario',
                 color: Colors.white,
                 fontSize: 20,
@@ -190,9 +190,9 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 ),
               ),
               ListTile(
-                title: const Text(
-                  'البيانات الشخصية',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_page_and_bar_PersonalInformation,
+                  style: const TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                       fontWeight: FontWeight.bold,
@@ -219,9 +219,9 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ),
               ListTile(
-                title: const Text(
-                  ' لوحة المعلومات',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_page_admin_InformationPanel,
+                  style: const TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                       fontWeight: FontWeight.bold,
@@ -249,9 +249,9 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ),
               ListTile(
-                title: const Text(
-                  'بلاغات المستخدمين',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_admin_UserReports,
+                  style: const TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -280,9 +280,9 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ),
               ListTile(
-                title: const Text(
-                  'أضافة بلاغ',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_page_admin_AddReport,
+                  style: const TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -311,9 +311,9 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ),
               ListTile(
-                title: const Text(
-                  'أضافة أصول',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_page_admin_AddAssets,
+                  style: const TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                       fontWeight: FontWeight.bold,
@@ -338,9 +338,9 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ),
               ListTile(
-                title: const Text(
-                  'الإعدادات',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_page_admin_Settings,
+                  style: const TextStyle(
                       color: Color(0xC3252525),
                       fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                       fontWeight: FontWeight.bold,
@@ -368,9 +368,9 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ),
               ListTile(
-                title: const Text(
-                  'تسجيل خروج',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_page_admin_SignOut,
+                  style: const TextStyle(
                     color: Color(0xC3252525),
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -416,13 +416,13 @@ class _AdminHomePageState extends State<AdminHomePage> {
             gap: 8,
             onTabChange: (value) => goToPage(value),
             selectedIndex: 0,
-            tabs: const [
+            tabs: [
               GButton(
                 icon: Icons.home_work_sharp,
-                text: 'الرئيسية',
+                text: S.of(context).home_page_admin_Main,
                 iconColor: Colors.white,
                 iconActiveColor: Colors.tealAccent,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
@@ -431,38 +431,38 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 icon: Icons.person_search_outlined,
                 iconColor: Colors.white,
                 iconActiveColor: Colors.tealAccent,
-                text: 'المستخدمين',
-                textStyle: TextStyle(
+                text: S.of(context).home_page_admin_Users,
+                textStyle: const TextStyle(
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
               GButton(
                 icon: Icons.person_sharp,
-                text: 'موظفي الدعم',
+                text: S.of(context).home_page_admin_SupportStaff,
                 iconColor: Colors.white,
                 iconActiveColor: Colors.tealAccent,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
               GButton(
                 icon: Icons.construction_sharp,
-                text: 'الصيانة',
+                text: S.of(context).home_page_admin_Maintenance,
                 iconColor: Colors.white,
                 iconActiveColor: Colors.tealAccent,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
               GButton(
                 icon: Icons.manage_accounts_outlined,
-                text: ' البلاغات',
+                text: S.of(context).home_Reports,
                 iconColor: Colors.white,
                 iconActiveColor: Colors.tealAccent,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
                     color: Colors.white),

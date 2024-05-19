@@ -1,4 +1,5 @@
 import 'package:first_time/Auth/reset_password.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:first_time/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,9 +25,9 @@ class _SettingsPageState extends State<SettingsPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          'الاعدادات',
-          style: TextStyle(
+        title: Text(
+          S.of(context).account_setting_Settings,
+          style: const TextStyle(
             fontFamily: 'Cario',
 
             color: Colors.white,
@@ -60,9 +61,9 @@ class _SettingsPageState extends State<SettingsPage> {
               Icons.brightness_6,
               color: Colors.blue,
             ),
-            title: const Text(
-              'تغيير السمة',
-              style: TextStyle(
+            title: Text(
+              S.of(context).account_setting_ChangeTheme,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
@@ -90,9 +91,9 @@ class _SettingsPageState extends State<SettingsPage> {
               Icons.notifications,
               color: Colors.blue,
             ), // أيقونة الإشعارات
-            title: const Text(
-              'الإشعارات',
-              style: TextStyle(
+            title: Text(
+              S.of(context).account_setting_Notifications,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
@@ -118,9 +119,9 @@ class _SettingsPageState extends State<SettingsPage> {
               Icons.lock,
               color: Colors.blue,
             ), // أيقونة تعديل كلمة المرور
-            title: const Text(
-              'تعديل كلمة المرور',
-              style: TextStyle(
+            title: Text(
+              S.of(context).account_setting_EditPassword,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
@@ -149,9 +150,9 @@ class _SettingsPageState extends State<SettingsPage> {
               Icons.language,
               color: Colors.blue,
             ), // أيقونة اللغة
-            title: const Text(
-              'اللغة',
-              style: TextStyle(
+            title: Text(
+              S.of(context).account_setting_Language,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
@@ -174,9 +175,9 @@ class _SettingsPageState extends State<SettingsPage> {
               Icons.rate_review,
               color: Colors.blue,
             ), // أيقونة التقييم
-            title: const Text(
-              'من نحن',
-              style: TextStyle(
+            title: Text(
+              S.of(context).account_setting_WhoAreWe,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,

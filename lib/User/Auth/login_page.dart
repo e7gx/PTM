@@ -102,7 +102,7 @@ class _LoginPageUserState extends State<LoginPageUser> {
                   height: 230.0,
                 ),
                 Text(
-                  S.of(context).LoginAppBar,
+                  S.of(context).login,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 40,
@@ -399,7 +399,7 @@ class _LoginPageUserState extends State<LoginPageUser> {
                     ),
                   ),
                   child: Text(
-                    S.of(context).LoginAppBar,
+                    S.of(context).loginNew,
                     style: const TextStyle(
                         fontSize: 18.0,
                         color: Colors.white,

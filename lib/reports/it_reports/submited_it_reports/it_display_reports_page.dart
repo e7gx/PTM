@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -20,9 +21,9 @@ class ReportsPage extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          'تقرير حل المشكلة',
-          style: TextStyle(
+        title: Text(
+          S.of(context).it_display_reports_page_ProblemSolutionReports,
+          style: const TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
             fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
@@ -79,9 +80,9 @@ class ReportsPage extends StatelessWidget {
                   children: [
                     Lottie.asset('assets/animation/like1.json',
                         fit: BoxFit.contain, width: 200, height: 200),
-                    const Text(
-                      'لا يوجد تقارير',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).it_display_reports_page_NoReports,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           color: Color(0xFF0099FF),
                           fontSize: 23,
@@ -104,9 +105,12 @@ class ReportsPage extends StatelessWidget {
                 return ReportCard(
                   report: Report(
                     title: reportData['title'] ??
-                        'تقرير رقم ${index + 1}', // العنوان
+                        '${S.of(context).it_display_report_received_ReportNum} ${index + 1}', // العنوان
                     date: formattedDate, // التاريخ المنسق
-                    location: reportData['location'] ?? 'غير محدد', // الموقع
+                    location: reportData['location'] ??
+                        S
+                            .of(context)
+                            .it_display_reports_page_Undefined, // الموقع
                     image: reportData['imageUrl'] ??
                         'assets/images/pc.png', // الصورة
                   ),
@@ -162,7 +166,7 @@ class ReportCard extends StatelessWidget {
               padding:
                   const EdgeInsets.only(left: 4, right: 4, bottom: 10, top: 4),
               child: Text(
-                'التاريخ: ${report.date}\nالموقع: ${report.location}',
+                '${S.of(context).it_display_report_page_Date} : ${report.date}\n${S.of(context).it_display_reports_page_Location}: ${report.location}',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
@@ -188,9 +192,9 @@ class ReportCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(14.0),
             ),
           ),
-          child: const Text(
-            'عرض التقرير',
-            style: TextStyle(
+          child: Text(
+            S.of(context).it_display_reports_page_ShowReport,
+            style: const TextStyle(
               color: Colors.white, fontFamily: 'Cario',
               fontSize: 14, //  تغيير هذه القيمة لتكون الحجم
               fontWeight: FontWeight.bold,

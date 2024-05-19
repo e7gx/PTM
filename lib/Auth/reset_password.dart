@@ -3,6 +3,7 @@
 import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -44,10 +45,10 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                const Center(
+                Center(
                   child: Text(
-                    'تم ارسال رابط التحقق بنجاح',
-                    style: TextStyle(
+                    S.of(context).rest_password_SentLink,
+                    style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Cario',
@@ -62,9 +63,9 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();
                 },
-                child: const Text(
-                  'موافق',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).rest_password_agree,
+                  style: const TextStyle(
                       fontFamily: 'Cario',
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -94,10 +95,10 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                const Center(
+                Center(
                   child: Text(
-                    '  يجب التحقق من الايميل المدخل ',
-                    style: TextStyle(
+                    S.of(context).rest_password_MustBeVerified,
+                    style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Cario',
@@ -111,9 +112,9 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text(
-                  'موافق',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).rest_password_agree,
+                  style: const TextStyle(
                     fontFamily: 'Cario',
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -138,9 +139,9 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          "اعادة تعيين كلمة السر",
-          style: TextStyle(
+        title: Text(
+          S.of(context).rest_password_PasswordReset,
+          style: const TextStyle(
               fontFamily: 'Cario',
               fontSize: 21,
               fontWeight: FontWeight.bold,
@@ -202,7 +203,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Text(
-                  'تغيير كلمة السر يكون من هنا سيتم ارسال رسالة لك على البريد الالكتروني',
+                  S.of(context).rest_password_changePasswordAndSentEmail,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 18.0,
@@ -218,26 +219,26 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                   style: const TextStyle(color: Colors.blue),
                   controller: _emailControllerResat,
                   cursorColor: Colors.blue,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
 
-                    labelText: 'البريد الإلكتروني',
-                    labelStyle: TextStyle(
+                    labelText: S.of(context).rest_password_Email,
+                    labelStyle: const TextStyle(
                         fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,
                         color: Colors.teal), // Cyan color for label text
-                    prefixIcon: Icon(Icons.email_outlined,
+                    prefixIcon: const Icon(Icons.email_outlined,
                         color: Colors.teal), // Cyan color for icon
 
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderSide: BorderSide(
                           color: Colors.teal), // Consistent border color
                     ),
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.transparent),
                     ),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.teal),
                     ),
                   ),
@@ -258,9 +259,9 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
-                child: const Text(
-                  'التحقق',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).rest_password_Verify,
+                  style: const TextStyle(
                       fontSize: 16.0,
                       color: Colors.white,
                       fontFamily: 'Cario',

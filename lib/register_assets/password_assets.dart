@@ -141,8 +141,9 @@ class _PasswordAccessWidgetState extends State<PasswordAccessWidget> {
                     // Password is incorrect
                     // You can show an error message or clear the PIN input field
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Incorrect password'),
+                      SnackBar(
+                        content: Text(
+                            S.of(context).password_assets_IncorrectPassword),
                         backgroundColor: Colors.redAccent,
                       ),
                     );

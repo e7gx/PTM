@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/services.dart';
-import 'package:first_time/admin/api/api.dart';
+import '../api/api.dart';
 import 'package:http/http.dart' as http;
 import 'package:typewritertext/typewritertext.dart';
 
@@ -30,7 +31,7 @@ class _MainPageState extends State<AdminAiChatPage> {
 
         QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
             .instance
-            .collection('Users_Normal')
+            .collection('Users_IT')
             .where('uid', isEqualTo: uid)
             .limit(1)
             .get();
@@ -57,6 +58,23 @@ class _MainPageState extends State<AdminAiChatPage> {
     super.initState();
     fetchNameFromFirestore();
   }
+
+  // void onSendMessage() async {
+  //   Message message = Message(text: _textEditingController.text, isMe: true);
+
+  //   _textEditingController.clear();
+
+  //   setState(() {
+  //     _messages.insert(0, message);
+  //   });
+
+  //   String response = await sendMessageToChatGpt(message.text);
+
+  //   Message chatGpt = Message(text: response, isMe: false);
+  //   setState(() {
+  //     _messages.insert(0, chatGpt);
+  //   });
+  // }
 
   void onSendMessage() {
     String trimmedText = _textEditingController.text.trim();
@@ -151,7 +169,7 @@ class _MainPageState extends State<AdminAiChatPage> {
                       message.text,
                       style: const TextStyle(
                         color: Colors.black,
-                        fontSize: 17,
+                        fontSize: 15,
                         fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,
                       ),
@@ -161,7 +179,7 @@ class _MainPageState extends State<AdminAiChatPage> {
                         message.text,
                         style: const TextStyle(
                           color: Colors.black,
-                          fontSize: 17,
+                          fontSize: 15,
                           fontFamily: 'Cario',
                           fontWeight: FontWeight.bold,
                         ),
@@ -192,9 +210,9 @@ class _MainPageState extends State<AdminAiChatPage> {
           },
         ),
         centerTitle: true,
-        title: const Text(
-          'مساعدي الذكي',
-          style: TextStyle(
+        title: Text(
+          S.of(context).ai_chat_pageSmartAssistant,
+          style: const TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
             fontSize: 20,
@@ -259,9 +277,9 @@ class _MainPageState extends State<AdminAiChatPage> {
                     child: TextField(
                       style: const TextStyle(color: Colors.teal),
                       controller: _textEditingController,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.all(10.0),
-                        hintText: 'مرحبا.....',
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.all(10.0),
+                        hintText: S.of(context).ai_chat_pageHello,
                         hintTextDirection: TextDirection.rtl,
                         border: InputBorder.none,
                       ),
@@ -306,7 +324,7 @@ class _MainPageState extends State<AdminAiChatPage> {
             const SizedBox(width: 10),
             Expanded(
               child: Text(
-                ' مرحباً $fullName ! أنا مساعدك الذكي  يرجى وصف مشكلتك، وسأحاول مساعدتك',
+                "${S.of(context).chat_main_Hello} $fullName ${S.of(context).chat_main_IamSmartAssistant}",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.teal[900],

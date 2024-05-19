@@ -3,6 +3,7 @@ import 'package:first_time/device_table/collage_name/computer_collage.dart';
 import 'package:first_time/device_table/collage_name/islamic_collage.dart';
 import 'package:first_time/device_table/collage_name/sciences_collage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:first_time/generated/l10n.dart';
 // import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -118,15 +119,15 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
           SingleChildScrollView(
             child: Column(
               children: [
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: Text(
-                        'البيانات الرئيسية',
+                        S.of(context).home_admin_MainData,
                         textAlign: TextAlign.right,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -147,7 +148,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                           width: 180,
                           height: 180,
                           child: ReportCard(
-                            title: 'البلاغات المستلمة',
+                            title: S.of(context).home_admin_ReportsReceived,
                             count: itReportsReceivedCount,
                             icon: Icons.inbox,
                             color: Colors.blue,
@@ -157,7 +158,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                           width: 180,
                           height: 180,
                           child: ReportCard(
-                            title: 'البلاغات المغلقة',
+                            title: S.of(context).dashboard_ClosedReport,
                             count: itReportsCount,
                             icon: Icons.done_all,
                             color: Colors.green,
@@ -167,7 +168,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                           width: 180,
                           height: 180,
                           child: ReportCard(
-                            title: 'بلاغات المستخدمين',
+                            title: S.of(context).dashboard_UserReport,
                             count: userReportsCount,
                             icon: Icons.person,
                             color: Colors.orange,
@@ -177,7 +178,7 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                           width: 180,
                           height: 180,
                           child: ReportCard(
-                            title: 'تقارير الدعم',
+                            title: S.of(context).home_admin_SupportReports,
                             count: itReportsCount,
                             icon: Icons.support_agent,
                             color: Colors.green,
@@ -187,15 +188,15 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                     ),
                   ),
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'بيانات الكليات',
+                        S.of(context).home_admin_CollegesData,
                         textAlign: TextAlign.right,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -363,9 +364,9 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                 height: 90,
                 width: 90,
               ),
-              const Text(
-                'كلية العلوم التطبيقية',
-                style: TextStyle(
+              Text(
+                S.of(context).home_admin_CollegeOfAppliedSciences,
+                style: const TextStyle(
                   fontFamily: 'Cario',
                   color: Colors.black,
                   fontSize: 12,
@@ -387,9 +388,9 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                     borderRadius: BorderRadius.circular(14.0),
                   ),
                 ),
-                child: const Text(
-                  'استعراض البيانات',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).home_admin_ShowData,
+                  style: const TextStyle(
                     fontFamily: 'Cario',
                     color: Colors.white,
                     fontSize: 10,
@@ -424,9 +425,9 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                 height: 90,
                 width: 90,
               ),
-              const Text(
-                'كلية الحاسب الإلي',
-                style: TextStyle(
+              Text(
+                S.of(context).home_admin_CollegeOfComputer,
+                style: const TextStyle(
                   fontFamily: 'Cario',
                   color: Colors.black,
                   fontSize: 12,
@@ -448,9 +449,9 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                     borderRadius: BorderRadius.circular(14.0),
                   ),
                 ),
-                child: const Text(
-                  'استعراض البيانات',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).home_admin_ShowData,
+                  style: const TextStyle(
                     fontFamily: 'Cario',
                     color: Colors.white,
                     fontSize: 10,
@@ -485,9 +486,9 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                 height: 90,
                 width: 90,
               ),
-              const Text(
-                'كلية الشريعة الإسلامية',
-                style: TextStyle(
+              Text(
+                S.of(context).Device_Location_CollageOfIslamic,
+                style: const TextStyle(
                   fontFamily: 'Cario',
                   color: Colors.black,
                   fontSize: 12,
@@ -509,9 +510,9 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                     borderRadius: BorderRadius.circular(14.0),
                   ),
                 ),
-                child: const Text(
-                  'استعراض البيانات',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).home_admin_ShowData,
+                  style: const TextStyle(
                     fontFamily: 'Cario',
                     color: Colors.white,
                     fontSize: 10,
@@ -546,9 +547,9 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                 height: 90,
                 width: 90,
               ),
-              const Text(
-                'كلية أدارة الاعمال',
-                style: TextStyle(
+              Text(
+                S.of(context).home_admin_CollegeOfBusiness,
+                style: const TextStyle(
                   fontFamily: 'Cario',
                   color: Colors.black,
                   fontSize: 12,
@@ -570,9 +571,9 @@ class _TechnicalSupportStatisticsPageState extends State<AdminDashboard> {
                     borderRadius: BorderRadius.circular(14.0),
                   ),
                 ),
-                child: const Text(
-                  'استعراض البيانات',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).home_admin_ShowData,
+                  style: const TextStyle(
                     fontFamily: 'Cario',
                     color: Colors.white,
                     fontSize: 10,

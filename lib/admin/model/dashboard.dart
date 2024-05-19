@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:ui';
@@ -58,10 +59,10 @@ class _TechnicalSupportStatisticsPageState extends State<AdminStatisticsPage> {
           },
         ),
         centerTitle: true,
-        title: const Text(
-          'تقرير حل المشكلة',
+        title: Text(
+          S.of(context).dashboard_ProblemSolutionReport,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
             fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
@@ -130,42 +131,42 @@ class _TechnicalSupportStatisticsPageState extends State<AdminStatisticsPage> {
                   mainAxisSpacing: 16,
                   children: [
                     _buildMetricCard(
-                      title: 'بلاغات المفتوحة',
+                      title: S.of(context).dashboard_OpenReport,
                       value: userReportsCount.toString(),
                       icon: Icons.construction_sharp,
                     ),
                     _buildMetricCard(
-                      title: 'البلاغات المغلقة',
+                      title: S.of(context).dashboard_ClosedReport,
                       value: itReportsCount.toString(),
                       icon: Icons.receipt,
                     ),
                     _buildMetricCard(
-                      title: 'عدد التقارير',
+                      title: S.of(context).dashboard_NumOfReport,
                       value: itReportsCount.toString(),
                       icon: Icons.real_estate_agent_outlined,
                     ),
                     _buildMetricCard(
-                      title: 'البلاغات المستلمة',
+                      title: S.of(context).dashboard_ReceivedReport,
                       value: '$itReportsReceivedCount',
                       icon: Icons.receipt,
                     ),
                     _buildMetricCard(
-                      title: 'موظفين الدعم',
+                      title: S.of(context).dashboard_SupportStaff,
                       value: '${(numberOfITEmp)}',
                       icon: Icons.manage_accounts_outlined,
                     ),
                     _buildMetricCard(
-                      title: 'عدد المستفيدين',
+                      title: S.of(context).dashboard_NumOfUser,
                       value: '${(numberOfUsersEmp)}',
                       icon: Icons.supervised_user_circle_rounded,
                     ),
                     _buildMetricCard(
-                      title: 'عدد الاصول المسجلة',
+                      title: S.of(context).dashboard_NumOfAssets,
                       value: assetsCount.toString(),
                       icon: Icons.important_devices_rounded,
                     ),
                     _buildMetricCard(
-                      title: 'بلاغات المستخدمين',
+                      title: S.of(context).dashboard_UserReport,
                       value: userReportsCount.toString(),
                       icon: Icons.construction_sharp,
                     ),

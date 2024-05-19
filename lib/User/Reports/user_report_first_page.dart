@@ -1,4 +1,5 @@
 // ignore: file_names
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -54,10 +55,11 @@ class _ReportProblemPageState extends State<ReportProblemPage> {
                   Lottie.asset(
                     'assets/animation/reportGreen.json',
                   ),
-                  const Center(
+                  Center(
                     child: Text(
-                      '   هنا يتم تقديم بلاغ للدعم الفني \n  لمساعدتكم في اسرع وقت ممكن',
-                      style: TextStyle(
+                      S.of(context).user_report_first_page_ToHelpYouQuickly,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                           color: Colors.black54,
@@ -85,9 +87,9 @@ class _ReportProblemPageState extends State<ReportProblemPage> {
                         ),
                       ),
                     ),
-                    child: const Text(
-                      '    تقديم البلاغ     ',
-                      style: TextStyle(
+                    child: Text(
+                      S.of(context).user_report_first_page_SubmitReport,
+                      style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

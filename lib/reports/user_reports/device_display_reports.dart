@@ -1,3 +1,4 @@
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -64,9 +65,9 @@ class _DeviceReportsState extends State<DeviceReports> {
                       Icons.new_releases,
                       color: Colors.white,
                     ),
-                    label: const Text(
-                      'السابق',
-                      style: TextStyle(
+                    label: Text(
+                      S.of(context).device_display_reports_Previous,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -94,9 +95,9 @@ class _DeviceReportsState extends State<DeviceReports> {
                         borderRadius: BorderRadius.circular(14.0),
                       ),
                     ),
-                    label: const Text(
-                      'الاحدث',
-                      style: TextStyle(
+                    label: Text(
+                      S.of(context).device_display_reports_Recent,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -133,9 +134,9 @@ class _DeviceReportsState extends State<DeviceReports> {
                       children: [
                         Lottie.asset('assets/animation/like1.json',
                             fit: BoxFit.contain, width: 100, height: 100),
-                        const Text(
-                          'لا يوجد بلاغات',
-                          style: TextStyle(
+                        Text(
+                          S.of(context).device_display_reports_NoReport,
+                          style: const TextStyle(
                               fontFamily: 'Cario',
                               color: Colors.black54,
                               fontSize: 23,
@@ -161,13 +162,13 @@ class _DeviceReportsState extends State<DeviceReports> {
                       String statusText;
                       if (differenceInDays >= 4) {
                         statusColor = Colors.red;
-                        statusText = 'اولوية';
+                        statusText = S.of(context).device_display_reports_High;
                       } else if (differenceInDays >= 2) {
                         statusColor = Colors.yellow;
-                        statusText = 'متاخر';
+                        statusText = S.of(context).device_display_reports_Mid;
                       } else {
                         statusColor = Colors.teal;
-                        statusText = 'سليم';
+                        statusText = S.of(context).it_reports_received_Low;
                       }
 
                       return GestureDetector(
@@ -218,7 +219,11 @@ class _DeviceReportsState extends State<DeviceReports> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Report Number:   ${reportData['reportNumber'] ?? 'No Location'}',
+                                            'Report Number:   ${reportData['reportNumber'] ?? {
+                                                  S
+                                                      .of(context)
+                                                      .user_reports_Erorr,
+                                                }}',
                                             style: const TextStyle(
                                                 fontSize: 12.0,
                                                 color: Colors.white),
@@ -230,7 +235,11 @@ class _DeviceReportsState extends State<DeviceReports> {
                                                 color: Colors.white),
                                           ),
                                           Text(
-                                            'Report Location:   ${reportData['location'] ?? 'No Location'}',
+                                            'Report Location:   ${reportData['location'] ?? {
+                                                  S
+                                                      .of(context)
+                                                      .user_reports_Erorr,
+                                                }}',
                                             style: const TextStyle(
                                               fontSize: 12.0,
                                               color: Colors.white,

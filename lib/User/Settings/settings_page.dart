@@ -1,8 +1,9 @@
 import 'package:first_time/Auth/reset_password.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:first_time/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPageUser extends StatefulWidget {
   const SettingsPageUser({super.key});
@@ -24,9 +25,9 @@ class _SettingsPageState extends State<SettingsPageUser> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          'الاعدادات',
-          style: TextStyle(
+        title: Text(
+          S.of(context).account_setting_Settings,
+          style: const TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
             fontSize: 24,
@@ -59,9 +60,9 @@ class _SettingsPageState extends State<SettingsPageUser> {
               Icons.lock,
               color: Colors.teal,
             ), // أيقونة تعديل كلمة المرور
-            title: const Text(
-              'تعديل كلمة المرور',
-              style: TextStyle(
+            title: Text(
+              S.of(context).account_setting_EditPassword,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.teal,
                 fontWeight: FontWeight.bold,
@@ -90,9 +91,9 @@ class _SettingsPageState extends State<SettingsPageUser> {
               Icons.language,
               color: Colors.teal,
             ), // أيقونة اللغة
-            title: const Text(
-              'اللغة',
-              style: TextStyle(
+            title: Text(
+              S.of(context).account_setting_Language,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.teal,
                 fontWeight: FontWeight.bold,
@@ -104,7 +105,7 @@ class _SettingsPageState extends State<SettingsPageUser> {
               color: Colors.teal,
             ),
             onTap: () async {
-              await launchUrl(Uri.parse('https://github.com/e7gx'));
+              // await launchUrl(Uri.parse('https://github.com/e7gx'));
             },
           ),
           const Divider(),
@@ -113,9 +114,9 @@ class _SettingsPageState extends State<SettingsPageUser> {
               Icons.brightness_6,
               color: Colors.teal,
             ),
-            title: const Text(
-              'تغيير السمة',
-              style: TextStyle(
+            title: Text(
+              S.of(context).account_setting_ChangeTheme,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.teal,
                 fontWeight: FontWeight.bold,
@@ -144,9 +145,9 @@ class _SettingsPageState extends State<SettingsPageUser> {
               Icons.notifications,
               color: Colors.teal,
             ),
-            title: const Text(
-              'الإشعارات',
-              style: TextStyle(
+            title: Text(
+              S.of(context).account_setting_Notifications,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.teal,
                 fontWeight: FontWeight.bold,

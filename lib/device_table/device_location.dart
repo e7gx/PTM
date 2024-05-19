@@ -2,6 +2,7 @@ import 'package:first_time/device_table/collage_name/computer_collage.dart';
 import 'package:first_time/device_table/collage_name/islamic_collage.dart';
 import 'package:first_time/device_table/collage_name/business_collage.dart';
 import 'package:first_time/device_table/collage_name/sciences_collage.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -32,10 +33,10 @@ class DisplayLocationsNavBar extends StatelessWidget {
                   children: [
                     Lottie.asset('assets/animation/Search.json',
                         fit: BoxFit.fitWidth, height: 130),
-                    const Text(
-                      'يمكنك من هنا استعراض الكليات وجميع الاجهزة المتواجده داخلها لتسريع عملية الاستجابة للبلاغات',
+                    Text(
+                      S.of(context).Device_Location_DisplayCollegAndDevice,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         color: Colors.black,
                         fontSize: 12,
@@ -68,9 +69,9 @@ class DisplayLocationsNavBar extends StatelessWidget {
                           height: 90,
                           width: 90,
                         ),
-                        const Text(
-                          'كلية الحاسب الإلي',
-                          style: TextStyle(
+                        Text(
+                          S.of(context).Device_Location_CollegeOfComputer,
+                          style: const TextStyle(
                             fontFamily: 'Cario',
                             color: Colors.black,
                             fontSize: 12,
@@ -93,9 +94,9 @@ class DisplayLocationsNavBar extends StatelessWidget {
                               borderRadius: BorderRadius.circular(14.0),
                             ),
                           ),
-                          child: const Text(
-                            'استعراض البيانات',
-                            style: TextStyle(
+                          child: Text(
+                            S.of(context).Device_Location_ShowData,
+                            style: const TextStyle(
                               fontFamily: 'Cario',
                               color: Colors.white,
                               fontSize: 10,
@@ -127,9 +128,9 @@ class DisplayLocationsNavBar extends StatelessWidget {
                           height: 90,
                           width: 90,
                         ),
-                        const Text(
-                          'كلية أدارة الاعمال',
-                          style: TextStyle(
+                        Text(
+                          S.of(context).home_admin_CollegeOfBusiness,
+                          style: const TextStyle(
                             fontFamily: 'Cario',
                             color: Colors.black,
                             fontSize: 12,
@@ -152,9 +153,9 @@ class DisplayLocationsNavBar extends StatelessWidget {
                               borderRadius: BorderRadius.circular(14.0),
                             ),
                           ),
-                          child: const Text(
-                            'استعراض البيانات',
-                            style: TextStyle(
+                          child: Text(
+                            S.of(context).Device_Location_ShowData,
+                            style: const TextStyle(
                               fontFamily: 'Cario',
                               color: Colors.white,
                               fontSize: 10,
@@ -192,9 +193,9 @@ class DisplayLocationsNavBar extends StatelessWidget {
                           height: 90,
                           width: 90,
                         ),
-                        const Text(
-                          'كلية الشريعة الإسلامية',
-                          style: TextStyle(
+                        Text(
+                          S.of(context).Device_Location_CollageOfIslamic,
+                          style: const TextStyle(
                             fontFamily: 'Cario',
                             color: Colors.black,
                             fontSize: 12,
@@ -217,9 +218,9 @@ class DisplayLocationsNavBar extends StatelessWidget {
                               borderRadius: BorderRadius.circular(14.0),
                             ),
                           ),
-                          child: const Text(
-                            'استعراض البيانات',
-                            style: TextStyle(
+                          child: Text(
+                            S.of(context).Device_Location_ShowData,
+                            style: const TextStyle(
                               fontFamily: 'Cario',
                               color: Colors.white,
                               fontSize: 10,
@@ -251,9 +252,9 @@ class DisplayLocationsNavBar extends StatelessWidget {
                           height: 90,
                           width: 90,
                         ),
-                        const Text(
-                          'كلية العلوم التطبيقية',
-                          style: TextStyle(
+                        Text(
+                          S.of(context).home_admin_CollegeOfAppliedSciences,
+                          style: const TextStyle(
                             fontFamily: 'Cario',
                             color: Colors.black,
                             fontSize: 12,
@@ -276,9 +277,9 @@ class DisplayLocationsNavBar extends StatelessWidget {
                               borderRadius: BorderRadius.circular(14.0),
                             ),
                           ),
-                          child: const Text(
-                            'استعراض البيانات',
-                            style: TextStyle(
+                          child: Text(
+                            S.of(context).Device_Location_ShowData,
+                            style: const TextStyle(
                               fontFamily: 'Cario',
                               color: Colors.white,
                               fontSize: 10,

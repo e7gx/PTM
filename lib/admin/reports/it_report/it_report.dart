@@ -1,3 +1,4 @@
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -29,9 +30,9 @@ class ITReportDetailsAdminPage extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-          title: const Text(
-            'تفاصيل التقرير',
-            style: TextStyle(
+          title: Text(
+            S.of(context).it_report_ReportDetails,
+            style: const TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
               fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
@@ -66,10 +67,10 @@ class ITReportDetailsAdminPage extends StatelessWidget {
               return Center(child: Text('Error: ${snapshot.error}'));
             }
             if (!snapshot.hasData || snapshot.data!.data() == null) {
-              return const Center(
+              return Center(
                   child: Text(
-                'لا يوجد تفاصيل للتقرير',
-                style: TextStyle(
+                S.of(context).it_report_NoReportDetails,
+                style: const TextStyle(
                   fontFamily: 'Cario',
                   color: Colors.white,
                   fontSize: 35, //  تغيير هذه القيمة لتكون الحجم
@@ -103,9 +104,9 @@ class ITReportDetailsAdminPage extends StatelessWidget {
                       fit: BoxFit.contain,
                     ),
                     const SizedBox(height: 0),
-                    const Text(
-                      'رقم البلاغ:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).user_reports_ReportNumber,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -121,9 +122,9 @@ class ITReportDetailsAdminPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
 
-                    const Text(
-                      'رقم الجهاز:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).it_report_NumOfDevice,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -132,7 +133,8 @@ class ITReportDetailsAdminPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      reportData['device'] ?? 'لا يوجد وصف متاح.',
+                      reportData['device'] ??
+                          S.of(context).it_report_NoDescriptionAvailable,
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black87,
@@ -141,9 +143,9 @@ class ITReportDetailsAdminPage extends StatelessWidget {
                     ),
 
                     const SizedBox(height: 10),
-                    const Text(
-                      'تاريخ بداية البلاغ:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).it_report_StartDateOfRrport,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -160,9 +162,9 @@ class ITReportDetailsAdminPage extends StatelessWidget {
                     const SizedBox(height: 16),
                     const SizedBox(height: 10),
                     // النصوص والمحتويات الأخرى تأتي هنا
-                    const Text(
-                      'تاريخ نهاية البلاغ:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).it_report_EndDateOfReport,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -179,9 +181,9 @@ class ITReportDetailsAdminPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      'الموقع:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).it_report_Location,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,
@@ -198,9 +200,9 @@ class ITReportDetailsAdminPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      'المبنى:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).it_report_Building,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,
@@ -217,9 +219,9 @@ class ITReportDetailsAdminPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      'وصف المشكلة:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).it_report_DescribeTheProblem,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -228,7 +230,8 @@ class ITReportDetailsAdminPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      reportData['problem'] ?? 'لا يوجد وصف متاح.',
+                      reportData['problem'] ??
+                          S.of(context).it_report_NoDescriptionAvailable,
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black87,
@@ -237,9 +240,9 @@ class ITReportDetailsAdminPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
 
-                    const Text(
-                      'حل المشكلة:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).it_report_ProblemSolution,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -248,7 +251,8 @@ class ITReportDetailsAdminPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      reportData['solution'] ?? 'لا يوجد وصف متاح.',
+                      reportData['solution'] ??
+                          S.of(context).it_report_NoDescriptionAvailable,
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black87,
@@ -257,9 +261,9 @@ class ITReportDetailsAdminPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
 
-                    const Text(
-                      'بيانات التواصل:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).it_report_ContactInformation,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,

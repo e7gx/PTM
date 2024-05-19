@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/User/Data/how_are_we.dart';
 import 'package:first_time/User/Styles/style.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -56,10 +57,10 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
               'assets/animation/WOR.json',
               height: 200,
             ),
-            content: const Text(
-              'يرجى تعبئة جميع الحقول',
+            content: Text(
+              S.of(context).user_minitines_send_view_FillAllFields,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
@@ -68,9 +69,9 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
             ),
             actions: [
               TextButton(
-                child: const Text(
-                  'حسنا',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).user_minitines_send_view_Ok,
+                  style: const TextStyle(
                     color: Colors.tealAccent,
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
@@ -98,10 +99,10 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
               'assets/animation/like1.json',
               height: 180,
             ),
-            content: const Text(
-              '! شكرًا لك على تعاونك',
+            content: Text(
+              S.of(context).user_minitines_send_view_ThanksForYourCooperation,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Cario',
@@ -109,9 +110,9 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
             ),
             actions: [
               TextButton(
-                child: const Text(
-                  'حسنا',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).user_minitines_send_view_Ok,
+                  style: const TextStyle(
                     color: Colors.tealAccent,
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
@@ -125,7 +126,8 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
                   Navigator.pop(context);
 
                   Fluttertoast.showToast(
-                    msg: "🚀 تم الإرسال",
+                    msg:
+                        S.of(context).user_minitines_send_view_SentSuccessfully,
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.CENTER,
                     timeInSecForIosWeb: 1,
@@ -163,9 +165,11 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
               Navigator.pop(context);
             },
           ),
-          title: const Text(
-            ' الصيانة المرسلة الغير منتهية',
-            style: TextStyle(
+          title: Text(
+            S
+                .of(context)
+                .user_minitines_send_view_TheMaintenanceDispatchedIsNotCompleted,
+            style: const TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
               fontSize: 18, //  تغيير هذه القيمة لتكون الحجم
@@ -215,9 +219,11 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
                   children: [
                     Lottie.asset('assets/animation/like1.json', height: 200),
                     const SizedBox(width: 475),
-                    const Text(
-                      'لا يوجد تفاصيل للصيانة',
-                      style: TextStyle(
+                    Text(
+                      S
+                          .of(context)
+                          .user_minitines_send_view_NoMaintenanceDateils,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         color: Colors.blue,
                         fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
@@ -243,9 +249,9 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
                       fit: BoxFit.contain,
                     ),
                     const SizedBox(height: 50),
-                    const Text(
-                      'رقم البلاغ:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).user_minitines_send_view_ReportNumber,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -264,9 +270,9 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
                     ),
                     const SizedBox(height: 10),
                     // النصوص والمحتويات الأخرى تأتي هنا
-                    const Text(
-                      'تاريخ البلاغ:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).user_minitines_send_view_ReportDate,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -283,9 +289,9 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      'الموقع:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).user_minitines_send_view_Location,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,
@@ -303,9 +309,9 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
                     ),
                     const SizedBox(height: 10),
                     const SizedBox(height: 10),
-                    const Text(
-                      'المبنى:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).user_minitines_send_view_Building,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,
@@ -322,9 +328,9 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      'بيانات التواصل:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).user_minitines_send_view_ContactInformation,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,
@@ -342,9 +348,11 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
                     ),
                     const SizedBox(height: 10),
 
-                    const Text(
-                      'وصف المشكلة:',
-                      style: TextStyle(
+                    Text(
+                      S
+                          .of(context)
+                          .user_minitines_send_view_DescripitonOfTheProblem,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -353,7 +361,8 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      reportData['problem'] ?? 'لا يوجد وصف متاح.',
+                      reportData['problem'] ??
+                          S.of(context).user_minitines_send_view_NoDescription,
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black87,
@@ -417,21 +426,23 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
                       height: 150, //  الارتفاع
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      'تقييم الخدمة',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).user_minitines_send_view_ServiceEvaluation,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                         color: Colors.teal,
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       child: Text(
-                        ' هنا تقييم الخدمة التي قدمت لك من قبل الدعم الفني نرجو ان يكون هنالك مصداقية في عملية التقييم لكي لايؤثر الامر سلبا على الموظف',
+                        S
+                            .of(context)
+                            .user_minitines_send_view_ServiceEvaluationHonestly,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 12,
                           fontWeight: FontWeight.normal,
@@ -444,8 +455,12 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
                       padding: const EdgeInsets.all(8.0),
                       child: buildTextFieldTextUserRating(
                         userRateTextController,
-                        'تقييم الخدمة',
-                        'أدخل وصف الخدمة',
+                        S
+                            .of(context)
+                            .user_minitines_send_view_ServiceEvaluation,
+                        S
+                            .of(context)
+                            .user_minitines_send_view_EnterTheServiceDescription,
                       ),
                     ),
                     Padding(
@@ -494,9 +509,9 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
                             borderRadius: BorderRadius.circular(14.0),
                           ),
                         ),
-                        child: const Text(
-                          'إرسال',
-                          style: TextStyle(
+                        child: Text(
+                          S.of(context).user_minitines_send_view_Sent,
+                          style: const TextStyle(
                             fontFamily: 'Cario',
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -515,9 +530,11 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
                           ),
                         );
                       },
-                      child: const Text(
-                        'أضغط هنا لعرض بيانات التواصل',
-                        style: TextStyle(
+                      child: Text(
+                        S
+                            .of(context)
+                            .user_minitines_send_view_ClickHereToShowContactInformation,
+                        style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 14,
                           fontWeight: FontWeight.normal,
@@ -540,9 +557,9 @@ class _DitelsUserMintinesState extends State<UserMintinesViewData> {
           borderRadius: BorderRadius.circular(14.0),
         ),
       ),
-      child: const Text(
-        'تقييم الخدمة',
-        style: TextStyle(
+      child: Text(
+        S.of(context).user_minitines_send_view_ServiceEvaluation,
+        style: const TextStyle(
             fontSize: 16,
             color: Colors.white,
             fontFamily: 'Cario',

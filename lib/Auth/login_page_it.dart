@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:ui';
 
 import 'package:first_time/App/ppm.dart';
@@ -36,7 +38,6 @@ class _LoginPageState extends State<LoginPage> {
     final bool isLoggedIn = sharedPreferences.getBool('isLoggedIn') ?? false;
 
     if (isLoggedIn) {
-      // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const WelcomePage(),
@@ -108,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 230.0,
                   ),
                   Text(
-                    S.of(context).LoginAppBar,
+                    S.of(context).loginNew,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 30,
@@ -261,11 +262,11 @@ class _LoginPageState extends State<LoginPage> {
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  const Center(
+                                  Center(
                                     child: Text(
-                                      'يرجى ملء كل من حقول البريد \nالإلكتروني وكلمة المرور',
+                                      S.of(context).login_page_it_PleaseFill,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Cario',
@@ -279,9 +280,9 @@ class _LoginPageState extends State<LoginPage> {
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: const Text(
-                                    'موافق',
-                                    style: TextStyle(
+                                  child: Text(
+                                    S.of(context).login_page_it_agree,
+                                    style: const TextStyle(
                                         fontFamily: 'Cario',
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
@@ -337,7 +338,6 @@ class _LoginPageState extends State<LoginPage> {
                             await SharedPreferences.getInstance();
                         sharedPreferences.setBool('isLoggedIn', true);
 
-                        // ignore: use_build_context_synchronously
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (context) => const WelcomePage(),
@@ -345,19 +345,18 @@ class _LoginPageState extends State<LoginPage> {
                         );
                       } on FirebaseAuthException catch (e) {
                         String message =
-                            // ignore: use_build_context_synchronously
                             '${e.code}\n ${S.of(context).validData}';
                         String lottieAsset =
                             'assets/animation/WOR.json'; // مسار ملف تحريك Lottie للخطأ
 
                         if (e.code == 'user-not-found') {
-                          message = 'لم يتم العثور على المستخدم!';
+                          message = S.of(context).login_page_it_UserNotFound;
                         } else if (e.code == 'wrong-password') {
-                          message = 'كلمة المرور غير صحيحة!';
+                          message =
+                              S.of(context).login_page_it_IncorrectPassword;
                         }
 
                         showDialog(
-                          // ignore: use_build_context_synchronously
                           context: context,
                           builder: (context) {
                             return AlertDialog(
@@ -421,7 +420,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     child: Text(
-                      S.of(context).LoginAppBar,
+                      S.of(context).loginNew,
                       style: const TextStyle(
                           fontSize: 18.0,
                           color: Colors.white,
@@ -473,9 +472,9 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           );
                         },
-                        child: const Text(
-                          'Admin',
-                          style: TextStyle(
+                        child: Text(
+                          S.of(context).login_page_it_Admin,
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                               color: Colors.blue),

@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/controller/routes/navbar_drawer.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -87,9 +88,9 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                 children: [
                   Lottie.asset('assets/animation/like1.json',
                       fit: BoxFit.contain, width: 100, height: 100),
-                  const Text(
-                    'لا يوجد بلاغات',
-                    style: TextStyle(
+                  Text(
+                    S.of(context).device_dateils_report_NoReports,
+                    style: const TextStyle(
                         fontFamily: 'Cario',
                         color: Colors.black54,
                         fontSize: 23,
@@ -115,7 +116,9 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                     const SizedBox(height: 16),
 
                     Text(
-                      'بلاغ رقم:\n${reportData['reportNumber'] ?? 'No Location'}',
+                      'بلاغ رقم:\n${reportData['reportNumber'] ?? {
+                            S.of(context).user_reports_Erorr,
+                          }}',
                       style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
@@ -123,9 +126,9 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 20),
-                    const Text(
-                      'التاريخ:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).device_dateils_report_Date,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -139,41 +142,45 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                           color: Colors.black),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'رقم الجهاز:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).device_dateils_report_DeviceNumber,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue),
                     ),
                     Text(
-                      ' ${reportData['device'] ?? 'No Device Number'}',
+                      ' ${reportData['device'] ?? {
+                            S.of(context).user_reports_Erorr,
+                          }}',
                       style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 18,
                           color: Colors.black),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'الموقع:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).device_dateils_report_Location,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue),
                     ),
                     Text(
-                      ' ${reportData['selected_option'] ?? 'No Location'}',
+                      ' ${reportData['selected_option'] ?? {
+                            S.of(context).user_reports_Erorr,
+                          }}',
                       style: const TextStyle(
                           fontSize: 18,
                           fontFamily: 'Cario',
                           color: Colors.black),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'بيانات التواصل:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).device_dateils_report_ContactInformation,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,
@@ -191,26 +198,30 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                     ),
                     const SizedBox(height: 16),
 
-                    const Text(
-                      'موقع المعمل:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).device_dateils_report_LabLocation,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue),
                     ),
                     Text(
-                      ' ${reportData['location'] ?? 'No Location'}',
+                      ' ${reportData['location'] ?? {
+                            S.of(context).show_reports_user_ditils_NoLocation,
+                          }}',
                       style: const TextStyle(
                           fontSize: 18,
                           fontFamily: 'Cario',
                           color: Colors.black),
                     ),
                     const SizedBox(height: 16),
-                    const SafeArea(
+                    SafeArea(
                       child: Text(
-                        'وصف المشكلة:',
-                        style: TextStyle(
+                        S
+                            .of(context)
+                            .device_dateils_report_DescriptionOfProblem,
+                        style: const TextStyle(
                             fontFamily: 'Cario',
                             fontSize: 20,
                             color: Colors.blue,
@@ -265,10 +276,12 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  const Center(
+                                  Center(
                                     child: Text(
-                                      ' شكرا لك على تعاونك\n 🪛 تم استلام البلاغ',
-                                      style: TextStyle(
+                                      S
+                                          .of(context)
+                                          .device_dateils_report_TheReportHasBeenReceivedTy4Cooperation,
+                                      style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Cario',
@@ -287,7 +300,9 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                                       ),
                                     );
                                     Fluttertoast.showToast(
-                                      msg: "👍 تمت عملية استلام الطلب",
+                                      msg: S
+                                          .of(context)
+                                          .device_dateils_report_TheOrderHasBeenReceived,
                                       toastLength: Toast.LENGTH_SHORT,
                                       gravity: ToastGravity.CENTER,
                                       timeInSecForIosWeb: 1,
@@ -295,9 +310,9 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                                       fontSize: 16.0,
                                     );
                                   },
-                                  child: const Text(
-                                    'موافق',
-                                    style: TextStyle(
+                                  child: Text(
+                                    S.of(context).device_dateils_report_Agree,
+                                    style: const TextStyle(
                                         fontFamily: 'Cario',
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
@@ -318,9 +333,9 @@ class _ReportDetailsPageState extends State<ReportDetailsPage> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
-                      child: const Text(
-                        'أستلام الطلب',
-                        style: TextStyle(
+                      child: Text(
+                        S.of(context).device_dateils_report_ReceivingTheOrder,
+                        style: const TextStyle(
                             fontFamily: 'Cario',
                             fontSize: 18,
                             color: Colors.white,

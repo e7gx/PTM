@@ -1,4 +1,5 @@
 import 'package:first_time/Auth/reset_password.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:first_time/theme/theme.dart';
 import 'package:provider/provider.dart';
@@ -23,9 +24,9 @@ class _SettingsPageState extends State<AdminSettingsPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          'الاعدادات',
-          style: TextStyle(
+        title: Text(
+          S.of(context).admin_settings_Settings,
+          style: const TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
             fontSize: 22,
@@ -58,9 +59,9 @@ class _SettingsPageState extends State<AdminSettingsPage> {
               Icons.brightness_6,
               color: Colors.teal,
             ),
-            title: const Text(
-              'تغيير السمة',
-              style: TextStyle(
+            title: Text(
+              S.of(context).admin_settings_ChangeTheme,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.teal,
                 fontWeight: FontWeight.bold,
@@ -88,9 +89,9 @@ class _SettingsPageState extends State<AdminSettingsPage> {
               Icons.notifications,
               color: Colors.teal,
             ),
-            title: const Text(
-              'الإشعارات',
-              style: TextStyle(
+            title: Text(
+              S.of(context).admin_settings_Notifications,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.teal,
                 fontWeight: FontWeight.bold,
@@ -115,9 +116,9 @@ class _SettingsPageState extends State<AdminSettingsPage> {
               Icons.lock,
               color: Colors.teal,
             ),
-            title: const Text(
-              'تعديل كلمة المرور',
-              style: TextStyle(
+            title: Text(
+              S.of(context).admin_settings_EditPassword,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.teal,
                 fontWeight: FontWeight.bold,
@@ -145,9 +146,9 @@ class _SettingsPageState extends State<AdminSettingsPage> {
               Icons.language,
               color: Colors.teal,
             ),
-            title: const Text(
-              'اللغة',
-              style: TextStyle(
+            title: Text(
+              S.of(context).admin_settings_language,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.teal,
                 fontWeight: FontWeight.bold,

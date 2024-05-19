@@ -1,6 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:first_time/admin/home/home_page_admin.dart';
+import 'package:first_time/generated/l10n.dart';
+
+import '../../home/home_page_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -34,10 +36,10 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
           },
         ),
         centerTitle: true,
-        title: const Text(
-          'تفاصيل البلاغ ',
+        title: Text(
+          S.of(context).show_reports_user_ditils_DetailsOfReport,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
               fontSize: 20,
@@ -76,9 +78,9 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
               children: [
                 Lottie.asset('assets/animation/like1.json',
                     fit: BoxFit.contain, width: 100, height: 100),
-                const Text(
-                  'لا يوجد بلاغات',
-                  style: TextStyle(
+                Text(
+                  S.of(context).show_reports_user_ditils_DetailsOfReport,
+                  style: const TextStyle(
                       fontFamily: 'Cario',
                       color: Colors.black54,
                       fontSize: 23,
@@ -102,9 +104,9 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                     height: 300,
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    'بلاغ رقم:',
-                    style: TextStyle(
+                  Text(
+                    S.of(context).show_reports_user_ditils_ReportNum,
+                    style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         color: Colors.teal,
@@ -112,7 +114,7 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                   ),
 
                   Text(
-                    '${reportData['reportNumber'] ?? 'No Location'}',
+                    '${reportData['reportNumber'] ?? S.of(context).user_reports_Erorr}',
                     style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 30,
@@ -121,9 +123,9 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                   ),
 
                   const SizedBox(height: 20),
-                  const Text(
-                    'التاريخ:',
-                    style: TextStyle(
+                  Text(
+                    S.of(context).it_reports_received_Date,
+                    style: const TextStyle(
                       fontFamily: 'Cario',
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -138,9 +140,9 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    'رقم الجهاز:',
-                    style: TextStyle(
+                  Text(
+                    S.of(context).show_reports_user_ditils_NumOfDevice,
+                    style: const TextStyle(
                       fontFamily: 'Cario',
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -148,16 +150,16 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                     ),
                   ),
                   Text(
-                    ' ${reportData['device'] ?? 'No Device Number'}',
+                    ' ${reportData['device'] ?? S.of(context).user_reports_Erorr}',
                     style: const TextStyle(
                       fontFamily: 'Cario',
                       fontSize: 18,
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    'الموقع:',
-                    style: TextStyle(
+                  Text(
+                    S.of(context).show_reports_user_ditils_Location,
+                    style: const TextStyle(
                       fontFamily: 'Cario',
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -165,16 +167,16 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                     ),
                   ),
                   Text(
-                    ' ${reportData['location'] ?? 'No Location'}',
+                    ' ${reportData['location'] ?? S.of(context).user_reports_Erorr}',
                     style: const TextStyle(
                       fontSize: 18,
                       fontFamily: 'Cario',
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    'المبنى:',
-                    style: TextStyle(
+                  Text(
+                    S.of(context).show_reports_user_ditils_building,
+                    style: const TextStyle(
                       fontSize: 20,
                       fontFamily: 'Cario',
                       fontWeight: FontWeight.bold,
@@ -190,10 +192,12 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const SafeArea(
+                  SafeArea(
                     child: Text(
-                      'وصف المشكلة:',
-                      style: TextStyle(
+                      S
+                          .of(context)
+                          .show_reports_user_ditils_DescriptionOfTheProblem,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 20,
                           color: Colors.teal,
@@ -201,16 +205,17 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                     ),
                   ),
                   Text(
-                    reportData['problem'] ?? 'No Description',
+                    reportData['problem'] ??
+                        S.of(context).show_reports_user_ditils_NoDescription,
                     style: const TextStyle(
                       fontSize: 18,
                       fontFamily: 'Cario',
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    'بيانات التواصل:',
-                    style: TextStyle(
+                  Text(
+                    S.of(context).show_reports_user_ditils_ContactInformation,
+                    style: const TextStyle(
                       fontSize: 20,
                       fontFamily: 'Cario',
                       fontWeight: FontWeight.bold,
@@ -300,9 +305,9 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                    child: const Text(
-                      'حذف البلاغ',
-                      style: TextStyle(
+                    child: Text(
+                      S.of(context).show_reports_user_ditils_DeleteTheReport,
+                      style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 18,
                           color: Colors.white,
@@ -334,11 +339,11 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
               Lottie.asset('assets/animation/WOR.json',
                   height: 200), // يجب أن تكون الصورة موجودة في مجلد الـ assets
               const SizedBox(height: 10),
-              const Center(
+              Center(
                 child: Text(
-                  'هل انت متاكد من حذف البلاغ ؟؟',
+                  S.of(context).show_reports_user_ditils_SureOFDelete,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Cario',
@@ -364,7 +369,9 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                         ),
                       );
                       Fluttertoast.showToast(
-                        msg: "👍 تمت عملية الحذف ",
+                        msg: S
+                            .of(context)
+                            .show_reports_user_ditils_TheRepotHasBeenDeleted,
                         toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.CENTER,
                         timeInSecForIosWeb: 1,
@@ -372,9 +379,9 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                         fontSize: 16.0,
                       );
                     },
-                    child: const Text(
-                      'نعم',
-                      style: TextStyle(
+                    child: Text(
+                      S.of(context).show_reports_user_ditils_Done,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -387,9 +394,9 @@ class _ReportDetailsPageState extends State<UserInAdminReportDetailsPage> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: const Text(
-                      'تراجع',
-                      style: TextStyle(
+                    child: Text(
+                      S.of(context).show_reports_user_ditils_Undo,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

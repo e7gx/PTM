@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:first_time/Chat/chatgpt_api.dart';
@@ -171,7 +172,7 @@ class _MainPageState extends State<AiChatPage> {
                       message.text,
                       style: const TextStyle(
                         color: Colors.black,
-                        fontSize: 17,
+                        fontSize: 15,
                         fontFamily: 'Cario', // استخدام الخط Cario هنا
                         fontWeight: FontWeight.bold,
                       ),
@@ -181,7 +182,7 @@ class _MainPageState extends State<AiChatPage> {
                         message.text,
                         style: const TextStyle(
                           color: Colors.black,
-                          fontSize: 17,
+                          fontSize: 15,
                           fontFamily: 'Cario', // استخدام الخط Cario هنا
                           fontWeight: FontWeight.bold,
                         ),
@@ -214,9 +215,9 @@ class _MainPageState extends State<AiChatPage> {
           },
         ),
         centerTitle: true,
-        title: const Text(
-          'مساعدي الذكي',
-          style: TextStyle(
+        title: Text(
+          S.of(context).ai_chat_pageSmartAssistant,
+          style: const TextStyle(
             fontFamily: 'Cario',
             color: Colors.white,
             fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
@@ -283,9 +284,9 @@ class _MainPageState extends State<AiChatPage> {
                     child: TextField(
                       style: const TextStyle(color: Colors.indigo),
                       controller: _textEditingController,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.all(10.0),
-                        hintText: 'مرحبا.....',
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.all(10.0),
+                        hintText: S.of(context).ai_chat_pageHello,
                         hintTextDirection: TextDirection.rtl,
                         border: InputBorder.none,
                       ),
@@ -332,7 +333,7 @@ class _MainPageState extends State<AiChatPage> {
             const SizedBox(width: 10),
             Expanded(
               child: Text(
-                ' مرحباً $fullName ! أنا مساعدك الذكي  يرجى وصف مشكلتك، وسأحاول مساعدتك',
+                "${S.of(context).chat_main_Hello} $fullName ${S.of(context).chat_main_IamSmartAssistant}",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.teal[900],

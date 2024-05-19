@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class MyDataPage extends StatefulWidget {
@@ -69,7 +70,7 @@ class _MyDataPageState extends State<MyDataPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text('بيانات المستخدم '),
+        title: Text(S.of(context).it_settings_UserData),
         centerTitle: true,
         titleTextStyle: const TextStyle(
             color: Colors.white,
@@ -99,21 +100,21 @@ class _MyDataPageState extends State<MyDataPage> {
             UserAvatarInfoCard(
               imageUrl: 'assets/images/chat.png',
               name: fullName,
-              lastNameWidget: "موظف",
+              lastNameWidget: S.of(context).it_settings_Employee,
             ),
             UserDetailTile(
-              title: 'اسم المستخدم',
+              title: S.of(context).it_settings_UserName,
               value: fullName,
               icon: Icons.person_2_rounded,
             ),
             UserDetailTile(
-              title: 'البريد الإلكتروني',
+              title: S.of(context).it_settings_Email,
               value: data,
               icon: Icons.email,
             ),
-            const UserDetailTile(
-              title: 'المنصب',
-              value: "موظف دعم فني",
+            UserDetailTile(
+              title: S.of(context).it_settings_Jobpostion,
+              value: S.of(context).it_settings_TechnicalSupportEmployee,
               icon: Icons.contact_emergency_sharp,
             ),
           ],

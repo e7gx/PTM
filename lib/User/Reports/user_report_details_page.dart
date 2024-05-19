@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/User/controller/home_page_and_bar.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,7 +11,7 @@ const List<String> collegeList = <String>[
   'كلية الحاسب الالي  جامعة ام القرى',
   'كلية ادارة الاعمال جامعة ام القرى',
   'كلية الشريعة الإسلامية جامعة ام القرى',
-  'كلية العلوم التطبيقية جامعة ام القرى'
+  'كلية العلوم التطبيقية جامعة ام القرى',
 ];
 
 class DetailsPage extends StatefulWidget {
@@ -92,10 +93,10 @@ class _DetailsPageState extends State<DetailsPage> {
               'assets/animation/WOR.json',
               height: 200,
             ),
-            content: const Text(
-              'يرجى تعبئة جميع الحقول\nلنتمكن من مساعدتك',
+            content: Text(
+              S.of(context).user_report_details_page_ToHelpYouFillFields,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
@@ -104,9 +105,9 @@ class _DetailsPageState extends State<DetailsPage> {
             ),
             actions: <Widget>[
               TextButton(
-                child: const Text(
-                  'حسنا',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).user_report_details_page_Ok,
+                  style: const TextStyle(
                     color: Colors.tealAccent,
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
@@ -138,19 +139,19 @@ class _DetailsPageState extends State<DetailsPage> {
               'assets/animation/like1.json',
               height: 180,
             ),
-            content: const Text(
-              '! شكرًا لك على تعاونك\n  سيتم تقديم الحل في أقرب وقت',
+            content: Text(
+              S.of(context).user_report_details_page_solutionProvided,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Cario'),
             ),
             actions: <Widget>[
               TextButton(
-                child: const Text(
-                  'حسنا',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).user_report_details_page_Ok,
+                  style: const TextStyle(
                     color: Colors.tealAccent,
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
@@ -158,7 +159,8 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 onPressed: () {
                   Fluttertoast.showToast(
-                    msg: "تم ارسال البلاغ👍",
+                    msg:
+                        "${S.of(context).user_report_details_page_ReportSentsuccessfully} 👍",
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.CENTER,
                     timeInSecForIosWeb: 1,
@@ -192,9 +194,9 @@ class _DetailsPageState extends State<DetailsPage> {
             Navigator.of(context).pop();
           },
         ),
-        title: const Text(
-          "تقديم بلاغ",
-          style: TextStyle(
+        title: Text(
+          S.of(context).user_report_details_page_SubmitReport,
+          style: const TextStyle(
               color: Colors.white,
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -246,12 +248,14 @@ class _DetailsPageState extends State<DetailsPage> {
                   crossAxisAlignment: CrossAxisAlignment
                       .stretch, //موقع الزر و طوله في هذي الخاصيه
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 2.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
                       child: Text(
-                        'يجب ملاء جميع الحقول ب بيانات صحيحة لنتمكن من مساعدتكم في اسرع وقت',
+                        S
+                            .of(context)
+                            .user_report_details_page_FillWithCorrectInfo,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             color: Colors.black54,
@@ -269,20 +273,32 @@ class _DetailsPageState extends State<DetailsPage> {
                     const SizedBox(height: 20),
                     buildTextFieldLocation(
                       locationController,
-                      'المعمل',
-                      'أدخل اسم المعمل',
+                      S.of(context).user_report_details_page_Laboratory,
+                      S.of(context).user_report_details_page_EnterLabName,
                     ),
                     const SizedBox(height: 10),
                     buildTextFieldNum(
-                        deviceController, 'رقم الجهاز', 'أدخل رقم الجهاز'),
+                        deviceController,
+                        S.of(context).user_report_details_page_DeviceNumber,
+                        S
+                            .of(context)
+                            .user_report_details_page_EnterDeviceNumber),
                     const SizedBox(height: 10),
                     buildTextFieldTextUserProblem(
-                        problemController, 'وصف المشكلة', 'أدخل وصف المشكلة'),
+                        problemController,
+                        S
+                            .of(context)
+                            .user_report_details_page_DescriptionOfTheProblem,
+                        S
+                            .of(context)
+                            .user_report_details_page_EnterDescriptionOfTheProblem),
                     const SizedBox(height: 10),
                     buildTextFieldTextUserProblem(
                         userInfoController,
-                        'أدخل بياناتك',
-                        'الرجاء كتابة الاسم الثلاثي و رقم الهاتف'),
+                        S.of(context).user_report_details_page_EnterYourData,
+                        S
+                            .of(context)
+                            .user_report_details_page_EnterFullNameAndPhoneNumber),
                     const SizedBox(height: 30),
                     SizedBox(
                       width: 150,
@@ -305,9 +321,9 @@ class _DetailsPageState extends State<DetailsPage> {
                             ),
                           ),
                         ),
-                        child: const Text(
-                          'إرسال',
-                          style: TextStyle(
+                        child: Text(
+                          S.of(context).user_report_details_page_Sent,
+                          style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,

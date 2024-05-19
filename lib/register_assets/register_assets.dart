@@ -1,3 +1,4 @@
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
@@ -104,9 +105,9 @@ class RegisterDeviceState extends State<RegisterDevice> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          "تسجيل جهاز جديد",
-          style: TextStyle(
+        title: Text(
+          S.of(context).register_assets_RegisterNewDevice,
+          style: const TextStyle(
             fontFamily: 'Cario',
             fontSize: 21,
             fontWeight: FontWeight.bold,
@@ -186,40 +187,53 @@ class RegisterDeviceState extends State<RegisterDevice> {
                       width: double.infinity,
                       child: _buildTextField(
                           deviceBrandController,
-                          'العلامة التجارية',
-                          'أدخل العلامة التجارية للجهاز',
+                          S.of(context).register_assets_BrandName,
+                          S.of(context).register_assets_BrandNameEnter,
                           brandOptions),
                     ),
                     const SizedBox(height: 10),
-                    _buildTextField(operatingSystemController, 'نظام التشغيل',
-                        'أدخل نوع نظام التشغيل', operatingSystemOptions),
+                    _buildTextField(
+                        operatingSystemController,
+                        S.of(context).register_assets_OS,
+                        S.of(context).register_assets_EnterOs,
+                        operatingSystemOptions),
                     const SizedBox(height: 10),
-                    _buildTextField(deviceCpuController, 'المعالج',
-                        'أدخل نوع المعالج', cpuTypeOptions),
+                    _buildTextField(
+                        deviceCpuController,
+                        S.of(context).register_assets_Processor,
+                        S.of(context).register_assets_ProcessorName,
+                        cpuTypeOptions),
                     const SizedBox(height: 10),
-                    _buildTextField(deviceHardDeskController, 'القرص الصلب',
-                        'أدخل نوع القرص الصلب', hardDiskOptions),
+                    _buildTextField(
+                        deviceHardDeskController,
+                        S.of(context).register_assets_HardDisk,
+                        S.of(context).register_assets_HardDiskNAme,
+                        hardDiskOptions),
                     const SizedBox(height: 10),
                     _buildTextField(
                       deviceLocationController,
-                      'الموقع',
-                      'أدخل موقع الجهاز',
+
+                      S.of(context).register_assets_Location,
+                      S.of(context).register_assets_EnterDeviceLocation,
                       locationOptions, // Assuming you have a list named locationOptions with location options
                     ),
                     const SizedBox(height: 40),
                     buildTextField(
-                        macAddressController, 'عنوان MAC', 'أدخل عنوان MAC'),
+                      macAddressController,
+                      S.of(context).register_assets_MacAddress,
+                      S.of(context).register_assets_EnterMAcAddress,
+                    ),
                     const SizedBox(height: 30),
                     buildTextFieldNum(
                       ministryNumberController,
-                      'رقم الوزارة',
-                      'أدخل رقم الوزارة',
+                      S.of(context).register_assets_MinisterialNumber,
+                      S.of(context).register_assets_EnterMinisterialNumber,
                     ),
                     const SizedBox(height: 10),
                     buildTextFieldNum(
                       serialNumberController,
-                      'الرقم التسلسلي',
-                      'أدخل الرقم التسلسلي',
+                      S.of(context).register_assets_SerialNumber,
+                      S.of(context).register_assets_EnterSerialNumber,
                     ),
                     const SizedBox(height: 30),
                     SizedBox(
@@ -242,9 +256,9 @@ class RegisterDeviceState extends State<RegisterDevice> {
                             ),
                           ),
                         ),
-                        child: const Text(
-                          'إرسال',
-                          style: TextStyle(
+                        child: Text(
+                          S.of(context).register_assets_Sent,
+                          style: const TextStyle(
                             fontFamily: 'Cario',
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -331,7 +345,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
             fontFamily: 'Cario',
           ),
           decoration: InputDecoration(
-            labelText: 'معلمومات اضافية',
+            labelText: S.of(context).register_assets_ExtrsInfo,
             labelStyle: const TextStyle(color: Colors.teal),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
@@ -339,7 +353,7 @@ class RegisterDeviceState extends State<RegisterDevice> {
             ),
             filled: true,
             fillColor: Colors.white,
-            hintText: 'Enter your own',
+            hintText: S.of(context).register_assets_ExtrsInfo,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(
@@ -430,10 +444,10 @@ class RegisterDeviceState extends State<RegisterDevice> {
               'assets/animation/WOR.json',
               height: 190,
             ),
-            content: const Text(
-              'يُرجى تعبئة جميع الحقول\nلنتمكن من رفع التقرير',
+            content: Text(
+              S.of(context).register_assets_AbleToSumbitReport,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'Cario',
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -442,9 +456,9 @@ class RegisterDeviceState extends State<RegisterDevice> {
             ),
             actions: <Widget>[
               TextButton(
-                child: const Text(
-                  'حسنًا',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).register_assets_Ok,
+                  style: const TextStyle(
                     fontFamily: 'Cario',
                     color: Colors.teal,
                     fontSize: 15,
@@ -482,10 +496,10 @@ class RegisterDeviceState extends State<RegisterDevice> {
               'assets/animation/like1.json',
               height: 200,
             ),
-            content: const Text(
-              '! شكرًا لك على تعاونك',
+            content: Text(
+              S.of(context).register_assets_Ty4Cooperation,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'Cario',
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -494,9 +508,9 @@ class RegisterDeviceState extends State<RegisterDevice> {
             ),
             actions: <Widget>[
               TextButton(
-                child: const Text(
-                  'حسنًا',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).register_assets_Ok,
+                  style: const TextStyle(
                     color: Colors.teal,
                     fontStyle: FontStyle.italic,
                     fontSize: 16,

@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:first_time/reports/it_tasks/it_display_report_received.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -51,8 +52,9 @@ class _ReportsReceivedState extends State<ReportsReceived> {
                       width: 100,
                       height: 100,
                     ),
-                    const Text(
-                      'لا يوجد بلاغات',
+                    Text(
+                      S.of(context).it_reports_received_NoReport,
+                      // ignore: prefer_const_constructors
                       style: TextStyle(
                         fontFamily: 'Cario',
                         color: Colors.black54,
@@ -81,13 +83,13 @@ class _ReportsReceivedState extends State<ReportsReceived> {
                 String statusText;
                 if (differenceInDays >= 4) {
                   statusColor = Colors.red;
-                  statusText = 'اولوية';
+                  statusText = S.of(context).it_reports_received_High;
                 } else if (differenceInDays >= 2) {
                   statusColor = Colors.yellow;
-                  statusText = 'متاخر';
+                  statusText = S.of(context).it_reports_received_Mid;
                 } else {
                   statusColor = Colors.teal;
-                  statusText = 'سليم';
+                  statusText = S.of(context).it_reports_received_Low;
                 }
 
                 return GestureDetector(
@@ -137,21 +139,21 @@ class _ReportsReceivedState extends State<ReportsReceived> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Report Number: ${reportData['reportNumber'] ?? 'No Location'}',
+                                      '${S.of(context).it_all_reports_NumOReports}${reportData['reportNumber']}',
                                       style: const TextStyle(
                                         fontSize: 12.0,
                                         color: Colors.white,
                                       ),
                                     ),
                                     Text(
-                                      'Report Date: ${DateFormat('dd/MM/yyyy').format(reportDate)}',
+                                      '${S.of(context).it_all_reports_Date}: ${DateFormat('dd/MM/yyyy').format(reportDate)}',
                                       style: const TextStyle(
                                         fontSize: 12.0,
                                         color: Colors.white,
                                       ),
                                     ),
                                     Text(
-                                      'Report Location: ${reportData['location'] ?? 'No Location'}',
+                                      '${S.of(context).it_reports_received_ReportLocation}: ${reportData['reportNumber']}',
                                       style: const TextStyle(
                                         fontSize: 12.0,
                                         color: Colors.white,

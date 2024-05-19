@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/services.dart';
@@ -155,7 +156,7 @@ class _MainPageState extends State<MainPage> {
                       message.text,
                       style: const TextStyle(
                         color: Colors.black,
-                        fontSize: 17,
+                        fontSize: 15,
                         fontFamily: 'Cario', // استخدام الخط Cario هنا
                         fontWeight: FontWeight.bold,
                       ),
@@ -165,7 +166,7 @@ class _MainPageState extends State<MainPage> {
                         message.text,
                         style: const TextStyle(
                           color: Colors.black,
-                          fontSize: 17,
+                          fontSize: 15,
                           fontFamily: 'Cario', // استخدام الخط Cario هنا
                           fontWeight: FontWeight.bold,
                         ),
@@ -232,9 +233,9 @@ class _MainPageState extends State<MainPage> {
                     child: TextField(
                       style: const TextStyle(color: Colors.teal),
                       controller: _textEditingController,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.all(10.0),
-                        hintText: 'مرحبا.....',
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.all(10.0),
+                        hintText: S.of(context).ai_chat_pageHello,
                         hintTextDirection: TextDirection.rtl,
                         border: InputBorder.none,
                       ),
@@ -281,7 +282,7 @@ class _MainPageState extends State<MainPage> {
             const SizedBox(width: 10),
             Expanded(
               child: Text(
-                ' مرحباً $fullName ! أنا مساعدك الذكي  يرجى وصف مشكلتك، وسأحاول مساعدتك',
+                "${S.of(context).chat_main_Hello} $fullName ${S.of(context).chat_main_IamSmartAssistant}",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.teal[900],

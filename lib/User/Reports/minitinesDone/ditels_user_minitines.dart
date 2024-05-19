@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_time/User/Data/how_are_we.dart';
 import 'package:first_time/User/Styles/style.dart';
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -56,10 +57,10 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
               'assets/animation/WOR.json',
               height: 200,
             ),
-            content: const Text(
-              'يرجى تعبئة جميع الحقول',
+            content: Text(
+              S.of(context).ditels_user_minitines_FillAllFields,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
@@ -68,9 +69,9 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
             ),
             actions: [
               TextButton(
-                child: const Text(
-                  'حسنا',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).ditels_user_minitines_Ok,
+                  style: const TextStyle(
                     color: Colors.tealAccent,
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
@@ -98,19 +99,19 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
               'assets/animation/like1.json',
               height: 180,
             ),
-            content: const Text(
-              '! شكرًا لك على تعاونك',
+            content: Text(
+              S.of(context).ditels_user_minitines_Thanks4YourCooperation,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Cario'),
             ),
             actions: [
               TextButton(
-                child: const Text(
-                  'حسنا',
-                  style: TextStyle(
+                child: Text(
+                  S.of(context).ditels_user_minitines_Ok,
+                  style: const TextStyle(
                     color: Colors.tealAccent,
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
@@ -124,7 +125,7 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                   Navigator.pop(context);
 
                   Fluttertoast.showToast(
-                    msg: "🚀 تم الإرسال",
+                    msg: S.of(context).ditels_user_minitines_BeenSent,
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.CENTER,
                     timeInSecForIosWeb: 1,
@@ -162,9 +163,9 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
               Navigator.pop(context);
             },
           ),
-          title: const Text(
-            'تفاصيل الصيانة',
-            style: TextStyle(
+          title: Text(
+            S.of(context).ditels_user_minitines_MaintenanceDetails,
+            style: const TextStyle(
               fontFamily: 'Cario',
               color: Colors.white,
               fontSize: 22, //  تغيير هذه القيمة لتكون الحجم
@@ -205,7 +206,7 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                 return const Center(child: CircularProgressIndicator());
               }
               if (snapshot.hasError) {
-                return Center(child: Text('Error: ${snapshot.error}'));
+                return Center(child: Text('Erorr ${snapshot.error}'));
               }
               if (!snapshot.hasData || snapshot.data!.data() == null) {
                 return Column(
@@ -214,9 +215,9 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                   children: [
                     Lottie.asset('assets/animation/like1.json', height: 200),
                     const SizedBox(width: 475),
-                    const Text(
-                      'لا يوجد تفاصيل للصيانة',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).ditels_user_minitines_NoDetailsMaintenance,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         color: Colors.blue,
                         fontSize: 24, //  تغيير هذه القيمة لتكون الحجم
@@ -242,9 +243,9 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                       fit: BoxFit.contain,
                     ),
                     const SizedBox(height: 50),
-                    const Text(
-                      'رقم البلاغ:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).ditels_user_minitines_ReportNumber,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -263,9 +264,9 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                     ),
                     const SizedBox(height: 10),
                     // النصوص والمحتويات الأخرى تأتي هنا
-                    const Text(
-                      'تاريخ بداية البلاغ:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).ditels_user_minitines_StartDateOfReport,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -283,9 +284,9 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                     ),
                     const SizedBox(height: 10),
                     // النصوص والمحتويات الأخرى تأتي هنا
-                    const Text(
-                      'تاريخ نهاية البلاغ:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).ditels_user_minitines_EndDateOfReport,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -302,9 +303,9 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      'الموقع:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).ditels_user_minitines_Location,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,
@@ -321,9 +322,9 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      'المبنى:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).ditels_user_minitines_Buliding,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,
@@ -341,9 +342,9 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                     ),
                     const SizedBox(height: 10),
 
-                    const Text(
-                      'وصف المشكلة:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).ditels_user_minitines_DescriptionOfProblem,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -352,7 +353,8 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      reportData['problem'] ?? 'لا يوجد وصف متاح.',
+                      reportData['problem'] ??
+                          S.of(context).ditels_user_minitines_NoDescription,
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black87,
@@ -360,9 +362,9 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      'بيانات التواصل:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).ditels_user_minitines_ContactInformation,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontFamily: 'Cario',
                         fontWeight: FontWeight.bold,
@@ -379,9 +381,9 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      'حل المشكلة:',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).ditels_user_minitines_ProblemSolution,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -390,7 +392,8 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      reportData['solution'] ?? 'لا يوجد وصف متاح.',
+                      reportData['solution'] ??
+                          S.of(context).ditels_user_minitines_NoDescription,
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black87,
@@ -453,21 +456,23 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                       height: 150, //  الارتفاع
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      'تقييم الخدمة',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).ditels_user_minitines_ServiceEvaluation,
+                      style: const TextStyle(
                         fontFamily: 'Cario',
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                         color: Colors.teal,
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       child: Text(
-                        ' هنا تقييم الخدمة التي قدمت لك من قبل الدعم الفني نرجو ان يكون هنالك مصداقية في عملية التقييم لكي لايؤثر الامر سلبا على الموظف',
+                        S
+                            .of(context)
+                            .ditels_user_minitines_EvaluateTheServiceHonestly,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 12,
                           fontWeight: FontWeight.normal,
@@ -480,8 +485,10 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                       padding: const EdgeInsets.all(8.0),
                       child: buildTextFieldTextUserRating(
                         userRateTextController,
-                        'تقييم الخدمة',
-                        'أدخل وصف الخدمة',
+                        S.of(context).ditels_user_minitines_ServiceEvaluation,
+                        S
+                            .of(context)
+                            .ditels_user_minitines_EnterTheServiceDescription,
                       ),
                     ),
                     Padding(
@@ -530,9 +537,9 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                             borderRadius: BorderRadius.circular(14.0),
                           ),
                         ),
-                        child: const Text(
-                          'إرسال',
-                          style: TextStyle(
+                        child: Text(
+                          S.of(context).ditels_user_minitines_Sent,
+                          style: const TextStyle(
                             fontFamily: 'Cario',
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -551,9 +558,11 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
                           ),
                         );
                       },
-                      child: const Text(
-                        'أضغط هنا لعرض بيانات التواصل',
-                        style: TextStyle(
+                      child: Text(
+                        S
+                            .of(context)
+                            .ditels_user_minitines_ClickHereToViewContactInformation,
+                        style: const TextStyle(
                           fontFamily: 'Cario',
                           fontSize: 14,
                           fontWeight: FontWeight.normal,
@@ -576,9 +585,9 @@ class _DitelsUserMintinesState extends State<DitelsUserMintines> {
           borderRadius: BorderRadius.circular(14.0),
         ),
       ),
-      child: const Text(
-        'تقييم الخدمة',
-        style: TextStyle(
+      child: Text(
+        S.of(context).ditels_user_minitines_ServiceEvaluation,
+        style: const TextStyle(
             fontSize: 16,
             color: Colors.white,
             fontFamily: 'Cario',

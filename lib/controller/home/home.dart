@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:first_time/generated/l10n.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -101,20 +102,20 @@ class _HomeState extends State<Home> {
 
               //!1111111111111111111111111  Card Number One   1111111111111111111111111111111111111111111111111111
 
-              const Row(
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    '\t⚡🔧 بلاغات اليوم ',
+                    S.of(context).home_TodayReports,
                     textAlign: TextAlign.right,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: 'Cario',
                         color: Color(0xFF0099FF),
                         fontSize: 23,
                         fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                 ],
               ),
               const SizedBox(height: 10),
@@ -122,12 +123,12 @@ class _HomeState extends State<Home> {
               buildSlideViewTwo(),
 
               const SizedBox(height: 20),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    '🚀 صيانتي اليوم',
-                    style: TextStyle(
+                    S.of(context).home_MyMaintenanceToday,
+                    style: const TextStyle(
                         fontFamily: 'Cario',
                         color: Color(0xFF0099FF),
                         fontSize: 24,
@@ -139,20 +140,20 @@ class _HomeState extends State<Home> {
 
               buildSlideView(),
 
-              const Row(
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    '\t📑📝 التقارير ',
+                    S.of(context).home_Reports,
                     textAlign: TextAlign.right,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: 'Cario',
                         color: Color(0xFF0099FF),
                         fontSize: 23,
                         fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                 ],
               ),
               buildSlideViewThree(),
@@ -191,9 +192,9 @@ class _HomeState extends State<Home> {
               children: [
                 Lottie.asset('assets/animation/like1.json',
                     fit: BoxFit.contain, width: 100, height: 100),
-                const Text(
-                  'لا يوجد بلاغات',
-                  style: TextStyle(
+                Text(
+                  S.of(context).home_NoReports,
+                  style: const TextStyle(
                       fontFamily: 'Cario',
                       color: Color(0xFF0099FF),
                       fontSize: 23,
@@ -208,8 +209,8 @@ class _HomeState extends State<Home> {
             final data = doc.data() as Map<String, dynamic>;
             return SlideData(
               image: 'assets/images/uqu.png',
-              title: data['location'] ?? 'جهاز غير معروف',
-              content: data['problem'] ?? 'مشكلة غير معروفة',
+              title: data['location'] ?? S.of(context).home_UnknownDevice,
+              content: data['problem'] ?? S.of(context).home_UnknownProblem,
             );
           }).toList();
 
@@ -257,9 +258,9 @@ class _HomeState extends State<Home> {
                 children: [
                   Lottie.asset('assets/animation/like1.json',
                       fit: BoxFit.contain, width: 100, height: 100),
-                  const Text(
-                    'لا يوجد بلاغات',
-                    style: TextStyle(
+                  Text(
+                    S.of(context).home_NoReports,
+                    style: const TextStyle(
                         fontFamily: 'Cario',
                         color: Color(0xFF0099FF),
                         fontSize: 23,
@@ -275,7 +276,7 @@ class _HomeState extends State<Home> {
             final data = doc.data() as Map<String, dynamic>;
             return SlideDatas(
               image: 'assets/images/uqu.png',
-              title: data['location'] ?? 'جهاز غير معروف',
+              title: data['location'] ?? S.of(context).home_UnknownDevice,
               // content: data['problem'] ?? 'مشكلة غير معروفة',
             );
           }).toList();
@@ -324,9 +325,9 @@ class _HomeState extends State<Home> {
               children: [
                 Lottie.asset('assets/animation/like1.json',
                     fit: BoxFit.contain, width: 100, height: 100),
-                const Text(
-                  'لا يوجد بلاغات',
-                  style: TextStyle(
+                Text(
+                  S.of(context).home_NoReports,
+                  style: const TextStyle(
                       fontFamily: 'Cario',
                       color: Color(0xFF0099FF),
                       fontSize: 23,
@@ -341,8 +342,8 @@ class _HomeState extends State<Home> {
             final data = doc.data() as Map<String, dynamic>;
             return SlideData(
               image: 'assets/images/uqu.png',
-              title: data['location'] ?? 'جهاز غير معروف',
-              content: data['solution'] ?? 'مشكلة غير معروفة',
+              title: data['location'] ?? S.of(context).home_UnknownDevice,
+              content: data['solution'] ?? S.of(context).home_UnknownProblem,
             );
           }).toList();
 

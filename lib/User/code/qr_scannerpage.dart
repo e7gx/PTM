@@ -1,3 +1,4 @@
+import 'package:first_time/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:lottie/lottie.dart';
@@ -73,11 +74,11 @@ class _QRScannerPageState extends State<QRScannerPage> {
               ),
               actions: <Widget>[
                 TextButton(
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      'تقديم بلاغ',
+                      S.of(context).qr_sacnnerpage_SumbitReport,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.tealAccent,
                           fontSize: 18,
@@ -93,11 +94,11 @@ class _QRScannerPageState extends State<QRScannerPage> {
                   },
                 ),
                 TextButton(
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      'اهمال',
+                      S.of(context).qr_sacnnerpage_Ignore,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.redAccent,
                           fontSize: 17,
                           fontFamily: 'Cario'),

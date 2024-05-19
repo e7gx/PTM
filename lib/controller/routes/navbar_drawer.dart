@@ -84,14 +84,14 @@ class _WelcomePageState extends State<WelcomePage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: const Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'الصفحة الرئيسية',
+              S.of(context).navbar_drawer_HomePage,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'Cario',
                 color: Colors.white,
                 fontSize: 20,
@@ -192,11 +192,10 @@ class _WelcomePageState extends State<WelcomePage> {
                   ],
                 ),
               ),
-
               ListTile(
-                title: const Text(
-                  'البيانات الشخصية',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).home_page_and_bar_PersonalInfo,
+                  style: const TextStyle(
                     fontFamily: 'Cario',
                     color: Color(0xF9257BEC),
 
@@ -223,9 +222,9 @@ class _WelcomePageState extends State<WelcomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ), //
               ListTile(
-                title: const Text(
-                  'أضافة أصول تقنية',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).navbar_drawer_AddAssets,
+                  style: const TextStyle(
                     fontFamily: 'Cario',
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -253,9 +252,9 @@ class _WelcomePageState extends State<WelcomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ),
               ListTile(
-                title: const Text(
-                  ' مؤشر الاداء العام',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).navbar_drawer_GeneralPreformsnceIndicator,
+                  style: const TextStyle(
                     fontFamily: 'Cario',
                     fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
                     fontWeight: FontWeight.bold, color: Color(0xF9257BEC),
@@ -286,9 +285,9 @@ class _WelcomePageState extends State<WelcomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ), // خط فاصل بين
               ListTile(
-                title: const Text(
-                  'التقارير',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).navbar_drawer_Reports,
+                  style: const TextStyle(
                     fontFamily: 'Cario',
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -318,9 +317,9 @@ class _WelcomePageState extends State<WelcomePage> {
               ), // خط فاصل بين
 
               ListTile(
-                title: const Text(
-                  'اعدادات البرنامج',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).navbar_drawer_ApplicationSettings,
+                  style: const TextStyle(
                     fontFamily: 'Cario',
                     fontSize: 20,
                     color: Color(0xF9257BEC),
@@ -348,9 +347,9 @@ class _WelcomePageState extends State<WelcomePage> {
                 thickness: BorderSide.strokeAlignOutside,
               ),
               ListTile(
-                title: const Text(
-                  'تسجيل خروج',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).navbar_drawer_SignOut,
+                  style: const TextStyle(
                     fontFamily: 'Cario',
                     color: Color(0xF9257BEC),
                     fontSize: 20, //  تغيير هذه القيمة لتكون الحجم
@@ -396,18 +395,18 @@ class _WelcomePageState extends State<WelcomePage> {
             gap: 8,
             onTabChange: (value) => goToPage(value),
             selectedIndex: 0,
-            tabs: const [
+            tabs: [
               GButton(
                 icon: Icons.home_work_sharp,
-                text: 'الرئيسية',
+                text: S.of(context).navbar_drawer_Main,
                 iconColor: Colors.white,
                 iconActiveColor: Colors.cyan,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
-              GButton(
+              const GButton(
                 icon: Icons.qr_code_scanner_outlined,
                 iconColor: Colors.white,
                 iconActiveColor: Colors.cyan,
@@ -419,30 +418,30 @@ class _WelcomePageState extends State<WelcomePage> {
               ),
               GButton(
                 icon: Icons.important_devices_rounded,
-                text: 'الأجهزة',
+                text: S.of(context).navbar_drawer_Devices,
                 iconColor: Colors.white,
                 iconActiveColor: Colors.cyan,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
               GButton(
                 icon: Icons.construction_sharp,
-                text: 'الصيانة',
+                text: S.of(context).navbar_drawer_Maintenance,
                 iconColor: Colors.white,
                 iconActiveColor: Colors.cyan,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
               GButton(
                 icon: Icons.manage_accounts_outlined,
-                text: ' البلاغات',
+                text: S.of(context).navbar_drawer_Reports,
                 iconColor: Colors.white,
                 iconActiveColor: Colors.cyan,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                     fontFamily: 'Cario',
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
